@@ -3,7 +3,7 @@ import { ButtonStyled } from "./styled-components/GlobalButton.styles";
 export const GlobalButton = ({
   buttonClass = "",
   color = "default",
-  backGround = "default",
+  background = "default",
   onClick,
   text,
   type = "button",
@@ -15,7 +15,7 @@ export const GlobalButton = ({
       type={type}
       color={color}
       onClick={onClick}
-      backGround={backGround}
+      background={background}
       disabled={disabled}
     >
       {text}
