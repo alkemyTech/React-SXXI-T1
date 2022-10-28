@@ -9,11 +9,7 @@ export const TitleContactStyled = styled.h1({
     display: 'flex',
 });
 
-export const InputStyled = styled.input({
-    borderRadius: '8px',
-    padding: '0 8px 0 8px',
-});
-export const InputMessageStyled = styled.textarea({
+export const TextAreaMessageStyled = styled.textarea({
     borderRadius: '8px',
     padding: '0 8px 0 8px',
 });
