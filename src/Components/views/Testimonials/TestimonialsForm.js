@@ -49,7 +49,7 @@ const TestimonialsForm = () => {
             </Form.Group>
             <GlobalButton 
                 type="submit"
-                color="light" 
+                color="success" 
                 backGround="light" 
                 text="Send" />
         </Form>
