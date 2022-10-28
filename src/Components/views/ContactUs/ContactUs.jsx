@@ -1,5 +1,6 @@
 import { ContainerContactStyled, TitleContactStyled, ContactFormStyled, Errors,
-    TextAreaStyled, InputStyled, ButtonContact, ContainerInputError} from "./ContactUs.Styled";
+    TextAreaStyled, InputStyled, Button, ContainerInputError,
+    ButtonIrInicio} from "./ContactUs.Styled";
 import { Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
@@ -69,17 +70,19 @@ export default function ContactUs(){
                         {errors.message && touched.message && <Errors>{errors.message}</Errors>}
                     </ContainerInputError>
                 </Form.Group>
-                <ButtonContact
+                <Button
                     color="default"
-                    backGround="succes"
-                    type="submit">Enviar Consulta</ButtonContact>
+                    background="success"
+                    type="submit">
+                        Enviar Consulta
+                </Button>
             </ContactFormStyled>
-            <ButtonContact
-                    color="default"
-                    backGround="succes"
-                    type='button'
-                    onClick={handleClickIraInicio}
-            >Ir al inicio</ButtonContact>
+            <ButtonIrInicio
+                color="default"
+                type='button'
+                onClick={handleClickIraInicio}>
+                    Ir al inicio
+            </ButtonIrInicio>
         </ContainerContactStyled>
     )
 }

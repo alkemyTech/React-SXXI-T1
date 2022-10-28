@@ -32,19 +32,37 @@ export const InputStyled = styled(GlobalInputStyled)`
     border-radius: 6px;
     padding: 8px 10px;
 `;
-export const ButtonContact = styled(ButtonStyled)`
+export const Button = styled(ButtonStyled)`
     width: 150px;
     height: 40px;
     font-size: 1rem;
     border: none;
     &:hover{
-        color: black!important;
+        color: #0038FF!important;
         background-color: #f5f5f5!important;
+        border: 1px solid #0038FF;
     }
     @media screen and (max-width: 430px) {
         width: 100%;
     }
 `;
+export const ButtonIrInicio = styled(ButtonStyled)`
+    width: 150px;
+    height: 40px;
+    font-size: 1rem;
+    border: none;
+    background-color: #FF0000;
+    &:hover{
+        color: black!important;
+        background-color: #f5f5f5!important;
+        border: 1px solid #FF0000;
+        color: #FF0000!important;
+    }
+    @media screen and (max-width: 430px) {
+        width: 100%;
+    }
+`;
+
 export const ContainerInputError = styled.div`
     display: flex;
     flex-direction: column;
