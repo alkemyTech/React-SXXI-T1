@@ -27,18 +27,20 @@ export const GlobalStyle = createGlobalStyle`
             background: white;
             min-height: ${({ windowSize: { height } }) =>
               height > 600 ? "100vh" : css`calc(${minHeight})`};
-            max-width: 650px;
+            max-width: ${({ windowSize: { width } }) =>
+              width > 1199 ? "1200px" : "650px"};
             overscroll-behavior: none;
             width: 100%;
             margin: 0 auto;
             transition: 0.5s;
+            padding: 0 1.5rem;
         }
 
-        #app {
-            box-shadow: 0 0 10px rgba(0,0,0, 0.5);
+        #root {
+            width: 100%;
             overflow-x: hidden;
             min-height: 100vh;
-            padding-bottom: 10px;
+            padding: 0 1.5rem;
         }
     }
 `;
