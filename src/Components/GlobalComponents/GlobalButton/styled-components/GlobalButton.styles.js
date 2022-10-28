@@ -40,7 +40,7 @@ const colors = (color) => {
 const ButtonStyled = styled(Button)`
   ${(props) => console.log(props.color)}
   ${inputTextCssStyle}
-  background-color: ${({ color }) => backGroundColors(color)};
+  background-color: ${({ backGround }) => backGroundColors(backGround)};
   color: ${({ color }) => colors(color)}!important;
   border: 1px solid ${({ color }) => borderColors(color)};
   transition: 0.5s;
