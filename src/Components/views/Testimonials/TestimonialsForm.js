@@ -1,7 +1,10 @@
+import { GlobalButton } from 'Components/GlobalComponents/GlobalButton/GlobalButton';
 import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import { GlobalInputStyled } from 'styled-components/GlobalFormStyled/GlobalInput.styled';
 import '../FormStyles.css';
 
-const TestimonialForm = () => {
+const TestimonialsForm = () => {
     const [initialValues, setInitialValues] = useState({
        name: '',
        description: '' 
@@ -21,12 +24,36 @@ const TestimonialForm = () => {
     }
 
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Testimonial Title"></input>
-            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Testimonial description"></input>
-            <button className="submit-btn" type="submit">Send</button>
-        </form>
+        <Form onSubmit={handleSubmit}>
+            <Form.Group 
+                className="mb-3" 
+                controlId="formBasicName">
+                <Form.Label>Name</Form.Label>
+                <GlobalInputStyled 
+                    type="text"
+                    name="name"
+                    value={initialValues.name} 
+                    onChange={handleChange}  
+                    placeholder="Enter name" />
+            </Form.Group>
+            <Form.Group 
+                className="mb-3" 
+                controlId="formBasicDescription">
+                <Form.Label>Description</Form.Label>
+                <GlobalInputStyled 
+                    type="text"
+                    name="description"
+                    value={initialValues.description} 
+                    onChange={handleChange}  
+                    placeholder="Testimonial description" />
+            </Form.Group>
+            <GlobalButton 
+                type="submit"
+                color="light" 
+                backGround="light" 
+                text="Send" />
+        </Form>
     );
 }
  
-export default TestimonialForm;
+export default TestimonialsForm;
