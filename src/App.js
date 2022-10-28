@@ -4,6 +4,7 @@ import { routes } from "./models/routes";
 import Home from "./Components/views/Home/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
+import LoginForm from "Components/views/Auth/LoginForm";
 import NewsForm from "./Components/views/News/NewsForm";
 import SlidesForm from "./Components/views/Slides/SlidesForm";
 import TestimonialForm from "./Components/views/Testimonials/TestimonialsForm";
@@ -30,6 +31,7 @@ function App() {
           <RoutesNoMatch>
             <Route path={routes.HOME} exact element={<Home />} />
             <Route path={routes.ACTIVITIESFORM} element={<ActivitiesForm />} />
+            <Route path={routes.AUTHLOGINFORM} element={<LoginForm />} />
             <Route path={routes.CATEGORIESFORM} element={<CategoriesForm />} />
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
             <Route path={routes.SLIDERSFORM} element={<SlidesForm />} />

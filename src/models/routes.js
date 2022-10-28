@@ -1,6 +1,7 @@
 export const routes = {
   HOME: "/",
   ACTIVITIESFORM: "/create-activity",
+  AUTHLOGINFORM: "/auth/login",
   CATEGORIESFORM: "/create-category",
   NEWSFORM: "/create-news",
   SLIDERSFORM: "/backoffice/create-slide",
