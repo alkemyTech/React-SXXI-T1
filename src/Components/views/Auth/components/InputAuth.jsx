@@ -1,7 +1,9 @@
 import React from 'react'
 import Form from "react-bootstrap/Form";
 
-const Input = ({
+import { GlobalInputStyled } from 'styled-components/GlobalFormStyled/GlobalInput.styled';
+
+const InputAuth = ({
     value = "",
     type = "text",
     name = "",
@@ -12,7 +14,7 @@ const Input = ({
 }) => {
   return (
     <Form.Group>
-        <Form.Control
+        <GlobalInputStyled
           className="px-4 py-2"
           type={type}
           name={name}
@@ -23,8 +25,8 @@ const Input = ({
         {isTouched && error && (
           <Form.Text className="text-danger">{error}</Form.Text>
         )}
-      </Form.Group>
+    </Form.Group>
   )
 }
 
-export default Input
+export default InputAuth

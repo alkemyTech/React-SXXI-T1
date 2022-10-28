@@ -1,10 +1,10 @@
 import React from "react";
 import { useFormik } from "formik";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 
-import Input from "./components/Input";
+import InputAuth from "./components/InputAuth";
 import { LoginSchema } from "./utilities/schemas";
+import { GlobalButton } from "Components/GlobalComponents/GlobalButton/GlobalButton";
 
 const LoginForm = () => {
   const formik = useFormik({
@@ -21,8 +21,8 @@ const LoginForm = () => {
   });
 
   return (
-    <Form className="d-grid gap-3" onSubmit={formik.handleSubmit}>
-      <Input
+    <Form className="d-grid gap-3 col-6" onSubmit={formik.handleSubmit}>
+      <InputAuth
         value={formik.values.email}
         type="email"
         name="email"
@@ -31,7 +31,7 @@ const LoginForm = () => {
         error={formik.errors.email}
         onChange={formik.handleChange}
       />
-      <Input
+      <InputAuth
         value={formik.values.password}
         type="text"
         name="password"
@@ -40,9 +40,13 @@ const LoginForm = () => {
         error={formik.errors.password}
         onChange={formik.handleChange}
       />
-      <Button className="w-100 py-2" variant="primary" type="submit">
-        Log In
-      </Button>
+      <GlobalButton
+        buttonClass="w-100"
+        type="submit"
+        background="success"
+        color="success"
+        text="Log In"
+      />
     </Form>
   );
 };
