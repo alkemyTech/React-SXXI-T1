@@ -1,7 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { routes } from "./models/routes";
-import "./App.css";
 import Home from "./Components/views/Home/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
@@ -18,10 +17,13 @@ import Footer from "./Components/GlobalComponents/Footer/Footer";
 import Header from "./Components/GlobalComponents/Header/Header";
 import { Row } from "react-bootstrap";
 import { Animate } from "styled-components/animation.styled";
+import { GlobalStyle } from "styled-components/GlobalStyle.styled";
+import { windowSize } from "utilities/windowSize.util";
 
 function App() {
   return (
     <>
+      <GlobalStyle windowSize={windowSize()} />
       <Animate className="ColStyledWithAnimate">
         <Header />
         <Row>
