@@ -3,8 +3,10 @@ import { ContainerContactStyled, TitleContactStyled, ContactFormStyled, Errors,
 import { Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { useNavigate } from "react-router-dom/dist";
 
 export default function ContactUs(){
+    const navigate = useNavigate();
     const initialValues = {
         fullname: '',
         email: '',
@@ -18,9 +20,12 @@ export default function ContactUs(){
         values.message = '';
         alert('hola buenas');
     }
-    function handleClick(e){
+    function handleClickContribuir(e){
         e.preventDefault();
         alert('Hola');
+    }
+    function handleClickIraInicio(){
+        navigate('/');
     }
     const required='Campo obligatorio';
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -41,7 +46,7 @@ export default function ContactUs(){
                 type = 'button'
                 color = "default"
                 background = "default"
-                onClick = {handleClick}>Contribuir</ButtonContact>
+                onClick = {handleClickContribuir}>Contribuir</ButtonContact>
             <TitleContactStyled>¡Contactate con nosotros!</TitleContactStyled>
             <ContactFormStyled onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" >
@@ -83,6 +88,7 @@ export default function ContactUs(){
                     color="default"
                     backGround="succes"
                     type='button'
+                    onClick={handleClickIraInicio}
             >Ir al inicio</ButtonContact>
         </ContainerContactStyled>
     )
