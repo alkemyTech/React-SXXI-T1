@@ -29,7 +29,8 @@ export default function ContactUs(){
         fullname: Yup.string().required(required),
         email : Yup.string().email('Debe ser un email valido').required(required),
         phone: Yup.string().min(8,'Debe contener al menos 8 digitos')
-                  .matches(phoneRegExp, 'Debe ser un numero de telefono valido'),
+                  .matches(phoneRegExp, 'Debe ser un numero de telefono valido')
+                  .required(required),
         message: Yup.string().required(required)
     });
     const formik = useFormik({initialValues, onSubmit, validationSchema});
