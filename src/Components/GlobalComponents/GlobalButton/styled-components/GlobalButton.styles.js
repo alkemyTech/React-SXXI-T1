@@ -17,14 +17,14 @@ const borderColors = (color) => {
   return objColors[color];
 };
 
-const backGroundColors = (color) => {
+const backGroundColors = (background) => {
   const objColors = {
     default: themeColors.red,
     success: themeColors.blue,
     light: themeColors.white,
   };
 
-  return objColors[color];
+  return objColors[background];
 };
 
 const colors = (color) => {
@@ -40,7 +40,7 @@ const colors = (color) => {
 const ButtonStyled = styled(Button)`
   ${(props) => console.log(props.color)}
   ${inputTextCssStyle}
-  background-color: ${({ backGround }) => backGroundColors(backGround)};
+  background-color: ${({ background }) => backGroundColors(background)};
   color: ${({ color }) => colors(color)}!important;
   border: 1px solid ${({ color }) => borderColors(color)};
   transition: 0.5s;
