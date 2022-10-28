@@ -16,6 +16,7 @@ const LoginForm = () => {
     onSubmit: (values) => {
       console.log(values);
       formik.resetForm();
+      localStorage.setItem("token", "tokenValueExample");
     },
   });
 
