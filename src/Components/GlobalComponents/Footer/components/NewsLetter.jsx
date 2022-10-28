@@ -1,31 +1,49 @@
-import { GlobalButton } from "Components/GlobalComponents/GlobalButton/GlobalButton";
-import { GlobalInputStyled } from "styled-components/GlobalFormStyled/GlobalInput.styled";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
+import { SpanFormError } from "Components/GlobalComponents/SpanFormError/SpanFormError";
+import { useNewsLetter } from "../hooks/useNewsLetter";
 import {
-  FormGroupStyled,
-  FormNewsLetterStyled,
-  TextSubscribeNewsLetterStyled,
+  FormGroup,
+  FormNewsLetter,
+  TextSubscribeNewsLetter,
 } from "../styled-components/FormFooter.styled";
+import { InputNewsLetter } from "../styled-components/InputNewsLetter.styled";
+import {
+  formSchema,
+  textSubscribtion,
+} from "../utilities/newsLetterSchemas.util";
 
-export const NewsLetter = () => {
+export const NewsLetter = ({ handleNewsLetter }) => {
+  const {
+    formik: { handleSubmit, values, handleChange, handleBlur, errors, touched },
+  } = useNewsLetter(handleNewsLetter);
+
   return (
-    <FormNewsLetterStyled className="col col-12 col-sm-6">
-      <TextSubscribeNewsLetterStyled>
-        Suscribite al NewsLetter para poder recibir actualizaciones
-      </TextSubscribeNewsLetterStyled>
+    <FormNewsLetter className="col col-12 col-sm-8" onSubmit={handleSubmit}>
+      <TextSubscribeNewsLetter>
+        {textSubscribtion.subNewsLetterText}
+      </TextSubscribeNewsLetter>
 
-      <FormGroupStyled className="mb-3 col col-12">
-        <GlobalInputStyled
+      <FormGroup className="col col-12">
+        <InputNewsLetter
           className="me-1 col col-12"
-          type="email"
-          placeholder="Ingresá tu correo"
+          type={formSchema.inputNewsLetterAttr.type}
+          placeholder={formSchema.inputNewsLetterAttr.placeholder}
+          name={formSchema.inputNewsLetterAttr.name}
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          errors={errors.email}
+          touched={touched.email ? "true" : "false"}
         />
-        <GlobalButton
-          buttonClass="col col-10 col-sm-5 mt-2 "
-          text="Enviar"
-          color="success"
-          background="success"
-        />
-      </FormGroupStyled>
-    </FormNewsLetterStyled>
+        <SpanFormError errors={errors} touched={touched} name="email" />
+      </FormGroup>
+      <CustomButton
+        buttonClass="col col-10 col-sm-5 mt-2 m-auto "
+        type="submit"
+        text={formSchema.submitButtonAttr.text}
+        color="success"
+        background="success"
+      />
+    </FormNewsLetter>
   );
 };
