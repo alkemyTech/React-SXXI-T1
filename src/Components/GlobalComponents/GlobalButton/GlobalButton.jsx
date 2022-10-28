@@ -15,6 +15,7 @@ export const GlobalButton = ({
       type={type}
       color={color}
       onClick={onClick}
+      backGround={backGround}
       disabled={disabled}
     >
       {text}
