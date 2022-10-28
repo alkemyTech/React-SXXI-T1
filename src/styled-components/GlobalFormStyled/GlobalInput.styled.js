@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import styled from "styled-components";
 import { fadeIn } from "styled-components/animation.styled";
 import {
@@ -16,7 +16,7 @@ const borderColors = (color) => {
   return objColors[color];
 };
 
-const GlobalInputStyled = styled(Button)`
+const GlobalInputStyled = styled(Form.Control)`
   ${inputTextCssStyle}
   background-color: ${themeColors.white};
   color: ${themeColors.black}!important;
