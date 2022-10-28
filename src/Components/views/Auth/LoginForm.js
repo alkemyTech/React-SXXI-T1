@@ -1,22 +1,10 @@
 import React from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Input from "./Input/Input";
 
-const LoginSchema = Yup.object().shape({
-  email: Yup.string()
-    .required("El email es obligatorio")
-    .email("El email ingresado no es válido"),
-  password: Yup.string()
-    .required("La contraseña es obligatoria")
-    .min(6, "La contraseña debe tener al menos 6 caracteres")
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
-      "La contraseña debe tener al menos 1 letra, 1 número y 1 símbolo"
-    ),
-});
+import Input from "./components/Input";
+import { LoginSchema } from "./utilities/schemas";
 
 const LoginForm = () => {
   const formik = useFormik({
