@@ -38,7 +38,6 @@ const colors = (color) => {
 };
 
 const ButtonStyled = styled(Button)`
-  ${(props) => console.log(props.color)}
   ${inputTextCssStyle}
   background-color: ${({ backGround }) => backGroundColors(backGround)};
   color: ${({ color }) => colors(color)}!important;
