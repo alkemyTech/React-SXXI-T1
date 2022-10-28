@@ -7,6 +7,7 @@ const themeColors = {
   yellow: "#F9FE00",
   lightYellow: "#FDFFA4",
   gray: "#C0C0C0",
+  grayBorder: "#989898",
   txtGray: "#616161",
   white: "#FFFFFF",
 };
