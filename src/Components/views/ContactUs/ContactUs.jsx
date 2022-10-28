@@ -20,10 +20,6 @@ export default function ContactUs(){
         values.message = '';
         alert('hola buenas');
     }
-    function handleClickContribuir(e){
-        e.preventDefault();
-        alert('Hola');
-    }
     function handleClickIraInicio(){
         navigate('/');
     }
@@ -40,13 +36,6 @@ export default function ContactUs(){
     const {handleChange, handleSubmit, values, errors, handleBlur, touched} = formik;
     return(
         <ContainerContactStyled className="col-12">
-            <TitleContactStyled>¿Queres contribuir?</TitleContactStyled>
-            <ButtonContact
-                className='col-5'
-                type = 'button'
-                color = "default"
-                background = "default"
-                onClick = {handleClickContribuir}>Contribuir</ButtonContact>
             <TitleContactStyled>¡Contactate con nosotros!</TitleContactStyled>
             <ContactFormStyled onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" >
