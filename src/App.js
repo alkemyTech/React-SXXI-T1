@@ -19,6 +19,7 @@ import { Row } from "react-bootstrap";
 import { Animate } from "styled-components/animation.styled";
 import { GlobalStyle } from "styled-components/GlobalStyle.styled";
 import { windowSize } from "utilities/windowSize.util";
+import ContactUs from "Components/views/ContactUs/ContactUs";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
+            <Route path={routes.CONTACTUS} element={<ContactUs />} />
           </RoutesNoMatch>
         </Row>
         <Footer />
