@@ -18,7 +18,7 @@ export const TitleContactStyled = styled.h1({
 });
 
 export const ContactFormStyled = styled(Form)`
-  display: flex;
+  diplay: flex;
   flex-direction: column;
   gap: 1rem;
   margin-top: 1rem;
