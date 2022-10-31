@@ -1,14 +1,10 @@
-import { GlobalButton } from "Components/GlobalComponents/GlobalButton/GlobalButton";
-import TestimonialsForms from "../Testimonials/TestimonialsForm.js"
+import TestimonialsForm from "../Private/BackOffice/Testimonials/TestimonialsForm";
 
 const Home = () => {
+  //return <div>HOME</div>;
   return (
-    <>
-      <GlobalButton color="light" backGround="light" text="Home" />
-      <TestimonialsForms />
-    </>
-  ) 
-  
+      <TestimonialsForm />
+  )
 };
 
 export default Home;

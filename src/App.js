@@ -6,7 +6,7 @@ import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import NewsForm from "./Components/views/News/NewsForm";
 import SlidesForm from "./Components/views/Slides/SlidesForm";
-import TestimonialForm from "./Components/views/Testimonials/TestimonialsForm";
+import TestimonialForm from "./Components/views/Private/BackOffice/Testimonials/TestimonialsForm";
 import UserForm from "./Components/views/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
 import ProjectsForm from "./Components/views/Projects/ProjectsForm";
@@ -19,12 +19,13 @@ import { Row } from "react-bootstrap";
 import { Animate } from "styled-components/animation.styled";
 import { GlobalStyle } from "styled-components/GlobalStyle.styled";
 import { windowSize } from "utilities/windowSize.util";
+import ContactUs from "Components/views/ContactUs/ContactUs";
 
 function App() {
   return (
     <>
       <GlobalStyle windowSize={windowSize()} />
-      <Animate className="ColStyledWithAnimate">
+      <Animate className="col-with-animate">
         <Header />
         <Row>
           <RoutesNoMatch>
@@ -42,6 +43,7 @@ function App() {
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
+            <Route path={routes.CONTACTUS} element={<ContactUs />} />
           </RoutesNoMatch>
         </Row>
         <Footer />
