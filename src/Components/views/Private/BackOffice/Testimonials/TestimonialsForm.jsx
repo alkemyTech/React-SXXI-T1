@@ -25,8 +25,8 @@ const TestimonialsForm = () => {
 
     const validationSchema = Yup.object().shape({
         name : Yup.string().min(4,'Debe contener al menos 4 digitos')
-        .matches(nameRegExp, 'Deben ser letras')
-        .required(required),
+            .matches(nameRegExp, 'Deben ser letras')
+            .required(required),
         description: Yup.string().required(required),
         image: Yup.string().required(required)
     });
