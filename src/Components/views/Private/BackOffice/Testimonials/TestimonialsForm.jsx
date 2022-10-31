@@ -3,17 +3,14 @@ import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
 import { CustomButton } from 'Components/GlobalComponents/CustomButton/CustomButton';
 import { ContainerInputError, Errors, TextArea } from "./TestimonialForm.Styled";
 import { useTestimonialsForms } from './hooks/useTestimonialsForms';
-
+import  Title  from "./Title";
 
 const TestimonialsForm = () => {
     const {values, errors, handleBlur, handleSubmit, handleChange, touched} = useTestimonialsForms();
 
     return (
         <div className="container">
-            <h2
-                className="text-center my-5">
-                Testimonios
-            </h2>
+            <Title text="Testimonios" />
             <Form 
                 className="mb-5"
                 onSubmit={handleSubmit} >

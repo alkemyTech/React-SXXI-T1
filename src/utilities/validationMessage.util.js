@@ -21,6 +21,10 @@ export const validationMessages = {
     fieldLength: "El campo name debe contener al menos 4 digitos",
   },
   description: {
-    required: "El campo description es obligatorio"
+    required: "El campo description es obligatorio",
+    fieldLength: "El campo description debe contener como maximo 255 caracteres",
+  },
+  image: {
+    required: "El campo image es obligatorio"
   }
 };
