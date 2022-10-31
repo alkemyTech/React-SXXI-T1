@@ -15,4 +15,23 @@ export const validationMessages = {
     required: "El campo email es obligatorio",
     format: "El campo email debe tener un formato de email válido",
   },
+  name: {
+    required: "El campo name es obligatorio",
+    format: "El campo name solo puede contener letras",
+    fieldLength: "El campo name debe contener al menos 4 digitos",
+  },
+  description: {
+    required: "El campo description es obligatorio",
+    fieldLength: "El campo description debe contener como maximo 255 caracteres",
+  },
+  image: {
+    required: "El campo image es obligatorio"
+  },
+  rol: {
+    required: "El campo rol es obligatorio"
+  },
+  password: {
+    required: "El campo password es obligatorio",
+    fieldLength: "El campo password debe contener al menos 4 digitos"
+  }
 };
