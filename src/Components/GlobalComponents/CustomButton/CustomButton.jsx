@@ -1,24 +1,24 @@
-import { ButtonStyled } from "./styled-components/GlobalButton.styles";
+import { Button } from "./styled-components/Button.styled";
 
-export const GlobalButton = ({
+export const CustomButton = ({
   buttonClass = "",
   color = "default",
-  backGround = "default",
+  background = "default",
   onClick,
   text,
   type = "button",
   disabled = false,
 }) => {
   return (
-    <ButtonStyled
+    <Button
       className={buttonClass}
       type={type}
       color={color}
       onClick={onClick}
-      background={backGround}
+      background={background}
       disabled={disabled}
     >
       {text}
-    </ButtonStyled>
+    </Button>
   );
 };
