@@ -1,54 +1,12 @@
-import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import { useFormik } from "formik";
-import * as Yup from 'yup';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
 import { CustomButton } from 'Components/GlobalComponents/CustomButton/CustomButton';
 import { ContainerInputError, Errors, TextArea } from "./TestimonialForm.Styled";
+import { useTestimonialsForms } from './hooks/useTestimonialsForms';
+
 
 const TestimonialsForm = () => {
-    const [initialValues, setInitialValues] = useState({
-       name: '',
-       description: '',
-       image: '' 
-    });
-
-    function onSubmit(){
-        values.name = '';
-        values.description = '';
-        values.image = ''
-    }
-
-    const required = 'Campo obligatorio';
-
-    const nameRegExp = /[a-z, A-Z]{4}/
-
-    const validationSchema = Yup.object().shape({
-        name : Yup.string().min(4,'Debe contener al menos 4 digitos')
-            .matches(nameRegExp, 'Deben ser letras')
-            .required(required),
-        description: Yup.string().required(required),
-        image: Yup.string().required(required)
-    });
-
-    const formik = useFormik({initialValues, onSubmit, validationSchema});
-
-    const {values, errors, handleBlur, touched} = formik;
-
-    const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'description'){
-            setInitialValues({...initialValues, description: e.target.value})
-        } if(e.target.name === 'image'){
-            setInitialValues({...initialValues, description: e.target.value})
-        }
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
-    }
+    const {values, errors, handleBlur, handleSubmit, handleChange, touched} = useTestimonialsForms();
 
     return (
         <div className="container">
@@ -66,9 +24,9 @@ const TestimonialsForm = () => {
                     <InputForm
                         type="text"
                         name="name"
-                        value={initialValues.name} 
+                        value={values.name} 
+                        onChange={handleChange}
                         onBlur={handleBlur} 
-                        onChange={handleChange}  
                         placeholder="Nombre" />
                     {errors.name && touched.name && <Errors>{errors.name}</Errors>}
                 </ContainerInputError>
@@ -82,9 +40,9 @@ const TestimonialsForm = () => {
                         as="textarea"
                         type="text"
                         name="description"
-                        value={initialValues.description} 
+                        value={values.description} 
+                        onChange={handleChange}
                         onBlur={handleBlur} 
-                        onChange={handleChange}  
                         placeholder="Escribe la descripción" />
                     {errors.description && touched.description && <Errors>{errors.description}</Errors>}
                 </ContainerInputError>
@@ -97,9 +55,9 @@ const TestimonialsForm = () => {
                     <InputForm 
                         type="file"
                         name="image"
-                        value={initialValues.image} 
+                        value={values.image} 
+                        onChange={handleChange}
                         onBlur={handleBlur} 
-                        onChange={handleChange}  
                         placeholder="Ingresa la imagen..." 
                         alt="testimonial form image"
                         />
