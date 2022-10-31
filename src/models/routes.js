@@ -4,6 +4,7 @@ export const routes = {
   AUTHLOGINFORM: "/auth/login",
   AUTHREGISTERFORM: "/auth/register",
   CATEGORIESFORM: "/create-category",
+  EDITORGANIZATIONFORM: "/backoffice/organization/edit",
   NEWSFORM: "/create-news",
   SLIDERSFORM: "/backoffice/create-slide",
   TESTIMONIALSFORM: "/create-testimonials",
