@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { routes } from "./models/routes";
 import Home from "./Components/views/Home/Home";
-import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
+import ActivitiesForm from "./Components/views/Private/Admin/BackOffice/Activities/ActivitiesForm.jsx";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import NewsForm from "./Components/views/News/NewsForm";
 import SlidesForm from "./Components/views/Slides/SlidesForm";
