@@ -8,7 +8,7 @@ import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import NewsForm from "./Components/views/News/NewsForm";
 import SlidesForm from "./Components/views/Slides/SlidesForm";
 import TestimonialForm from "./Components/views/Testimonials/TestimonialsForm";
-import UserForm from "./Components/views/Users/UsersForm";
+import UserForm from "./Components/views/Private/Admin/BackOffice/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
 import ProjectsForm from "./Components/views/Projects/ProjectsForm";
 import SchoolCampaign from "./Components/Campaigns/School/SchoolCampaign";
