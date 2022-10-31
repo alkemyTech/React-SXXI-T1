@@ -1,7 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { routes } from "./models/routes";
-import "./App.css";
 import Home from "./Components/views/Home/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
@@ -18,11 +17,15 @@ import Footer from "./Components/GlobalComponents/Footer/Footer";
 import Header from "./Components/GlobalComponents/Header/Header";
 import { Row } from "react-bootstrap";
 import { Animate } from "styled-components/animation.styled";
+import { GlobalStyle } from "styled-components/GlobalStyle.styled";
+import { windowSize } from "utilities/windowSize.util";
+import ContactUs from "Components/views/ContactUs/ContactUs";
 
 function App() {
   return (
     <>
-      <Animate className="ColStyledWithAnimate">
+      <GlobalStyle windowSize={windowSize()} />
+      <Animate className="col-with-animate">
         <Header />
         <Row>
           <RoutesNoMatch>
@@ -40,6 +43,7 @@ function App() {
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
+            <Route path={routes.CONTACTUS} element={<ContactUs />} />
           </RoutesNoMatch>
         </Row>
         <Footer />

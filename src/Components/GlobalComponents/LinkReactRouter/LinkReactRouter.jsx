@@ -1,4 +1,4 @@
-import { LinkStyled } from "./styled-components/LinkReactRouter.styles";
+import { CustomLink } from "./styled-components/LinkReactRouter.styles";
 
 export const LinkReactRouter = ({
   linkClass = "",
@@ -7,8 +7,8 @@ export const LinkReactRouter = ({
   from = undefined,
 }) => {
   return (
-    <LinkStyled className={linkClass} from={from} to={to}>
+    <CustomLink className={linkClass} from={from} to={to}>
       {text}
-    </LinkStyled>
+    </CustomLink>
   );
 };

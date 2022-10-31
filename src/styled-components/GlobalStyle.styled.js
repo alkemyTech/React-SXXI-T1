@@ -3,7 +3,7 @@ import { createGlobalStyle, css } from "styled-components";
 const minHeight = "100vh - 112px";
 
 export const GlobalStyle = createGlobalStyle`
-    html{
+    html {
         box-sizing: border-box;
         font-family: 'Rubik', sans-serif;
 
@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
             box-sizing: inherit;
         }
 
-        a{
+        a {
             text-decoration: none;
         }
         
@@ -19,26 +19,35 @@ export const GlobalStyle = createGlobalStyle`
             margin: 0; padding: 0;
         }
 
-        ul { list-style: none}
+        ul { 
+            list-style: none;
+        }
         
-        button{background: transparent; border: 0; outline: 0;}
+        button {
+            background: transparent;
+            border: 0;
+            outline: 0;
+        }
 
-        body{
+        body {
             background: white;
             min-height: ${({ windowSize: { height } }) =>
               height > 600 ? "100vh" : css`calc(${minHeight})`};
-            max-width: 650px;
+            max-width: ${({ windowSize: { width } }) =>
+              width > 1199 ? "1200px" : width > 999 ? "1000px" : "650px"};
+            
             overscroll-behavior: none;
             width: 100%;
             margin: 0 auto;
             transition: 0.5s;
+            padding: 0 1.5rem;
         }
 
-        #app {
-            box-shadow: 0 0 10px rgba(0,0,0, 0.5);
+        #root {
+            width: 100%;
             overflow-x: hidden;
             min-height: 100vh;
-            padding-bottom: 10px;
+            padding: 0 1.5rem;
         }
     }
 `;
