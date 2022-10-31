@@ -1,20 +1,15 @@
-import { InputTextsStyled } from "styled-components/App.styled";
-import { NavLinkStyled } from "./styled-components/NavLinkReactRouter.styles";
+import { CustomNavLink } from "./styled-components/NavLinkReactRouter.styles";
 
 const NavLinkReactRouter = ({
-  icon,
-  name,
+  text,
   to,
   navLinkClass = "",
   handleCloseToggle = undefined,
-  privated = undefined,
 }) => {
   return (
-    <NavLinkStyled className={navLinkClass} onClick={handleCloseToggle} to={to}>
-      <InputTextsStyled>
-        {icon} {name}
-      </InputTextsStyled>
-    </NavLinkStyled>
+    <CustomNavLink className={navLinkClass} onClick={handleCloseToggle} to={to}>
+      {text}
+    </CustomNavLink>
   );
 };
 

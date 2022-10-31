@@ -6,7 +6,7 @@ import {
 } from "styled-components/App.styled";
 import { themeColors } from "../../../../styled-components/Theme.styled";
 
-const LinkStyled = styled(Link)`
+const CustomLink = styled(Link)`
   ${inputTextCssStyle}
   width: ${({ from }) => (from ? "100%" : "50%")};
   background-color: ${themeColors.white}!important;
@@ -29,4 +29,4 @@ const LinkStyled = styled(Link)`
   }
 `;
 
-export { LinkStyled };
+export { CustomLink };
