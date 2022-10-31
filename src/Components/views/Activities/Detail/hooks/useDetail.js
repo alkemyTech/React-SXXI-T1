@@ -1,9 +1,9 @@
-import { useGetParams } from "hooks/useGetParams";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { postDetail } from "../interceptor/postDetail.interceptor";
 
 export const useDetail = () => {
-  const { parameterValue: idDetail } = useGetParams("id");
+  const { id: idDetail } = useParams();
 
   const [dataDetail, setDataDetail] = useState({});
   const [loadingDetail, setLoadingDetail] = useState(true);
