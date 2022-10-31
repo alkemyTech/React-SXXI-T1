@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <GlobalStyle windowSize={windowSize()} />
-      <Animate className="ColStyledWithAnimate">
+      <Animate className="col-with-animate">
         <Header />
         <Row>
           <RoutesNoMatch>

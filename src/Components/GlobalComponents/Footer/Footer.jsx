@@ -1,17 +1,20 @@
-import { Form } from "react-bootstrap";
-import { GlobalInputStyled } from "styled-components/GlobalFormStyled/GlobalInput.styled";
-import { FormFooterStyled } from "./styled-components/FormFooter.styled";
-import { WrapFooterStyled } from "./styled-components/WrapFooter.styled";
+import { NewsLetter } from "./components/NewsLetter";
+import { WrapFooter } from "./styled-components/WrapFooter.styled";
+import { useShowNewsLetter } from "./hooks/useShowNewsLetter";
+import { Col } from "react-bootstrap";
 
 const Footer = () => {
+  const { handleNewsLetter, newsLetter } = useShowNewsLetter();
+
   return (
-    <WrapFooterStyled>
-      <FormFooterStyled>
-        <Form.Group className="mb-3">
-          <GlobalInputStyled type="email" placeholder="Enter email" />
-        </Form.Group>
-      </FormFooterStyled>
-    </WrapFooterStyled>
+    <WrapFooter>
+      <Col className="col col-12">Footer</Col>
+      {!newsLetter && (
+        <Col className="col col-12 d-flex justify-content-center">
+          <NewsLetter handleNewsLetter={handleNewsLetter} />
+        </Col>
+      )}
+    </WrapFooter>
   );
 };
 
