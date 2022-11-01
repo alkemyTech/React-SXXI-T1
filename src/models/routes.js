@@ -12,4 +12,5 @@ export const routes = {
   PROJECTFORM: "/create-project",
   SCHOOLCAMPAIGN: "/school-campaign",
   TOYSCAMPAIGN: "/toys-campaign",
+  CONTACTUS: "/contact-us"
 };
