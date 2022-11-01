@@ -1,7 +1,8 @@
 export const routes = {
   HOME: "/",
   ACTIVITIESFORM: "/create-activity",
-  CATEGORIESFORM: "/create-category",
+  CREATECATEGORY: "/backoffice/create-category",
+  EDITCATEGORY: "/backoffice/edit-category/:id",
   NEWSFORM: "/create-news",
   SLIDERSFORM: "/backoffice/create-slide",
   TESTIMONIALSFORM: "/create-testimonials",

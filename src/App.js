@@ -31,7 +31,8 @@ function App() {
           <RoutesNoMatch>
             <Route path={routes.HOME} exact element={<Home />} />
             <Route path={routes.ACTIVITIESFORM} element={<ActivitiesForm />} />
-            <Route path={routes.CATEGORIESFORM} element={<CategoriesForm />} />
+            <Route path={routes.CREATECATEGORY} element={<CategoriesForm />} />
+            <Route path={routes.EDITCATEGORY} element={<CategoriesForm />} />
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
             <Route path={routes.SLIDERSFORM} element={<SlidesForm />} />
             <Route
