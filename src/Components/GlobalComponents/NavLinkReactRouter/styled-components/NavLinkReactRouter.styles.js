@@ -8,7 +8,7 @@ import {
 } from "styled-components/App.styled";
 import { themeColors } from "styled-components/Theme.styled";
 
-const NavLinkStyled = styled(NavLink)`
+const CustomNavLink = styled(NavLink)`
   ${inputTextCssStyle}
   margin: 5px 5px;
   border-radius: ${someOtherProperties.globalRadius};
@@ -37,4 +37,4 @@ const NavLinkStyled = styled(NavLink)`
   }
 `;
 
-export { NavLinkStyled };
+export { CustomNavLink };
