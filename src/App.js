@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { routes } from "./models/routes";
+import { routes, backofficeRoutes } from "./models/routes";
 import Home from "./Components/views/Home/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
@@ -37,7 +37,11 @@ function App() {
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
             <Route path={routes.SLIDERSFORM} element={<SlidesForm />} />
             <Route
-              path={routes.TESTIMONIALSFORM}
+              path={backofficeRoutes.TESTIMONIALSFORM}
+              element={<TestimonialForm />}
+            />
+            <Route
+              path={backofficeRoutes.TESTIMONIALSEDITFORM}
               element={<TestimonialForm />}
             />
             <Route path={routes.USERFORM} element={<UserForm />} />

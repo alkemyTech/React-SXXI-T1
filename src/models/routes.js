@@ -9,7 +9,11 @@ export const routes = {
   PROJECTFORM: "/create-project",
   SLIDERSFORM: "/backoffice/create-slide",
   SCHOOLCAMPAIGN: "/school-campaign",
-  TESTIMONIALSFORM: "/create-testimonials",
   TOYSCAMPAIGN: "/toys-campaign",
   USERFORM: "/create-user",
 };
+
+export const backofficeRoutes = {
+  TESTIMONIALSFORM: "/backoffice/create-testimonials",
+  TESTIMONIALSEDITFORM: "/backoffice/edit-testimonials/:id",
+}

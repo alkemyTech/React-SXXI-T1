@@ -1,26 +1,36 @@
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
-import { CustomButton } from 'Components/GlobalComponents/CustomButton/CustomButton';
-import { ContainerInputError, Errors, TextArea } from "./TestimonialForm.Styled";
+import { ContainerInputError, Errors } from "./TestimonialForm.Styled";
 import { useTestimonialsForms } from './hooks/useTestimonialsForms';
 import  Title  from "./Title";
+import CKEditorComponent from './CKEditor/CKEditorComponent';
+import TestimonialButtons from './TestimonialsButtons';
 
 const TestimonialsForm = () => {
     const {values, errors, handleBlur, handleSubmit, handleChange, touched} = useTestimonialsForms();
+    const { id } = useParams();
+    const [ description, setDescription ] = useState('');
+    const [ descError, setDescError ] = useState('');
 
     return (
         <div className="container">
-            <Title text="Testimonios" />
-            <Form 
-                className="mb-5"
-                onSubmit={handleSubmit} >
+          <Title text={id?"Edita el testimonio":"Crea el testimonio"} />
+          <Form 
+            className="my-5"
+            onSubmit={handleSubmit} >
             <Form.Group 
                 className="mb-3" 
                 controlId="formBasicName">
                 <ContainerInputError>
+                    <Form.Label className="mt-3">
+                      Nombre del testimonio:
+                    </Form.Label>
                     <InputForm
                         type="text"
                         name="name"
+                        //value={id?"name":values.name} 
                         value={values.name} 
                         onChange={handleChange}
                         onBlur={handleBlur} 
@@ -32,24 +42,21 @@ const TestimonialsForm = () => {
                 className="mb-3" 
                 controlId="formBasicDescription">
                 <ContainerInputError>
-                    <TextArea 
-                        className="col col-12 d-flex justify-content-center"
-                        as="textarea"
-                        type="text"
-                        name="description"
-                        value={values.description} 
-                        onChange={handleChange}
-                        onBlur={handleBlur} 
-                        placeholder="Escribe la descripción" />
-                    {errors.description && touched.description && <Errors>{errors.description}</Errors>}
+                    <Form.Label className="mt-3">Descripción del testimonio:</Form.Label>
+                    <CKEditorComponent 
+                      setDescription={setDescription}
+                      setDescError={setDescError}
+                    />
+                    { descError && <Errors>{descError}</Errors>}
                 </ContainerInputError>
             </Form.Group>
             <Form.Group 
-                className="mb-3" 
+                className="mb-5" 
                 controlId="formBasicImage">
                 <ContainerInputError>
-                    <Form.Label>Imagen:</Form.Label>
+                    <Form.Label className="mt-3">Selecciona una imagen:</Form.Label>
                     <InputForm 
+                        accept="image/png, image/jpeg, image/jpg" 
                         type="file"
                         name="image"
                         value={values.image} 
@@ -61,12 +68,8 @@ const TestimonialsForm = () => {
                     {errors.image && touched.image && <Errors>{errors.image}</Errors>}
                 </ContainerInputError>
             </Form.Group>
-            <CustomButton 
-                type="submit"
-                color="success" 
-                background="success" 
-                text="Send" />
-        </Form>
+            <TestimonialButtons />
+          </Form>
         </div>
     );
 }
