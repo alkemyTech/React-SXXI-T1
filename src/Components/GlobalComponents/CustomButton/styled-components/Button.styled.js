@@ -33,7 +33,6 @@ const colors = (color) => {
 
   return objColors[color];
 };
-
 const Button = styled(BootstrapButton)`
   ${inputTextCssStyle}
   background-color: ${({ background }) => backGroundColors(background)};
