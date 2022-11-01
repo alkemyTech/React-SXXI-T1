@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import Form from "react-bootstrap/Form";
 
 import Input from "./components/Input";
-import { GlobalButton } from "Components/GlobalComponents/GlobalButton/GlobalButton";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 import { EditOrganizationSchema } from "./utilities/schemas";
 import SocialMediaInput from "./components/SocialMediaInput";
 
@@ -85,7 +85,7 @@ const EditForm = () => {
         onRemoveLink={removeLinkHandler}
         links={formik.values.socialMediaLinks}
       />
-      <GlobalButton
+      <CustomButton
         buttonClass="w-100"
         type="submit"
         background="success"

@@ -2,8 +2,8 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import { useFormik } from "formik";
 
-import { GlobalButton } from "Components/GlobalComponents/GlobalButton/GlobalButton";
-import { GlobalInputStyled as GlobalInput } from "styled-components/GlobalFormStyled/GlobalInput.styled";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
+import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
 import { LinkSchema } from "../utilities/schemas";
 
 const SocialMediaInput = ({ onAddLink, onRemoveLink, links }) => {
@@ -28,7 +28,7 @@ const SocialMediaInput = ({ onAddLink, onRemoveLink, links }) => {
       <Form.Group>
         <Form.Label>Social Media Link:</Form.Label>
         <div className="d-flex">
-          <GlobalInput
+          <InputForm
             className="px-4 py-2"
             type="url"
             name="socialMediaLink"
@@ -36,7 +36,7 @@ const SocialMediaInput = ({ onAddLink, onRemoveLink, links }) => {
             onChange={formik.handleChange}
             placeholder="Enter a social media link"
           />
-          <GlobalButton
+          <CustomButton
             background="success"
             color="success"
             text="Add"

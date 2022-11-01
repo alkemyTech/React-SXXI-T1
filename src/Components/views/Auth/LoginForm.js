@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 import InputAuth from "./components/InputAuth";
 import { LoginSchema } from "./utilities/schemas";
-import { GlobalButton } from "Components/GlobalComponents/GlobalButton/GlobalButton";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 
 const LoginForm = () => {
   const formik = useFormik({
@@ -33,14 +33,14 @@ const LoginForm = () => {
       />
       <InputAuth
         value={formik.values.password}
-        type="text"
+        type="password"
         name="password"
         placeholder="Enter password"
         isTouched={formik.touched.password}
         error={formik.errors.password}
         onChange={formik.handleChange}
       />
-      <GlobalButton
+      <CustomButton
         buttonClass="w-100"
         type="submit"
         background="success"
