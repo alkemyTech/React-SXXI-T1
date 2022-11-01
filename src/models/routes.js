@@ -14,4 +14,5 @@ export const routes = {
   SCHOOLCAMPAIGN: "/school-campaign",
   TOYSCAMPAIGN: "/toys-campaign",
   NEWSDETAIL: "/novedades/:id",
+  CONTACTUS: "/contact-us",
 };

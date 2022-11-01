@@ -1,7 +1,5 @@
-import { GlobalButton } from "Components/GlobalComponents/GlobalButton/GlobalButton";
-
 const Home = () => {
-  return <GlobalButton color="light" backGround="light" text="Home" />;
+  return <div>HOME</div>;
 };
 
 export default Home;
