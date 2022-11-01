@@ -1,15 +1,16 @@
 export const routes = {
-  HOME: "/",
   ACTIVITIESFORM: "/create-activity",
+  ACIVITIESDETAIL: "/actividades/:id",
+  CONTACTUS: "/contact-us",
   CREATECATEGORY: "/backoffice/create-category",
   EDITCATEGORY: "/backoffice/edit-category/:id",
-  NEWSFORM: "/create-news",
-  SLIDERSFORM: "/backoffice/create-slide",
-  TESTIMONIALSFORM: "/create-testimonials",
-  USERFORM: "/create-user",
+  HOME: "/",
   MEMBERSFORM: "/create-member",
+  NEWSFORM: "/create-news",
   PROJECTFORM: "/create-project",
+  SLIDERSFORM: "/backoffice/create-slide",
   SCHOOLCAMPAIGN: "/school-campaign",
+  TESTIMONIALSFORM: "/create-testimonials",
   TOYSCAMPAIGN: "/toys-campaign",
-  CONTACTUS: "/contact-us"
+  USERFORM: "/create-user",
 };

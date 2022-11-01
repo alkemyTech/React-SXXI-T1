@@ -27,11 +27,13 @@ const CategoriesForm = () => {
     const onSubmit = () => {
         if(descError !== '' && description !== ''){
             if(id) {
-                alert('editar categoria');
                 // axios.put(`${URL}/${id}`, {});
+                alert('cambios guardados');
+                navigate('/backoffice/categories');
             }else {
-                alert('crear categoria');
                 // axios.post(URL, {});
+                alert('categoria creada');
+                navigate('/backoffice/categories');
             }
         }
     }
