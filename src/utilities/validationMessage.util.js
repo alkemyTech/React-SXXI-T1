@@ -29,5 +29,8 @@ export const validationMessages = {
   },
   title: {
     required: "El campo titulo es obligatorio"
-  }
+  },
+  date: {
+    required: "El campo fecha de expiración es obligatorio"
+  },
 };

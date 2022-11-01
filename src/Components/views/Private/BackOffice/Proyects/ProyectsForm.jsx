@@ -65,6 +65,7 @@ const ProyectsForm = () => {
                 className="mb-3" 
                 controlId="formBasicDate">
                 <ContainerInputError>
+                    <Form.Label>Selecciona la fecha de expiración:</Form.Label>
                     <InputForm
                         type="date"
                         name="date"

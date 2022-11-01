@@ -15,7 +15,7 @@ export const useProyectsForms = () => {
         ["image/png", "image/jpg"],
         "El formato de la imagen tiene que ser jpg, 0 png"
       ),
-      date: Yup.string().required("obligatoria")
+    date: Yup.string().required(validationMessages.date.required)
   });
 
   const initialValues = {
