@@ -7,6 +7,7 @@ export const routes = {
   HOME: "/",
   MEMBERSFORM: "/create-member",
   NEWSFORM: "/create-news",
+  ORGANIZATIONDATA: "/backoffice/organization",
   PROJECTFORM: "/create-project",
   SLIDERSFORM: "/backoffice/create-slide",
   SCHOOLCAMPAIGN: "/school-campaign",
