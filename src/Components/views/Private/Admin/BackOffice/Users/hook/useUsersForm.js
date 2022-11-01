@@ -12,8 +12,8 @@ export const useUsersForm = () => {
       .required(validationMessages.name.required),
     email: Yup.string().matches(emailRegExp, validationMessages.email.format)
       .required(validationMessages.email.required),
-    image: Yup.string()
-      .required(validationMessages.image.required)
+    profilephoto: Yup.string()
+      .required(validationMessages.profilephoto.required)
       .oneOf(
         ["image/png", "image/jpg"],
         "El formato de la imagen tiene que ser jpg, 0 png"
@@ -26,7 +26,7 @@ export const useUsersForm = () => {
   const initialValues = {
     name: '',
     email: '',
-    image: '',
+    profilephoto: '',
     rol: '',
     password: ''
   };

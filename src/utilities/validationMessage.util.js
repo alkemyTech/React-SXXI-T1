@@ -33,5 +33,8 @@ export const validationMessages = {
   password: {
     required: "El campo password es obligatorio",
     fieldLength: "El campo password debe contener al menos 4 digitos"
-  }
+  },
+  profilephoto: {
+    required: "El campo image de perfil es obligatorio"
+  },
 };

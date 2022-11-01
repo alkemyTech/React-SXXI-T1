@@ -47,14 +47,14 @@ const UsersForm = () => {
                 className="mb-3" 
                 controlId="formBasicImage">
                 <ContainerInputError>
-                    <Form.Label>Imagen:</Form.Label>
+                    <Form.Label>Imagen de perfil:</Form.Label>
                     <InputForm 
                         type="file"
-                        name="image"
+                        name="profilephoto"
                         value={values.image} 
                         onChange={handleChange}
                         onBlur={handleBlur} 
-                        placeholder="Ingresa la imagen..." 
+                        placeholder="Ingresa la imagen de perfil..." 
                         alt="testimonial form image"
                         />
                     {errors.image && touched.image && <Errors>{errors.image}</Errors>}
