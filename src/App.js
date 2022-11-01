@@ -9,7 +9,7 @@ import SlidesForm from "./Components/views/Slides/SlidesForm";
 import TestimonialForm from "./Components/views/Testimonials/TestimonialsForm";
 import UserForm from "./Components/views/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
-import ProjectsForm from "./Components/views/Projects/ProjectsForm";
+import ProjectsForm from "./Components/views/Private/BackOffice/Proyects/ProyectsForm";
 import SchoolCampaign from "./Components/Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Components/Campaigns/Toys/ToysCampaign";
 import { RoutesNoMatch } from "./utilities/routesNoMatch.util";
