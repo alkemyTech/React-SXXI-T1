@@ -6,7 +6,12 @@ import { defaultDetailText } from "./utilities/detailSchema.util";
 const Detail = () => {
   const { dataDetail, loadingDetail } = useDetail();
 
-  if (loadingDetail) return <SpinnerLoad />;
+  if (loadingDetail)
+    return (
+      <div>
+        <SpinnerLoad />
+      </div>
+    );
 
   return (
     <div className="my-5">

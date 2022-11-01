@@ -22,7 +22,7 @@ export const useDetail = () => {
     };
 
     fetchDetail();
-  }, []);
+  }, [idDetail]);
 
   return { dataDetail, loadingDetail };
 };
