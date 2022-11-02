@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Image from "react-bootstrap/Image";
 
-import DetailHeading from "./Heading";
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 
 const DUMMY_NEWS = {
   content: "dummy content of the news",
   imgUrl:
-    "https://images.unsplash.com/photo-1661961110671-77b71b929d52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
 };
 
 const NewsDetail = ({ title }) => {
@@ -25,10 +24,11 @@ const NewsDetail = ({ title }) => {
   if (!news) return null;
 
   return (
-    <div>
-      <DetailHeading>{title}</DetailHeading>
-      <Image src={news.imgUrl} alt="Some dummy img" />
-      <p>{news.content}</p>
+    <div className="h-100">
+      <CustomTitle wrapTitleClass="d-block" title={title} image={news.imgUrl} />
+      <div className="py-2">
+        <p>{news.content}</p>
+      </div>
     </div>
   );
 };
