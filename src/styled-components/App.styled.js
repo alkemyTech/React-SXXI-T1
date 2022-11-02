@@ -1,4 +1,4 @@
-import { Row } from "react-bootstrap";
+import { Row as BootstrapRow } from "react-bootstrap";
 import styled, { css } from "styled-components";
 import { fadeIn } from "./animation.styled";
 import { themeColors } from "./Theme.styled";
@@ -11,13 +11,12 @@ const responsiveDesign = {
   desktop: `@media (min-width: ${desktopStartWidth}px)`,
 };
 
-// ver si agregamos alguna otra propiedasd 'global' a tener en cuenta
 const someOtherProperties = {
   globalRadius: "8px",
   globalShadowBoxCards: `0px 4px 4px ${themeColors.blackShadow}`,
 };
 
-const HrStyled = styled.hr`
+const Hr = styled.hr`
   height: 2px !important;
   color: ${themeColors.gray};
 `;
@@ -25,101 +24,101 @@ const HrStyled = styled.hr`
 const fontFamily = "'Rubik', sans-serif";
 
 const typography = {
-  mobileTitlesStyled: () => css`
+  mobileTitle: () => css`
     font: 700 40px/40px ${fontFamily};
   `,
-  mobileSsubTitlesStyled: () => css`
+  mobileSsubTitle: () => css`
     font: 400 16px/16px ${fontFamily};
   `,
-  mobileInputTexts: () => css`
+  mobileInputText: () => css`
     font: 400 13px/14px ${fontFamily};
   `,
-  mobileSmallTexts: () => css`
+  mobileSmallText: () => css`
     font: 300 11px/20px ${fontFamily};
   `,
-  titlesStyled: () => css`
+  title: () => css`
     font: 700 64px/76px ${fontFamily};
   `,
-  subTitlesStyled: () => css`
+  subTitle: () => css`
     font: 400 20px/20px ${fontFamily};
   `,
-  desktopInputTexts: () => css`
+  desktopInputText: () => css`
     font: 300 15px/19px ${fontFamily};
   `,
-  desktopButtonTexts: () => css`
+  desktopButtonText: () => css`
     font: 600 16px/19px ${fontFamily};
   `,
-  desktopSmallTexts: () => css`
+  desktopSmallText: () => css`
     font: 300 14px/20px ${fontFamily};
   `,
 };
 
 const titleCssStyle = css`
   color: ${themeColors.black} !important;
-  ${typography.mobileTitlesStyled()}
+  ${typography.mobileTitle()}
 
   ${responsiveDesign.desktop} {
-    ${typography.titlesStyled()}
+    ${typography.title()}
   }
 `;
 
 const subtitleCssStyle = css`
   color: ${themeColors.black} !important;
-  ${typography.mobileSsubTitlesStyled()}
+  ${typography.mobileSsubTitle()}
   line-height: 30px !important;
 
   ${responsiveDesign.desktop} {
-    ${typography.subTitlesStyled()}
+    ${typography.subTitle()}
   }
 `;
 
 const inputTextCssStyle = css`
   color: ${themeColors.black} !important;
-  ${typography.mobileInputTexts()}
+  ${typography.mobileInputText()}
 
   ${responsiveDesign.desktop} {
-    ${typography.desktopInputTexts()}
+    ${typography.desktopInputText()}
   }
 `;
 
 const smallTextCssStyle = css`
   color: ${themeColors.black} !important;
-  ${typography.mobileSmallTexts()};
+  ${typography.mobileSmallText()};
 
   ${responsiveDesign.desktop} {
-    ${typography.desktopSmallTexts()};
+    ${typography.desktopSmallText()};
   }
 `;
 
-const TitleTextStyled = styled.h1`
+const TitleText = styled.h1`
   ${() =>
     css`
       ${titleCssStyle}
     `};
 `;
 
-const SubtitleTextStyled = styled.h3`
+const SubtitleText = styled.h3`
   ${() =>
     css`
       ${subtitleCssStyle}
     `};
 `;
 
-const InputTextsStyled = styled.h6`
+const InputTexts = styled.h6`
   ${() =>
     css`
       ${inputTextCssStyle}
     `};
 `;
 
-const SmallTextsStyled = styled.h6`
+const SmallTexts = styled.h6`
   ${() =>
     css`
       ${smallTextCssStyle};
     `};
 `;
 
-const RowStyled = styled(Row)`
+const Row = styled(BootstrapRow)`
   margin: 0;
   min-height: calc(100vh - 87px);
   padding-top: 6rem;
@@ -131,10 +130,10 @@ const disabledCssStyle = css`
   color: ${themeColors.txtGray};
   border: 1px solid ${themeColors.txtGray} !important;
 
-  ${typography.mobileTitlesStyled()}
+  ${typography.mobileTitle()}
 
   ${responsiveDesign.desktop} {
-    ${typography.titlesStyled()}
+    ${typography.title()}
   }
 
   &:hover {
@@ -150,38 +149,37 @@ const disabledCssStyle = css`
   }
 `;
 
-const ImageStyled = styled.div`
+const CustomImage = styled.div`
   background-image: url(${({ image }) => (image ? image : "not image")});
   background-repeat: no-repeat;
-  background-size: ${({ backgroundSize }) =>
-    backgroundSize ? backgroundSize : "cover"};
+  background-size: ${({ backgroundSize }) => backgroundSize || "cover"};
   background-position: top center;
-  height: ${({ height }) => (height ? height : "250px")};
-  min-height: ${({ minHeight }) => (minHeight ? minHeight : "250px")};
-  width: ${({ width }) => (width ? width : "100%")};
+  height: ${({ height }) => height || "100%"};
+  min-height: ${({ minHeight }) => minHeight || "250px"};
+  width: ${({ width }) => width || "100%"};
 
   ${fadeIn}
 `;
 
-const dropShadowStyle = css`
+const dropShadow = css`
   filter: drop-shadow(0px 4px 4px ${themeColors.blackShadow});
 `;
 
 export {
   someOtherProperties,
   responsiveDesign,
-  HrStyled,
+  Hr,
   typography,
-  RowStyled,
-  ImageStyled,
-  TitleTextStyled,
-  SubtitleTextStyled,
-  InputTextsStyled,
-  SmallTextsStyled,
+  Row,
+  CustomImage,
+  TitleText,
+  SubtitleText,
+  InputTexts,
+  SmallTexts,
   smallTextCssStyle,
   titleCssStyle,
   subtitleCssStyle,
   inputTextCssStyle,
   disabledCssStyle,
-  dropShadowStyle,
+  dropShadow,
 };

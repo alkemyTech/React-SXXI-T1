@@ -1,14 +1,20 @@
-import { LinkStyled } from "./styled-components/LinkReactRouter.styles";
+import { CustomLink } from "./styled-components/LinkReactRouter.styles";
 
 export const LinkReactRouter = ({
   linkClass = "",
   to,
   text,
-  from = undefined,
+  color = "default",
+  background = "default",
 }) => {
   return (
-    <LinkStyled className={linkClass} from={from} to={to}>
+    <CustomLink
+      className={linkClass}
+      color={color}
+      background={background}
+      to={to}
+    >
       {text}
-    </LinkStyled>
+    </CustomLink>
   );
 };

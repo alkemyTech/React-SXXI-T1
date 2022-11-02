@@ -22,12 +22,14 @@ import { Row } from "react-bootstrap";
 import { Animate } from "styled-components/animation.styled";
 import { GlobalStyle } from "styled-components/GlobalStyle.styled";
 import { windowSize } from "utilities/windowSize.util";
+import ContactUs from "Components/views/ContactUs/ContactUs";
+import Detail from "Components/views/Activities/Detail/Detail";
 
 function App() {
   return (
     <>
       <GlobalStyle windowSize={windowSize()} />
-      <Animate className="ColStyledWithAnimate">
+      <Animate className="col-with-animate">
         <Header />
         <Row>
           <RoutesNoMatch>
@@ -35,6 +37,7 @@ function App() {
             <Route path={routes.ACTIVITIESFORM} element={<ActivitiesForm />} />
             <Route path={routes.AUTHLOGINFORM} element={<LoginForm />} />
             <Route path={routes.AUTHREGISTERFORM} element={<RegisterForm />} />
+            <Route path={routes.ACIVITIESDETAIL} element={<Detail />} />
             <Route path={routes.CATEGORIESFORM} element={<CategoriesForm />} />
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
             <Route path={routes.SLIDERSFORM} element={<SlidesForm />} />
@@ -51,6 +54,7 @@ function App() {
               path={routes.NEWSDETAIL}
               element={<NewsDetail title="Título de novedad" />}
             />
+            <Route path={routes.CONTACTUS} element={<ContactUs />} />
           </RoutesNoMatch>
         </Row>
         <Footer />

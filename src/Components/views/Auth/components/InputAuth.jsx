@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from "react-bootstrap/Form";
 
-import { GlobalInputStyled } from 'styled-components/GlobalFormStyled/GlobalInput.styled';
+import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
 
 const InputAuth = ({
     value = "",
@@ -14,7 +14,7 @@ const InputAuth = ({
 }) => {
   return (
     <Form.Group>
-        <GlobalInputStyled
+        <InputForm
           className="px-4 py-2"
           type={type}
           name={name}
