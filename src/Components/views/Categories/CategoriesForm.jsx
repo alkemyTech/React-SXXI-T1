@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Form } from "react-bootstrap";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import CKEditorComponent from './CKEditor/CKEditorComponent';
+// import CKEditorComponent from './CKEditor/CKEditorComponent';
+import CKEditorComponent from 'Components/GlobalComponents/CKEditor/CKEditorComponent';
 import { Formulary, Input, ButtonConfirm, Errors,
         ContainerInputError, ButtonCancel } from './CategoriesStyled/CategoriesStyled';
 import { useParams } from 'react-router-dom';
