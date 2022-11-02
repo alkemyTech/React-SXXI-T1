@@ -3,8 +3,9 @@ import Form from "react-bootstrap/Form";
 import { useFormik } from "formik";
 
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
-import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
+import { InputForm } from "styled-components/GlobalFormFields/InputForm.styled";
 import { LinkSchema } from "../utilities/schemas";
+import { Stack } from "react-bootstrap";
 
 const SocialMediaInput = ({ onAddLink, onRemoveLink, links }) => {
   const formik = useFormik({
@@ -26,7 +27,7 @@ const SocialMediaInput = ({ onAddLink, onRemoveLink, links }) => {
   return (
     <div>
       <Form.Group>
-        <Form.Label>Social Media Link:</Form.Label>
+        <Form.Label>Social Media Links:</Form.Label>
         <div className="d-flex">
           <InputForm
             className="px-4 py-2"
@@ -37,6 +38,7 @@ const SocialMediaInput = ({ onAddLink, onRemoveLink, links }) => {
             placeholder="Enter a social media link"
           />
           <CustomButton
+            buttonClass="ms-2"
             background="success"
             color="success"
             text="Add"
@@ -49,12 +51,17 @@ const SocialMediaInput = ({ onAddLink, onRemoveLink, links }) => {
           </Form.Text>
         )}
       </Form.Group>
-      {links && links.map((link) => (
-        <div key={link} className="d-flex justify-content-between pointer">
-            <p>{link}</p>
-            <p onClick={onRemoveLink.bind(this, link)} role="button">X</p>
-        </div>
-      ))}
+      <Stack className="mt-2" gap={2}>
+        {links &&
+          links.map((link) => (
+            <div key={link} className="d-flex justify-content-between pointer">
+              <p>{link}</p>
+              <p onClick={onRemoveLink.bind(this, link)} role="button">
+                X
+              </p>
+            </div>
+          ))}
+      </Stack>
     </div>
   );
 };

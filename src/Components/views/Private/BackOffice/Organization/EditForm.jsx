@@ -6,12 +6,14 @@ import Input from "./components/Input";
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 import { EditOrganizationSchema } from "./utilities/schemas";
 import SocialMediaInput from "./components/SocialMediaInput";
+import DescriptionEditor from "./components/DescriptionEditor";
+import FileInput from "./components/FileInput";
 
 const EditForm = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      logo: "",
+      logo: {},
       shortDescription: "",
       longDescription: "",
       socialMediaLinks: [],
@@ -31,9 +33,20 @@ const EditForm = () => {
   };
 
   const removeLinkHandler = (link) => {
-    const updatedLinks = formik.values.socialMediaLinks.filter(l => l !== link);
+    const updatedLinks = formik.values.socialMediaLinks.filter(
+      (l) => l !== link
+    );
     formik.setFieldValue("socialMediaLinks", updatedLinks);
+  };
+
+  const logoChangeHandler = (event) => {
+    const file = event.target.files[0];
+    formik.setFieldValue("logo", file);
   }
+
+  const shortDescriptionChangeHandler = (data) => {
+    formik.setFieldValue("shortDescription", data);
+  };
 
   return (
     <Form className="d-grid gap-3" onSubmit={formik.handleSubmit}>
@@ -47,28 +60,21 @@ const EditForm = () => {
         error={formik.errors.name}
         onChange={formik.handleChange}
       />
-      <Input
+      <FileInput
         label="Logo:"
-        type="file"
+        filename={formik.values.logo.name}
         name="logo"
-        placeholder="Upload the logo"
+        btnText="Upload the logo"
         isTouched={formik.touched.logo}
         error={formik.errors.logo}
-        onChange={(event) => {
-          const file = event.target.files[0];
-          console.log(file);
-          formik.setFieldValue("logo", file);
-        }}
+        onChange={logoChangeHandler}
       />
-      <Input
-        value={formik.values.shortDescription}
+      <DescriptionEditor
         label="Short Description:"
-        type="text"
-        name="shortDescription"
-        placeholder="Enter a short descripction"
+        initialData={formik.initialValues.shortDescription}
         isTouched={formik.touched.shortDescription}
         error={formik.errors.shortDescription}
-        onChange={formik.handleChange}
+        onChange={shortDescriptionChangeHandler}
       />
       <Input
         value={formik.values.longDescription}
