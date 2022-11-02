@@ -11,9 +11,6 @@ export const Formulary = styled(Form)`
 
 export const Input = styled(InputForm)`
     border: 1px solid #bdbdbd;
-    @media screen and (min-width: 576px) {
-        width: 70%;
-    }
 `;
 
 export const ButtonConfirm = styled(Button)`
@@ -23,6 +20,7 @@ export const ButtonConfirm = styled(Button)`
         color: #0038FF !important;
       }
 `;
+
 export const ButtonCancel = styled(Button)`
     border: 1px solid #FF0000;
     &:hover {
@@ -35,7 +33,6 @@ export const ButtonCancel = styled(Button)`
 export const ContainerInputError = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
 `;
 
 export const Errors = styled.span`
