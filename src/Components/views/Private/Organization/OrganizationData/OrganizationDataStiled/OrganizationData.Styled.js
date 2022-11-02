@@ -7,7 +7,7 @@ export const Container = styled.div`
     margin: 3rem 0;
     gap: 1.2rem;
 `;
-//#F9FE00
+
 export const Image = styled.img`
     width: 500px;
     height: 500px;
