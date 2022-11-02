@@ -1,5 +1,7 @@
 export const routes = {
   ACTIVITIESFORM: "/create-activity",
+  AUTHLOGINFORM: "/auth/login",
+  AUTHREGISTERFORM: "/auth/register",
   ACIVITIESDETAIL: "/actividades/:id",
   CATEGORIESFORM: "/create-category",
   CONTACTUS: "/contact-us",
