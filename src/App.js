@@ -24,6 +24,7 @@ import { Animate } from "styled-components/animation.styled";
 import { GlobalStyle } from "styled-components/GlobalStyle.styled";
 import { windowSize } from "utilities/windowSize.util";
 import ContactUs from "Components/views/ContactUs/ContactUs";
+import Detail from "Components/views/Activities/Detail/Detail";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path={routes.ACTIVITIESFORM} element={<ActivitiesForm />} />
             <Route path={routes.AUTHLOGINFORM} element={<LoginForm />} />
             <Route path={routes.AUTHREGISTERFORM} element={<RegisterForm />} />
+            <Route path={routes.ACIVITIESDETAIL} element={<Detail />} />
             <Route path={routes.CATEGORIESFORM} element={<CategoriesForm />} />
             <Route
               path={routes.EDITORGANIZATIONFORM}

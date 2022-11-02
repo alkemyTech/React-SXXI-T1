@@ -1,21 +1,9 @@
-div.lds-spinner {
-  position: fixed;
-  left: 50%;
-  top: 35%;
-  margin: -50px 0 0 -25px;
-  z-index: 3;
-}
-
-div.lds-spinner.tasks-create {
-  width: 100%;
-  position: fixed;
-  left: 43%;
-  top: 57%;
-}
-
 .lds-spinner {
+  position: fixed;
+  color: official;
   display: inline-block;
-  position: relative;
+  left: 50%;
+  margin-left: -4rem;
   width: 80px;
   height: 80px;
 }
@@ -32,8 +20,8 @@ div.lds-spinner.tasks-create {
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: hsl(232, 19%, 15%);
-  outline: 3px solid hsl(208, 92%, 53%);
+  background: #0038ff;
+  outline: 2px solid #26272e;
 }
 .lds-spinner div:nth-child(1) {
   transform: rotate(0deg);
@@ -83,32 +71,11 @@ div.lds-spinner.tasks-create {
   transform: rotate(330deg);
   animation-delay: 0s;
 }
-
 @keyframes lds-spinner {
   0% {
     opacity: 1;
   }
   100% {
     opacity: 0;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  div.lds-spinner.tasks-create {
-    width: 100%;
-    position: fixed;
-    left: 48%;
-    top: 54%;
-    z-index: 1;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  div.lds-spinner.tasks-create {
-    width: 100%;
-    position: fixed;
-    left: 16%;
-    top: 36%;
-    z-index: 1;
   }
 }
