@@ -152,12 +152,11 @@ const disabledCssStyle = css`
 const CustomImage = styled.div`
   background-image: url(${({ image }) => (image ? image : "not image")});
   background-repeat: no-repeat;
-  background-size: ${({ backgroundSize }) =>
-    backgroundSize ? backgroundSize : "cover"};
+  background-size: ${({ backgroundSize }) => backgroundSize || "cover"};
   background-position: top center;
-  height: ${({ height }) => (height ? height : "250px")};
-  min-height: ${({ minHeight }) => (minHeight ? minHeight : "250px")};
-  width: ${({ width }) => (width ? width : "100%")};
+  height: ${({ height }) => height || "100%"};
+  min-height: ${({ minHeight }) => minHeight || "250px"};
+  width: ${({ width }) => width || "100%"};
 
   ${fadeIn}
 `;
