@@ -155,7 +155,6 @@ const CustomImage = styled.div`
   background-size: ${({ backgroundSize }) => backgroundSize || "cover"};
   background-position: top center;
   height: ${({ height }) => height || "100%"};
-  min-height: ${({ minHeight }) => minHeight || "250px"};
   width: ${({ width }) => width || "100%"};
 
   ${fadeIn}
