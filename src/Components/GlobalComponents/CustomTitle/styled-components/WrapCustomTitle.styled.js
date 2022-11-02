@@ -1,8 +1,17 @@
 import styled from "styled-components";
+import { CustomImage, TitleText } from "styled-components/App.styled";
 
-const WrapCustomTitle = styled.div`
+const WrapCustomTitle = styled(CustomImage)`
   display: flex;
   justify-content: center;
 `;
 
-export { WrapCustomTitle };
+const WrapTextTitle = styled(TitleText)`
+  ${(props) => console.log({ props })}
+  display: flex;
+  justify-content: ${({ justify }) => justify || "center"};
+  backdrop-filter: blur(${({ blur }) => blur || "0px"});
+  padding: 5px;
+`;
+
+export { WrapCustomTitle, WrapTextTitle };
