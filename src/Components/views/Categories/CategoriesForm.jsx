@@ -8,7 +8,7 @@ import { Formulary, Input, ButtonConfirm, Errors,
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import axios from 'axios';
-import { validationSchema } from './utilities/utilities';
+import { validationSchema, convertToBase64 } from './utilities/utilities';
 
 const CategoriesForm = () => {
     const {id} = useParams();
@@ -27,7 +27,7 @@ const CategoriesForm = () => {
 
     useEffect(()=>{
         if(id) {
-            axios.get(`https://ongapi.alkemy.org/api/categories/2429`)
+            axios.get(`https://ongapi.alkemy.org/api/categories/${id}`)
                 .then(res => {
                     const {data} = res.data;
                     setCategory({
@@ -35,6 +35,9 @@ const CategoriesForm = () => {
                         image: data.image,
                         description: data.description
                     });
+                })
+                .catch(() => {
+                    alert('Ha ocurrido un error...');
                 })
         }
     },[id]);
@@ -61,13 +64,17 @@ const CategoriesForm = () => {
             });
         }
     }
-    
+    function handleImage(e){
+        const image = e.target.files[0];
+        convertToBase64(image, formik.setFieldValue);
+    }
     const formik = useFormik({ initialValues, onSubmit, validationSchema });
     const { handleChange, handleSubmit, values, errors, handleBlur, touched } = formik;
     
     const cancel = () => {
         navigate('/backoffice/categories');
     }
+    console.log("valores: ", values);
     return (
         <>
         <Formulary className='my-5' onSubmit={ handleSubmit }>
@@ -84,8 +91,9 @@ const CategoriesForm = () => {
                 <ContainerInputError>
                     <Form.Label>Selecciona una imagen:</Form.Label>
                     <Input accept="image/png,image/jpg" type='file' name="image"
-                        value={ values.image } onChange={ handleChange }/>
-                        { errors.image && touched.image && <Errors>{errors.image}</Errors> }
+                         onChange={ handleImage }/>
+                        {/* {console.log("error: ", errors)} */}
+                        {/* { errors.image && touched.image && <Errors>{errors.image}</Errors> } */}
                 </ContainerInputError>
             </Form.Group>
             <Form.Group className='col-sm-12 col-md-8'>
