@@ -9,6 +9,7 @@ export const borderColors = (color) => {
     default: themeColors.red,
     success: themeColors.blue,
     light: themeColors.black,
+    yellow: themeColors.yellow,
   };
 
   return objColors[color];
@@ -19,6 +20,7 @@ export const backGroundColors = (background) => {
     default: themeColors.red,
     success: themeColors.blue,
     light: themeColors.white,
+    yellow: themeColors.yellow,
   };
 
   return objColors[background];
@@ -29,6 +31,7 @@ export const colors = (color) => {
     default: themeColors.white,
     success: themeColors.white,
     light: themeColors.black,
+    yellow: themeColors.black,
   };
 
   return objColors[color];
@@ -46,7 +49,7 @@ const Button = styled(BootstrapButton)`
 
   &:hover {
     background-color: ${({ color }) => colors(color)};
-    color: ${({ color }) => backGroundColors(color)}!important;
+    color: ${({ background }) => backGroundColors(background)}!important;
     border-color: ${({ color }) => backGroundColors(color)};
   }
 `;

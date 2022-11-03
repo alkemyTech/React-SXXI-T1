@@ -9,7 +9,6 @@ export const CustomTitle = ({
   title,
   image = "",
   backgroundSize = "",
-  minHeight = "",
   width = "",
   justify = "",
   blur = "",
@@ -18,7 +17,6 @@ export const CustomTitle = ({
     <WrapCustomTitle
       className={wrapTitleClass}
       backgroundSize={backgroundSize}
-      minHeight={minHeight}
       image={image}
       width={width}
     >
