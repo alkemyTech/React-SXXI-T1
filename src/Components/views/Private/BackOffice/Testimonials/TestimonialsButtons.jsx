@@ -10,12 +10,12 @@ export default function TestimonialButtons() {
             type="submit"
             color="success" 
             background="success" 
-            text="Send" />
+            text="Confirmar" />
         <CustomButton 
             type="button"
             color="default" 
             background="default" 
-            text="Cancel" 
+            text="Cancelar" 
             onClick={handleClick}
             />
     </div>

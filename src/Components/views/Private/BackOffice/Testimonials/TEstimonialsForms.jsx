@@ -1,22 +1,26 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
 import { ContainerInputError, Errors } from "./TestimonialForm.Styled";
 import { useTestimonialsForms } from './hooks/useTestimonialsForms';
-import  Title  from "./Title";
-import CKEditorComponent from './CKEditor/CKEditorComponent';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import TestimonialButtons from './TestimonialsButtons';
+import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 
 const TestimonialsForm = () => {
-    const {values, errors, handleBlur, handleSubmit, handleChange, touched} = useTestimonialsForms();
+    const {values, errors, handleBlur, handleSubmit, handleChange, touched, testimonial, formik } = useTestimonialsForms();
     const { id } = useParams();
-    const [ description, setDescription ] = useState('');
-    const [ descError, setDescError ] = useState('');
 
     return (
-        <div className="container">
-          <Title text={id?"Edita el testimonio":"Crea el testimonio"} />
+        <div className="container my-5">
+        <div>
+            <CustomTitle
+                title={id?"Edita el testimonio":"Crea el testimonio"} 
+                justify="center"   
+                wrapTextClass="text-center" 
+                />
+        </div>
           <Form 
             className="my-5"
             onSubmit={handleSubmit} >
@@ -30,8 +34,7 @@ const TestimonialsForm = () => {
                     <InputForm
                         type="text"
                         name="name"
-                        //value={id?"name":values.name} 
-                        value={values.name} 
+                        value={id?"name":values.name} 
                         onChange={handleChange}
                         onBlur={handleBlur} 
                         placeholder="Nombre" />
@@ -43,11 +46,16 @@ const TestimonialsForm = () => {
                 controlId="formBasicDescription">
                 <ContainerInputError>
                     <Form.Label className="mt-3">Descripción del testimonio:</Form.Label>
-                    <CKEditorComponent 
-                      setDescription={setDescription}
-                      setDescError={setDescError}
+                    <CKEditor
+                        name="description"
+                        data={ testimonial.description ? testimonial.description : '' }
+                        editor={ ClassicEditor }
+                        config={{ placeholder: 'Descripción' }}
+                        onChange={ (event, editor) => { 
+                        formik.setFieldValue('description', editor.getData());
+                        } }
                     />
-                    { descError && <Errors>{descError}</Errors>}
+                    { errors.description && <Errors>{ errors.description }</Errors> }
                 </ContainerInputError>
             </Form.Group>
             <Form.Group 

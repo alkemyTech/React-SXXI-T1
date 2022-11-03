@@ -1,59 +1,71 @@
 import { useFormik } from "formik";
-import * as Yup from 'yup';
-import { validationMessages } from 'utilities/validationMessage.util';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
-// import { useDispatch } from 'react-redux';
+import { useEffect, useState } from "react";
+import axios from 'axios';
+import { validationSchema } from "./../utilities/utilities";
 
 export const useTestimonialsForms = () => {
   const {id} = useParams();
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const nameRegExp = /[a-z, A-Z]{4}/
-
-    const validationSchema = Yup.object().shape({
-        name : Yup.string()
-          .min(4, validationMessages.name.fieldLength)
-          .matches(nameRegExp, validationMessages.name.format)
-          .required(validationMessages.name.required),
-        image: Yup.string()
-          .required(validationMessages.image.required)
-          .oneOf(
-            ["image/png", "image/jpeg", "image/jpg"],
-            "El formato de la imagen tiene que ser jpg, 0 png"
-          )
+  
+  const [testimonial, setTestimonial] = useState({
+        name: '',
+        image: '',
+        description: ''
     });
 
-    const initialValues = {
-        name: '',
-        image: ''
-    };
+  const initialValues = {
+      name: '',
+      image: '',
+      description: ''
+  };
 
-    // useEffect(()=>{
-    //     if(id) axios.get(`${URL}/${id}`);
-    // },[id]);
+  useEffect(()=>{
+      if(id) {
+          axios.get(`https://ongapi.alkemy.org/api/testimonials/${id}`)
+              .then(res => {
+                  const {data} = res.data;
+                  setTestimonial({
+                      name: data.name,
+                      image: data.image,
+                      description: data.description
+                  });
+              })
+      }
+  },[id]);
 
-    const onSubmit = () => {
-        if(id) {
-            // axios.put(`${URL}/${id}`, {});
-            alert('cambios guardados');
-            navigate('/backoffice/testimonials');
-        }else {
-            // axios.post(URL, {});
-            alert('categoria creada');
-            navigate('/backoffice/testimonials');
-        }
-        console.log(formik.values);
+  const URL = 'https://ongapi.alkemy.org/api/testimonials';
+
+  const onSubmit = () => {
+    if(id) {
+      axios.put(URL+'/'+id, values)
+      .then(() => {
+          alert('Cambios guardados');
+          navigate('/backoffice/testimonials');
+      })
+      .catch(()=>{
+          alert('Ha ocurrido un error...');
+      });
+    } else {
+      axios.post(URL, values)
+      .then(()=>{
+          alert('Testimonio creado');
+          navigate('/backoffice/testimonials');
+      })
+      .catch(()=>{
+          alert('Ha ocurrido un error...')
+      });
     }
+  }
+  const formik = useFormik({initialValues, onSubmit, validationSchema});
 
-    const handleClick = () => {
-      navigate('/backoffice/testimonials');
-    }
-    const formik = useFormik({initialValues, onSubmit, validationSchema});
+  const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
 
-    const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
+  const handleClick = () => {
+    navigate('/backoffice/testimonials');
+  }
 
-    return {values, errors, handleBlur, handleSubmit, handleChange, handleClick, touched}
+  return {values, errors, handleBlur, handleSubmit, handleChange, handleClick, touched, testimonial, formik }
 
 }
