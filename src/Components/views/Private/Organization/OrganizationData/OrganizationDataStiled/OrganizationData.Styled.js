@@ -7,10 +7,17 @@ export const Container = styled.div`
     margin: 3rem 0;
     gap: 1.2rem;
 `;
-
+export const ContainerImage = styled.div`
+    margin: 1rem 0;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+`;
 export const Image = styled.img`
-    width: 500px;
-    height: 500px;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 8px 0 black;
 `;
 
 export const ContainerEditInf = styled.div`
@@ -19,10 +26,7 @@ export const ContainerEditInf = styled.div`
 `;
 
 export const EditButton = styled(Button)`
-    background-color: #F9FE00;
-    border: 1px solid #F9FE00;
     &:hover {
         background-color: white;
-        border: 1px solid black;
     }
 `;
