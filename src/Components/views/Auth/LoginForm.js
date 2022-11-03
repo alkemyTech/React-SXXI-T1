@@ -1,33 +1,54 @@
-import React, { useState } from 'react';
-import '../FormStyles.css';
+import React from "react";
+import { useFormik } from "formik";
+import Form from "react-bootstrap/Form";
+
+import InputAuth from "./components/InputAuth";
+import { LoginSchema } from "./utilities/schemas";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 
 const LoginForm = () => {
-    const [initialValues, setInitialValues] = useState({
-        email: '',
-        password: ''
-    });
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: LoginSchema,
+    onSubmit: (values) => {
+      console.log(values);
+      formik.resetForm();
+      localStorage.setItem("token", "tokenValueExample");
+    },
+  });
 
-    const handleChange = (e) => {
-        if(e.target.name === 'email'){
-            setInitialValues({...initialValues, email: e.target.value})
-        } if(e.target.name === 'password'){
-            setInitialValues({...initialValues, password: e.target.value})
-        }
-    }
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
-        localStorage.setItem('token', 'tokenValueExample')
-    }
+  return (
+    <Form className="d-grid gap-3 col-6" onSubmit={formik.handleSubmit}>
+      <InputAuth
+        value={formik.values.email}
+        type="email"
+        name="email"
+        placeholder="Enter email"
+        isTouched={formik.touched.email}
+        error={formik.errors.email}
+        onChange={formik.handleChange}
+      />
+      <InputAuth
+        value={formik.values.password}
+        type="password"
+        name="password"
+        placeholder="Enter password"
+        isTouched={formik.touched.password}
+        error={formik.errors.password}
+        onChange={formik.handleChange}
+      />
+      <CustomButton
+        buttonClass="w-100"
+        type="submit"
+        background="success"
+        color="success"
+        text="Log In"
+      />
+    </Form>
+  );
+};
 
-    return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="email" value={initialValues.name} onChange={handleChange} placeholder="Enter email"></input>
-            <input className="input-field" type="text" name="password" value={initialValues.password} onChange={handleChange} placeholder="Enter password"></input>
-            <button className="submit-btn" type="submit">Log In</button>
-        </form>
-    );
-}
- 
 export default LoginForm;

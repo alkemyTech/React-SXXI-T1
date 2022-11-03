@@ -1,33 +1,64 @@
-import React, { useState } from 'react';
-import '../FormStyles.css';
+import React from "react";
+import { useFormik } from "formik";
+import Form from "react-bootstrap/Form";
+
+import InputAuth from "./components/InputAuth";
+import { RegisterSchema } from "./utilities/schemas";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 
 const RegisterForm = () => {
-    const [initialValues, setInitialValues] = useState({
-        name: '',
-        lastName: ''
-    })
-    
-    const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'lastName'){
-            setInitialValues({...initialValues, lastName: e.target.value})
-        }
-    }
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: RegisterSchema,
+    onSubmit: (values) => {
+      console.log(values);
+      formik.resetForm();
+      localStorage.setItem("token", "tokenValueExample");
+    },
+  });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
-        localStorage.setItem('token', 'tokenValueExample')
-    }
+  return (
+    <Form className="d-grid gap-3 col-6" onSubmit={formik.handleSubmit}>
+      <InputAuth
+        value={formik.values.email}
+        type="email"
+        name="email"
+        placeholder="Enter email"
+        isTouched={formik.touched.email}
+        error={formik.errors.email}
+        onChange={formik.handleChange}
+      />
+      <InputAuth
+        value={formik.values.password}
+        type="password"
+        name="password"
+        placeholder="Enter password"
+        isTouched={formik.touched.password}
+        error={formik.errors.password}
+        onChange={formik.handleChange}
+      />
+      <InputAuth
+        value={formik.values.confirmPassword}
+        type="password"
+        name="confirmPassword"
+        placeholder="Enter password confirmation"
+        isTouched={formik.touched.confirmPassword}
+        error={formik.errors.confirmPassword}
+        onChange={formik.handleChange}
+      />
+      <CustomButton
+        buttonClass="w-100"
+        type="submit"
+        background="success"
+        color="success"
+        text="Register"
+      />
+    </Form>
+  );
+};
 
-    return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Enter name"></input>
-            <input className="input-field" type="text" name="lastName" value={initialValues.lastName} onChange={handleChange} placeholder="Enter last name"></input>
-            <button className="submit-btn" type="submit">Register</button>
-        </form>
-    );
-}
- 
 export default RegisterForm;
