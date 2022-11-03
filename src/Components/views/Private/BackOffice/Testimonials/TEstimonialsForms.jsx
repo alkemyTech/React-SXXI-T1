@@ -9,7 +9,7 @@ import TestimonialButtons from './TestimonialsButtons';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 
 const TestimonialsForm = () => {
-    const {values, errors, handleBlur, handleSubmit, handleChange, touched, testimonial, formik } = useTestimonialsForms();
+    const {values, errors, handleBlur, handleSubmit, handleChange, touched, testimonial, formik, handleImage } = useTestimonialsForms();
     const { id } = useParams();
 
     return (
@@ -68,7 +68,7 @@ const TestimonialsForm = () => {
                         type="file"
                         name="image"
                         value={values.image} 
-                        onChange={handleChange}
+                        onChange={handleImage}
                         onBlur={handleBlur} 
                         placeholder="Ingresa la imagen..." 
                         alt="testimonial form image"

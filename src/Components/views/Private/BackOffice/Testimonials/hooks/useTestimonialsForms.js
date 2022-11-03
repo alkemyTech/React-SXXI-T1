@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { validationSchema } from "./../utilities/utilities";
+import { validationSchema, convertToBase64 } from "./../utilities/utilities";
 
 export const useTestimonialsForms = () => {
   const {id} = useParams();
@@ -32,6 +32,9 @@ export const useTestimonialsForms = () => {
                       description: data.description
                   });
               })
+              .catch(() => {
+                alert('Ha ocurrido un error...');
+              })
       }
   },[id]);
 
@@ -58,6 +61,11 @@ export const useTestimonialsForms = () => {
       });
     }
   }
+
+  function handleImage(e){
+    const image = e.target.files[0];
+    convertToBase64(image, formik.setFieldValue);
+  }
   const formik = useFormik({initialValues, onSubmit, validationSchema});
 
   const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
@@ -66,6 +74,6 @@ export const useTestimonialsForms = () => {
     navigate('/backoffice/testimonials');
   }
 
-  return {values, errors, handleBlur, handleSubmit, handleChange, handleClick, touched, testimonial, formik }
+  return {values, errors, handleBlur, handleSubmit, handleChange, handleClick, touched, testimonial, formik , handleImage}
 
 }
