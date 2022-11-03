@@ -74,7 +74,6 @@ const CategoriesForm = () => {
     const cancel = () => {
         navigate('/backoffice/categories');
     }
-    console.log("valores: ", values);
     return (
         <>
         <Formulary className='my-5' onSubmit={ handleSubmit }>
@@ -92,8 +91,7 @@ const CategoriesForm = () => {
                     <Form.Label>Selecciona una imagen:</Form.Label>
                     <Input accept="image/png,image/jpg" type='file' name="image"
                          onChange={ handleImage }/>
-                        {/* {console.log("error: ", errors)} */}
-                        {/* { errors.image && touched.image && <Errors>{errors.image}</Errors> } */}
+                        { errors.image && touched.image && <Errors>{errors.image}</Errors> }
                 </ContainerInputError>
             </Form.Group>
             <Form.Group className='col-sm-12 col-md-8'>
