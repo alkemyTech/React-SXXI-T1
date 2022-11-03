@@ -4,18 +4,21 @@ import {
   inputTextCssStyle,
   responsiveDesign,
 } from "styled-components/App.styled";
-import { themeColors } from "../../../../styled-components/Theme.styled";
+import {
+  backGroundColors,
+  borderColors,
+  colors,
+} from "Components/GlobalComponents/CustomButton/styled-components/Button.styled";
 
-const LinkStyled = styled(Link)`
+const CustomLink = styled(Link)`
   ${inputTextCssStyle}
-  width: ${({ from }) => (from ? "100%" : "50%")};
-  background-color: ${themeColors.white}!important;
-  color: ${themeColors.black}!important;
-  border-radius: 8px;
-  outline: 1px solid ${themeColors.black};
-  padding: 5px !important;
+  padding: ${({ padding }) => padding || "6px 12px"};
   text-decoration: none;
   text-align: center;
+
+  background-color: ${({ background }) => backGroundColors(background)};
+  color: ${({ color }) => colors(color)}!important;
+  border: 1px solid ${({ color }) => borderColors(color)};
 
   ${responsiveDesign.desktop} {
     width: 124px;
@@ -23,10 +26,10 @@ const LinkStyled = styled(Link)`
   }
 
   &:hover {
-    background-color: ${themeColors.blue};
-    color: ${themeColors.white} !important;
-    outline: 1px solid ${themeColors.blue};
+    background-color: ${({ color }) => colors(color)};
+    color: ${({ color }) => backGroundColors(color)}!important;
+    border-color: ${({ color }) => backGroundColors(color)};
   }
 `;
 
-export { LinkStyled };
+export { CustomLink };
