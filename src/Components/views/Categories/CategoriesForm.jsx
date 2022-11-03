@@ -24,10 +24,11 @@ const CategoriesForm = () => {
         image: '',
         description: ''
     };
-
+    
+    const URL = 'https://ongapi.alkemy.org/api/categories';
     useEffect(()=>{
         if(id) {
-            axios.get(`https://ongapi.alkemy.org/api/categories/${id}`)
+            axios.get(URL+"/"+id)
                 .then(res => {
                     const {data} = res.data;
                     setCategory({
@@ -42,7 +43,6 @@ const CategoriesForm = () => {
         }
     },[id]);
     
-    const URL = 'https://ongapi.alkemy.org/api/categories';
     const onSubmit = () => {
         if(id) {
             axios.put(URL+'/'+id, values)
@@ -66,7 +66,8 @@ const CategoriesForm = () => {
     }
     function handleImage(e){
         const image = e.target.files[0];
-        convertToBase64(image, formik.setFieldValue);
+        if(image) formik.setFieldValue('image', image);
+        else formik.setFieldValue('image', '');
     }
     const formik = useFormik({ initialValues, onSubmit, validationSchema });
     const { handleChange, handleSubmit, values, errors, handleBlur, touched } = formik;
@@ -74,6 +75,7 @@ const CategoriesForm = () => {
     const cancel = () => {
         navigate('/backoffice/categories');
     }
+    console.log('Errores: ', errors);
     return (
         <>
         <Formulary className='my-5' onSubmit={ handleSubmit }>
