@@ -1,11 +1,10 @@
 export const routes = {
-  ACTIVITIESFORM: "/create-activity",
   ACIVITIESDETAIL: "/actividades/:id",
+  ACTIVITIESFORM: "/create-activity",
   AUTHLOGINFORM: "/auth/login",
   AUTHREGISTERFORM: "/auth/register",
   CATEGORIESFORM: "/create-category",
   CONTACTUS: "/contact-us",
-  EDITORGANIZATIONFORM: "/backoffice/organization/edit",
   HOME: "/",
   MEMBERSFORM: "/create-member",
   NEWSFORM: "/create-news",
@@ -14,4 +13,11 @@ export const routes = {
   SCHOOLCAMPAIGN: "/school-campaign",
   TESTIMONIALSFORM: "/create-testimonials",
   TOYSCAMPAIGN: "/toys-campaign",
+};
+
+export const privateRoutes = {
+  BACKOFFICE: "backoffice",
+  EDITORGANIZATIONFORM: "/backoffice/organization/edit",
+  SLIDESFORM: "slides",
+  SLIDESFORMWITHID: "slides/:id",
 };

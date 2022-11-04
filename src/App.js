@@ -1,13 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { routes } from "./models/routes";
+import { privateRoutes, routes } from "./models/routes";
 import Home from "./Components/views/Home/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import EditOrganizationForm from "Components/views/Private/BackOffice/Organization/EditForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
 import NewsForm from "./Components/views/News/NewsForm";
-import SlidesForm from "./Components/views/Slides/SlidesForm";
+import SlidesForm from "./Components/views/Private/Slides/SlidesForm";
 import TestimonialForm from "./Components/views/Testimonials/TestimonialsForm";
 import UserForm from "./Components/views/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
@@ -25,6 +25,8 @@ import { GlobalStyle } from "styled-components/GlobalStyle.styled";
 import { windowSize } from "utilities/windowSize.util";
 import ContactUs from "Components/views/ContactUs/ContactUs";
 import Detail from "Components/views/Activities/Detail/Detail";
+import AuthGuard from "guard/auth.guard";
+import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes";
 
 function App() {
   return (
@@ -60,6 +62,13 @@ function App() {
               element={<NewsDetail title="Título de novedad" />}
             />
             <Route path={routes.CONTACTUS} element={<ContactUs />} />
+
+            <Route element={<AuthGuard />}>
+              <Route
+                path={`${privateRoutes.BACKOFFICE}/*`}
+                element={<BackOfficeRoutes />}
+              />
+            </Route>
           </RoutesNoMatch>
         </Row>
         <Footer />
