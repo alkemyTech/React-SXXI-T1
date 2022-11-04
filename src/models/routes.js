@@ -15,7 +15,11 @@ export const routes = {
   USERFORM: "/create-user",
 };
 
-export const backofficeRoutes = {
-  TESTIMONIALSFORM: "/backoffice/create-testimonials",
-  TESTIMONIALSEDITFORM: "/backoffice/edit-testimonials/:id",
-}
+export const privateRoutes = {
+  BACKOFFICE: "backoffice",
+  SLIDESFORM: "slides",
+  SLIDESFORMWITHID: "slides/:id",
+  TESTIMONIALSFORM: "create-testimonials",
+  TESTIMONIALSEDITFORM: "edit-testimonials/:id",
+};
+

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { validationSchema, convertToBase64 } from "./../utilities/utilities";
+import { apiCall } from "Services/apiCall.service";
 
 export const useTestimonialsForms = () => {
   const {id} = useParams();
@@ -36,7 +37,13 @@ export const useTestimonialsForms = () => {
                 alert('Ha ocurrido un error...');
               })
       }
-  },[id]);
+      /*
+      (async () => {
+        const info = await apiCall({ restUrl: `testimonials/466` });
+        setTestimonial(info)
+      })()
+      */
+      },[id]);
 
   const URL = 'https://ongapi.alkemy.org/api/testimonials';
 

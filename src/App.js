@@ -1,13 +1,12 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { routes, backofficeRoutes } from "./models/routes";
+import { privateRoutes, routes } from "./models/routes";
 import Home from "./Components/views/Home/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import LoginForm from "Components/views/Auth/LoginForm";
 import NewsForm from "./Components/views/News/NewsForm";
-import SlidesForm from "./Components/views/Slides/SlidesForm";
-import TestimonialForm from "./Components/views/Private/BackOffice/Testimonials/TestimonialsForms";
+import SlidesForm from "./Components/views/Private/Slides/SlidesForm";
 import UserForm from "./Components/views/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
 import ProjectsForm from "./Components/views/Projects/ProjectsForm";
@@ -23,6 +22,8 @@ import { GlobalStyle } from "styled-components/GlobalStyle.styled";
 import { windowSize } from "utilities/windowSize.util";
 import ContactUs from "Components/views/ContactUs/ContactUs";
 import Detail from "Components/views/Activities/Detail/Detail";
+import AuthGuard from "guard/auth.guard";
+import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes";
 
 function App() {
   return (
@@ -40,20 +41,19 @@ function App() {
             <Route path={routes.CATEGORIESFORM} element={<CategoriesForm />} />
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
             <Route path={routes.SLIDERSFORM} element={<SlidesForm />} />
-            <Route
-              path={backofficeRoutes.TESTIMONIALSFORM}
-              element={<TestimonialForm />}
-            />
-            <Route
-              path={backofficeRoutes.TESTIMONIALSEDITFORM}
-              element={<TestimonialForm />}
-            />
             <Route path={routes.USERFORM} element={<UserForm />} />
             <Route path={routes.MEMBERSFORM} element={<MembersForm />} />
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
             <Route path={routes.CONTACTUS} element={<ContactUs />} />
+
+            <Route element={<AuthGuard />}>
+              <Route
+                path={`${privateRoutes.BACKOFFICE}/*`}
+                element={<BackOfficeRoutes />}
+              />
+            </Route>
           </RoutesNoMatch>
         </Row>
         <Footer />
