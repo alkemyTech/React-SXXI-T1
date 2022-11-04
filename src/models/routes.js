@@ -7,6 +7,7 @@ export const routes = {
   CONTACTUS: "/contact-us",
   HOME: "/",
   MEMBERSFORM: "/create-member",
+  NEWSDETAIL: "/novedades/:id",
   NEWSFORM: "/create-news",
   PROJECTFORM: "/create-project",
   SLIDERSFORM: "/backoffice/create-slide",
