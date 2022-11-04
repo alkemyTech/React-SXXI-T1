@@ -26,7 +26,7 @@ export const validationMessages = {
   },
   order: {
     required: "El campo order es obligatorio",
-    fieldLength: "El campo order debe contener un número mayor a 1",
+    fieldLength: "El campo order debe contener un número mayor que ",
   },
   description: {
     required: "El campo description es obligatorio",

@@ -13,6 +13,12 @@ import { validationMessages } from "utilities/validationMessage.util";
 import { FormImageField } from "Components/GlobalComponents/FormImageField/FormImageField";
 import { FormCKEditorField } from "Components/GlobalComponents/FormCKEditorField/FormCKEditorField";
 import { validationImage } from "Components/GlobalComponents/FormImageField/utilities/ImageFieldSchemas.util";
+import {
+  getMaxOrder,
+  personalSlides,
+  PERSONAL_ORDER,
+} from "utilities/slides/slides.util";
+import { postSlides } from "./interceptor/postSlides.interceptor ";
 
 const SlidesForm = () => {
   // edit or create
@@ -20,7 +26,10 @@ const SlidesForm = () => {
 
   const [imageToSend, setImageToSend] = useState("null");
 
-  const [orderSlides, setOrderSlides] = useState([]);
+  // edit slide
+  const [orderSlide, setOrderSlide] = useState([]);
+  const [maxSlideOrder, setMaxSlideOrder] = useState(PERSONAL_ORDER);
+  const orderFieldDisabled = useState(true);
 
   const [initialValues, setInitialValues] = useState({
     name: "",
@@ -38,15 +47,28 @@ const SlidesForm = () => {
       description: yup
         .string()
         .required(validationMessages.description.required),
-      order: yup
-        .number()
-        .positive()
-        .min(1, validationMessages.order.fieldLength)
-        .test("superior", "numero superior", (value) => {
-          // console.log({ allSlides });
-          // console.log(value);
-        })
-        .required(validationMessages.order.required),
+      order: yup.number().when([], {
+        is: () => !orderFieldDisabled,
+        then: yup
+          .number()
+          .positive()
+          .min(
+            maxSlideOrder,
+            validationMessages.order.fieldLength + maxSlideOrder
+          )
+          .test("noEdit", "No puedes modificar este campo", (value) => {
+            // console.log({ allSlides });
+            console.log(value);
+          })
+          .required(validationMessages.order.required),
+        otherwise: yup
+          .number()
+          .min(
+            maxSlideOrder,
+            validationMessages.order.fieldLength + maxSlideOrder
+          )
+          .notRequired(),
+      }),
       image: validationImage.yupFileValidation,
     });
 
@@ -55,11 +77,17 @@ const SlidesForm = () => {
 
   const handleImageToSend = (value) => setImageToSend(value);
 
-  const onSubmit = () => {
-    console.log(formik.values);
-    console.log({ imageToSend });
-    // cambiar el valor de la iamgen al de base 64
-    // handleImageToSend('')
+  const onSubmit = async () => {
+    try {
+      const dataSubmit = { ...formik.values, image: imageToSend };
+
+      const sendData = await postSlides(dataSubmit);
+      // console.log({ sendData });
+    } catch (error) {
+      console.error("error useSlidesForm onSubmit", error.message);
+    } finally {
+      // handleImageToSend('')
+    }
   };
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
@@ -97,9 +125,18 @@ const SlidesForm = () => {
 
         if (getData && !getData.success) throw new Error(getData.message);
 
-        // console.log(getData.data);
+        const filterSlides = personalSlides(getData.data);
+        if (idSlide) {
+          // editar
+          console.log({ filterSlides });
+          setOrderSlide(filterSlides);
+        } else {
+          console.log({ filterSlides });
+          const max = getMaxOrder(filterSlides);
+          setMaxSlideOrder(max);
 
-        // setOrderSlides(getData.data);
+          setFieldValue("order", max);
+        }
       } catch (error) {
         console.error("error", error.message);
         console.error("show feedbak user - error");
@@ -107,7 +144,7 @@ const SlidesForm = () => {
     };
 
     fetchAllSlides();
-  }, []);
+  }, [idSlide, setFieldValue]);
 
   return (
     <>
@@ -133,6 +170,7 @@ const SlidesForm = () => {
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Número de Orden"
+              disabled={orderFieldDisabled}
             />
             <SpanFormError errors={errors} touched={touched} name="order" />
           </div>
@@ -172,3 +210,19 @@ const SlidesForm = () => {
 };
 
 export default SlidesForm;
+
+/**
+ * el que vamos a editar
+{
+    "id": 1491,
+    "name": "slide tittlec",
+    "description": "<p>descriptionc</p>",
+    "image": "http://ongapi.alkemy.org/storage/B5ezfO6q5Y.png",
+    "order": 100000106,
+    "user_id": null,
+    "created_at": "2022-11-04T01:15:46.000000Z",
+    "updated_at": "2022-11-04T01:15:46.000000Z",
+    "deleted_at": null,
+    "group_id": null
+}
+ */

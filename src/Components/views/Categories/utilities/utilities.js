@@ -15,12 +15,12 @@ export const validationSchema = Yup.object().shape({
     description: Yup.string().required( 'Campo obligatorio' )
 });
 
-export const convertToBase64 = (image, setFieldValue) => {
+export const convertToBase64 = (image, setImage) => {
     const reader = new FileReader();
     reader.readAsDataURL(image);
     
     reader.onload = function () {
-        setFieldValue('image', reader.result);
+        setImage(reader.result);
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);

@@ -4,8 +4,6 @@ export const routes = {
   AUTHREGISTERFORM: "/auth/register",
   ACIVITIESDETAIL: "/actividades/:id",
   CONTACTUS: "/contact-us",
-  CREATECATEGORY: "/backoffice/create-category",
-  EDITCATEGORY: "/backoffice/edit-category/:id",
   HOME: "/",
   MEMBERSFORM: "/create-member",
   NEWSFORM: "/create-news",
@@ -19,6 +17,8 @@ export const routes = {
 
 export const privateRoutes = {
   BACKOFFICE: "backoffice",
+  CREATECATEGORY: "create-category",
+  EDITCATEGORY: "edit-category/:id",
   SLIDESFORM: "slides",
   SLIDESFORMWITHID: "slides/:id",
 };

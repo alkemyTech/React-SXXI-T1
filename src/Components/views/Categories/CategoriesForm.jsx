@@ -7,20 +7,18 @@ import { Formulary, Input, ButtonConfirm, Errors,
         ContainerInputError, ButtonCancel } from './CategoriesStyled/CategoriesStyled';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
-import axios from 'axios';
 import { validationSchema, convertToBase64, Alert } from './utilities/utilities';
 import { apiCall } from 'Services/apiCall.service';
-// import Swal from 'sweetalert2';
 
 const CategoriesForm = () => {
     const {id} = useParams();
     const navigate = useNavigate();
+    const [imageB64, setImageB64] = useState('');
     const [category, setCategory] = useState({
         name: '',
         image: '',
         description: ''
     });
-    let image;
     const initialValues = {
         name: '',
         image: '',
@@ -31,7 +29,6 @@ const CategoriesForm = () => {
         if(id) {
             (async ()=>{
                 const response = await apiCall({restUrl:`categories/${id}`});
-                console.log("respuesta: ", response)
                 const {data} = response;
                 setCategory({
                     name: data.name,
@@ -44,64 +41,65 @@ const CategoriesForm = () => {
     
     const backURL = '/backoffice/categories';
     const onSubmit = () => {
-        convertToBase64(image,formik.setFieldValue)
-        console.log('Submit: ', values);
-        // if(id) {
-        //     Alert({ icon:'warning', 
-        //             title:'¿Estas segura/o?', 
-        //             cancelText: 'Cancelar' })
-        //     .then(res => {
-        //         if(res.isConfirmed) {
-        //             (async ()=>{
-        //                 const response = await apiCall({
-        //                                     restUrl:`categories/${id}`,
-        //                                     method: 'put',
-        //                                     body: values });
-        //                 if(response.success){
-        //                     Alert({ icon: 'success', title: 'Operación éxitosa'})
-        //                     .then(() => navigate(backURL))                            
-        //                 }else{
-        //                     Alert({ icon: 'error', title: 'Ha ocurrido un error'})
-        //                 }
-        //             })();
-        //         }
-        //     })
-        // }else {
-        //     Alert({ icon:'warning', 
-        //             title:'¿Estas segura/o?', 
-        //             cancelText: 'Cancelar' })
-        //     .then(res => {
-        //         if(res.isConfirmed) {
-        //             (async ()=>{
-        //                 const response = await apiCall({
-        //                                     restUrl: 'categories',
-        //                                     method: 'post',
-        //                                     body: values });
-        //                 if(response.success){
-        //                     Alert({ icon: 'success', title: 'Operación éxitosa'})
-        //                     .then(() => navigate(backURL))                            
-        //                 }else{
-        //                     Alert({ icon: 'error', title: 'Ha ocurrido un error'})
-        //                 }
-        //             })();
-        //         }
-        //     })
-        // }
+        const { name, description } = values;
+        const body = { name, description, imageB64 };
+        if(id) {
+            Alert({ icon:'warning', 
+                    title:'¿Estas segura/o?', 
+                    cancelText: 'Cancelar' })
+            .then(res => {
+                if(res.isConfirmed) {
+                    (async ()=>{
+                        const response = await apiCall({
+                                            restUrl:`categories/${id}`,
+                                            method: 'put',
+                                            body: body });
+                        if(response.success){
+                            Alert({ icon: 'success', title: 'Operación éxitosa'})
+                            .then(() => navigate(backURL))                            
+                        }else{
+                            Alert({ icon: 'error', title: 'Ha ocurrido un error'})
+                        }
+                    })();
+                }
+            })
+        }else {
+            Alert({ icon:'warning', 
+                    title:'¿Estas segura/o?', 
+                    cancelText: 'Cancelar' })
+            .then(res => {
+                if(res.isConfirmed) {
+                    (async ()=>{
+                        const response = await apiCall({
+                                            restUrl: 'categories',
+                                            method: 'post',
+                                            body: body });
+                        if(response.success){
+                            Alert({ icon: 'success', title: 'Operación éxitosa'})
+                            .then(() => navigate(backURL))                            
+                        }else{
+                            Alert({ icon: 'error', title: 'Ha ocurrido un error'})
+                        }
+                    })();
+                }
+            })
+        }
     }
     function handleImage(e){
-        image = e.target.files[0];
-        formik.setFieldValue('image',image);
-        // convertToBase64(image, formik.setFieldValue)
-        
-        // if(image) formik.setFieldValue('image', image);
-        // else formik.setFieldValue('image', '');
+        const image = e.target.files[0];
+        if(image) {
+            formik.setFieldValue('image', image);
+            convertToBase64( image, setImageB64 );
+        }
+        else formik.setFieldValue('image', '');
     }
     const formik = useFormik({ initialValues, onSubmit, validationSchema });
     const { handleChange, handleSubmit, values, errors, handleBlur, touched } = formik;
     
     const cancel = () => {
-        navigate('/backoffice/categories');
+        navigate(backURL);
     }
+    
     return (
         <>
         <Formulary className='my-5' onSubmit={ handleSubmit }>
@@ -118,7 +116,7 @@ const CategoriesForm = () => {
                 <ContainerInputError>
                     <Form.Label>Selecciona una imagen:</Form.Label>
                     <Input accept="image/png,image/jpg" type='file' name="image"
-                         onChange={ handleImage }/>
+                         onChange={ handleImage } onBlur={handleBlur}/>
                         { errors.image && touched.image && <Errors>{errors.image}</Errors> }
                 </ContainerInputError>
             </Form.Group>

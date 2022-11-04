@@ -10,24 +10,26 @@ export const apiCall = async ({
   personalController = undefined,
 }) => {
   try {
-    const url = restUrl ? `${BASEURL}/${restUrl}` : `${BASEURL}`;
+    const url = `${BASEURL}/${restUrl}`;
     
     const instance = axios.create({
-      url,
+      url: `${BASEURL}/${restUrl}`,
     });
-
     const controller = personalController || new AbortController();
 
     setTimeout(() => {
       controller.abort();
     }, 5000);
 
-    const request = await instance[method](url, {
+    let config = {
       signal: controller.signal,
-      body,
+      method,
+      url,
       headers,
-    });
+      data: body,
+    };
 
+    const request = await instance(config);
     return request.data;
   } catch (error) {
     if (axios.isCancel(error)) {
