@@ -16,3 +16,9 @@ export const routes = {
   TOYSCAMPAIGN: "/toys-campaign",
   USERFORM: "/create-user",
 };
+
+export const privateRoutes = {
+  BACKOFFICE: "backoffice",
+  SLIDESFORM: "slides",
+  SLIDESFORMWITHID: "slides/:id",
+};

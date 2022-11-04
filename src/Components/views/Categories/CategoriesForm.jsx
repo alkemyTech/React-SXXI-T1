@@ -8,7 +8,9 @@ import { Formulary, Input, ButtonConfirm, Errors,
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import axios from 'axios';
-import { validationSchema, convertToBase64 } from './utilities/utilities';
+import { validationSchema, convertToBase64, Alert } from './utilities/utilities';
+import { apiCall } from 'Services/apiCall.service';
+// import Swal from 'sweetalert2';
 
 const CategoriesForm = () => {
     const {id} = useParams();
@@ -18,56 +20,81 @@ const CategoriesForm = () => {
         image: '',
         description: ''
     });
-
+    let image;
     const initialValues = {
         name: '',
         image: '',
         description: ''
     };
     
-    const URL = 'https://ongapi.alkemy.org/api/categories';
     useEffect(()=>{
         if(id) {
-            axios.get(URL+"/"+id)
-                .then(res => {
-                    const {data} = res.data;
-                    setCategory({
-                        name: data.name,
-                        image: data.image,
-                        description: data.description
-                    });
-                })
-                .catch(() => {
-                    alert('Ha ocurrido un error...');
-                })
+            (async ()=>{
+                const response = await apiCall({restUrl:`categories/${id}`});
+                console.log("respuesta: ", response)
+                const {data} = response;
+                setCategory({
+                    name: data.name,
+                    image: data.image,
+                    description: data.description
+                });
+            })();
         }
     },[id]);
     
+    const backURL = '/backoffice/categories';
     const onSubmit = () => {
-        if(id) {
-            axios.put(URL+'/'+id, values)
-            .then(() => {
-                alert('cambios guardados');
-                navigate('/backoffice/categories');
-            })
-            .catch(()=>{
-                alert('Ha ocurrido un error...');
-            });
-        }else {
-            axios.post(URL, values)
-            .then(()=>{
-                alert('categoria creada');
-                navigate('/backoffice/categories');
-            })
-            .catch(()=>{
-                alert('Ha ocurrido un error...')
-            });
-        }
+        convertToBase64(image,formik.setFieldValue)
+        console.log('Submit: ', values);
+        // if(id) {
+        //     Alert({ icon:'warning', 
+        //             title:'¿Estas segura/o?', 
+        //             cancelText: 'Cancelar' })
+        //     .then(res => {
+        //         if(res.isConfirmed) {
+        //             (async ()=>{
+        //                 const response = await apiCall({
+        //                                     restUrl:`categories/${id}`,
+        //                                     method: 'put',
+        //                                     body: values });
+        //                 if(response.success){
+        //                     Alert({ icon: 'success', title: 'Operación éxitosa'})
+        //                     .then(() => navigate(backURL))                            
+        //                 }else{
+        //                     Alert({ icon: 'error', title: 'Ha ocurrido un error'})
+        //                 }
+        //             })();
+        //         }
+        //     })
+        // }else {
+        //     Alert({ icon:'warning', 
+        //             title:'¿Estas segura/o?', 
+        //             cancelText: 'Cancelar' })
+        //     .then(res => {
+        //         if(res.isConfirmed) {
+        //             (async ()=>{
+        //                 const response = await apiCall({
+        //                                     restUrl: 'categories',
+        //                                     method: 'post',
+        //                                     body: values });
+        //                 if(response.success){
+        //                     Alert({ icon: 'success', title: 'Operación éxitosa'})
+        //                     .then(() => navigate(backURL))                            
+        //                 }else{
+        //                     Alert({ icon: 'error', title: 'Ha ocurrido un error'})
+        //                 }
+        //             })();
+        //         }
+        //     })
+        // }
     }
     function handleImage(e){
-        const image = e.target.files[0];
-        if(image) formik.setFieldValue('image', image);
-        else formik.setFieldValue('image', '');
+        image = e.target.files[0];
+        formik.setFieldValue('image',image);
+        // convertToBase64(image, formik.setFieldValue)
+        
+        // if(image) formik.setFieldValue('image', image);
+        // else formik.setFieldValue('image', '');
     }
     const formik = useFormik({ initialValues, onSubmit, validationSchema });
     const { handleChange, handleSubmit, values, errors, handleBlur, touched } = formik;
@@ -75,7 +102,6 @@ const CategoriesForm = () => {
     const cancel = () => {
         navigate('/backoffice/categories');
     }
-    console.log('Errores: ', errors);
     return (
         <>
         <Formulary className='my-5' onSubmit={ handleSubmit }>
