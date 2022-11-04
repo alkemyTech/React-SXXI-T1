@@ -20,7 +20,7 @@ export const privateRoutes = {
   EDITORGANIZATIONFORM: "organization/edit",
   SLIDESFORM: "slides",
   SLIDESFORMWITHID: "slides/:id",
-  TESTIMONIALSFORM: "create-testimonials",
-  TESTIMONIALSEDITFORM: "edit-testimonials/:id",
+  TESTIMONIALSFORM: "testimonials",
+  TESTIMONIALSEDITFORM: "testimonials/:id",
 };
 

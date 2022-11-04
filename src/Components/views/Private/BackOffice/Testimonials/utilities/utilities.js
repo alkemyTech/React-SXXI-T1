@@ -7,17 +7,17 @@ export const validationSchema = Yup.object().shape({
     .required(validationMessages.name.required),
   image: Yup.mixed().required( validationMessages.image.required)
     .test( "fileFormat", "Solo formato .jpg y .png",
-      value => value?.includes('image/png' || 'image/jpg')
+      value => value && ['image/png', 'image/jpg', 'image/jpeg'].includes(value.type)
     ),
   description: Yup.string().required(validationMessages.description.required)
 });
 
-export const convertToBase64 = (image, setFieldValue) => {
+export const convertToBase64 = (image, setImage) => {
   const reader = new FileReader();
   reader.readAsDataURL(image);
   
   reader.onload = function () {
-      setFieldValue('image', reader.result);
+      setImage(reader.result);
   };
   reader.onerror = function (error) {
     console.log('Error: ', error);

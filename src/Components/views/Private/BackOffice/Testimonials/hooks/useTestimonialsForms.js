@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { validationSchema, convertToBase64 } from "./../utilities/utilities";
 import { apiCall } from "Services/apiCall.service";
+import Swal from 'sweetalert2'
 
 export const useTestimonialsForms = () => {
   const {id} = useParams();
   const navigate = useNavigate();
+  const [ imageBase64, setImageBase64] = useState("")
   
   const [testimonial, setTestimonial] = useState({
         name: '',
@@ -23,59 +25,90 @@ export const useTestimonialsForms = () => {
   };
 
   useEffect(()=>{
-
-    /*
       if(id) {
-          axios.get(`https://ongapi.alkemy.org/api/testimonials/${id}`)
-              .then(res => {
-                  const {data} = res.data;
-                  setTestimonial({
-                      name: data.name,
-                      image: data.image,
-                      description: data.description
-                  });
-              })
-              .catch(() => {
-                alert('Ha ocurrido un error...');
-              })
+        try {
+          (async () => {
+            const info = await apiCall({ restUrl: `testimonials/${id}` });
+            setTestimonial({
+              name: info.data.name,
+              image: info.data.image,
+              description: info.data.description
+          });
+          })()
+        } catch {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salio mal!',
+          })
+        } 
       }
-      */
-      
-      (async () => {
-        const info = await apiCall({ restUrl: `testimonials/466` });
-        setTestimonial(info)
-        console.log(info)
-      })()
-      
       },[id]);
 
-  const URL = 'https://ongapi.alkemy.org/api/testimonials';
-
   const onSubmit = () => {
+    const { name, description } = values;
+    const obj = {
+      name,
+      description,
+      imageBase64
+    }
     if(id) {
-      axios.put(URL+'/'+id, values)
-      .then(() => {
-          alert('Cambios guardados');
-          navigate('/backoffice/testimonials');
-      })
-      .catch(()=>{
-          alert('Ha ocurrido un error...');
-      });
+        Swal.fire({
+          title: 'Queres guardar los cambios?',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Guardar',
+          denyButtonText: `No guardar`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            try {
+              (async () => {
+                await apiCall({ restUrl: `testimonials/${id}`, method: "put", body : obj });
+              })()
+              Swal.fire('Guardado!', '', 'success')
+            } catch {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salio mal!',
+              })
+            }
+          } else if (result.isDenied) {
+            Swal.fire('Cambios no guardados', '', 'info')
+          }
+        })
     } else {
-      axios.post(URL, values)
-      .then(()=>{
-          alert('Testimonio creado');
-          navigate('/backoffice/testimonials');
+      Swal.fire({
+        title: 'Queres crear un testimonio?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Crear',
+        denyButtonText: `No crear`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          try {
+            (async () => {
+              await apiCall({ restUrl: `testimonials/`, method: "post", body: obj });
+            })()
+            Swal.fire('Creado!', '', 'success')
+          } catch {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Algo salio mal!',
+            })
+          }
+        } else if (result.isDenied) {
+          Swal.fire('Cambios no guardados', '', 'info')
+        }
       })
-      .catch(()=>{
-          alert('Ha ocurrido un error...')
-      });
     }
   }
 
   function handleImage(e){
     const image = e.target.files[0];
-    convertToBase64(image, formik.setFieldValue);
+    formik.setFieldValue("image", image)
+    convertToBase64(image, setImageBase64)
   }
   const formik = useFormik({initialValues, onSubmit, validationSchema});
 

@@ -34,7 +34,7 @@ const TestimonialsForm = () => {
                     <InputForm
                         type="text"
                         name="name"
-                        value={id?"name":values.name} 
+                        defaultValue={id? testimonial.name : " "}
                         onChange={handleChange}
                         onBlur={handleBlur} 
                         placeholder="Nombre" />
@@ -67,7 +67,6 @@ const TestimonialsForm = () => {
                         accept="image/png, image/jpeg, image/jpg" 
                         type="file"
                         name="image"
-                        value={values.image} 
                         onChange={handleImage}
                         onBlur={handleBlur} 
                         placeholder="Ingresa la imagen..." 
