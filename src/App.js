@@ -4,7 +4,6 @@ import { privateRoutes, routes } from "./models/routes";
 import Home from "./Components/views/Home/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
-import EditOrganizationForm from "Components/views/Private/BackOffice/Organization/EditForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
 import NewsForm from "./Components/views/News/NewsForm";
 import SlidesForm from "./Components/views/Private/Slides/SlidesForm";
@@ -42,10 +41,6 @@ function App() {
             <Route path={routes.AUTHREGISTERFORM} element={<RegisterForm />} />
             <Route path={routes.ACIVITIESDETAIL} element={<Detail />} />
             <Route path={routes.CATEGORIESFORM} element={<CategoriesForm />} />
-            <Route
-              path={routes.EDITORGANIZATIONFORM}
-              element={<EditOrganizationForm />}
-            />
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
             <Route path={routes.SLIDERSFORM} element={<SlidesForm />} />
             <Route

@@ -17,7 +17,7 @@ export const routes = {
 
 export const privateRoutes = {
   BACKOFFICE: "backoffice",
-  EDITORGANIZATIONFORM: "/backoffice/organization/edit",
+  EDITORGANIZATIONFORM: "organization/edit",
   SLIDESFORM: "slides",
   SLIDESFORMWITHID: "slides/:id",
 };
