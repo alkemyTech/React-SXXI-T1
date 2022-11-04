@@ -23,6 +23,8 @@ export const useTestimonialsForms = () => {
   };
 
   useEffect(()=>{
+
+    /*
       if(id) {
           axios.get(`https://ongapi.alkemy.org/api/testimonials/${id}`)
               .then(res => {
@@ -37,12 +39,14 @@ export const useTestimonialsForms = () => {
                 alert('Ha ocurrido un error...');
               })
       }
-      /*
+      */
+      
       (async () => {
         const info = await apiCall({ restUrl: `testimonials/466` });
         setTestimonial(info)
+        console.log(info)
       })()
-      */
+      
       },[id]);
 
   const URL = 'https://ongapi.alkemy.org/api/testimonials';
