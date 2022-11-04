@@ -9,8 +9,9 @@ import SlidesForm from "./Components/views/Private/Slides/SlidesForm";
 import TestimonialForm from "./Components/views/Testimonials/TestimonialsForm";
 import UserForm from "./Components/views/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
+import NewsDetail from "./Components/views/News/Detail/NewsDetail";
 import ProjectsForm from "./Components/views/Projects/ProjectsForm";
-import RegisterForm from "Components/views/Auth/RegisterForm";
+import RegisterForm from "./Components/views/Auth/RegisterForm";
 import SchoolCampaign from "./Components/Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Components/Campaigns/Toys/ToysCampaign";
 import { RoutesNoMatch } from "./utilities/routesNoMatch.util";
@@ -49,6 +50,10 @@ function App() {
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
+            <Route
+              path={routes.NEWSDETAIL}
+              element={<NewsDetail title="Título de novedad" />}
+            />
             <Route path={routes.CONTACTUS} element={<ContactUs />} />
 
             <Route element={<AuthGuard />}>
