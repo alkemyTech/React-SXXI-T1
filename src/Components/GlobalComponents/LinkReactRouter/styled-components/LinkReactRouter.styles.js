@@ -12,8 +12,7 @@ import {
 
 const CustomLink = styled(Link)`
   ${inputTextCssStyle}
-  border-radius: 8px;
-  padding: 6px 12px;
+  padding: ${({ padding }) => padding || "6px 12px"};
   text-decoration: none;
   text-align: center;
 
