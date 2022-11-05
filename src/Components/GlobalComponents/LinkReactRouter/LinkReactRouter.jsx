@@ -6,15 +6,21 @@ export const LinkReactRouter = ({
   text,
   color = "default",
   background = "default",
+  icon = "",
+  wrapLink = "",
+  padding = "",
 }) => {
   return (
-    <CustomLink
-      className={linkClass}
-      color={color}
-      background={background}
-      to={to}
-    >
-      {text}
-    </CustomLink>
+    <div className={wrapLink}>
+      <CustomLink
+        className={linkClass}
+        color={color}
+        background={background}
+        padding={padding}
+        to={to}
+      >
+        {icon} {text}
+      </CustomLink>
+    </div>
   );
 };

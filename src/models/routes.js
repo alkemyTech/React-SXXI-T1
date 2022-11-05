@@ -1,4 +1,5 @@
 export const routes = {
+  ACIVITIESDETAIL: "/actividades/:id",
   ACTIVITIESFORM: "/create-activity",
   AUTHLOGINFORM: "/auth/login",
   AUTHREGISTERFORM: "/auth/register",
@@ -8,6 +9,7 @@ export const routes = {
   EDITCATEGORY: "/backoffice/edit-category/:id",
   HOME: "/",
   MEMBERSFORM: "/create-member",
+  NEWSDETAIL: "/novedades/:id",
   NEWSFORM: "/create-news",
   ORGANIZATIONDATA: "/backoffice/organization",
   PROJECTFORM: "/create-project",
@@ -15,5 +17,11 @@ export const routes = {
   SCHOOLCAMPAIGN: "/school-campaign",
   TESTIMONIALSFORM: "/create-testimonials",
   TOYSCAMPAIGN: "/toys-campaign",
-  USERFORM: "/create-user",
+};
+
+export const privateRoutes = {
+  BACKOFFICE: "backoffice",
+  EDITORGANIZATIONFORM: "organization/edit",
+  SLIDESFORM: "slides",
+  SLIDESFORMWITHID: "slides/:id",
 };
