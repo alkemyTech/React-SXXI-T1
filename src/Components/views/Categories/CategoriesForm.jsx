@@ -8,7 +8,7 @@ import { Formulary, Input, ButtonConfirm, Errors,
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { validationSchema, convertToBase64, Alert } from './utilities/utilities';
-import { apiCall } from 'Services/apiCall.service';
+import { api } from 'Services/axiosService';
 
 const CategoriesForm = () => {
     const {id} = useParams();
@@ -27,15 +27,18 @@ const CategoriesForm = () => {
     
     useEffect(()=>{
         if(id) {
-            (async ()=>{
-                const response = await apiCall({restUrl:`categories/${id}`});
-                const {data} = response;
+            api.get(`/categories/${id}`)
+            .then(res => {
+                const { data } = res.data;
                 setCategory({
                     name: data.name,
                     image: data.image,
                     description: data.description
                 });
-            })();
+            })
+            .catch(()=>{
+                Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+            });
         }
     },[id]);
     
@@ -49,18 +52,14 @@ const CategoriesForm = () => {
                     cancelText: 'Cancelar' })
             .then(res => {
                 if(res.isConfirmed) {
-                    (async ()=>{
-                        const response = await apiCall({
-                                            restUrl:`categories/${id}`,
-                                            method: 'put',
-                                            body: body });
-                        if(response.success){
-                            Alert({ icon: 'success', title: 'Operación éxitosa'})
-                            .then(() => navigate(backURL))                            
-                        }else{
-                            Alert({ icon: 'error', title: 'Ha ocurrido un error'})
-                        }
-                    })();
+                    api.put(`/categories/${id}`, body)
+                    .then(() => {
+                        Alert({ icon: 'success', title: 'Operación éxitosa'})
+                        .then(() => navigate(backURL));
+                    })
+                    .catch(()=>{
+                        Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+                    });
                 }
             })
         }else {
@@ -69,18 +68,14 @@ const CategoriesForm = () => {
                     cancelText: 'Cancelar' })
             .then(res => {
                 if(res.isConfirmed) {
-                    (async ()=>{
-                        const response = await apiCall({
-                                            restUrl: 'categories',
-                                            method: 'post',
-                                            body: body });
-                        if(response.success){
-                            Alert({ icon: 'success', title: 'Operación éxitosa'})
-                            .then(() => navigate(backURL))                            
-                        }else{
-                            Alert({ icon: 'error', title: 'Ha ocurrido un error'})
-                        }
-                    })();
+                    api.post(`/categories`, body)
+                    .then(() => {
+                        Alert({ icon: 'success', title: 'Operación éxitosa'})
+                        .then(() => navigate(backURL));
+                    })
+                    .catch(()=>{
+                        Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+                    });
                 }
             })
         }
