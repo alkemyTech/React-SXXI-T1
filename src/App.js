@@ -26,6 +26,7 @@ import ContactUs from "Components/views/ContactUs/ContactUs";
 import Detail from "Components/views/Activities/Detail/Detail";
 import AuthGuard from "guard/auth.guard";
 import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes";
+import ActivitiesList from "Components/views/Activities/ActivitiesList";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Row>
           <RoutesNoMatch>
             <Route path={routes.HOME} exact element={<Home />} />
+            <Route path={routes.ACTIVITIES} exact element={<ActivitiesList />} />
             <Route path={routes.ACTIVITIESFORM} element={<ActivitiesForm />} />
             <Route path={routes.AUTHLOGINFORM} element={<LoginForm />} />
             <Route path={routes.AUTHREGISTERFORM} element={<RegisterForm />} />

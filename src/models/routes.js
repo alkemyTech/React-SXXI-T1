@@ -1,4 +1,5 @@
 export const routes = {
+  ACTIVITIES: "/actividades",
   ACIVITIESDETAIL: "/actividades/:id",
   ACTIVITIESFORM: "/create-activity",
   AUTHLOGINFORM: "/auth/login",
