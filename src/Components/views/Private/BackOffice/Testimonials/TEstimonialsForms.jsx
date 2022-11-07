@@ -1,15 +1,14 @@
 import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
-import { ContainerInputError, Errors } from "./TestimonialForm.Styled";
+import { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./TestimonialForm.Styled";
 import { useTestimonialsForms } from './hooks/useTestimonialsForms';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import TestimonialButtons from './TestimonialsButtons';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 
 const TestimonialsForm = () => {
-    const {errors, handleBlur, handleSubmit, handleChange, touched, testimonial, formik, handleImage } = useTestimonialsForms();
+    const {errors, handleBlur, handleSubmit, handleChange, touched, testimonial, loading, formik, handleImage, cancel } = useTestimonialsForms();
     const { id } = useParams();
 
     return (
@@ -75,7 +74,27 @@ const TestimonialsForm = () => {
                     {errors.image && touched.image && <Errors>{errors.image}</Errors>}
                 </ContainerInputError>
             </Form.Group>
-            <TestimonialButtons />
+            <div className="mb-5">
+                <ButtonConfirm 
+                    className='mt-2 col-sm-5 col-md-2 mx-2' 
+                    disabled={loading}
+                    background='success' 
+                    color='success' 
+                    type='submit'
+                >
+                    Confirmar
+                </ButtonConfirm>
+                <ButtonCancel 
+                    className='col-sm-5 col-md-2 mx-2 mt-2' 
+                    disabled={loading}
+                    background='default' 
+                    color='success' 
+                    type='button'
+                    onClick={ cancel }
+                >
+                    Cancelar
+                </ButtonCancel>
+            </div>
           </Form>
         </div>
     );

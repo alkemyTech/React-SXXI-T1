@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
-import { validationMessages } from 'utilities/validationMessage.util';
 import Swal from 'sweetalert2';
+import { validationMessages } from 'utilities/validationMessage.util';
 
 const FORMAT = ['image/png', 'image/jpg', 'image/jpeg'];
 
@@ -19,8 +19,8 @@ export const convertToBase64 = (image, setImage) => {
   const reader = new FileReader();
   reader.readAsDataURL(image);
   
-  reader.onload = function () {
-      setImage(reader.result);
+  reader.onloadend = function () {
+      setImage(reader.result.toString());
   };
   reader.onerror = function (error) {
     console.log('Error: ', error);

@@ -8,7 +8,8 @@ import { api } from 'Services/axiosService';
 export const useTestimonialsForms = () => {
   const {id} = useParams();
   const navigate = useNavigate();
-  const [ imageBase64, setImageBase64] = useState("")
+  const [ imageBase64, setImageBase64] = useState("");
+  const [loading, setLoading] = useState(false);
   const [testimonial, setTestimonial] = useState({
         name: '',
         image: '',
@@ -22,7 +23,7 @@ export const useTestimonialsForms = () => {
 
   useEffect(()=>{
       if(id) {
-        api.get(`testimonials/${id}`)
+        api.get(`/testimonials/${id}`)
         .then(res => {
           const { data } = res.data;
           setTestimonial({
@@ -33,7 +34,7 @@ export const useTestimonialsForms = () => {
         })
         .catch(() => {
           Alert({ icon: 'error', title: 'Ha ocurrido un error'});
-        })    
+        });    
       }
     },[id]);
 
@@ -44,11 +45,12 @@ export const useTestimonialsForms = () => {
     const body = { name, description, imageBase64 }
     if(id) {
       Alert({ icon:'warning', 
-            title:'¿Estas segura/o?', 
+            title:'¿Estas segura/o de cancelar?', 
             cancelText: 'Cancelar' })
       .then((res) => {
           if (res.isConfirmed) {
-            api.put(`testimonials/${id}`, body)
+            setLoading(true);
+            api.put(`/testimonials/${id}`, body)
               .then(()=> {
                 Alert({ icon: 'success', title: 'Operación éxitosa'})
                   .then(() => navigate(backURL));
@@ -58,13 +60,15 @@ export const useTestimonialsForms = () => {
             });
           }
         })
+        setLoading(false);
       } else {
         Alert({ icon:'warning', 
-                title:'¿Estas segura/o?', 
+                title:'¿Estas segura/o de cancelar?', 
                 cancelText: 'Cancelar' })
         .then((res) => {
           if (res.isConfirmed) {
-            api.post(`testimonials/`, body)
+            setLoading(true);
+            api.post(`/testimonials`, body)
             .then(()=> {
               Alert({ icon: 'success', title: 'Operación éxitosa'})
               .then(()=> navigate(backURL));
@@ -74,6 +78,7 @@ export const useTestimonialsForms = () => {
             });
           } 
         })
+        setLoading(false);
       }
   }
 
@@ -86,10 +91,15 @@ export const useTestimonialsForms = () => {
       formik.setFieldValue('image', '');
     }
   }
+  
   const formik = useFormik({initialValues, onSubmit, validationSchema});
 
   const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
 
-  return {values, errors, handleBlur, handleSubmit, handleChange, touched, testimonial, formik , handleImage} 
+  const cancel = () => {
+    navigate(backURL);
+}
+
+  return {values, errors, handleBlur, handleSubmit, handleChange, touched, testimonial, loading, formik , handleImage, cancel} 
 
 }
