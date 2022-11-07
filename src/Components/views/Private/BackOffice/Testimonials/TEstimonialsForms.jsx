@@ -8,7 +8,9 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 
 const TestimonialsForm = () => {
+
     const {errors, handleBlur, handleSubmit, handleChange, touched, testimonial, loading, formik, handleImage, cancel } = useTestimonialsForms();
+    
     const { id } = useParams();
 
     return (
