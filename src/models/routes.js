@@ -8,6 +8,7 @@ export const routes = {
   DONATION: "/donar",
   HOME: "/",
   MEMBERSFORM: "/create-member",
+  NEWS: "/novedades",
   NEWSDETAIL: "/novedades/:id",
   NEWSFORM: "/create-news",
   PROJECTFORM: "/create-project",

@@ -14,6 +14,8 @@ const Home = () => {
       </Link>
       <br />
       <Link to={routes.DONATION}>Hacer donación</Link>
+      <br />
+      <Link to={routes.NEWS}>Novedades</Link>
     </div>
   );
 };

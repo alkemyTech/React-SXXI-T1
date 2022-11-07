@@ -29,6 +29,7 @@ import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes";
 import { Donations } from "Components/views/Donations/Donations";
 import { Thanks } from "Components/views/Donations/Thanks";
 import { textForDonation } from "Components/views/Donations/utilities/donationSchema.util";
+import { News } from "Components/views/News/News";
 
 function App() {
   return (
@@ -44,6 +45,11 @@ function App() {
             <Route path={routes.AUTHREGISTERFORM} element={<RegisterForm />} />
             <Route path={routes.ACIVITIESDETAIL} element={<Detail />} />
             <Route path={routes.CATEGORIESFORM} element={<CategoriesForm />} />
+            <Route path={routes.NEWS} element={<News />} />
+            <Route
+              path={routes.NEWSDETAIL}
+              element={<NewsDetail title="Título de novedad" />}
+            />
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
             <Route path={routes.SLIDERSFORM} element={<SlidesForm />} />
             <Route
@@ -55,10 +61,6 @@ function App() {
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
-            <Route
-              path={routes.NEWSDETAIL}
-              element={<NewsDetail title="Título de novedad" />}
-            />
             <Route path={routes.CONTACTUS} element={<ContactUs />} />
 
             <Route
