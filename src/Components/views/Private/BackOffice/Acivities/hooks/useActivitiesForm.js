@@ -1,39 +1,120 @@
 import { useFormik } from "formik";
-import * as Yup from 'yup';
-import { validationMessages } from 'utilities/validationMessage.util';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom/dist';
+import { useEffect, useState } from "react";
+import { validationSchema, convertToBase64, Alert } from "./../utilities/utilities";
+import { api } from 'Services/axiosService';
 
 export const useActivitiesForm = () => {
-  const nameRegExp = /[a-z, A-Z]{4}/
-    const validationSchema = Yup.object().shape({
-        name : Yup.string()
-          .min(4, validationMessages.name.fieldLength)
-          .matches(nameRegExp, validationMessages.name.format)
-          .required(validationMessages.name.required),
-        description: Yup.string()
-          .required(validationMessages.description.required)
-          .max(255, validationMessages.description.fieldLength),
-        image: Yup.string()
-          .required(validationMessages.image.required)
-          .oneOf(
-            ["image/png", "image/jpg"],
-            "El formato de la imagen tiene que ser jpg, 0 png"
-          )
+    const {id} = useParams();
+    const navigate = useNavigate();
+    const [ imageBase64, setImageBase64] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [activities, setActivities] = useState({
+      name: '',
+      description: '',
+      image: ''
     });
-
     const initialValues = {
         name: '',
         description: '',
         image: ''
     };
 
-    const onSubmit = () => {
-        console.log(formik.values);
+  useEffect(()=>{
+    if(id) {
+      api.get(`/activities/${id}`)
+      .then(res => {
+        const { data } = res.data;
+        setActivities({
+          name: data.name,
+          description: data.description,
+          image: data.image
+        });
+      })
+      .catch(() => {
+        Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+      });    
     }
+  },[id]);
 
-    const formik = useFormik({initialValues, onSubmit, validationSchema});
+  const backURL = '/backoffice/activities';
 
-    const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
+  const onSubmit = () => {
+    const { name, description } = values;
+    const body = { name, description, imageBase64 }
+    if(id) {
+      Alert({ icon:'warning', 
+              title:'¿Estas segura/o de cancelar?', 
+              cancelText: 'Cancelar' })
+      .then((res) => {
+          if (res.isConfirmed) {
+            setLoading(true);
+            api.put(`/activities/${id}`, body)
+              .then(()=> {
+                Alert({ icon: 'success', title: 'Operación éxitosa'})
+                  .then(() => navigate(backURL));
+            })
+            .catch(() => {
+              Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+            });
+          }
+        })
+        setLoading(false);
+      } else {
+        Alert({ icon:'warning', 
+                title:'¿Estas segura/o de cancelar?', 
+                cancelText: 'Cancelar' })
+        .then((res) => {
+          if (res.isConfirmed) {
+            setLoading(true);
+            api.post(`/activities`, body)
+            .then(()=> {
+              Alert({ icon: 'success', title: 'Operación éxitosa'})
+              .then(()=> navigate(backURL));
+            })
+            .catch(()=> {
+              Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+            });
+          } 
+        })
+        setLoading(false);
+      }
+  }
 
-    return {values, errors, handleBlur, handleSubmit, handleChange, touched}
+  function handleImage(e){
+    const image = e.target.files[0];
+    if(image) {
+      formik.setFieldValue('image', image);
+      convertToBase64( image, setImageBase64 );
+    } else {
+      formik.setFieldValue('image', '');
+    }
+  }
 
+  const formik = useFormik({
+    initialValues, 
+    onSubmit, 
+    validationSchema
+  });
+
+  const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
+
+  const cancel = () => {
+    navigate(backURL);
+  }
+
+  return {
+    values, 
+    errors, 
+    handleBlur, 
+    handleSubmit, 
+    handleChange, 
+    touched, 
+    activities, 
+    loading, 
+    formik , 
+    handleImage, 
+    cancel
+  }
 }
