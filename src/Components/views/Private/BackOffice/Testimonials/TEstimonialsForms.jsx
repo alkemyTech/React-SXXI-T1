@@ -9,7 +9,7 @@ import TestimonialButtons from './TestimonialsButtons';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 
 const TestimonialsForm = () => {
-    const {values, errors, handleBlur, handleSubmit, handleChange, touched, testimonial, formik, handleImage } = useTestimonialsForms();
+    const {errors, handleBlur, handleSubmit, handleChange, touched, testimonial, formik, handleImage } = useTestimonialsForms();
     const { id } = useParams();
 
     return (
@@ -52,8 +52,8 @@ const TestimonialsForm = () => {
                         editor={ ClassicEditor }
                         config={{ placeholder: 'Descripción' }}
                         onChange={ (event, editor) => { 
-                        formik.setFieldValue('description', editor.getData());
-                        } }
+                            formik.setFieldValue('description', editor.getData());
+                        }}
                     />
                     { errors.description && <Errors>{ errors.description }</Errors> }
                 </ContainerInputError>

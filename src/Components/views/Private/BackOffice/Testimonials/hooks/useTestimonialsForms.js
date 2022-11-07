@@ -2,8 +2,7 @@ import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from "react";
-import { validationSchema, convertToBase64 } from "./../utilities/utilities";
-import Swal from 'sweetalert2';
+import { validationSchema, convertToBase64, Alert } from "./../utilities/utilities";
 import { api } from 'Services/axiosService';
 
 export const useTestimonialsForms = () => {
@@ -25,20 +24,15 @@ export const useTestimonialsForms = () => {
       if(id) {
         api.get(`testimonials/${id}`)
         .then(res => {
-          const { data }= res.data;
+          const { data } = res.data;
           setTestimonial({
             name: data.name,
             image: data.image,
             description: data.description
           });
-          
         })
         .catch(() => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Algo salio mal!',
-          });
+          Alert({ icon: 'error', title: 'Ha ocurrido un error'});
         })    
       }
     },[id]);
@@ -47,51 +41,37 @@ export const useTestimonialsForms = () => {
 
   const onSubmit = () => {
     const { name, description } = values;
-    const obj = { name, description, imageBase64 }
+    const body = { name, description, imageBase64 }
     if(id) {
-        Swal.fire({
-          title: 'Queres guardar los cambios?',
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: 'Guardar',
-          denyButtonText: `No guardar`,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            api.put(`testimonials/${id}`)
+      Alert({ icon:'warning', 
+            title:'¿Estas segura/o?', 
+            cancelText: 'Cancelar' })
+      .then((res) => {
+          if (res.isConfirmed) {
+            api.put(`testimonials/${id}`, body)
               .then(()=> {
-                Swal.fire('Guardado!', '', 'success')
-                .then(()=> navigate(backURL))
+                Alert({ icon: 'success', title: 'Operación éxitosa'})
+                  .then(() => navigate(backURL));
             })
             .catch(() => {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Algo salio mal!',
-              })
+              Alert({ icon: 'error', title: 'Ha ocurrido un error'});
             });
           }
         })
       } else {
-        Swal.fire({
-          title: 'Queres crear un testimonio?',
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: 'Crear',
-          denyButtonText: `No crear`,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            api.post(`testimonials/`, obj)
+        Alert({ icon:'warning', 
+                title:'¿Estas segura/o?', 
+                cancelText: 'Cancelar' })
+        .then((res) => {
+          if (res.isConfirmed) {
+            api.post(`testimonials/`, body)
             .then(()=> {
-              Swal.fire('Creado!', '', 'success')
-              .then(()=> navigate(backURL))
+              Alert({ icon: 'success', title: 'Operación éxitosa'})
+              .then(()=> navigate(backURL));
             })
             .catch(()=> {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Algo salio mal!',
-              })
-            })
+              Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+            });
           } 
         })
       }
@@ -110,10 +90,6 @@ export const useTestimonialsForms = () => {
 
   const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
 
-  const handleClick = () => {
-    navigate(backURL);
-  }
-
-  return {values, errors, handleBlur, handleSubmit, handleChange, handleClick, touched, testimonial, formik , handleImage}
+  return {values, errors, handleBlur, handleSubmit, handleChange, touched, testimonial, formik , handleImage} 
 
 }

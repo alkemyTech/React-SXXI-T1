@@ -1,8 +1,13 @@
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
-import { useTestimonialsForms } from "./hooks/useTestimonialsForms";
+import { useNavigate } from 'react-router-dom/dist';
 
 export default function TestimonialButtons() {
-  const {handleClick } = useTestimonialsForms();
+  const navigate = useNavigate();
+  const backURL = '/backoffice/testimonials';
+
+  const handleClick = () => {
+    navigate(backURL);
+  }
 
   return(
     <div className=" my-4 d-grid gap-3 d-md-flex justify-content-md-center">
