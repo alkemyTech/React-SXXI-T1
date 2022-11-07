@@ -11,7 +11,6 @@ export const useModalSlide = (
   const indexSlide = getIndexSlide(orderSlide, idSlide) + 1;
 
   const handleChangeRadio = (e) => {
-    console.log(e.target.value);
     setSlideToChangeSelected(e.target.value);
   };
 
