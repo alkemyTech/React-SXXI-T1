@@ -21,4 +21,6 @@ export const privateRoutes = {
   EDITORGANIZATIONFORM: "organization/edit",
   SLIDESFORM: "slides",
   SLIDESFORMWITHID: "slides/:id",
+  ACTIVITIYFORM: "activities",
+  ACTIVITYEDITFORM: "activities/:id"
 };
