@@ -23,10 +23,15 @@ export const Image = styled.img`
 export const ContainerEditInf = styled.div`
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
 `;
 
 export const EditButton = styled(Button)`
     &:hover {
         background-color: white;
+    }
+    @media screen and (max-width: 593px) {
+        font-size: 11px;
     }
 `;
