@@ -1,10 +1,28 @@
-import { TitleText } from "styled-components/App.styled";
-import { WrapCustomTitle } from "./styled-components/WrapCustomTitle.styled";
+import {
+  WrapCustomTitle,
+  WrapTextTitle,
+} from "./styled-components/WrapCustomTitle.styled";
 
-export const CustomTitle = ({ wrapTitleClass = "", title }) => {
+export const CustomTitle = ({
+  wrapTitleClass = "",
+  wrapTextClass = "",
+  title,
+  image = "",
+  backgroundSize = "",
+  width = "",
+  justify = "",
+  blur = "",
+}) => {
   return (
-    <WrapCustomTitle className={wrapTitleClass}>
-      <TitleText>{title}</TitleText>
+    <WrapCustomTitle
+      className={wrapTitleClass}
+      backgroundSize={backgroundSize}
+      image={image}
+      width={width}
+    >
+      <WrapTextTitle className={wrapTextClass} justify={justify} blur={blur}>
+        {title}
+      </WrapTextTitle>
     </WrapCustomTitle>
   );
 };

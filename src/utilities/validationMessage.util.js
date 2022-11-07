@@ -15,22 +15,20 @@ export const validationMessages = {
     required: "El campo email es obligatorio",
     format: "El campo email debe tener un formato de email válido",
   },
+  image: {
+    required: "El campo image es obligatorio",
+    format: "El formato debe ser png o jpg",
+    fieldSize: "La imagen debe tener menos de 2MB",
+  },
   name: {
     required: "El campo name es obligatorio",
-    format: "El campo name solo puede contener letras",
-    fieldLength: "El campo name debe contener al menos 4 digitos",
+    fieldLength: "El campo name debe contener al menos 4 caracteres",
+  },
+  order: {
+    required: "El campo order es obligatorio",
+    fieldLength: "El campo order debe contener un número mayor que ",
   },
   description: {
     required: "El campo description es obligatorio",
-    fieldLength: "El campo description debe contener como maximo 255 caracteres",
-  },
-  image: {
-    required: "El campo image es obligatorio"
-  },
-  title: {
-    required: "El campo titulo es obligatorio"
-  },
-  date: {
-    required: "El campo fecha de expiración es obligatorio"
   },
 };
