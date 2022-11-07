@@ -14,6 +14,7 @@ const CategoriesForm = () => {
     const {id} = useParams();
     const navigate = useNavigate();
     const [imageB64, setImageB64] = useState('');
+    const [loading, setLoading] = useState(false);
     const [category, setCategory] = useState({
         name: '',
         image: '',
@@ -46,12 +47,14 @@ const CategoriesForm = () => {
     const onSubmit = () => {
         const { name, description } = values;
         const body = { name, description, imageB64 };
+        
         if(id) {
             Alert({ icon:'warning', 
                     title:'¿Estas segura/o?', 
                     cancelText: 'Cancelar' })
             .then(res => {
                 if(res.isConfirmed) {
+                    setLoading(true);
                     api.put(`/categories/${id}`, body)
                     .then(() => {
                         Alert({ icon: 'success', title: 'Operación éxitosa'})
@@ -62,12 +65,14 @@ const CategoriesForm = () => {
                     });
                 }
             })
+            setLoading(false);
         }else {
             Alert({ icon:'warning', 
                     title:'¿Estas segura/o?', 
                     cancelText: 'Cancelar' })
             .then(res => {
                 if(res.isConfirmed) {
+                    setLoading(true);
                     api.post(`/categories`, body)
                     .then(() => {
                         Alert({ icon: 'success', title: 'Operación éxitosa'})
@@ -78,6 +83,7 @@ const CategoriesForm = () => {
                     });
                 }
             })
+            setLoading(false);
         }
     }
     function handleImage(e){
@@ -94,7 +100,6 @@ const CategoriesForm = () => {
     const cancel = () => {
         navigate(backURL);
     }
-    
     return (
         <>
         <Formulary className='my-5' onSubmit={ handleSubmit }>
@@ -130,12 +135,12 @@ const CategoriesForm = () => {
                     { errors.description && <Errors>{ errors.description }</Errors> }
                 </ContainerInputError>
             </Form.Group>
-            <ButtonConfirm className='mt-2 col-sm-5 col-md-2'
+            <ButtonConfirm className='mt-2 col-sm-5 col-md-2' disabled={loading}
                 background='success' color='success' type='submit'
             >
                 Confirmar
             </ButtonConfirm>
-            <ButtonCancel className='col-sm-5 col-md-2'
+            <ButtonCancel className='col-sm-5 col-md-2' disabled={loading}
                 background='default' color='success' type='button'
                 onClick={ cancel }
             >

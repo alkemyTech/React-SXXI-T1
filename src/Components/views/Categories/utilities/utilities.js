@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 
 const nameRegExp = /[a-z, A-Z]/;
-const FORMAT = ['image/png', 'image/jpg'];
+const FORMAT = ['image/png', 'image/jpg', 'image/jpeg'];
 export const validationSchema = Yup.object().shape({
     name: Yup.string()
             .matches( nameRegExp, 'Debe ser un nombre valido' )
@@ -19,11 +19,11 @@ export const convertToBase64 = (image, setImage) => {
     const reader = new FileReader();
     reader.readAsDataURL(image);
     
-    reader.onload = function () {
-        setImage(reader.result);
+    reader.onloadend = function () {
+        setImage(reader.result.toString());
     };
     reader.onerror = function (error) {
-      console.log('Error: ', error);
+        console.log('Error: ', error);
     };
 }
 
