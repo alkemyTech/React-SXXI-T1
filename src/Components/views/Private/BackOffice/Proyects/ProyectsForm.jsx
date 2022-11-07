@@ -6,7 +6,18 @@ import { useProyectsForms } from './hooks/useProyectsForms';
 import  Title  from "./Title";
 
 const ProyectsForm = () => {
-    const {values, errors, handleBlur, handleSubmit, handleChange, touched} = useProyectsForms();
+    const {
+        values, 
+        errors, 
+        handleBlur, 
+        handleSubmit, 
+        handleChange, 
+        handleImage, 
+        touched, 
+        cancel, 
+        loading, 
+        project
+    } = useProyectsForms();
 
     return (
         <div className="container">
