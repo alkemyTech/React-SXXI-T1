@@ -1,13 +1,15 @@
 import * as Yup from 'yup';
 import { validationMessages } from 'utilities/validationMessage.util';
 
+const FORMAT = ['image/png', 'image/jpg', 'image/jpeg'];
+
 export const validationSchema = Yup.object().shape({
   name : Yup.string()
     .min(4, validationMessages.name.fieldLength)
     .required(validationMessages.name.required),
   image: Yup.mixed().required( validationMessages.image.required)
-    .test( "fileFormat", "Solo formato .jpg y .png",
-      value => value && ['image/png', 'image/jpg', 'image/jpeg'].includes(value.type)
+    .test( "fileFormat", "Solo formato .png, .jpg y .jpeg",
+      value => value && FORMAT.includes(value.type)
     ),
   description: Yup.string().required(validationMessages.description.required)
 });
