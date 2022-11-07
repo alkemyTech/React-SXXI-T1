@@ -3,18 +3,18 @@ import Swal from 'sweetalert2';
 import { validationMessages } from 'utilities/validationMessage.util';
 
 const FORMAT = ['image/png', 'image/jpg', 'image/jpeg'];
+
 const nameRegExp = /[a-z, A-Z]{4}/
 
 export const validationSchema = Yup.object().shape({
   name : Yup.string()
-            .min(4, validationMessages.name.fieldLength)
-            .matches(nameRegExp, validationMessages.name.format)
-            .required(validationMessages.name.required),
-  image: Yup.string()
-              .required(validationMessages.image.required)
-              .test( "fileFormat", "Solo formato .png, .jpg y .jpeg",
-                value => value && FORMAT.includes(value.type)
-              ),
+          .min(4, validationMessages.name.fieldLength)
+          .matches(nameRegExp, validationMessages.name.format)
+          .required(validationMessages.name.required),
+  image: Yup.string().required(validationMessages.image.required)
+            .test( "fileFormat", "Solo formato .png, .jpg y .jpeg",
+              value => value && FORMAT.includes(value.type)
+            ),
   description: Yup.string().required(validationMessages.description.required)
 });
 

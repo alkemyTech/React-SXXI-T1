@@ -26,7 +26,7 @@ const ActivitiesForm = () => {
 
     return (
         <div className="container my-5">
-             <div 
+            <div 
                 className="mb-3">
                 <CustomTitle
                     title={id?"Edita la actividad" : "Crea la actividad"} 
@@ -75,8 +75,8 @@ const ActivitiesForm = () => {
                 className="mb-5" 
                 controlId="formBasicImage">
                 <ContainerInputError>
-                    <Form.Label>Selecciona una imagen:</Form.Label>
-                    <InputForm
+                    <Form.Label className="mt-3">Selecciona una imagen:</Form.Label>
+                    <InputForm 
                         accept="image/png, image/jpeg, image/jpg" 
                         type="file"
                         name="image"

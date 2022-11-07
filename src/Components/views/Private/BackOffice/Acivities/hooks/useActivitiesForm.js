@@ -12,13 +12,13 @@ export const useActivitiesForm = () => {
     const [loading, setLoading] = useState(false);
     const [activities, setActivities] = useState({
       name: '',
-      description: '',
-      image: ''
+      image: '',
+      description: ''
     });
     const initialValues = {
-        name: '',
-        description: '',
-        image: ''
+      name: '',
+      image: '',
+      description: ''
     };
 
   useEffect(()=>{
@@ -28,8 +28,8 @@ export const useActivitiesForm = () => {
         const { data } = res.data;
         setActivities({
           name: data.name,
-          description: data.description,
-          image: data.image
+          image: data.image,
+          description: data.description
         });
       })
       .catch(() => {
