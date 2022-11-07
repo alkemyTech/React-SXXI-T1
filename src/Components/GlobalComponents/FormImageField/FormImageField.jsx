@@ -9,6 +9,9 @@ export const FormImageField = ({
   name,
   setFieldValue,
   imageToSend,
+  heightCustomImage = "100px",
+  backgroundSize = "contain",
+  imageIsEdit,
 }) => {
   const { image, handleChangeFile } = useFormImageField(
     setFieldValue,
@@ -27,7 +30,20 @@ export const FormImageField = ({
       </div>
       {image && (
         <div className="col col-12 col-sm-8 my-3">
-          <CustomImage image={image} height="250px" backgroundSize="contain" />
+          <CustomImage
+            image={image}
+            height={heightCustomImage}
+            backgroundSize={backgroundSize}
+          />
+        </div>
+      )}
+      {!image && imageIsEdit && (
+        <div className="col col-12 col-sm-8 my-3">
+          <CustomImage
+            image={imageIsEdit}
+            height={heightCustomImage}
+            backgroundSize={backgroundSize}
+          />
         </div>
       )}
     </>

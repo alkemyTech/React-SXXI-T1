@@ -1,32 +1,34 @@
 import { apiCall } from "Services/apiCall.service";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 
-export const postSlides = async (data) => {
+export const putSlides = async (data, idSlide) => {
   try {
-    const restUrl = "slides";
+    const restUrl = `slides/${idSlide}`;
 
     const headers = {
       "Content-Type": "application/json",
     };
 
-    const postData = await apiCall({
+    // const body = { ...data, user_id: 1 };
+
+    const putData = await apiCall({
       restUrl,
       body: { ...data, user_id: null },
-      method: "post",
+      method: "put",
       headers,
     });
 
-    if (!postData || !postData.success)
+    if (!putData || !putData.success)
       throw new Error(
-        postData ? postData.message : requestMessagesSchema.problemExistTryLater
+        putData ? putData.message : requestMessagesSchema.problemExistTryLater
       );
 
     return {
-      success: postData.success,
+      success: putData.success,
       message: requestMessagesSchema.successfullyOperation,
     };
   } catch (error) {
-    console.error("error interceptor postSlides", error.message);
+    console.error("error interceptor putSlides", error.message);
     return { success: false, message: error.message };
   }
 };

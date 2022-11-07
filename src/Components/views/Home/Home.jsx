@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div>
       HOME
-      <Link to={`${privateRoutes.BACKOFFICE}/${privateRoutes.SLIDESFORM}/20`}>
+      <Link to={`${privateRoutes.BACKOFFICE}/${privateRoutes.SLIDESFORM}/1491`}>
         EDITAR slide
       </Link>
       <br />

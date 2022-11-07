@@ -1,7 +1,7 @@
 import { privateRoutes } from "models/routes";
 import { Route } from "react-router-dom";
 import { RoutesNoMatch } from "utilities/routesNoMatch.util";
-import SlidesForm from "./Slides/SlidesForm";
+import SlidesForm from "./Slides/PrivateSlides";
 
 const BackOfficeRoutes = () => {
   return (
