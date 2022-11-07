@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
 import { ButtonCancel, ButtonConfirm, ContainerInputError, Errors  } from "./ActivitiesForm.Styled";
@@ -19,17 +18,16 @@ const ActivitiesForm = () => {
         loading, 
         formik , 
         handleImage, 
-        cancel
+        cancel,
+        id
     } = useActivitiesForm();
-
-    const { id } = useParams();
 
     return (
         <div className="container my-5">
             <div 
                 className="mb-3">
                 <CustomTitle
-                    title={id?"Edita la actividad" : "Crea la actividad"} 
+                    title={id ? "Edita la actividad" : "Crea la actividad"} 
                     justify="center"   
                     wrapTextClass="text-center" 
                     />
@@ -47,7 +45,7 @@ const ActivitiesForm = () => {
                     <InputForm
                         type="text"
                         name="name"
-                        defaultValue={id? activities.name : " "} 
+                        defaultValue={id ? activities.name : '' } 
                         onChange={handleChange}
                         onBlur={handleBlur} 
                         placeholder="Nombre de la actividad" />

@@ -8,8 +8,8 @@ const nameRegExp = /[a-z, A-Z]{4}/
 
 export const validationSchema = Yup.object().shape({
   name : Yup.string()
-          .min(4, validationMessages.name.fieldLength)
           .matches(nameRegExp, validationMessages.name.format)
+          .min(4, validationMessages.name.fieldLength)
           .required(validationMessages.name.required),
   image: Yup.string().required(validationMessages.image.required)
             .test( "fileFormat", "Solo formato .png, .jpg y .jpeg",
@@ -29,7 +29,6 @@ export const convertToBase64 = (image, setImage) => {
     console.log('Error: ', error);
   };
 }
-
 
 export const Alert = ({icon, title, cancelText})=>{
   return Swal.fire({

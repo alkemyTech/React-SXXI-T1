@@ -8,7 +8,7 @@ import { api } from 'Services/axiosService';
 export const useActivitiesForm = () => {
     const {id} = useParams();
     const navigate = useNavigate();
-    const [ imageBase64, setImageBase64] = useState("");
+    const [ imageBase64, setImageBase64] = useState('');
     const [loading, setLoading] = useState(false);
     const [activities, setActivities] = useState({
       name: '',
@@ -115,6 +115,7 @@ export const useActivitiesForm = () => {
     loading, 
     formik , 
     handleImage, 
-    cancel
+    cancel,
+    id
   }
 }
