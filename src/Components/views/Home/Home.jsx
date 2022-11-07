@@ -1,4 +1,4 @@
-import { privateRoutes } from "models/routes";
+import { privateRoutes, routes } from "models/routes";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -12,6 +12,8 @@ const Home = () => {
       <Link to={`${privateRoutes.BACKOFFICE}/${privateRoutes.SLIDESFORM}/`}>
         CREAR slide
       </Link>
+      <br />
+      <Link to={routes.DONATION}>Hacer donación</Link>
     </div>
   );
 };

@@ -10,6 +10,7 @@ export const CustomTitle = ({
   image = "",
   backgroundSize = "",
   width = "",
+  height = "",
   justify = "",
   blur = "",
 }) => {
@@ -19,6 +20,7 @@ export const CustomTitle = ({
       backgroundSize={backgroundSize}
       image={image}
       width={width}
+      height={height}
     >
       <WrapTextTitle className={wrapTextClass} justify={justify} blur={blur}>
         {title}
