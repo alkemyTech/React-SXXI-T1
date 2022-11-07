@@ -1,13 +1,13 @@
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
-import { CustomButton } from 'Components/GlobalComponents/CustomButton/CustomButton';
-import { ContainerInputError, Errors, TextArea } from "./ProyectsFormStyled";
+import  { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./ProyectsFormStyled";
 import { useProyectsForms } from './hooks/useProyectsForms';
-import  Title  from "./Title";
+import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const ProyectsForm = () => {
     const {
-        values, 
         errors, 
         handleBlur, 
         handleSubmit, 
@@ -16,23 +16,34 @@ const ProyectsForm = () => {
         touched, 
         cancel, 
         loading, 
-        project
+        project,
+        id,
+        formik
     } = useProyectsForms();
 
     return (
-        <div className="container">
-            <Title text="Proyectos" />
+        <div className="container my-5">
+            <div>
+            <CustomTitle
+                title={id ? "Edita el Proyecto" : "Crea el proyecto"} 
+                justify="center"   
+                wrapTextClass="text-center" 
+                />
+        </div>
             <Form 
-                className="mb-5"
+                className="my-5"
                 onSubmit={handleSubmit} >
             <Form.Group 
                 className="mb-3" 
                 controlId="formBasicName">
                 <ContainerInputError>
+                    <Form.Label className="mt-3">
+                      Nombre del proyecto:
+                    </Form.Label>
                     <InputForm
                         type="text"
                         name="title"
-                        value={values.title} 
+                        dafaultValue={id ? project.title : " "} 
                         onChange={handleChange}
                         onBlur={handleBlur} 
                         placeholder="Titulo" />
@@ -43,16 +54,17 @@ const ProyectsForm = () => {
                 className="mb-3" 
                 controlId="formBasicDescription">
                 <ContainerInputError>
-                    <TextArea 
-                        className="col col-12 d-flex justify-content-center"
-                        as="textarea"
-                        type="text"
+                    <Form.Label className="mt-3">Descripción del testimonio:</Form.Label>
+                    <CKEditor
                         name="description"
-                        value={values.description} 
-                        onChange={handleChange}
-                        onBlur={handleBlur} 
-                        placeholder="Escribe la descripción" />
-                    {errors.description && touched.description && <Errors>{errors.description}</Errors>}
+                        data={ project.description ? project.description : '' }
+                        editor={ ClassicEditor }
+                        config={{ placeholder: 'Descripción' }}
+                        onChange={ (event, editor) => { 
+                            formik.setFieldValue('description', editor.getData());
+                        }}
+                    />
+                    { errors.description && <Errors>{ errors.description }</Errors> }
                 </ContainerInputError>
             </Form.Group>
             <Form.Group 
@@ -61,15 +73,15 @@ const ProyectsForm = () => {
                 <ContainerInputError>
                     <Form.Label>Imagen del proyecto:</Form.Label>
                     <InputForm 
-                        type="file"
+                        accept="image/png,image/jpg" 
+                        type='file' 
                         name="image"
-                        value={values.image} 
-                        onChange={handleChange}
-                        onBlur={handleBlur} 
+                        onChange={ handleImage } 
+                        onBlur={handleBlur}
                         placeholder="Ingresa la imagen..." 
-                        alt="testimonial form image"
+                        alt="imagen del proyecto"    
                         />
-                    {errors.image && touched.image && <Errors>{errors.image}</Errors>}
+                    { errors.image && touched.image && <Errors>{errors.image}</Errors> }
                 </ContainerInputError>
             </Form.Group>
             <Form.Group 
@@ -79,19 +91,35 @@ const ProyectsForm = () => {
                     <Form.Label>Selecciona la fecha de expiración:</Form.Label>
                     <InputForm
                         type="date"
-                        name="date"
-                        value={values.date} 
+                        name="due_date"
+                        dafaultValue={id ? project.due_date : " "} 
                         onChange={handleChange}
                         onBlur={handleBlur} 
                         placeholder="Ingresa la fecha de expiracion" />
-                    {errors.date && touched.date && <Errors>{errors.date}</Errors>}
+                    {errors.due_date && touched.due_date && <Errors>{errors.due_date}</Errors>}
                 </ContainerInputError>
             </Form.Group>
-            <CustomButton 
-                type="submit"
-                color="success" 
-                background="success" 
-                text="Send" />
+            <div className="mb-5">
+                <ButtonConfirm 
+                    className='mt-2 col-sm-5 col-md-2 mx-2' 
+                    disabled={loading}
+                    background='success' 
+                    color='success' 
+                    type='submit'
+                >
+                    Confirmar
+                </ButtonConfirm>
+                <ButtonCancel 
+                    className='col-sm-5 col-md-2 mx-2 mt-2' 
+                    disabled={loading}
+                    background='default' 
+                    color='success' 
+                    type='button'
+                    onClick={ cancel }
+                >
+                    Cancelar
+                </ButtonCancel>
+            </div>
         </Form>
         </div>
     );

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
-import { validationSchema, convertToBase64, Alert } from './utilities/utilities';
+import { validationSchema, convertToBase64, Alert } from './../utilities/utilities';
 import { api } from 'Services/axiosService';
 
 export const useProyectsForms = () => {
@@ -14,14 +14,14 @@ export const useProyectsForms = () => {
       title: '',
       description: '',
       image: '',
-      date:''
+      due_date:''
     });
   
     const initialValues = {
       title: '',
       description: '',
       image: '',
-      date:''
+      due_date:''
     };
 
     useEffect(()=>{
@@ -30,10 +30,10 @@ export const useProyectsForms = () => {
           .then(res => {
               const { data } = res.data;
               setProject({
-                  name: data.name,
+                  title: data.title,
                   description: data.description,
                   image: data.image,
-                  date: data.date
+                  due_date: data.due_date
               });
           })
           .catch(()=>{
@@ -44,8 +44,8 @@ export const useProyectsForms = () => {
 
   const backURL = '/backoffice/projects';
     const onSubmit = () => {
-        const { name, description } = values;
-        const body = { name, description, imageB64 };
+        const { title, description } = values;
+        const body = { title, description, imageB64 };
         
         if(id) {
             Alert({ icon:'warning', 
@@ -104,6 +104,6 @@ export const useProyectsForms = () => {
       navigate(backURL);
     }
 
-    return {values, errors, handleBlur, handleSubmit, handleChange, handleImage, touched, cancel, loading, project }
+    return {values, errors, handleBlur, handleSubmit, handleChange, handleImage, touched, cancel, loading, project, id, formik }
 
 }

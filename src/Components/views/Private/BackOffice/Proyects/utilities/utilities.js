@@ -4,7 +4,7 @@ import { validationMessages } from 'utilities/validationMessage.util';
 
 const FORMAT = ['image/png', 'image/jpg', 'image/jpeg'];
   
-export  const validationSchema = Yup.object().shape({
+export const validationSchema = Yup.object().shape({
     title : Yup.string().required(validationMessages.title.required),
     description: Yup.string()
                   .required(validationMessages.description.required)
@@ -13,7 +13,7 @@ export  const validationSchema = Yup.object().shape({
                 .test( "fileFormat", "Solo formato .jpg y .png",
                   value => value && FORMAT.includes(value.type)
                 ),
-    date: Yup.string().required(validationMessages.date.required)
+    due_date: Yup.string().required(validationMessages.date.required)
   });
 
 
@@ -30,14 +30,14 @@ export const convertToBase64 = (image, setImage) => {
 }
 
 export const Alert = ({icon, title, cancelText})=>{
-return Swal.fire({
-        title: title,
-        icon: icon,
-        iconColor: '#0038FF',
-        showCancelButton: cancelText ? true : false,
-        confirmButtonColor: '#0038FF',
-        cancelButtonColor: cancelText ? '#FF0000' : false,
-        confirmButtonText: 'Aceptar',
-        cancelButtonText: cancelText ? 'Cancelar' : false
-    })
+  return Swal.fire({
+          title: title,
+          icon: icon,
+          iconColor: '#0038FF',
+          showCancelButton: cancelText ? true : false,
+          confirmButtonColor: '#0038FF',
+          cancelButtonColor: cancelText ? '#FF0000' : false,
+          confirmButtonText: 'Aceptar',
+          cancelButtonText: cancelText ? 'Cancelar' : false
+      })
 }
