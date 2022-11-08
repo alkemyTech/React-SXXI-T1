@@ -18,4 +18,7 @@ const getMaxOrder = (arrayPersonalSlides) => {
 
   return max > PERSONAL_ORDER ? max + 1 : PERSONAL_ORDER;
 };
-export { PERSONAL_ORDER, personalSlides, getMaxOrder };
+
+const ascendOrderArray = (array) => array.sort((a, b) => a.order - b.order);
+
+export { PERSONAL_ORDER, personalSlides, getMaxOrder, ascendOrderArray };
