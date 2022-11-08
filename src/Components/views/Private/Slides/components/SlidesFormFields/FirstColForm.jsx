@@ -13,6 +13,7 @@ export const FirstColForm = (props) => {
     load,
     onClick,
   } = props;
+
   return (
     <>
       <div className="col col-12 col-sm-5">
