@@ -6,7 +6,6 @@ import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
 import NewsForm from "./Components/views/News/NewsForm";
-import SlidesForm from "./Components/views/Private/Slides/SlidesForm";
 import UserForm from "./Components/views/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
 import NewsDetail from "./Components/views/News/Detail/NewsDetail";
