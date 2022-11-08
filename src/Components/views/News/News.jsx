@@ -7,7 +7,7 @@ import { useNews } from "./hooks/useNews";
 import { newsSchema } from "./utilities/newsSchema.util";
 import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection";
 
-export const News = () => {
+const News = () => {
   const { loadingNews, newsData } = useNews();
 
   if (loadingNews)
@@ -22,7 +22,7 @@ export const News = () => {
       <HeadTitle title={newsSchema.title} />
       <BackToHome wrapLink="my-4 col col-7 col-sm-5 col-lg-4 " />
 
-      <div className="d-flex flex-row flex-wrap">
+      <div className="d-flex flex-row flex-wrap justify-content-center">
         {newsData.length > 0 ? (
           newsData.map((item) => (
             <ShowNewsCardsSection key={item.id} item={item} />
@@ -39,3 +39,5 @@ export const News = () => {
     </Animate>
   );
 };
+
+export default News;

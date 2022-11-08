@@ -3,6 +3,7 @@ import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 import { getNews } from "../interceptor/getNews.interceptor";
 import { filterNews } from "../utilities/filterNews.util";
+import { orderNewsByDateCreate } from "../utilities/orderNewsByDateCreate.util";
 
 export const useNews = () => {
   const [newsData, setNewsData] = useState([]);
@@ -16,7 +17,9 @@ export const useNews = () => {
         if (fetchingNews && !fetchingNews.success)
           throw new Error(fetchingNews.message);
 
-        const filterSlides = filterNews(fetchingNews.data);
+        const filterSlides = filterNews(
+          orderNewsByDateCreate(fetchingNews.data)
+        );
         setNewsData(filterSlides);
       } catch (error) {
         console.error("error News", error.message);
