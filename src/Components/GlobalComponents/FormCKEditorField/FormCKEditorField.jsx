@@ -10,6 +10,7 @@ export const FormCKEditorField = ({
   touched,
   name,
   placeholder,
+  data = "",
 }) => {
   const [stateCKEditor, setStateCKEditor] = useState({
     content: "",
@@ -22,10 +23,10 @@ export const FormCKEditorField = ({
       setStateCKEditor({
         content: "",
       });
-      setFieldValue("description", "");
+      setFieldValue(name, "");
     }
 
-    setFieldValue("description", contentEditor);
+    setFieldValue(name, contentEditor);
     setStateCKEditor({
       content: contentEditor,
     });
@@ -35,6 +36,7 @@ export const FormCKEditorField = ({
     <>
       <CKEditor
         name={name}
+        data={data}
         config={{ placeholder: placeholder }}
         editor={ClassicEditor}
         content={stateCKEditor.content}

@@ -1,6 +1,7 @@
 import { Anchor } from "react-bootstrap";
 
 export const AnchorTag = ({ anchorClass = "", href, text }) => {
+  console.log(text);
   return (
     <Anchor
       className={anchorClass}
