@@ -11,7 +11,7 @@ export const apiCall = async ({
 }) => {
   try {
     const url = `${BASEURL}/${restUrl}`;
-
+    
     const instance = axios.create({
       url: `${BASEURL}/${restUrl}`,
     });

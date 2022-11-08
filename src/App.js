@@ -7,7 +7,6 @@ import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
 import NewsForm from "./Components/views/News/NewsForm";
 import SlidesForm from "./Components/views/Private/Slides/SlidesForm";
-import TestimonialForm from "./Components/views/Testimonials/TestimonialsForm";
 import UserForm from "./Components/views/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
 import NewsDetail from "./Components/views/News/Detail/NewsDetail";
@@ -43,10 +42,6 @@ function App() {
             <Route path={routes.CATEGORIESFORM} element={<CategoriesForm />} />
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
             <Route path={routes.SLIDERSFORM} element={<SlidesForm />} />
-            <Route
-              path={routes.TESTIMONIALSFORM}
-              element={<TestimonialForm />}
-            />
             <Route path={routes.USERFORM} element={<UserForm />} />
             <Route path={routes.MEMBERSFORM} element={<MembersForm />} />
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
