@@ -1,11 +1,41 @@
+import { BackToHome } from "Components/GlobalComponents/BackToHome/BackToHome";
+import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
+import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle";
+import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
+import { Animate } from "styled-components/animation.styled";
+import { useNews } from "./hooks/useNews";
+import { newsSchema } from "./utilities/newsSchema.util";
+import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection";
+
 export const News = () => {
-  return <div>News</div>;
+  const { loadingNews, newsData } = useNews();
+
+  if (loadingNews)
+    return (
+      <div>
+        <SpinnerLoad />
+      </div>
+    );
+
+  return (
+    <Animate>
+      <HeadTitle title={newsSchema.title} />
+      <BackToHome wrapLink="my-4 col col-7 col-sm-5 col-lg-4 " />
+
+      <div className="d-flex flex-row flex-wrap">
+        {newsData.length > 0 ? (
+          newsData.map((item) => (
+            <ShowNewsCardsSection key={item.id} item={item} />
+          ))
+        ) : (
+          <div className="col col-12 d-flex justify-content-center">
+            <CustomAlertMessage
+              alertClass="col col-10"
+              text={newsSchema.noNews}
+            />
+          </div>
+        )}
+      </div>
+    </Animate>
+  );
 };
-
-/**
- COMO: Usuario
-QUIERO: Visualizar una página de Novedades
-PARA: Enterarme de las actualizaciones de contenido que informe la ONG
-
-Criterios de aceptación: Se deberá crear una carpeta /News donde se agregaran todos los componentes referidos a esta página. El componente principal deberá renderizarse al ingresar a la ruta /Novedades. En la sección superior, mostrará el título "Novedades", utilizando el componente para mostrar títulos. Luego, mostrará un listado de cards con las últimas Novedades, que deberá renderizar de forma dinámica por props, ya que posteriormente serán datos recibidos de la API
- */
