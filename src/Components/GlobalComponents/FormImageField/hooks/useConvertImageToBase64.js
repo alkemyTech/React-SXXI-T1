@@ -13,5 +13,6 @@ export const useConvertImageToBase64 = () => {
 
     reader.readAsDataURL(file);
   };
+
   return { image, convertBase64, handleResetImage };
 };

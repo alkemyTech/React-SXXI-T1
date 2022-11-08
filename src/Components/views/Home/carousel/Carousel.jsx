@@ -1,14 +1,13 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
-import { SlideTitle, SlideDescription } from './CarouselStyled/Carousel.Styled';
+import { SlideTitle, SlideDescription, SlideImage } from './CarouselStyled/Carousel.Styled';
+import { api } from "Services/axiosService";
 
 export default function CarouselComponent(){
     const [slides, setSlides] = useState([]);
     
     useEffect(() => {
-        axios('https://ongapi.alkemy.org/api/slides')
-        .then(res => {
+        api('/slides').then(res => {
             const { data } = res.data;
             data.forEach(el => {
                 const obj={ id: el.id,
@@ -17,15 +16,15 @@ export default function CarouselComponent(){
                             description: el.description };
                 setSlides(slides => [...slides, obj]);
             });
-        });
+        })
     }, []);
     
     return(
         <Carousel>
             {
-                slides?.slice(0, 4).map( slide => {
+                slides?.slice(0, 5).map( slide => {
                     return <Carousel.Item key={slide.id}>
-                                <img
+                                <SlideImage
                                     className="d-block w-100"
                                     src={slide.image}
                                     alt={slide.title} />
