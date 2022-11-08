@@ -5,6 +5,7 @@ export const routes = {
   AUTHREGISTERFORM: "/auth/register",
   CATEGORIESFORM: "/create-category",
   CONTACTUS: "/contact-us",
+  DONATION: "/donar",
   HOME: "/",
   MEMBERSFORM: "/create-member",
   NEWSDETAIL: "/novedades/:id",
@@ -12,6 +13,8 @@ export const routes = {
   PROJECTFORM: "/create-project",
   SLIDERSFORM: "/backoffice/create-slide",
   SCHOOLCAMPAIGN: "/school-campaign",
+  TESTIMONIALSFORM: "/create-testimonials",
+  THANKSDONATION: "/gracias",
   TOYSCAMPAIGN: "/toys-campaign",
 };
 
@@ -23,4 +26,3 @@ export const privateRoutes = {
   TESTIMONIALSFORM: "testimonials",
   TESTIMONIALSEDITFORM: "testimonials/:id",
 };
-

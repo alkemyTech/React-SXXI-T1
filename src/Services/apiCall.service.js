@@ -2,39 +2,38 @@ import axios from "axios";
 
 const { REACT_APP_BASE_URL: BASEURL } = process.env;
 
+const instance = axios.create({
+  baseURL: BASEURL,
+});
+
 export const apiCall = async ({
-  restUrl,
+  restUrl = "",
   body,
   headers,
   method = "get",
-  personalController = undefined,
+  abortController = undefined,
 }) => {
   try {
-    const url = `${BASEURL}/${restUrl}`;
-    
-    const instance = axios.create({
-      url: `${BASEURL}/${restUrl}`,
-    });
-    const controller = personalController || new AbortController();
+    const controller = abortController || new AbortController();
 
     setTimeout(() => {
       controller.abort();
     }, 5000);
 
-    let config = {
-      signal: controller.signal,
+    const request = await instance(restUrl, {
       method,
-      url,
-      headers,
+      signal: controller.signal,
       data: body,
-    };
+      headers,
+    });
 
-    const request = await instance(config);
-    return request.data;
+    return { success: true, data: request.data.data };
   } catch (error) {
+    console.error("error", error.message);
+
     if (axios.isCancel(error)) {
-      return { success: false, message: "axios request cancelled" };
+      return "solicitud axios cancelada";
     }
-    Promise.reject(new Error(error.message));
+    return { success: false, message: error.message };
   }
 };
