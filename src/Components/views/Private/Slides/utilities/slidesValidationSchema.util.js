@@ -25,8 +25,8 @@ export const slidesValidationSchema = (
           maxSlideOrder,
           validationMessages.order.fieldLength + maxSlideOrder
         )
-        .test("noEdit", "No puedes modificar este campo", (value) => {
-          console.log(value);
+        .test("dontEdit", validationMessages.order.dontEdit, (value) => {
+          return false;
         })
         .required(validationMessages.order.required),
       otherwise: yup
