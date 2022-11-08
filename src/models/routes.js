@@ -3,7 +3,6 @@ export const routes = {
   ACTIVITIESFORM: "/create-activity",
   AUTHLOGINFORM: "/auth/login",
   AUTHREGISTERFORM: "/auth/register",
-  ACIVITIESDETAIL: "/actividades/:id",
   CONTACTUS: "/contact-us",
   CREATECATEGORY: "/backoffice/create-category",
   EDITCATEGORY: "/backoffice/edit-category/:id",
