@@ -39,18 +39,3 @@ return Swal.fire({
         cancelButtonText: cancelText ? 'Cancelar' : false
     })
 }
-        // .then((result) => {
-        //     // console.log("resultado: ", result);
-        //     if (result.isConfirmed) {
-        //         return result.isConfirmed;
-        //         // Swal.fire({
-        //         //     icon: 'success',
-        //         //     title: 'Operación éxitosa',
-        //         //     confirmButtonText: 'Aceptar',
-        //         //     confirmButtonColor: '#0038FF',
-        //         // })
-        //         // .then(()=>{
-        //         //     navigate(backURL);
-        //         // })
-        //     }
-        // })
