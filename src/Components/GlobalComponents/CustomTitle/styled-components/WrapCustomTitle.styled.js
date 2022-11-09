@@ -7,7 +7,6 @@ const WrapCustomTitle = styled(CustomImage)`
 `;
 
 const WrapTextTitle = styled(TitleText)`
-  ${(props) => console.log({ props })}
   display: flex;
   justify-content: ${({ justify }) => justify || "center"};
   backdrop-filter: blur(${({ blur }) => blur || "0px"});

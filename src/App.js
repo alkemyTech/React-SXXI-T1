@@ -6,8 +6,6 @@ import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
 import NewsForm from "./Components/views/News/NewsForm";
-import SlidesForm from "./Components/views/Private/Slides/SlidesForm";
-import TestimonialForm from "./Components/views/Testimonials/TestimonialsForm";
 import UserForm from "./Components/views/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
 import NewsDetail from "./Components/views/News/Detail/NewsDetail";
@@ -27,6 +25,9 @@ import Detail from "Components/views/Activities/Detail/Detail";
 import OrganizationData from "Components/views/Private/Organization/OrganizationData/OrganizationData";
 import AuthGuard from "guard/auth.guard";
 import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes";
+import { Donations } from "Components/views/Donations/Donations";
+import { Thanks } from "Components/views/Donations/Thanks";
+import { textForDonation } from "Components/views/Donations/utilities/donationSchema.util";
 
 function App() {
   return (
@@ -41,14 +42,7 @@ function App() {
             <Route path={routes.AUTHLOGINFORM} element={<LoginForm />} />
             <Route path={routes.AUTHREGISTERFORM} element={<RegisterForm />} />
             <Route path={routes.ACIVITIESDETAIL} element={<Detail />} />
-            <Route path={routes.CREATECATEGORY} element={<CategoriesForm />} />
-            <Route path={routes.EDITCATEGORY} element={<CategoriesForm />} />
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
-            <Route path={routes.SLIDERSFORM} element={<SlidesForm />} />
-            <Route
-              path={routes.TESTIMONIALSFORM}
-              element={<TestimonialForm />}
-            />
             <Route path={routes.USERFORM} element={<UserForm />} />
             <Route path={routes.MEMBERSFORM} element={<MembersForm />} />
             <Route path={routes.ORGANIZATIONDATA} element={<OrganizationData />} />
@@ -60,6 +54,12 @@ function App() {
               element={<NewsDetail title="Título de novedad" />}
             />
             <Route path={routes.CONTACTUS} element={<ContactUs />} />
+
+            <Route
+              path={routes.DONATION}
+              element={<Donations text={textForDonation.text} />}
+            />
+            <Route path={routes.THANKSDONATION} element={<Thanks />} />
 
             <Route element={<AuthGuard />}>
               <Route

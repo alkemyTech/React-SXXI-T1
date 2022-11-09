@@ -52,6 +52,12 @@ const Button = styled(BootstrapButton)`
     color: ${({ background }) => backGroundColors(background)}!important;
     border-color: ${({ color }) => backGroundColors(color)};
   }
+
+  &:active {
+    background-color: ${({ color }) => colors(color)}!important;
+    color: ${({ background }) => backGroundColors(background)}!important;
+    border-color: ${({ color }) => backGroundColors(color)};
+  }
 `;
 
 export { Button };

@@ -4,8 +4,7 @@ export const routes = {
   AUTHLOGINFORM: "/auth/login",
   AUTHREGISTERFORM: "/auth/register",
   CONTACTUS: "/contact-us",
-  CREATECATEGORY: "/backoffice/create-category",
-  EDITCATEGORY: "/backoffice/edit-category/:id",
+  DONATION: "/donar",
   HOME: "/",
   MEMBERSFORM: "/create-member",
   NEWSDETAIL: "/novedades/:id",
@@ -15,12 +14,17 @@ export const routes = {
   SLIDERSFORM: "/backoffice/create-slide",
   SCHOOLCAMPAIGN: "/school-campaign",
   TESTIMONIALSFORM: "/create-testimonials",
+  THANKSDONATION: "/gracias",
   TOYSCAMPAIGN: "/toys-campaign",
 };
 
 export const privateRoutes = {
   BACKOFFICE: "backoffice",
+  CREATECATEGORY: "create-category",
+  EDITCATEGORY: "edit-category/:id",
   EDITORGANIZATIONFORM: "organization/edit",
-  SLIDESFORM: "slides",
-  SLIDESFORMWITHID: "slides/:id",
+  SLIDES: "slides",
+  SLIDESWITHID: "slides/:id",
+  TESTIMONIALSFORM: "testimonials",
+  TESTIMONIALSEDITFORM: "testimonials/:id",
 };
