@@ -20,7 +20,7 @@ import { Row } from "react-bootstrap";
 import { Animate } from "styled-components/animation.styled";
 import { GlobalStyle } from "styled-components/GlobalStyle.styled";
 import { windowSize } from "utilities/windowSize.util";
-import ContactUs from "Components/views/ContactUs/ContactUs";
+import Contact from "Components/views/Contact/Contact";
 import Detail from "Components/views/Activities/Detail/Detail";
 import OrganizationData from "Components/views/Private/Organization/OrganizationData/OrganizationData";
 import AuthGuard from "guard/auth.guard";
@@ -55,7 +55,7 @@ function App() {
               path={routes.NEWSDETAIL}
               element={<NewsDetail title="Título de novedad" />}
             />
-            <Route path={routes.CONTACTUS} element={<ContactUs />} />
+            <Route path={routes.CONTACT} element={<Contact />} />
 
             <Route
               path={routes.DONATION}

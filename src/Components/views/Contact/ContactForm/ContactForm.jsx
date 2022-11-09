@@ -1,12 +1,12 @@
 import { ContainerContactStyled, TitleContactStyled, ContactFormStyled, Errors,
     TextAreaStyled, InputStyled, Button, ContainerInputError,
-    ButtonIrInicio} from "./ContactUs.Styled";
+    ButtonIrInicio} from "./ContactForm.Styled";
 import { Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { useNavigate } from "react-router-dom/dist";
 
-export default function ContactUs(){
+export default function ContactForm(){
     const navigate = useNavigate();
     const initialValues = {
         fullname: '',
