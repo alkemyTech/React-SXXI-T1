@@ -3,15 +3,15 @@ import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
 import { ButtonCancel, ButtonConfirm, ContainerInputError, Errors} from "./ActivitiesForm.Styled";
 import { useActivitiesForm } from "./hooks/useActivitiesForm";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
+import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
 
 const ActivitiesForm = () => {
-  const {errors, handleBlur, handleSubmit, handleChange, touched, activity, loading, formik, handleImage, cancel, setImageBase64 } = useActivitiesForm();
+  const {errors, handleBlur, handleSubmit, handleChange, touched, activity, loading, formik,  values, cancel, setImageBase64, setFieldValue } = useActivitiesForm();
     
   const { id } = useParams();
+  console.log(errors, values )
 
   return(
     <div className="container my-5">
@@ -36,7 +36,7 @@ const ActivitiesForm = () => {
                     <InputForm
                         type="text"
                         name="name"
-                        defaultValue={id? activity.name : " "}
+                        value={ values.name}
                         onChange={handleChange}
                         onBlur={handleBlur} 
                         placeholder="Nombre" />
@@ -48,25 +48,23 @@ const ActivitiesForm = () => {
                 controlId="formBasicDescription">
                 <ContainerInputError>
                     <Form.Label className="mt-3">Descripción de la actividad:</Form.Label>
-                    <CKEditor
+                    <FormCKEditorField 
+                        setFieldValue={ setFieldValue }
+                        errors={ errors}
+                        touched= {touched}
                         name="description"
-                        data={ activity.description ? activity.description : '' }
-                        editor={ ClassicEditor }
-                        config={{ placeholder: 'Descripción' }}
-                        onChange={ (event, editor) => { 
-                            formik.setFieldValue('description', editor.getData());
-                        }}
+                        placeholder="Descripcion"
+                        data = { activity.description }
                     />
-                    { errors.description && <Errors>{ errors.description }</Errors> }
                 </ContainerInputError>
             </Form.Group>
             <FormImageField 
                 errors={errors.image}
                 touched={touched.image}
                 name="image"
-                setFieldValue={formik.setFieldValue}
-                imageToSend={setImageBase64}
-                imageIsEdit={""}
+                setFieldValue= { formik.setFieldValue }
+                imageToSend= { setImageBase64 }
+                imageIsEdit= { activity.image }
             />
             <div className="mb-5">
                 <ButtonConfirm 

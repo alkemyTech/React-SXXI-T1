@@ -1,19 +1,34 @@
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 import { validationMessages } from 'utilities/validationMessage.util';
+import { FILE_SIZE } from 'Components/GlobalComponents/FormImageField/utilities/ImageFieldSchemas.util';
 
 const FORMAT = ['image/png', 'image/jpg', 'image/jpeg'];
 
-export const validationSchema = Yup.object().shape({
-  name : Yup.string()
-          .min(4, validationMessages.name.fieldLength)
-          .required(validationMessages.name.required),
-  image: Yup.mixed().required( validationMessages.image.required)
-          .test( "fileFormat", "Solo formato .png, .jpg y .jpeg",
-            value => value && FORMAT.includes(value.type)
-          ),
-  description: Yup.string().required(validationMessages.description.required)
-});
+export const activityValidationSchema = (
+  id
+) => {
+  const validationSchema = Yup.object().shape({
+    name : Yup.string()
+            .min(4, validationMessages.name.fieldLength)
+            .required(validationMessages.name.required),
+    image: Yup.mixed()
+        .nullable()
+        .required(validationMessages.image.required)
+        .test("format", validationMessages.image.format, (value) => {
+          return id
+            ? value
+            : value && FORMAT.includes(value.type);
+    })
+    .test("fileSize", validationMessages.image.fieldSize, (value) =>
+      id ? value : value && value.size <= FILE_SIZE
+    ),
+    description: Yup.string().required(validationMessages.description.required)
+  });
+  return validationSchema;
+}
+
+
 
 export const convertToBase64 = (image, setImage) => {
   const reader = new FileReader();
