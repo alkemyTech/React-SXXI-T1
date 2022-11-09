@@ -45,7 +45,7 @@ export const useActivitiesForm = () => {
     const body = { name, description, imageBase64 }
     if(id) {
       Alert({ icon:'warning', 
-            title:'¿Estas segura/o de cancelar?', 
+            title:'¿Seguro/a?', 
             cancelText: 'Cancelar' })
       .then((res) => {
           if (res.isConfirmed) {
@@ -63,7 +63,7 @@ export const useActivitiesForm = () => {
         setLoading(false);
       } else {
         Alert({ icon:'warning', 
-                title:'¿Estas segura/o de cancelar?', 
+                title:'¿Segura/o?', 
                 cancelText: 'Cancelar' })
         .then((res) => {
           if (res.isConfirmed) {
@@ -111,7 +111,8 @@ export const useActivitiesForm = () => {
     loading, 
     formik, 
     handleImage, 
-    cancel
+    cancel,
+    setImageBase64
   } 
 
 }

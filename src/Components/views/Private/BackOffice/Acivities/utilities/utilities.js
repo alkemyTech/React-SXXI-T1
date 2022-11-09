@@ -17,11 +17,13 @@ export const validationSchema = Yup.object().shape({
 
 export const convertToBase64 = (image, setImage) => {
   const reader = new FileReader();
-  reader.readAsDataURL(image);
   
   reader.onloadend = function () {
       setImage(reader.result.toString());
   };
+
+  reader.readAsDataURL(image);
+  
   reader.onerror = function (error) {
     console.log('Error: ', error);
   };

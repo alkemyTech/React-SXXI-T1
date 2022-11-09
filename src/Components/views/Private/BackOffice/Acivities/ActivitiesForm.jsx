@@ -6,9 +6,10 @@ import { useActivitiesForm } from "./hooks/useActivitiesForm";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
+import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
 
 const ActivitiesForm = () => {
-  const {errors, handleBlur, handleSubmit, handleChange, touched, activity, loading, formik, handleImage, cancel } = useActivitiesForm();
+  const {errors, handleBlur, handleSubmit, handleChange, touched, activity, loading, formik, handleImage, cancel, setImageBase64 } = useActivitiesForm();
     
   const { id } = useParams();
 
@@ -59,23 +60,14 @@ const ActivitiesForm = () => {
                     { errors.description && <Errors>{ errors.description }</Errors> }
                 </ContainerInputError>
             </Form.Group>
-            <Form.Group 
-                className="mb-5" 
-                controlId="formBasicImage">
-                <ContainerInputError>
-                    <Form.Label className="mt-3">Selecciona una imagen:</Form.Label>
-                    <InputForm 
-                        accept="image/png, image/jpeg, image/jpg" 
-                        type="file"
-                        name="image"
-                        onChange={handleImage}
-                        onBlur={handleBlur} 
-                        placeholder="Ingresa la imagen..." 
-                        alt="imagen de la actividad"
-                        />
-                    {errors.image && touched.image && <Errors>{errors.image}</Errors>}
-                </ContainerInputError>
-            </Form.Group>
+            <FormImageField 
+                errors={errors.image}
+                touched={touched.image}
+                name="image"
+                setFieldValue={formik.setFieldValue}
+                imageToSend={setImageBase64}
+                imageIsEdit={""}
+            />
             <div className="mb-5">
                 <ButtonConfirm 
                     className='mt-2 col-sm-5 col-md-2 mx-2' 
@@ -94,7 +86,7 @@ const ActivitiesForm = () => {
                     type='button'
                     onClick={ cancel }
                 >
-                    Cancelar
+                    Volver
                 </ButtonCancel>
             </div>
           </Form>
