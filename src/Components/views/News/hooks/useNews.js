@@ -20,6 +20,7 @@ export const useNews = () => {
         const filterSlides = filterNews(
           orderNewsByDateCreate(fetchingNews.data)
         );
+
         setNewsData(filterSlides);
       } catch (error) {
         console.error("error News", error.message);
@@ -33,6 +34,7 @@ export const useNews = () => {
       }
     };
 
+    // ver si usamos REDUX para estas, asi consulto si no tiene na ...
     fetchNews();
   }, []);
 

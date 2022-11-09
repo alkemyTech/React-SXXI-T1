@@ -6,16 +6,14 @@ export const ShowNewsCardsSection = ({ item }) => {
   const [show, ref] = useNearScreen();
   return (
     <>
-      {
-        <WrapNewsCard
-          key={item.id}
-          className="col col-12 col-sm-6 col-lg-4 d-flex justify-content-center mb-3"
-          ref={ref}
-          show={show}
-        >
-          {show && <NewsCard item={item} />}
-        </WrapNewsCard>
-      }
+      <WrapNewsCard
+        key={item.id}
+        className="col col-12 col-sm-6 col-lg-4 d-flex justify-content-center mb-3"
+        ref={ref}
+        show={show}
+      >
+        {show && <NewsCard item={item} />}
+      </WrapNewsCard>
     </>
   );
 };

@@ -35,6 +35,8 @@ export const SlidesForm = ({ idSlide }) => {
             disabled={orderFieldDisabled}
             onClick={handleSlideModal}
             idSlide={idSlide}
+            orderSlide={orderSlide}
+            slideToChangeSelected={slideToChangeSelected}
           />
         </Form.Group>
 

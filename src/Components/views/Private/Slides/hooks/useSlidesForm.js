@@ -78,6 +78,12 @@ export const useSlidesForm = (idSlide) => {
           const defineSecondImage = await convertUrlToBase64(
             formik.values.image
           );
+          if (
+            definefirstImage &&
+            defineSecondImage &&
+            (!definefirstImage || !defineSecondImage)
+          )
+            throw new Error(requestMessagesSchema.problemExistTryLater);
 
           const firstDataSubmit = {
             ...dataSliceToEdit,
@@ -93,8 +99,8 @@ export const useSlidesForm = (idSlide) => {
           };
 
           let sendSlides = await Promise.all([
-            await putSlides(firstDataSubmit, idSlide),
-            await putSlides(secondDataSubmit, secondDataSubmit.id),
+            putSlides(firstDataSubmit, idSlide),
+            putSlides(secondDataSubmit, secondDataSubmit.id),
           ]);
 
           const response = sendSlides.findIndex((result) => !result.success);
@@ -166,7 +172,6 @@ export const useSlidesForm = (idSlide) => {
 
         const filterSlides = personalSlides(getData.data);
         if (idSlide) {
-          // edit
           setOrderSlide(ascendOrderArray(filterSlides));
         } else {
           const max = getMaxOrder(filterSlides);

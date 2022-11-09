@@ -11,8 +11,6 @@ import Home from "./Components/views/Home/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
-import SlidesForm from "./Components/views/Private/Slides/PrivateSlides";
-import TestimonialForm from "./Components/views/Testimonials/TestimonialsForm";
 import UserForm from "./Components/views/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
 import NewsDetail from "./Components/views/News/Detail/NewsDetail";
@@ -49,17 +47,18 @@ function App() {
               path={routes.NEWSDETAIL}
               element={<NewsDetail title="Título de novedad" />}
             />
-            <Route path={routes.SLIDERSFORM} element={<SlidesForm />} />
-            <Route
-              path={routes.TESTIMONIALSFORM}
-              element={<TestimonialForm />}
-            />
             <Route path={routes.USERFORM} element={<UserForm />} />
             <Route path={routes.MEMBERSFORM} element={<MembersForm />} />
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
             <Route path={routes.CONTACTUS} element={<ContactUs />} />
+
+            <Route
+              path={routes.DONATION}
+              element={<Donations text={textForDonation.text} />}
+            />
+            <Route path={routes.THANKSDONATION} element={<Thanks />} />
 
             <Route
               path={routes.DONATION}
