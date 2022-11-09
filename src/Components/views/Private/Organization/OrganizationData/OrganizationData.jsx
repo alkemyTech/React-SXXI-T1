@@ -1,8 +1,9 @@
 import { Container, Image, ContainerEditInf, EditButton, 
     ContainerImage } from './OrganizationDataStiled/OrganizationData.Styled';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { api } from 'Services/axiosSevice';
+import Swal from 'sweetalert2';
 
 export default function OrganizationData(){
     const navigate = useNavigate();
@@ -11,24 +12,33 @@ export default function OrganizationData(){
         image: '',
         shortDescription: ''
     });
+    const urlNavigate = '/backoffice/organization/edit';
 
     useEffect(()=>{
-        axios.get('https://ongapi.alkemy.org/api/organization')
-                .then(res => {
-                    const info = res.data.data;
-                    setOrganizationData({
-                        name: info.name,
-                        image: info.logo,
-                        shortDescription: info.short_description
-                    });
-                })
-                .catch(()=>{
-                    alert('Ha ocurrido un error...');
-                });
+        api.get('/organization')
+        .then(res => {
+            const { data } = res.data;
+            setOrganizationData({
+                name: data.name,
+                image: data.logo,
+                shortDescription: data.short_description
+            })
+        })
+        .catch(()=>{
+            Swal.fire({
+                title: 'Hubo un error',
+                icon: 'error',
+                confirmButtonColor: '#0038FF',
+                confirmButtonText: 'Aceptar',
+            })
+            .then(()=>{
+                navigate('/backoffice');
+            });
+        });
     }, []);
-
+    
     function handleClick(){
-        navigate('/backoffice/organization/edit');
+        navigate(urlNavigate);
     }
 
     return(
