@@ -43,7 +43,7 @@ const ProyectsForm = () => {
                     <InputForm
                         type="text"
                         name="title"
-                        dafaultValue={id ? project.title : " "} 
+                        defaultValue={id ? project.title : " "}
                         onChange={handleChange}
                         onBlur={handleBlur} 
                         placeholder="Titulo" />
@@ -73,7 +73,7 @@ const ProyectsForm = () => {
                 <ContainerInputError>
                     <Form.Label>Imagen del proyecto:</Form.Label>
                     <InputForm 
-                        accept="image/png,image/jpg" 
+                        accept="image/png, image/jpg, image/jpeg" 
                         type='file' 
                         name="image"
                         onChange={ handleImage } 
@@ -92,7 +92,7 @@ const ProyectsForm = () => {
                     <InputForm
                         type="date"
                         name="due_date"
-                        dafaultValue={id ? project.due_date : " "} 
+                        dafaultvalue={id ? project.due_date : " "} 
                         onChange={handleChange}
                         onBlur={handleBlur} 
                         placeholder="Ingresa la fecha de expiracion" />

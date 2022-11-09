@@ -49,8 +49,8 @@ export const useProyectsForms = () => {
     }
 
     const onSubmit = () => {
-        const { title, description } = values;
-        const body = { title, description, imageB64 };
+        const { title, description, due_date } = values;
+        const body = { title, description, due_date, imageB64 };
         
         if(id) {
             Alert({ icon:'warning', 
