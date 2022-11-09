@@ -20,7 +20,6 @@ export const ButtonConfirm = styled(Button)`
         color: #0038FF !important;
       }
 `;
-
 export const ButtonCancel = styled(Button)`
     border: 1px solid #FF0000;
     &:hover {
