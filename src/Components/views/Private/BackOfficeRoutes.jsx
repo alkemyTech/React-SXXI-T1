@@ -2,7 +2,8 @@ import { privateRoutes } from "models/routes";
 import { Route } from "react-router-dom";
 import { RoutesNoMatch } from "utilities/routesNoMatch.util";
 import CategoriesForm from "../Categories/CategoriesForm";
-import ActivitiesForm from "./BackOffice/Activities/ActivitiesForm";
+import NewsForm from "./BackOffice/News/NewsForm";
+
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import PrivateSlides from "./Slides/PrivateSlides";
@@ -10,12 +11,6 @@ import PrivateSlides from "./Slides/PrivateSlides";
 const BackOfficeRoutes = () => {
   return (
     <RoutesNoMatch>
-      <Route 
-        path={privateRoutes.ACTIVITIESFORM} 
-        element={<ActivitiesForm />} />
-      <Route 
-        path={privateRoutes.ACTIVITIESEDITFORM} 
-        element={<ActivitiesForm />} />
       <Route 
         path={privateRoutes.CREATECATEGORY} 
         element={<CategoriesForm />} />
@@ -26,6 +21,12 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
       />
+      <Route 
+        path={privateRoutes.NEWSFORM} 
+        element={<NewsForm />} />
+      <Route 
+        path={privateRoutes.NEWSEDITFORM} 
+        element={<NewsForm />} />
       <Route 
         path={privateRoutes.SLIDES} 
         element={<PrivateSlides />} />
