@@ -22,6 +22,7 @@ import Footer from "./Components/GlobalComponents/Footer/Footer";
 import Header from "./Components/GlobalComponents/Header/Header";
 import ContactUs from "Components/views/ContactUs/ContactUs";
 import Detail from "Components/views/Activities/Detail/Detail";
+import OrganizationData from "Components/views/Private/Organization/OrganizationData/OrganizationData";
 import AuthGuard from "guard/auth.guard";
 import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes";
 import { Donations } from "Components/views/Donations/Donations";
@@ -49,6 +50,10 @@ function App() {
             />
             <Route path={routes.USERFORM} element={<UserForm />} />
             <Route path={routes.MEMBERSFORM} element={<MembersForm />} />
+            <Route
+              path={routes.ORGANIZATIONDATA}
+              element={<OrganizationData />}
+            />
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
