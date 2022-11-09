@@ -41,7 +41,6 @@ function App() {
             <Route path={routes.AUTHLOGINFORM} element={<LoginForm />} />
             <Route path={routes.AUTHREGISTERFORM} element={<RegisterForm />} />
             <Route path={routes.ACIVITIESDETAIL} element={<Detail />} />
-            <Route path={routes.CATEGORIESFORM} element={<CategoriesForm />} />
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
             <Route path={routes.USERFORM} element={<UserForm />} />
             <Route path={routes.MEMBERSFORM} element={<MembersForm />} />
