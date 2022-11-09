@@ -13,7 +13,7 @@ export const validationSchema = Yup.object().shape({
             value => value && FORMAT.includes(value.type)
           ),
   content: Yup.string().required(validationMessages.content.required),
-  category_id: Yup.string().required(validationMessages.category_id.required)
+  category_id: Yup.number().required(validationMessages.category_id.required).positive().integer()
 });
 
 export const convertToBase64 = (image, setImage) => {
