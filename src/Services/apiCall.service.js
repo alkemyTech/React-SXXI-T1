@@ -16,24 +16,21 @@ export const apiCall = async ({
   try {
     const controller = abortController || new AbortController();
 
-    setTimeout(() => {
-      controller.abort();
-    }, 5000);
-
     const request = await instance(restUrl, {
       method,
       signal: controller.signal,
       data: body,
       headers,
+      timeout: 5000,
     });
 
-    return { success: true, data: request.data.data };
+    return request.data;
   } catch (error) {
     console.error("error", error.message);
 
     if (axios.isCancel(error)) {
       return "solicitud axios cancelada";
     }
-    return { success: false, message: error.message };
+    return { message: error.message };
   }
 };
