@@ -32,4 +32,11 @@ export const validationMessages = {
   description: {
     required: "El campo description es obligatorio",
   },
+  profile_photo: {
+    required: "El campo imagen de perfil es obligatorio",
+    format: "El formato debe ser png, jpg o jpeg",
+  },
+  role_id: {
+    required: "El campo rol id es obligatorio",
+  },
 };
