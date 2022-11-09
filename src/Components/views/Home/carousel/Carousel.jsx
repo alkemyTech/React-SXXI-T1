@@ -9,13 +9,13 @@ export default function CarouselComponent(){
     useEffect(() => {
         api('/slides').then(res => {
             const { data } = res.data;
-            data.forEach(el => {
-                const obj={ id: el.id,
-                            title: el.name,
-                            image: el.image,
-                            description: el.description };
-                setSlides(slides => [...slides, obj]);
+            const slidesData = data.map(el => {
+                return { id: el.id,
+                         title: el.name,
+                         image: el.image,
+                         description: el.description };
             });
+            setSlides(slidesData);
         })
     }, []);
     
