@@ -21,10 +21,10 @@ export const routes = {
 export const privateRoutes = {
   BACKOFFICE: "backoffice",
   CREATECATEGORY: "create-category",
-  CREATEPROJECT: "proyects",
+  CREATEPROJECT: "projects",
   EDITCATEGORY: "edit-category/:id",
   EDITORGANIZATIONFORM: "organization/edit",
-  EDITPROJECTS: "projects/:id",
+  EDITPROJECT: "projects/:id",
   SLIDES: "slides",
   SLIDESWITHID: "slides/:id",
   TESTIMONIALSFORM: "testimonials",

@@ -32,4 +32,10 @@ export const validationMessages = {
   description: {
     required: "El campo description es obligatorio",
   },
+  title: {
+    required: "El campo title es obligatorio",
+  },
+  due_date: {
+    required: "El campo due_date es obligatorio",
+  },
 };

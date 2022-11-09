@@ -1,6 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
-import  { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./ProyectsFormStyled";
+import  { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./ProyectForm.Styled";
 import { useProyectsForms } from './hooks/useProyectsForms';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -38,7 +38,7 @@ const ProyectsForm = () => {
                 controlId="formBasicName">
                 <ContainerInputError>
                     <Form.Label className="mt-3">
-                      Nombre del proyecto:
+                        Nombre del proyecto:
                     </Form.Label>
                     <InputForm
                         type="text"
@@ -117,7 +117,7 @@ const ProyectsForm = () => {
                     type='button'
                     onClick={ cancel }
                 >
-                    Cancelar
+                    Atrás
                 </ButtonCancel>
             </div>
         </Form>

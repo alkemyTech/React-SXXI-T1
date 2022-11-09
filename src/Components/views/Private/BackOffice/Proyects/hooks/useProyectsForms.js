@@ -11,38 +11,43 @@ export const useProyectsForms = () => {
     const [imageB64, setImageB64] = useState('');
     const [loading, setLoading] = useState(false);
     const [project, setProject] = useState({
-      title: '',
-      description: '',
-      image: '',
-      due_date:''
+        title: '',
+        description: '',
+        image: '',
+        due_date:''
     });
   
     const initialValues = {
-      title: '',
-      description: '',
-      image: '',
-      due_date:''
+        title: '',
+        description: '',
+        image: '',
+        due_date:''
     };
 
     useEffect(()=>{
-      if(id) {
-          api.get(`/projects/${id}`)
-          .then(res => {
-              const { data } = res.data;
-              setProject({
-                  title: data.title,
-                  description: data.description,
-                  image: data.image,
-                  due_date: data.due_date
-              });
-          })
-          .catch(()=>{
-              Alert({ icon: 'error', title: 'Ha ocurrido un error'});
-          });
-      }
-  },[id]);
+    if(id) {
+        api.get(`/projects/${id}`)
+            .then(res => {
+                const { data } = res.data;
+                setProject({
+                    title: data.title,
+                    description: data.description,
+                    image: data.image,
+                    due_date: data.due_date
+                });
+            })
+            .catch(()=>{
+                Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+            });
+        }
+    },[id]);
 
-  const backURL = '/backoffice/projects';
+    const backURL =  '/backoffice';
+
+    const cancel = () => {
+        navigate(backURL);
+    }
+
     const onSubmit = () => {
         const { title, description } = values;
         const body = { title, description, imageB64 };
@@ -99,10 +104,6 @@ export const useProyectsForms = () => {
     const formik = useFormik({initialValues, onSubmit, validationSchema});
 
     const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
-
-    const cancel = () => {
-      navigate(backURL);
-    }
 
     return {values, errors, handleBlur, handleSubmit, handleChange, handleImage, touched, cancel, loading, project, id, formik }
 

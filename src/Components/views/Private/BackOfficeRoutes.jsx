@@ -18,7 +18,7 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.CREATEPROJECT} 
         element={<ProyectsForm />} />
       <Route 
-        path={privateRoutes.EDITPROJECTS} 
+        path={privateRoutes.EDITPROJECT} 
         element={<ProyectsForm />} />
       <Route 
         path={privateRoutes.CREATECATEGORY} 
