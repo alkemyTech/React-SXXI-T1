@@ -14,14 +14,24 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
       />
-      <Route path={privateRoutes.SLIDESFORM} element={<PrivateSlides />} />
-      <Route path={privateRoutes.SLIDESFORMWITHID} element={<PrivateSlides />} />
-      <Route path={privateRoutes.ACTIVITIYFORM} element={<ActivitiesForm />} />
-      <Route path={privateRoutes.ACTIVITYEDITFORM } element={<ActivitiesForm />} />
-      <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
-      <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
-      <Route path={privateRoutes.SLIDES} element={<PrivateSlides />} />
-      <Route path={privateRoutes.SLIDESWITHID} element={<PrivateSlides />} />
+      <Route 
+        path={privateRoutes.ACTIVITIYFORM} 
+        element={<ActivitiesForm />} />
+      <Route 
+        path={privateRoutes.ACTIVITYEDITFORM } 
+        element={<ActivitiesForm />} />
+      <Route 
+        path={privateRoutes.CREATECATEGORY} 
+        element={<CategoriesForm />} />
+      <Route 
+        path={privateRoutes.EDITCATEGORY} 
+        element={<CategoriesForm />} />
+      <Route 
+        path={privateRoutes.SLIDES} 
+        element={<PrivateSlides />} />
+      <Route 
+        path={privateRoutes.SLIDESWITHID} 
+        element={<PrivateSlides />} />
       <Route
         path={privateRoutes.TESTIMONIALSFORM}
         element={<TestimonialsForm />}
