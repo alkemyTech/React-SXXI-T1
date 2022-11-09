@@ -42,12 +42,10 @@ export const useActivitiesForm = () => {
   const backURL = '/backoffice';
 
   const onSubmit = async () => {
-    const { name, description } = values;
-    console.log("submit")
+    const { name, description } = values
     const body = { name, description, image: imageBase64 }
     if(id) {
       const bodyEdit = { ...activity, ...body, image: imageBase64 || await convertUrlToBase64(activity.image)}
-      console.log(bodyEdit)
       Alert({ icon:'warning', 
             title:'¿Seguro/a?', 
             cancelText: 'Cancelar' })
@@ -56,7 +54,6 @@ export const useActivitiesForm = () => {
             setLoading(true);
             api.put(`/activities/${id}`, bodyEdit)
               .then((response)=> {
-                console.log(response)
                 Alert({ icon: 'success', title: 'Operación éxitosa'})
                   .then(() => navigate(backURL));
             })
