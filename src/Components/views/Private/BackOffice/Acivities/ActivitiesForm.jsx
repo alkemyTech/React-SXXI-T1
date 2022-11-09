@@ -58,14 +58,17 @@ const ActivitiesForm = () => {
                     />
                 </ContainerInputError>
             </Form.Group>
-            <FormImageField 
-                errors={errors.image}
-                touched={touched.image}
-                name="image"
-                setFieldValue= { formik.setFieldValue }
-                imageToSend= { setImageBase64 }
-                imageIsEdit= { activity.image }
-            />
+            <Form.Group>
+                <Form.Label className="mt-3">Imagen de la actividad:</Form.Label>
+                <FormImageField 
+                    errors={errors.image}
+                    touched={touched.image}
+                    name="image"
+                    setFieldValue= { formik.setFieldValue }
+                    imageToSend= { setImageBase64 }
+                    imageIsEdit= { activity.image }
+                />
+            </Form.Group>
             <div className="mb-5">
                 <ButtonConfirm 
                     className='mt-2 col-sm-5 col-md-2 mx-2' 
