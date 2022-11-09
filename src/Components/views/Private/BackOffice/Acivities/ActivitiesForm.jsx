@@ -1,54 +1,44 @@
+import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
-import { ButtonCancel, ButtonConfirm, ContainerInputError, Errors  } from "./ActivitiesForm.Styled";
-import { useActivitiesForm } from './hooks/useActivitiesForm';
+import { ButtonCancel, ButtonConfirm, ContainerInputError, Errors} from "./ActivitiesForm.Styled";
+import { useActivitiesForm } from "./hooks/useActivitiesForm";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 
 const ActivitiesForm = () => {
+  const {errors, handleBlur, handleSubmit, handleChange, touched, activity, loading, formik, handleImage, cancel } = useActivitiesForm();
+    
+  const { id } = useParams();
 
-    const {
-        errors, 
-        handleBlur, 
-        handleSubmit, 
-        handleChange, 
-        touched, 
-        activities, 
-        loading, 
-        formik , 
-        handleImage, 
-        cancel,
-        id
-    } = useActivitiesForm();
-
-    return (
-        <div className="container my-5">
-            <div 
-                className="mb-3">
-                <CustomTitle
-                    title={id ? "Edita la actividad" : "Crea la actividad"} 
-                    justify="center"   
-                    wrapTextClass="text-center" 
-                    />
-            </div>
-            <Form 
-                className="mb-5"
-                onSubmit={handleSubmit} >
+  return(
+    <div className="container my-5">
+        <div>
+            <CustomTitle
+                title={id ? "Edita la activdad" : "Crea la actividad"} 
+                justify="center"   
+                wrapTextClass="text-center" 
+                />
+        </div>
+          <Form 
+            className="my-5"
+            onSubmit={handleSubmit} >
             <Form.Group 
                 className="mb-3" 
                 controlId="formBasicName">
                 <ContainerInputError>
-                    <Form.Label className="mt-3">
+                    <Form.Label 
+                      className="mt-3">
                       Nombre de la actividad:
                     </Form.Label>
                     <InputForm
                         type="text"
                         name="name"
-                        defaultValue={id ? activities.name : '' } 
+                        defaultValue={id? activity.name : " "}
                         onChange={handleChange}
                         onBlur={handleBlur} 
-                        placeholder="Nombre de la actividad" />
+                        placeholder="Nombre" />
                     {errors.name && touched.name && <Errors>{errors.name}</Errors>}
                 </ContainerInputError>
             </Form.Group>
@@ -59,7 +49,7 @@ const ActivitiesForm = () => {
                     <Form.Label className="mt-3">Descripción de la actividad:</Form.Label>
                     <CKEditor
                         name="description"
-                        data={ activities.description ? activities.description : '' }
+                        data={ activity.description ? activity.description : '' }
                         editor={ ClassicEditor }
                         config={{ placeholder: 'Descripción' }}
                         onChange={ (event, editor) => { 
@@ -81,7 +71,7 @@ const ActivitiesForm = () => {
                         onChange={handleImage}
                         onBlur={handleBlur} 
                         placeholder="Ingresa la imagen..." 
-                        alt="testimonial form image"
+                        alt="imagen de la actividad"
                         />
                     {errors.image && touched.image && <Errors>{errors.image}</Errors>}
                 </ContainerInputError>
@@ -107,9 +97,9 @@ const ActivitiesForm = () => {
                     Cancelar
                 </ButtonCancel>
             </div>
-        </Form>
+          </Form>
         </div>
-    );
-}
- 
+  )
+} 
+
 export default ActivitiesForm;

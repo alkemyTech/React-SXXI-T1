@@ -2,41 +2,41 @@ import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from "react";
-import { validationSchema, convertToBase64, Alert } from "./../utilities/utilities";
+import { validationSchema, convertToBase64, Alert } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
 
 export const useActivitiesForm = () => {
-    const {id} = useParams();
-    const navigate = useNavigate();
-    const [ imageBase64, setImageBase64] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [activities, setActivities] = useState({
-      name: '',
-      image: '',
-      description: ''
+  const {id} = useParams();
+  const navigate = useNavigate();
+  const [ imageBase64, setImageBase64] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [activity, setActivity] = useState({
+        name: '',
+        image: '',
+        description: ''
     });
-    const initialValues = {
+  const initialValues = {
       name: '',
       image: '',
       description: ''
-    };
+  };
 
   useEffect(()=>{
-    if(id) {
-      api.get(`/activities/${id}`)
-      .then(res => {
-        const { data } = res.data;
-        setActivities({
-          name: data.name,
-          image: data.image,
-          description: data.description
-        });
-      })
-      .catch(() => {
-        Alert({ icon: 'error', title: 'Ha ocurrido un error'});
-      });    
-    }
-  },[id]);
+      if(id) {
+        api.get(`/activities/${id}`)
+        .then(res => {
+          const { data } = res.data;
+          setActivity({
+            name: data.name,
+            image: data.image,
+            description: data.description
+          });
+        })
+        .catch(() => {
+          Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+        });    
+      }
+    },[id]);
 
   const backURL = '/backoffice/activities';
 
@@ -45,8 +45,8 @@ export const useActivitiesForm = () => {
     const body = { name, description, imageBase64 }
     if(id) {
       Alert({ icon:'warning', 
-              title:'¿Estas segura/o de cancelar?', 
-              cancelText: 'Cancelar' })
+            title:'¿Estas segura/o de cancelar?', 
+            cancelText: 'Cancelar' })
       .then((res) => {
           if (res.isConfirmed) {
             setLoading(true);
@@ -91,18 +91,14 @@ export const useActivitiesForm = () => {
       formik.setFieldValue('image', '');
     }
   }
-
-  const formik = useFormik({
-    initialValues, 
-    onSubmit, 
-    validationSchema
-  });
+  
+  const formik = useFormik({initialValues, onSubmit, validationSchema});
 
   const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
 
   const cancel = () => {
     navigate(backURL);
-  }
+}
 
   return {
     values, 
@@ -111,11 +107,11 @@ export const useActivitiesForm = () => {
     handleSubmit, 
     handleChange, 
     touched, 
-    activities, 
+    activity, 
     loading, 
-    formik , 
+    formik, 
     handleImage, 
-    cancel,
-    id
-  }
+    cancel
+  } 
+
 }

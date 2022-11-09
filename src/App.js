@@ -1,8 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { privateRoutes, routes } from "./models/routes";
-import Home from  "./Components/views/Home/Home";
-import ActivitiesForm from "./Components/views/Private/BackOffice/Acivities/ActivitiesForm.jsx";
+import Home from "./Components/views/Home/Home";
+import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
 import NewsForm from "./Components/views/News/NewsForm";
