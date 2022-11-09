@@ -32,4 +32,10 @@ export const validationMessages = {
   description: {
     required: "El campo description es obligatorio",
   },
+  content: {
+    required: "El campo content es obligatorio",
+  },
+  category_id: {
+    required: "El campo category id es obligatorio",
+  },
 };
