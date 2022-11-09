@@ -66,7 +66,7 @@ export const useNewsForm = () => {
         setLoading(false);
       } else {
         Alert({ icon:'warning', 
-                title:'¿Estas segura/o de cancelar?', 
+                title:'¿Estas segura/o de enviarlo?', 
                 cancelText: 'Cancelar' })
         .then((res) => {
           if (res.isConfirmed) {

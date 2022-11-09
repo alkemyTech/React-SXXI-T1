@@ -41,13 +41,14 @@ const NewsForm = () => {
             </Form.Group>
             <Form.Group 
                 className="mb-3" 
-                controlId="formBasicCAtegoryId">
+                controlId="formBasicCategoryId">
                 <ContainerInputError>
                     <Form.Label className="mt-3">
                       Id de la novedad:
                     </Form.Label>
                     <InputForm
                         type="number"
+                        min="0"
                         name="category_id"
                         defaultValue={id? news.category_id : " "}
                         onChange={handleChange}
@@ -67,7 +68,7 @@ const NewsForm = () => {
                         editor={ ClassicEditor }
                         config={{ placeholder: 'Descripción' }}
                         onChange={ (event, editor) => { 
-                            formik.setFieldValue('description', editor.getData());
+                            formik.setFieldValue('content', editor.getData());
                         }}
                     />
                     { errors.content && <Errors>{ errors.content }</Errors> }
