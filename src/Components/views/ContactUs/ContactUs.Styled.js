@@ -53,7 +53,6 @@ export const ButtonIrInicio = styled(Button)`
   border: none;
   background-color: #ff0000;
   &:hover {
-    color: black !important;
     background-color: #f5f5f5 !important;
     border: 1px solid #ff0000;
     color: #ff0000 !important;
