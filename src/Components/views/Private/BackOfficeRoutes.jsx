@@ -4,6 +4,7 @@ import { RoutesNoMatch } from "utilities/routesNoMatch.util";
 import CategoriesForm from "../Categories/CategoriesForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
+import UsersForm from "./BackOffice/Users/UsersForm";
 import PrivateSlides from "./Slides/PrivateSlides";
 
 const BackOfficeRoutes = () => {
@@ -32,6 +33,14 @@ const BackOfficeRoutes = () => {
       <Route
         path={privateRoutes.TESTIMONIALSEDITFORM}
         element={<TestimonialsForm />}
+      />
+      <Route
+        path={privateRoutes.USERSFORM}
+        element={<UsersForm />}
+      />
+      <Route
+        path={privateRoutes.USERSEDITFORM}
+        element={<UsersForm />}
       />
     </RoutesNoMatch>
   );
