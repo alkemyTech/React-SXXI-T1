@@ -2,9 +2,9 @@ import { apiCall } from "Services/apiCall.service";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 import { slidesAdapter } from "../adapter/slides.adapter";
 
-export const getSlides = async () => {
+export const getSlides = async ({ id = null }) => {
   try {
-    const restUrl = "slides";
+    const restUrl = id ? "slides/" + id : "slides";
 
     const getData = await apiCall({ restUrl });
 
@@ -13,7 +13,9 @@ export const getSlides = async () => {
         getData ? getData.message : requestMessagesSchema.problemExistTryLater
       );
 
-    const dataAdapter = getData.data.map((slice) => slidesAdapter(slice));
+    const dataAdapter = id
+      ? slidesAdapter(getData.data)
+      : getData.data.map((slice) => slidesAdapter(slice));
 
     return { success: getData.success, data: dataAdapter };
   } catch (error) {
