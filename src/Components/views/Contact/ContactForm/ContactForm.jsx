@@ -1,4 +1,4 @@
-import { ContainerContactStyled, TitleContactStyled, ContactFormStyled, Errors,
+import { ContainerContactStyled, ContactFormStyled, Errors,
     TextAreaStyled, InputStyled, Button, ContainerInputError,
     ButtonIrInicio} from "./ContactForm.Styled";
 import { Form } from "react-bootstrap";
@@ -37,8 +37,7 @@ export default function ContactForm(){
     const formik = useFormik({initialValues, onSubmit, validationSchema});
     const {handleChange, handleSubmit, values, errors, handleBlur, touched} = formik;
     return(
-        <ContainerContactStyled className="col-12 my-5">
-            <TitleContactStyled>¡Contactate con nosotros!</TitleContactStyled>
+        <ContainerContactStyled className="col-12 mb-5">
             <ContactFormStyled onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" >
                     <ContainerInputError>
