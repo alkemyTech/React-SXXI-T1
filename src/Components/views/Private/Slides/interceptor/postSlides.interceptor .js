@@ -5,15 +5,10 @@ export const postSlides = async (data) => {
   try {
     const restUrl = "slides";
 
-    const headers = {
-      "Content-Type": "application/json",
-    };
-
     const postData = await apiCall({
       restUrl,
       body: { ...data, user_id: null },
       method: "post",
-      headers,
     });
 
     if (!postData || !postData.success)

@@ -6,16 +6,19 @@ export const convertUrlToBase64 = async (imageURL) => {
     const blob = await data.blob();
     return new Promise((resolve) => {
       const reader = new FileReader();
-      reader.readAsDataURL(blob);
       reader.onloadend = () => {
         const base64data = reader.result;
         resolve(base64data);
       };
+
+      reader.readAsDataURL(blob);
     });
   } catch (error) {
-    Promise.reject(
-      new Error(`${requestMessagesSchema.dontConvertURLtoase64} 
-        ${requestMessagesSchema.tryLater}`)
-    );
+    console.error("error convertUrlToBase64", error.message);
+    return {
+      success: false,
+      message: `${requestMessagesSchema.dontConvertURLtoase64} 
+    ${requestMessagesSchema.tryLater}`,
+    };
   }
 };

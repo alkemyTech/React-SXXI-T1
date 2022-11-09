@@ -37,7 +37,7 @@ export default function ContactUs(){
     const formik = useFormik({initialValues, onSubmit, validationSchema});
     const {handleChange, handleSubmit, values, errors, handleBlur, touched} = formik;
     return(
-        <ContainerContactStyled className="col-12">
+        <ContainerContactStyled className="col-12 my-5">
             <TitleContactStyled>¡Contactate con nosotros!</TitleContactStyled>
             <ContactFormStyled onSubmit={handleSubmit} >
                 <Form.Group className="mb-3" >
