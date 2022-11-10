@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
 import { SlideTitle, SlideDescription, SlideImage } from './CarouselStyled/Carousel.Styled';
 import { api } from "Services/axiosService";
+import Swal from "sweetalert2";
 
 export default function CarouselComponent(){
     const [slides, setSlides] = useState([]);
@@ -9,14 +10,22 @@ export default function CarouselComponent(){
     useEffect(() => {
         api('/slides').then(res => {
             const { data } = res.data;
-            data.forEach(el => {
-                const obj={ id: el.id,
-                            title: el.name,
-                            image: el.image,
-                            description: el.description };
-                setSlides(slides => [...slides, obj]);
+            const slidesData = data.map(el => {
+                return { id: el.id,
+                         title: el.name,
+                         image: el.image,
+                         description: el.description };
             });
+            setSlides(slidesData);
         })
+        .catch(()=>{
+            Swal.fire({
+                title: 'Hubo un error',
+                icon: 'error',
+                confirmButtonColor: '#0038FF',
+                confirmButtonText: 'Aceptar',
+            })
+        });
     }, []);
     
     return(
