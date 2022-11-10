@@ -47,7 +47,10 @@ const ActivitiesForm = () => {
                 className="mb-3" 
                 controlId="formBasicDescription">
                 <ContainerInputError>
-                    <Form.Label className="mt-3">Descripción de la actividad:</Form.Label>
+                    <Form.Label 
+                        className="mt-3">
+                        Descripción de la actividad:
+                    </Form.Label>
                     <FormCKEditorField 
                         setFieldValue={ setFieldValue }
                         errors={ errors}
@@ -59,7 +62,10 @@ const ActivitiesForm = () => {
                 </ContainerInputError>
             </Form.Group>
             <Form.Group>
-                <Form.Label className="mt-3">Imagen de la actividad:</Form.Label>
+                <Form.Label 
+                    className="mt-3">
+                    Imagen de la actividad:
+                </Form.Label>
                 <FormImageField 
                     errors={errors.image}
                     touched={touched.image}

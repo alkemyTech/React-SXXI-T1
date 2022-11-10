@@ -7,7 +7,7 @@ import { api } from 'Services/axiosService';
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 
 export const useActivitiesForm = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [ imageBase64, setImageBase64 ] = useState("");
   const [ loading, setLoading ] = useState(false);
@@ -45,7 +45,11 @@ export const useActivitiesForm = () => {
     const { name, description } = values
     const body = { name, description, image: imageBase64 }
     if(id) {
-      const bodyEdit = { ...activity, ...body, image: imageBase64 || await convertUrlToBase64(activity.image)}
+      const bodyEdit = { 
+        ...activity, 
+        ...body, 
+        image: imageBase64 || await convertUrlToBase64(activity.image)
+      }
       Alert({ icon:'warning', 
             title:'¿Seguro/a?', 
             cancelText: 'Cancelar' })
@@ -98,7 +102,15 @@ export const useActivitiesForm = () => {
 
   const formik = useFormik({initialValues, onSubmit, validationSchema});
 
-  const {values, errors, handleBlur, handleSubmit, handleChange, touched,  setFieldValue } = formik;
+  const {
+    values, 
+    errors, 
+    handleBlur, 
+    handleSubmit, 
+    handleChange, 
+    touched,  
+    setFieldValue 
+  } = formik;
 
   useEffect(() => {
     if (Object.keys(activity).length > 0) {
@@ -108,10 +120,9 @@ export const useActivitiesForm = () => {
     }
   }, [activity, setFieldValue]);
 
-
   const cancel = () => {
     navigate(backURL);
-}
+  }
 
   return {
     values, 

@@ -20,11 +20,15 @@ export const activityValidationSchema = (
             ? value
             : value && FORMAT.includes(value.type);
     })
-    .test("fileSize", validationMessages.image.fieldSize, (value) =>
-      id ? value : value && value.size <= FILE_SIZE
+    .test(
+      "fileSize", 
+      validationMessages.image.fieldSize,
+      (value) =>
+        id ? value : value && value.size <= FILE_SIZE
     ),
     description: Yup.string().required(validationMessages.description.required)
   });
+  
   return validationSchema;
 }
 
