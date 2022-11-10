@@ -39,3 +39,9 @@ export const Errors = styled.span`
     font-size: 15px;
     padding-left: 10px;
 `;
+export const PreviewImg = styled.img`
+    height: 100px;
+    width: 150px;
+    border-radius: 0.3rem;
+    margin-top: 0.4rem;
+`;

@@ -1,17 +1,18 @@
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { LinkReactRouter } from "Components/GlobalComponents/LinkReactRouter/LinkReactRouter";
 import { routes } from "models/routes";
-import { InputTexts, SubtitleText } from "styled-components/App.styled";
+import { SubtitleText } from "styled-components/App.styled";
 import { defaultDetailText } from "../utilities/detailSchema.util";
 
-export const ShowDetailData = ({
-  data: { title, description, responsibles },
-}) => {
+export const ShowDetailData = ({ title, description, responsibles }) => {
   return (
     <>
-      <CustomTitle wrapTitleClass="col col-12" title={title} />
+      <CustomTitle wrapTitleClass="col col-12 h-auto" title={title} />
       <div className="col col-12 d-flex flex-column justify-content-center align-items-center ">
-        <InputTexts className="col col-10 my-3">{description}</InputTexts>
+        <div
+          className="col col-10 my-3"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
         <SubtitleText className="col col-10 mb-3">
           {defaultDetailText.responsibleText}:
         </SubtitleText>

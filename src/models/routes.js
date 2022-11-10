@@ -1,9 +1,10 @@
 export const routes = {
+  ACTIVITIES: "/actividades",
   ACIVITIESDETAIL: "/actividades/:id",
   ACTIVITIESFORM: "/create-activity",
   AUTHLOGINFORM: "/auth/login",
   AUTHREGISTERFORM: "/auth/register",
-  CONTACTUS: "/contact-us",
+  CONTACT: "/contact",
   DONATION: "/donar",
   HOME: "/",
   MEMBERSFORM: "/create-member",

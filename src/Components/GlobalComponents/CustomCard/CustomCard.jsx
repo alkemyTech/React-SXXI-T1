@@ -79,15 +79,3 @@ export const CustomCard = (props) => {
     </Card>
   );
 };
-
-/**
- * ONG1-60
-Descripción
-
-COMO: Usuario
-QUIERO: Visualizar los listados de forma similar en todas las secciones
-PARA: Que el diseño tenga un patrón claro
-
-Criterios de aceptación: El objetivo es utilizar este componente en los listados de Novedades, Actividades, Últimas Novedades y Relacionadas, por lo que deberá ser flexible y permitir reutilizarse al máximo. Para ello, deberá mostrar una imágen, título y descripción de forma dinámica, y un placeholder de imagen vacía en el caso de no recibir imagen
-
- */
