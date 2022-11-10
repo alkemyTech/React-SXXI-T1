@@ -1,4 +1,4 @@
-import { BackToHome } from "Components/GlobalComponents/BackToHome/BackToHome";
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle";
 import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
@@ -20,7 +20,7 @@ const News = () => {
   return (
     <Animate>
       <HeadTitle title={newsSchema.title} />
-      <BackToHome wrapLink="my-4 col col-7 col-sm-5 col-lg-4 " />
+      <BackTo wrapLink="my-4 col col-7 col-sm-5 col-lg-4" to="home" />
 
       <div className="d-flex flex-row flex-wrap justify-content-center">
         {newsData.length > 0 ? (

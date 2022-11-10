@@ -12,7 +12,6 @@ export const routes = {
   NEWSFORM: "/create-news",
   ORGANIZATIONDATA: "/backoffice/organization",
   PROJECTFORM: "/create-project",
-  SLIDERSFORM: "/backoffice/create-slide",
   SCHOOLCAMPAIGN: "/school-campaign",
   THANKSDONATION: "/gracias",
   TESTIMONIALSFORM: "/create-testimonials",
@@ -20,7 +19,8 @@ export const routes = {
 };
 
 export const privateRoutes = {
-  BACKOFFICE: "backoffice",
+  BACKOFFICE: "backoffice/",
+  BACKHOME: "home",
   CREATECATEGORY: "create-category",
   EDITCATEGORY: "edit-category/:id",
   EDITORGANIZATIONFORM: "organization/edit",

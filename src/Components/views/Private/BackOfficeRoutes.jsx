@@ -4,11 +4,13 @@ import { RoutesNoMatch } from "utilities/routesNoMatch.util";
 import CategoriesForm from "../Categories/CategoriesForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
+import { PrivateHome } from "./Home/PrivateHome";
 import PrivateSlides from "./Slides/PrivateSlides";
 
 const BackOfficeRoutes = () => {
   return (
     <RoutesNoMatch>
+      <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
       <Route
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
