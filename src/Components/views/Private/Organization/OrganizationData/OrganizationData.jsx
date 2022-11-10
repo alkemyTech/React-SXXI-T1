@@ -1,62 +1,72 @@
-import { Container, Image, ContainerEditInf, EditButton, 
-    ContainerImage } from './OrganizationDataStiled/OrganizationData.Styled';
-import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { api } from 'Services/axiosSevice';
-import Swal from 'sweetalert2';
+import {
+  Container,
+  Image,
+  ContainerEditInf,
+  EditButton,
+  ContainerImage,
+} from "./OrganizationDataStiled/OrganizationData.Styled";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { api } from "Services/axiosService";
+import Swal from "sweetalert2";
 
-export default function OrganizationData(){
-    const navigate = useNavigate();
-    const [organizationData, setOrganizationData] = useState({
-        name: '',
-        image: '',
-        shortDescription: ''
-    });
-    const urlNavigate = '/backoffice/organization/edit';
+export default function OrganizationData() {
+  const navigate = useNavigate();
+  const [organizationData, setOrganizationData] = useState({
+    name: "",
+    image: "",
+    shortDescription: "",
+  });
+  const urlNavigate = "/backoffice/organization/edit";
 
-    useEffect(()=>{
-        api.get('/organization')
-        .then(res => {
-            const { data } = res.data;
-            setOrganizationData({
-                name: data.name,
-                image: data.logo,
-                shortDescription: data.short_description
-            })
-        })
-        .catch(()=>{
-            Swal.fire({
-                title: 'Hubo un error',
-                icon: 'error',
-                confirmButtonColor: '#0038FF',
-                confirmButtonText: 'Aceptar',
-            })
-            .then(()=>{
-                navigate('/backoffice');
-            });
+  useEffect(() => {
+    api
+      .get("/organization")
+      .then((res) => {
+        const { data } = res.data;
+        setOrganizationData({
+          name: data.name,
+          image: data.logo,
+          shortDescription: data.short_description,
         });
-    }, []);
-    
-    function handleClick(){
-        navigate(urlNavigate);
-    }
+      })
+      .catch(() => {
+        Swal.fire({
+          title: "Hubo un error",
+          icon: "error",
+          confirmButtonColor: "#0038FF",
+          confirmButtonText: "Aceptar",
+        }).then(() => {
+          navigate("/backoffice");
+        });
+      });
+  }, []);
 
-    return(
-        <Container>
-            <ContainerEditInf>
-                <h3>Datos de la Organización:</h3>
-                <EditButton
-                    background='success'
-                    color='success'
-                    type='button' 
-                    onClick={handleClick}>Editar Información</EditButton>
-            </ContainerEditInf>
+  function handleClick() {
+    navigate(urlNavigate);
+  }
 
-            <h1 style={{textAlign: 'center'}}>{organizationData.name}</h1>
-            <ContainerImage>
-                <Image src={organizationData.image} alt={organizationData.name} />
-            </ContainerImage>
-            <div dangerouslySetInnerHTML={{__html: organizationData.shortDescription}}/>
-        </Container>
-    )
+  return (
+    <Container>
+      <ContainerEditInf>
+        <h3>Datos de la Organización:</h3>
+        <EditButton
+          background="success"
+          color="success"
+          type="button"
+          onClick={handleClick}
+        >
+          Editar Información
+        </EditButton>
+      </ContainerEditInf>
+
+      <h1 style={{ textAlign: "center" }}>{organizationData.name}</h1>
+      <ContainerImage>
+        <Image src={organizationData.image} alt={organizationData.name} />
+      </ContainerImage>
+      <div
+        dangerouslySetInnerHTML={{ __html: organizationData.shortDescription }}
+      />
+    </Container>
+  );
 }
