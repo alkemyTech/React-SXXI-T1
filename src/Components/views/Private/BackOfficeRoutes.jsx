@@ -1,6 +1,8 @@
 import { privateRoutes } from "models/routes";
 import { Route } from "react-router-dom";
 import { RoutesNoMatch } from "utilities/routesNoMatch.util";
+
+import EditMembersForm from "./BackOffice/Members/EditForm";
 import CategoriesForm from "../Categories/CategoriesForm";
 import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
@@ -22,6 +24,10 @@ const BackOfficeRoutes = () => {
       <Route 
         path={privateRoutes.EDITCATEGORY} 
         element={<CategoriesForm />} />
+      <Route
+        path={privateRoutes.EDITMEMBERSFORM}
+        element={<EditMembersForm />}
+      />
       <Route
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
