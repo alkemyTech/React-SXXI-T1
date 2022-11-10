@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Formulary, Input, ButtonConfirm, Errors,
+import { Formulary, Input, ButtonConfirm, Errors, PreviewImg,
         ContainerInputError, ButtonCancel } from './CategoriesStyled/CategoriesStyled';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
@@ -36,6 +36,9 @@ const CategoriesForm = () => {
                     image: data.image,
                     description: data.description
                 });
+                formik.setFieldValue('name', data.name);
+                formik.setFieldValue('image', data.image);
+                formik.setFieldValue('description', data.description);
             })
             .catch(()=>{
                 Alert({ icon: 'error', title: 'Ha ocurrido un error'});
@@ -46,8 +49,8 @@ const CategoriesForm = () => {
     const backURL = '/backoffice/categories';
     const onSubmit = () => {
         const { name, description } = values;
-        const body = { name, description, imageB64 };
-        
+        const body = { name, description, image: imageB64 };
+
         if(id) {
             Alert({ icon:'warning', 
                     title:'¿Estas segura/o?', 
@@ -57,6 +60,7 @@ const CategoriesForm = () => {
                     setLoading(true);
                     api.put(`/categories/${id}`, body)
                     .then(() => {
+                        setLoading(false);
                         Alert({ icon: 'success', title: 'Operación éxitosa'})
                         .then(() => navigate(backURL));
                     })
@@ -65,7 +69,6 @@ const CategoriesForm = () => {
                     });
                 }
             })
-            setLoading(false);
         }else {
             Alert({ icon:'warning', 
                     title:'¿Estas segura/o?', 
@@ -75,6 +78,7 @@ const CategoriesForm = () => {
                     setLoading(true);
                     api.post(`/categories`, body)
                     .then(() => {
+                        setLoading(false);
                         Alert({ icon: 'success', title: 'Operación éxitosa'})
                         .then(() => navigate(backURL));
                     })
@@ -83,7 +87,6 @@ const CategoriesForm = () => {
                     });
                 }
             })
-            setLoading(false);
         }
     }
     function handleImage(e){
@@ -108,7 +111,7 @@ const CategoriesForm = () => {
                 <ContainerInputError>
                     <Form.Label>Nombre de la categoría:</Form.Label>
                     <Input type="text" name="name" placeholder='Nombre' onBlur={ handleBlur }
-                        defaultValue={ id ? category.name : '' } onChange={ handleChange } />
+                        value={ values.name } onChange={ handleChange } />
                     { errors.name && touched.name && <Errors>{errors.name}</Errors> }
                 </ContainerInputError>
             </Form.Group>
@@ -119,6 +122,7 @@ const CategoriesForm = () => {
                          onChange={ handleImage } onBlur={handleBlur}/>
                         { errors.image && touched.image && <Errors>{errors.image}</Errors> }
                 </ContainerInputError>
+                { imageB64 ? <PreviewImg src={imageB64}/> : <PreviewImg src={values.image}/>}
             </Form.Group>
             <Form.Group className='col-sm-12 col-md-8'>
                 <ContainerInputError>
