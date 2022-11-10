@@ -61,7 +61,10 @@ const ActivitiesForm = () => {
                     />
                 </ContainerInputError>
             </Form.Group>
-            <Form.Group>
+            <Form.Group
+                className="mb-5" 
+                controlId="formBasicImage"
+                >
                 <Form.Label 
                     className="mt-3">
                     Imagen de la actividad:
