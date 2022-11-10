@@ -2,7 +2,7 @@ import { Container, Image, ContainerEditInf, EditButton,
     ContainerImage } from './OrganizationDataStiled/OrganizationData.Styled';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { api } from 'Services/axiosSevice';
+import { api } from 'Services/axiosService';
 import Swal from 'sweetalert2';
 
 export default function OrganizationData(){
