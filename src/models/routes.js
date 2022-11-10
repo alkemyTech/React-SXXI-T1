@@ -13,14 +13,15 @@ export const routes = {
   ORGANIZATIONDATA: "/backoffice/organization",
   PROJECTFORM: "/create-project",
   SCHOOLCAMPAIGN: "/school-campaign",
-  THANKSDONATION: "/gracias",
   TESTIMONIALSFORM: "/create-testimonials",
+  THANKSDONATION: "/gracias",
   TOYSCAMPAIGN: "/toys-campaign",
 };
 
 export const privateRoutes = {
   BACKOFFICE: "backoffice/",
   BACKHOME: "home",
+  EDITMEMBERSFORM: "members/edit",
   CREATECATEGORY: "create-category",
   EDITCATEGORY: "edit-category/:id",
   EDITORGANIZATIONFORM: "organization/edit",

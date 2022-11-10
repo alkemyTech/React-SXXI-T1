@@ -7,7 +7,7 @@ import { HomeFormImageField } from "./components/HomeFormImageField/HomeFormImag
 import { usePrivateHome } from "./hooks/usePrivateHome";
 import { homeFormFieldsSchema } from "./utilities/homeFormFieldSchema.util";
 
-export const PrivateHome = () => {
+const PrivateHome = () => {
   const {
     handleSubmit,
     formik,
@@ -64,3 +64,5 @@ export const PrivateHome = () => {
     </Animate>
   );
 };
+
+export default PrivateHome;
