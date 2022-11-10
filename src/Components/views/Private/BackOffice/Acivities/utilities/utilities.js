@@ -13,7 +13,6 @@ export const activityValidationSchema = (
             .min(4, validationMessages.name.fieldLength)
             .required(validationMessages.name.required),
     image: Yup.mixed()
-            .required(validationMessages.image.required)
             .test("format", validationMessages.image.format, (value) => {
               return id
                 ? value
@@ -24,7 +23,8 @@ export const activityValidationSchema = (
               validationMessages.image.fieldSize,
               (value) =>
                 id ? value : value && value.size <= FILE_SIZE
-            ),
+            )
+            .required(validationMessages.image.required),
     description: Yup.string().required(validationMessages.description.required)
   });
   

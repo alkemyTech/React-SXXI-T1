@@ -11,9 +11,8 @@ const ActivitiesForm = () => {
   const {errors, handleBlur, handleSubmit, handleChange, touched, activity, loading, formik,  values, cancel, setImageBase64, setFieldValue } = useActivitiesForm();
     
   const { id } = useParams();
-  console.log(errors, values )
 
-  return(
+  return (
     <div className="container my-5">
         <div>
             <CustomTitle
@@ -70,8 +69,8 @@ const ActivitiesForm = () => {
                     Imagen de la actividad:
                 </Form.Label>
                 <FormImageField 
-                    errors={errors.image}
-                    touched={touched.image}
+                    errors={errors}
+                    touched={touched}
                     name="image"
                     setFieldValue= { formik.setFieldValue }
                     imageToSend= { setImageBase64 }
