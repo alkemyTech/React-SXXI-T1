@@ -6,10 +6,24 @@ import { useNewsForm } from './hooks/useNewsForm';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
+import FormLabel from './FormLabel';
+
 const NewsForm = () => {
-  const {errors, handleBlur, handleSubmit, handleChange, touched, news, loading, formik, handleImage, cancel } = useNewsForm();
+    const { 
+        errors, 
+        handleBlur, 
+        handleSubmit, 
+        handleChange, 
+        touched, 
+        news, 
+        loading, 
+        formik, 
+        handleImage, 
+        cancel 
+    } = useNewsForm();
     
     const { id } = useParams();
+
   return(
     <div className="container my-5">
         <div>
@@ -26,9 +40,7 @@ const NewsForm = () => {
                 className="mb-3" 
                 controlId="formBasicName">
                 <ContainerInputError>
-                    <Form.Label className="mt-3">
-                      Nombre de la novedad:
-                    </Form.Label>
+                    <FormLabel title="Nombre de la novedad:" />
                     <InputForm
                         type="text"
                         name="name"
@@ -43,9 +55,7 @@ const NewsForm = () => {
                 className="mb-3" 
                 controlId="formBasicCategoryId">
                 <ContainerInputError>
-                    <Form.Label className="mt-3">
-                      Id de la novedad:
-                    </Form.Label>
+                    <FormLabel title="Id de la novedad:" />
                     <InputForm
                         type="number"
                         min="0"
@@ -61,7 +71,7 @@ const NewsForm = () => {
                 className="mb-3" 
                 controlId="formBasicContent">
                 <ContainerInputError>
-                    <Form.Label className="mt-3">Contenido de la novedad:</Form.Label>
+                    <FormLabel title="Contenido de la novedad:" />
                     <CKEditor
                         name="contect"
                         data={ news.content ? news.content : '' }
@@ -78,7 +88,7 @@ const NewsForm = () => {
                 className="mb-5" 
                 controlId="formBasicImage">
                 <ContainerInputError>
-                    <Form.Label className="mt-3">Selecciona una imagen:</Form.Label>
+                    <FormLabel title="Selecciona una imagen:" />
                     <InputForm 
                         accept="image/png, image/jpeg, image/jpg" 
                         type="file"
@@ -109,7 +119,7 @@ const NewsForm = () => {
                     type='button'
                     onClick={ cancel }
                 >
-                    Cancelar
+                    Volver
                 </ButtonCancel>
             </div>
           </Form>
