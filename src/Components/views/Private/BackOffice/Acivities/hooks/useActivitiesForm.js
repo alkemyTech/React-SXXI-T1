@@ -50,14 +50,14 @@ export const useActivitiesForm = () => {
         ...body, 
         image: imageBase64 || await convertUrlToBase64(activity.image)
       }
-      const alert = await Alert({ icon:'warning', 
+      const alertWarning = await Alert({ icon:'warning', 
             title:'¿Seguro/a?', 
             cancelText: 'Cancelar' })
 
-      if (alert.isConfirmed) {
+      if (alertWarning.isConfirmed) {
         setLoading(true);
-        const apiRes = await api.put(`/activities/${id}`, bodyEdit)
-        if(apiRes.data.success) {
+        const apiResponse = await api.put(`/activities/${id}`, bodyEdit)
+        if(apiResponse.data.success) {
           setLoading(false);
           await Alert({ icon: 'success', title: 'Operación éxitosa'})
           navigate(backURL)
@@ -72,8 +72,8 @@ export const useActivitiesForm = () => {
             cancelText: 'Cancelar' })
         if(alertWarning.isConfirmed) {
           setLoading(true);
-          const apiRes = await api.post(`/activities`, body)
-          if(apiRes.data.success) {
+          const apiResponse = await api.post(`/activities`, body)
+          if(apiResponse.data.success) {
             setLoading(false);
             await Alert({ icon: 'success', title: 'Operación éxitosa'})
             navigate(backURL)
