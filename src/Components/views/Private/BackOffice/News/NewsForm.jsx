@@ -28,7 +28,7 @@ const NewsForm = () => {
     <div className="container my-5">
         <div>
             <CustomTitle
-                title={id ? "Edita la novedad" : "Crea la novedad"} 
+                title={id ? "Edita la novedad" : "Crea una novedad"} 
                 justify="center"   
                 wrapTextClass="text-center" 
                 />
@@ -40,7 +40,7 @@ const NewsForm = () => {
                 className="mb-3" 
                 controlId="formBasicName">
                 <ContainerInputError>
-                    <FormLabel title="Nombre de la novedad:" />
+                    <FormLabel title="Titulo de la novedad:" />
                     <InputForm
                         type="text"
                         name="name"
@@ -55,7 +55,7 @@ const NewsForm = () => {
                 className="mb-3" 
                 controlId="formBasicCategoryId">
                 <ContainerInputError>
-                    <FormLabel title="Id de la novedad:" />
+                    <FormLabel title="Categoría de la novedad:" />
                     <InputForm
                         type="number"
                         min="0"
@@ -73,7 +73,7 @@ const NewsForm = () => {
                 <ContainerInputError>
                     <FormLabel title="Contenido de la novedad:" />
                     <CKEditor
-                        name="contect"
+                        name="content"
                         data={ news.content ? news.content : '' }
                         editor={ ClassicEditor }
                         config={{ placeholder: 'Descripción' }}

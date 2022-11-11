@@ -1,33 +1,52 @@
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 import { validationMessages } from 'utilities/validationMessage.util';
+import { FILE_SIZE } from 'Components/GlobalComponents/FormImageField/utilities/ImageFieldSchemas.util';
 
 const FORMAT = ['image/png', 'image/jpg', 'image/jpeg'];
 
-export const validationSchema = Yup.object().shape({
-  name : Yup.string()
-          .min(4, validationMessages.name.fieldLength)
-          .required(validationMessages.name.required),
-  image: Yup.mixed().required( validationMessages.image.required)
-          .test( "fileFormat", "Solo formato .png, .jpg y .jpeg",
-            value => value && FORMAT.includes(value.type)
-          ),
-  content: Yup.string().required(validationMessages.content.required),
-  category_id: Yup.number().required(validationMessages.category_id.required).positive().integer()
-});
+export const activityValidationSchema = (
+  id
+) => {
+  const validationSchema = Yup.object().shape({
+    name : Yup.string()
+            .min(4, validationMessages.name.fieldLength)
+            .required(validationMessages.name.required),
+    content: Yup.string().required(validationMessages.content.required),
+    category_id: Yup.number().positive()
+              .integer()
+              .required(validationMessages.category_id.required),
+    image: Yup.mixed()
+            .test("format", validationMessages.image.format, (value) => {
+              return id
+                ? value
+                : value && FORMAT.includes(value.type);
+              })
+            .test(
+              "fileSize", 
+              validationMessages.image.fieldSize,
+              (value) =>
+                id ? value : value && value.size <= FILE_SIZE
+            )
+            .required(validationMessages.image.required)
+  });
+
+  return validationSchema;
+}
 
 export const convertToBase64 = (image, setImage) => {
   const reader = new FileReader();
-  reader.readAsDataURL(image);
   
   reader.onloadend = function () {
       setImage(reader.result.toString());
   };
+
+  reader.readAsDataURL(image);
+  
   reader.onerror = function (error) {
     console.log('Error: ', error);
   };
 }
-
 
 export const Alert = ({icon, title, cancelText})=>{
   return Swal.fire({
