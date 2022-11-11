@@ -16,11 +16,14 @@ const BackOfficeRoutes = () => {
       <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
       <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
       <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
+<<<<<<< HEAD
       <Route path={privateRoutes.ACTIVITIESFORM} element={<ActivitiesForm />} />
       <Route
         path={privateRoutes.ACTIVITIESEDITFORM}
         element={<ActivitiesForm />}
       />
+=======
+>>>>>>> 8828d402fdc8663a18b44d1ec59ed6796e96bdbb
       <Route
         path={privateRoutes.EDITMEMBERSFORM}
         element={<EditMembersForm />}

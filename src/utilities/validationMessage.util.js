@@ -39,4 +39,8 @@ export const validationMessages = {
     required: "El campo welcome es obligatorio",
     fieldLength: "El campo welcome debe contener al menos 20 caracteres",
   },
+  welcomeText: {
+    required: "El campo welcome es obligatorio",
+    fieldLength: "El campo welcome debe contener al menos 20 caracteres",
+  },
 };
