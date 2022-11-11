@@ -6,6 +6,7 @@ import { useActivitiesForm } from "./hooks/useActivitiesForm";
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
 import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
+import FormLabel from './FormLabel';
 
 const ActivitiesForm = () => {
   const {errors, handleBlur, handleSubmit, handleChange, touched, activity, loading, formik,  values, cancel, setImageBase64, setFieldValue } = useActivitiesForm();
@@ -28,10 +29,7 @@ const ActivitiesForm = () => {
                 className="mb-3" 
                 controlId="formBasicName">
                 <ContainerInputError>
-                    <Form.Label 
-                      className="mt-3">
-                      Nombre de la actividad:
-                    </Form.Label>
+                    <FormLabel title="Nombre de la actividad proyecto:" />
                     <InputForm
                         type="text"
                         name="name"
@@ -46,10 +44,7 @@ const ActivitiesForm = () => {
                 className="mb-3" 
                 controlId="formBasicDescription">
                 <ContainerInputError>
-                    <Form.Label 
-                        className="mt-3">
-                        Descripción de la actividad:
-                    </Form.Label>
+                    <FormLabel title="Descripción de la actividad:" />
                     <FormCKEditorField 
                         setFieldValue={ setFieldValue }
                         errors={ errors}
@@ -64,10 +59,7 @@ const ActivitiesForm = () => {
                 className="mb-5" 
                 controlId="formBasicImage"
                 >
-                <Form.Label 
-                    className="mt-3">
-                    Imagen de la actividad:
-                </Form.Label>
+                <FormLabel title="Imagen de la actividad:" />
                 <FormImageField 
                     errors={errors}
                     touched={touched}
