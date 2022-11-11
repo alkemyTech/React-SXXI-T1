@@ -5,6 +5,7 @@ import { useProjectsForms } from './hooks/useProjectsForms';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
 import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
+import FormLabel from './FormLabel';
 
 const ProjectsForm = () => {
     const {
@@ -39,10 +40,7 @@ const ProjectsForm = () => {
                     className="mb-3" 
                     controlId="formBasicName">
                     <ContainerInputError>
-                        <Form.Label 
-                            className="mt-3">
-                            Nombre del proyecto:
-                        </Form.Label>
+                        <FormLabel title="Nombre del proyecto:" />
                         <InputForm
                             type="text"
                             name="title"
@@ -57,10 +55,7 @@ const ProjectsForm = () => {
                     className="mb-3" 
                     controlId="formBasicDescription">
                     <ContainerInputError>
-                        <Form.Label 
-                            className="mt-3">
-                            Descripción del testimonio:
-                        </Form.Label>
+                        <FormLabel title="Descripcion del proyecto:" />
                         <FormCKEditorField 
                             setFieldValue={ setFieldValue }
                             errors={ errors}
@@ -74,10 +69,7 @@ const ProjectsForm = () => {
                 <Form.Group 
                     className="mb-3" 
                     controlId="formBasicImage">
-                    <Form.Label
-                        className="mt-3">
-                        Imagen del proyecto:
-                    </Form.Label>
+                    <FormLabel title="Imagen del proyecto:" />
                     <FormImageField 
                         errors={errors}
                         touched={touched}
@@ -91,10 +83,7 @@ const ProjectsForm = () => {
                     className="mb-3" 
                     controlId="formBasicDate">
                     <ContainerInputError>
-                        <Form.Label 
-                            className="mt-3">
-                            Selecciona la fecha de expiración:
-                        </Form.Label>
+                        <FormLabel title="Selecciona la fecha de expiración:" />
                         <InputForm
                             type="date"
                             name="due_date"
