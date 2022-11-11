@@ -44,7 +44,7 @@ const CategoriesForm = () => {
                 Alert({ icon: 'error', title: 'Ha ocurrido un error'});
             });
         }
-    },[id]);
+    },[id, formik]);
     
     const backURL = '/backoffice/categories';
     const onSubmit = () => {

@@ -35,7 +35,7 @@ export default function OrganizationData(){
                 navigate('/backoffice');
             });
         });
-    }, []);
+    }, [navigate]);
     
     function handleClick(){
         navigate(urlNavigate);
