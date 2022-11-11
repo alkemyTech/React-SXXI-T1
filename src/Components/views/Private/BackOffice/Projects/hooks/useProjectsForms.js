@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from 'react';
-import { convertToBase64, Alert, activityValidationSchema } from "../utilities/utilities";
+import {  Alert, projectsValidationSchema } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 
@@ -75,12 +75,15 @@ export const useProjectsForms = () => {
                 }
             }
         } else {
+            console.log("body: ", body)
+            console.log("imagen", body.image)
             const alertWarning = await Alert({ icon:'warning', 
                 title:'¿Segura/o?', 
                 cancelText: 'Cancelar' })
             if(alertWarning.isConfirmed) {
               setLoading(true);
               const apiResponse = await api.post(`/projects`, body);
+              console.log(apiResponse)
               if(apiResponse.data.success) {
                 setLoading(false);
                 await Alert({ icon: 'success', title: 'Operación éxitosa'});
@@ -92,6 +95,7 @@ export const useProjectsForms = () => {
           }
       }
 
+      /*
     function handleImage(e){
       const image = e.target.files[0];
       if(image) {
@@ -100,9 +104,9 @@ export const useProjectsForms = () => {
       } else {
         formik.setFieldValue('image', '');
       } 
-    }
+    }*/
  
-    const validationSchema = activityValidationSchema(id);
+    const validationSchema = projectsValidationSchema(id);
 
     const formik = useFormik({initialValues, onSubmit, validationSchema});
 
@@ -135,7 +139,6 @@ export const useProjectsForms = () => {
         project,
         loading, 
         formik,
-        handleImage,  
         cancel,
         setImageBase64,  
         id, 

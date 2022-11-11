@@ -89,7 +89,7 @@ const ProjectsForm = () => {
                         <InputForm
                             type="date"
                             name="due_date"
-                            dafaultvalue={id ? project.due_date : " "} 
+                            value={ values.due_date } 
                             onChange={ handleChange }
                             onBlur={ handleBlur } 
                             placeholder="Ingresa la fecha de expiracion" />

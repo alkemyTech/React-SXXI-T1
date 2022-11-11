@@ -5,7 +5,7 @@ import { FILE_SIZE } from 'Components/GlobalComponents/FormImageField/utilities/
 
 const FORMAT = ['image/png', 'image/jpg', 'image/jpeg'];
 
-export const activityValidationSchema = (
+export const projectsValidationSchema = (
     id
   ) => {
     const validationSchema = Yup.object().shape({
@@ -31,6 +31,7 @@ export const activityValidationSchema = (
     return validationSchema;
 }
 
+/*
 export const convertToBase64 = (image, setImage) => {
     const reader = new FileReader();
     
@@ -43,7 +44,7 @@ export const convertToBase64 = (image, setImage) => {
     reader.onerror = function (error) {
         console.log('Error: ', error);
     };
-}
+}*/
 
 export const Alert = ({icon, title, cancelText})=>{
     return Swal.fire({
