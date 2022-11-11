@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const SlideImage = styled.img`
     height: 180px;
+    border-radius: 1rem;
     @media screen and (min-width: 577px){
         height: 230px;
     }

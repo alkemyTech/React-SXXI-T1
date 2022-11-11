@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { privateRoutes, routes } from "./models/routes";
-import Home from "./Components/views/Home/Home";
+import Home from "./Components/views/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
 import NewsForm from "./Components/views/News/NewsForm";
