@@ -6,20 +6,23 @@ import { defaultDetailText } from "./utilities/detailSchema.util";
 const Detail = () => {
   const { dataDetail, loadingDetail } = useDetail();
 
-  if (loadingDetail)
+  if (loadingDetail) {
     return (
       <div>
         <SpinnerLoad />
       </div>
     );
+  } else if (!dataDetail) {
+    return <div>{defaultDetailText.errorLoadSection}</div>;
+  }
 
   return (
     <div className="my-5">
-      {Object.keys(dataDetail).length > 0 ? (
-        <ShowDetailData data={dataDetail} />
-      ) : (
-        <div>{defaultDetailText.errorLoadSection}</div>
-      )}
+      <ShowDetailData
+        title={dataDetail.title}
+        description={dataDetail.description}
+        responsibles={dataDetail.responsibles}
+      />
     </div>
   );
 };

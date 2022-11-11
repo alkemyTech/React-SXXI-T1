@@ -5,7 +5,7 @@ import { postDetail } from "../interceptor/postDetail.interceptor";
 export const useDetail = () => {
   const { id: idDetail } = useParams();
 
-  const [dataDetail, setDataDetail] = useState({});
+  const [dataDetail, setDataDetail] = useState(null);
   const [loadingDetail, setLoadingDetail] = useState(true);
 
   useEffect(() => {

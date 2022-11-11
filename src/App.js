@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import { privateRoutes, routes } from "./models/routes";
 import Home from "./Components/views/Home/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
-import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
 import NewsForm from "./Components/views/News/NewsForm";
 import UserForm from "./Components/views/Users/UsersForm";
@@ -20,11 +19,12 @@ import { Row } from "react-bootstrap";
 import { Animate } from "styled-components/animation.styled";
 import { GlobalStyle } from "styled-components/GlobalStyle.styled";
 import { windowSize } from "utilities/windowSize.util";
-import ContactUs from "Components/views/ContactUs/ContactUs";
+import Contact from "Components/views/Contact/Contact";
 import Detail from "Components/views/Activities/Detail/Detail";
 import OrganizationData from "Components/views/Private/Organization/OrganizationData/OrganizationData";
 import AuthGuard from "guard/auth.guard";
 import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes";
+import ActivitiesList from "Components/views/Activities/ActivitiesList";
 import { Donations } from "Components/views/Donations/Donations";
 import { Thanks } from "Components/views/Donations/Thanks";
 import { textForDonation } from "Components/views/Donations/utilities/donationSchema.util";
@@ -38,6 +38,11 @@ function App() {
         <Row>
           <RoutesNoMatch>
             <Route path={routes.HOME} exact element={<Home />} />
+            <Route
+              path={routes.ACTIVITIES}
+              exact
+              element={<ActivitiesList />}
+            />
             <Route path={routes.ACTIVITIESFORM} element={<ActivitiesForm />} />
             <Route path={routes.AUTHLOGINFORM} element={<LoginForm />} />
             <Route path={routes.AUTHREGISTERFORM} element={<RegisterForm />} />
@@ -45,7 +50,10 @@ function App() {
             <Route path={routes.NEWSFORM} element={<NewsForm />} />
             <Route path={routes.USERFORM} element={<UserForm />} />
             <Route path={routes.MEMBERSFORM} element={<MembersForm />} />
-            <Route path={routes.ORGANIZATIONDATA} element={<OrganizationData />} />
+            <Route
+              path={routes.ORGANIZATIONDATA}
+              element={<OrganizationData />}
+            />
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
@@ -53,7 +61,7 @@ function App() {
               path={routes.NEWSDETAIL}
               element={<NewsDetail title="Título de novedad" />}
             />
-            <Route path={routes.CONTACTUS} element={<ContactUs />} />
+            <Route path={routes.CONTACT} element={<Contact />} />
 
             <Route
               path={routes.DONATION}
