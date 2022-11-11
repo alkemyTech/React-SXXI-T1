@@ -4,15 +4,21 @@ import { useFormik } from "formik";
 
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 import { InputForm } from "styled-components/GlobalFormFields/InputForm.styled";
-import { LinkSchema } from "../utilities/schemas";
+import { SocialMediaLinkSchema } from "../utilities/schemas";
 import { Stack } from "react-bootstrap";
 
-const SocialMediaInput = ({ onAddLink, onRemoveLink, links }) => {
+const SocialMediaInput = ({
+  onAddLink,
+  onRemoveLink,
+  links,
+  isTouched,
+  error,
+}) => {
   const formik = useFormik({
     initialValues: {
       socialMediaLink: "",
     },
-    validationSchema: LinkSchema,
+    validationSchema: SocialMediaLinkSchema,
     onSubmit: (values, { resetForm, setFieldError }) => {
       const linkExists = links.some((link) => link === values.socialMediaLink);
       if (linkExists) {
@@ -23,6 +29,17 @@ const SocialMediaInput = ({ onAddLink, onRemoveLink, links }) => {
       }
     },
   });
+
+  let errorMessage;
+  if (formik.touched.socialMediaLink && formik.errors.socialMediaLink) {
+    errorMessage = (
+      <Form.Text className="text-danger">
+        {formik.errors.socialMediaLink}
+      </Form.Text>
+    );
+  } else if (isTouched && error) {
+    errorMessage = <Form.Text className="text-danger">{error}</Form.Text>;
+  }
 
   return (
     <div>
@@ -45,11 +62,7 @@ const SocialMediaInput = ({ onAddLink, onRemoveLink, links }) => {
             onClick={formik.submitForm}
           />
         </div>
-        {formik.touched.socialMediaLink && formik.errors.socialMediaLink && (
-          <Form.Text className="text-danger">
-            {formik.errors.socialMediaLink}
-          </Form.Text>
-        )}
+        {errorMessage}
       </Form.Group>
       <Stack className="mt-2" gap={2}>
         {links &&
