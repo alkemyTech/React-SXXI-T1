@@ -16,7 +16,7 @@ const ActivitiesForm = () => {
     <div className="container my-5">
         <div>
             <CustomTitle
-                title={id ? "Edita la activdad" : "Crea la actividad"} 
+                title={id ? "Edita la actividad" : "Crea la actividad"} 
                 justify="center"   
                 wrapTextClass="text-center" 
                 />

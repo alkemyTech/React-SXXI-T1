@@ -12,10 +12,10 @@ export const useActivitiesForm = () => {
   const [ imageBase64, setImageBase64 ] = useState("");
   const [ loading, setLoading ] = useState(false);
   const [ activity, setActivity ] = useState({
-        name: '',
-        image: '',
-        description: ''
-    });
+      name: '',
+      image: '',
+      description: ''
+  });
   const initialValues = {
       name: '',
       image: '',
@@ -40,7 +40,7 @@ export const useActivitiesForm = () => {
     },[id]);
 
   const backURL = '/backoffice';
-
+ 
   const onSubmit = async () => {
     const { name, description } = values
     const body = { name, description, image: imageBase64 }
@@ -50,41 +50,37 @@ export const useActivitiesForm = () => {
         ...body, 
         image: imageBase64 || await convertUrlToBase64(activity.image)
       }
-      Alert({ icon:'warning', 
+      const alert = await Alert({ icon:'warning', 
             title:'¿Seguro/a?', 
             cancelText: 'Cancelar' })
-      .then((res) => {
-          if (res.isConfirmed) {
-            setLoading(true);
-            api.put(`/activities/${id}`, bodyEdit)
-              .then((response)=> {
-                Alert({ icon: 'success', title: 'Operación éxitosa'})
-                  .then(() => navigate(backURL));
-            })
-            .catch(() => {
-              Alert({ icon: 'error', title: 'Ha ocurrido un error'});
-            });
+
+      if (alert.isConfirmed) {
+        setLoading(true);
+        const apiRes = await api.put(`/activities/${id}`, bodyEdit)
+        if(apiRes.data.success) {
+          setLoading(false);
+          await Alert({ icon: 'success', title: 'Operación éxitosa'})
+          navigate(backURL)
+        } else {
+          await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+        }
+      }
+       
+    } else {
+        const alertWarning = await Alert({ icon:'warning', 
+            title:'¿Segura/o?', 
+            cancelText: 'Cancelar' })
+        if(alertWarning.isConfirmed) {
+          setLoading(true);
+          const apiRes = await api.post(`/activities`, body)
+          if(apiRes.data.success) {
+            setLoading(false);
+            await Alert({ icon: 'success', title: 'Operación éxitosa'})
+            navigate(backURL)
+          } else {
+            await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
           }
-        })
-        setLoading(false);
-      } else {
-        Alert({ icon:'warning', 
-                title:'¿Segura/o?', 
-                cancelText: 'Cancelar' })
-        .then((res) => {
-          if (res.isConfirmed) {
-            setLoading(true);
-            api.post(`/activities`, body)
-            .then(()=> {
-              Alert({ icon: 'success', title: 'Operación éxitosa'})
-              .then(()=> navigate(backURL));
-            })
-            .catch(()=> {
-              Alert({ icon: 'error', title: 'Ha ocurrido un error'});
-            });
-          } 
-        })
-        setLoading(false);
+        }
       }
   }
 
