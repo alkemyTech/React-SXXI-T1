@@ -10,13 +10,6 @@ export const ContainerContactStyled = styled.div({
   maxWidth: "1200px",
 });
 
-export const TitleContactStyled = styled.h1({
-  display: "flex",
-  "@media(max-width: 430px)": {
-    fontSize: "1.3rem",
-  },
-});
-
 export const ContactFormStyled = styled(Form)`
   display: flex;
   flex-direction: column;

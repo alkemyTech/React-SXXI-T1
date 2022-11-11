@@ -2,23 +2,22 @@ import React from "react";
 import { useFormik } from "formik";
 import Form from "react-bootstrap/Form";
 
-import Input from "../components/Input";
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
-import { EditOrganizationSchema } from "../utilities/schemas";
-import SocialMediaInput from "../components/SocialMediaInput";
 import DescriptionEditor from "../components/DescriptionEditor";
 import FileInput from "../components/FileInput";
+import Input from "../components/Input";
+import SocialMediaInput from "../components/SocialMediaInput";
+import { EditMembersSchema } from "../utilities/schemas";
 
 const EditForm = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      logo: {},
-      shortDescription: "",
-      longDescription: "",
+      image: {},
+      description: "",
       socialMediaLinks: [],
     },
-    validationSchema: EditOrganizationSchema,
+    validationSchema: EditMembersSchema,
     onSubmit: (values) => {
       console.log(values);
       formik.resetForm();
@@ -39,13 +38,13 @@ const EditForm = () => {
     formik.setFieldValue("socialMediaLinks", updatedLinks);
   };
 
-  const logoChangeHandler = (event) => {
+  const imageChangeHandler = (event) => {
     const file = event.target.files[0];
-    formik.setFieldValue("logo", file);
+    formik.setFieldValue("image", file);
   }
 
-  const shortDescriptionChangeHandler = (data) => {
-    formik.setFieldValue("shortDescription", data);
+  const descriptionChangeHandler = (data) => {
+    formik.setFieldValue("description", data);
   };
 
   return (
@@ -61,35 +60,27 @@ const EditForm = () => {
         onChange={formik.handleChange}
       />
       <FileInput
-        label="Logo:"
-        filename={formik.values.logo.name}
-        name="logo"
-        btnText="Upload the logo"
-        isTouched={formik.touched.logo}
-        error={formik.errors.logo}
-        onChange={logoChangeHandler}
+        label="Image:"
+        filename={formik.values.image.name}
+        name="image"
+        btnText="Upload the image"
+        isTouched={formik.touched.image}
+        error={formik.errors.image}
+        onChange={imageChangeHandler}
       />
       <DescriptionEditor
-        label="Short Description:"
-        initialData={formik.initialValues.shortDescription}
-        isTouched={formik.touched.shortDescription}
-        error={formik.errors.shortDescription}
-        onChange={shortDescriptionChangeHandler}
-      />
-      <Input
-        value={formik.values.longDescription}
-        label="Long Description:"
-        type="text"
-        name="longDescription"
-        placeholder="Enter a long descripction"
-        isTouched={formik.touched.longDescription}
-        error={formik.errors.longDescription}
-        onChange={formik.handleChange}
+        label="Description:"
+        initialData={formik.initialValues.description}
+        isTouched={formik.touched.description}
+        error={formik.errors.description}
+        onChange={descriptionChangeHandler}
       />
       <SocialMediaInput
         onAddLink={addLinkHandler}
         onRemoveLink={removeLinkHandler}
         links={formik.values.socialMediaLinks}
+        isTouched={formik.touched.socialMediaLinks}
+        error={formik.errors.socialMediaLinks}
       />
       <CustomButton
         buttonClass="w-100"
