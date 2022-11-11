@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
 import  { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./ProjectForm.Styled";
@@ -17,13 +18,14 @@ const ProjectsForm = () => {
         cancel, 
         loading, 
         project,
-        id,
         formik,
         values,
         setImageBase64,
         setFieldValue
     } = useProjectsForms();
 
+    const { id } = useParams();
+    
     return (
         <div className="container my-5">
             <div>
@@ -80,7 +82,7 @@ const ProjectsForm = () => {
                     />
                 </Form.Group>
                 <Form.Group 
-                    className="mb-3" 
+                    className="mb-5" 
                     controlId="formBasicDate">
                     <ContainerInputError>
                         <FormLabel title="Selecciona la fecha de expiración:" />

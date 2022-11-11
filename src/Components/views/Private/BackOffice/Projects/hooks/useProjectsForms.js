@@ -67,11 +67,11 @@ export const useProjectsForms = () => {
                 setLoading(true);
                 const apiResponse = await api.put(`/projects/${id}`, bodyEdit)
                 if(apiResponse.data.success) {
-                setLoading(false);
-                await Alert({ icon: 'success', title: 'Operación éxitosa'})
-                navigate(backURL)
+                    setLoading(false);
+                    await Alert({ icon: 'success', title: 'Operación éxitosa'});
+                    navigate(backURL);
                 } else {
-                await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+                    await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
                 }
             }
         } else {
@@ -80,11 +80,11 @@ export const useProjectsForms = () => {
                 cancelText: 'Cancelar' })
             if(alertWarning.isConfirmed) {
               setLoading(true);
-              const apiResponse = await api.post(`/projects`, body)
+              const apiResponse = await api.post(`/projects`, body);
               if(apiResponse.data.success) {
                 setLoading(false);
-                await Alert({ icon: 'success', title: 'Operación éxitosa'})
-                navigate(backURL)
+                await Alert({ icon: 'success', title: 'Operación éxitosa'});
+                navigate(backURL);
               } else {
                 await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
               }
@@ -97,8 +97,9 @@ export const useProjectsForms = () => {
       if(image) {
           formik.setFieldValue('image', image);
           convertToBase64( image, setImageBase64 );
-      }
-      else formik.setFieldValue('image', '');
+      } else {
+        formik.setFieldValue('image', '');
+      } 
     }
  
     const validationSchema = activityValidationSchema(id);
@@ -133,11 +134,11 @@ export const useProjectsForms = () => {
         touched, 
         project,
         loading, 
+        formik,
         handleImage,  
         cancel,
         setImageBase64,  
         id, 
-        formik,
         setFieldValue 
     }
 
