@@ -8,11 +8,11 @@ export const routes = {
   DONATION: "/donar",
   HOME: "/",
   MEMBERSFORM: "/create-member",
+  NEWS: "/novedades",
   NEWSDETAIL: "/novedades/:id",
   NEWSFORM: "/create-news",
   ORGANIZATIONDATA: "/backoffice/organization",
   PROJECTFORM: "/create-project",
-  SLIDERSFORM: "/backoffice/create-slide",
   SCHOOLCAMPAIGN: "/school-campaign",
   TESTIMONIALSFORM: "/create-testimonials",
   THANKSDONATION: "/gracias",
@@ -20,9 +20,10 @@ export const routes = {
 };
 
 export const privateRoutes = {
+  BACKOFFICE: "backoffice/",
+  BACKHOME: "home",
   ACTIVITIESFORM: "activities",
   ACTIVITIESEDITFORM: "activities/:id",
-  BACKOFFICE: "backoffice",
   EDITMEMBERSFORM: "members/edit",
   CREATECATEGORY: "create-category",
   EDITCATEGORY: "edit-category/:id",

@@ -149,6 +149,7 @@ export const useSlidesForm = (idSlide) => {
     maxSlideOrder,
     idSlide
   );
+
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
 
   const { setFieldValue } = formik;

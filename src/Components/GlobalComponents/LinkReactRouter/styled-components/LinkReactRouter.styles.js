@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import {
+  dropShadow,
   inputTextCssStyle,
   responsiveDesign,
 } from "styled-components/App.styled";
@@ -19,6 +20,7 @@ const CustomLink = styled(Link)`
   background-color: ${({ background }) => backGroundColors(background)};
   color: ${({ color }) => colors(color)}!important;
   border: 1px solid ${({ color }) => borderColors(color)};
+  ${dropShadow}
 
   ${responsiveDesign.desktop} {
     width: 124px;

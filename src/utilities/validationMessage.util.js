@@ -32,6 +32,11 @@ export const validationMessages = {
   },
   description: {
     required: "El campo description es obligatorio",
-    fieldLength: "El campo description debe contener como maximo 255 caracteres",
+    fieldLength:
+      "El campo description debe contener como maximo 255 caracteres",
+  },
+  welcomeText: {
+    required: "El campo welcome es obligatorio",
+    fieldLength: "El campo welcome debe contener al menos 20 caracteres",
   },
 };
