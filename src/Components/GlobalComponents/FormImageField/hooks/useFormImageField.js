@@ -5,7 +5,7 @@ import {
 } from "../utilities/ImageFieldSchemas.util";
 import { useConvertImageToBase64 } from "./useConvertImageToBase64";
 
-export const useFormImageField = (setFieldValue, imageToSend) => {
+export const useFormImageField = (setFieldValue, setImageToSend, name) => {
   const { image, convertBase64, handleResetImage } = useConvertImageToBase64();
 
   const handleChangeFile = (event) => {
@@ -18,16 +18,16 @@ export const useFormImageField = (setFieldValue, imageToSend) => {
       if (!formats || !fileSize) handleResetImage();
       else convertBase64(file);
 
-      setFieldValue("image", file);
+      setFieldValue(name, file);
     } else {
-      setFieldValue("image", "");
+      setFieldValue(name, undefined);
     }
   };
 
   useEffect(() => {
-    if (image) imageToSend(image);
-    else imageToSend("");
-  }, [image, imageToSend]);
+    if (image) setImageToSend(image);
+    else setImageToSend(undefined);
+  }, [image]);
 
   return { image, handleChangeFile };
 };

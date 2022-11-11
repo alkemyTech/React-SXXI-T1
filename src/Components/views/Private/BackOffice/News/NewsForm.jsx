@@ -96,7 +96,7 @@ const NewsForm = () => {
                 touched={ touched }
                 name="image"
                 setFieldValue= { formik.setFieldValue }
-                imageToSend= { setImageBase64 }
+                setImageToSend= { setImageBase64 }
                 imageIsEdit= { news.image }
                     />
             </Form.Group>

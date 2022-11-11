@@ -5,10 +5,13 @@ export const InputImage = (props) => {
   const {
     formik: { errors, touched, setFieldValue },
     schemas: { name },
-    imageToSend,
+    setImageToSend,
     imageIsEdit,
     loading,
+    wrapInputClass,
+    wrapAllFormImageField,
   } = props;
+
   return (
     <>
       {loading ? (
@@ -19,8 +22,10 @@ export const InputImage = (props) => {
           touched={touched}
           name={name}
           setFieldValue={setFieldValue}
-          imageToSend={imageToSend}
-          imageIsEdit={imageIsEdit?.image}
+          setImageToSend={setImageToSend}
+          imageIsEdit={imageIsEdit.image}
+          wrapInputClass={wrapInputClass}
+          wrapAllFormImageField={wrapAllFormImageField}
         />
       )}
     </>

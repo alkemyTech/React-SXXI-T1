@@ -1,3 +1,4 @@
+import { InputImage } from "Components/GlobalComponents/FormInputsField/InputImage";
 import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
 import { Form } from "react-bootstrap";
 import { useSlidesForm } from "../../hooks/useSlidesForm";
@@ -6,7 +7,6 @@ import { ButtonSlideForm } from "../ButtonSlideForm/ButtonSlideForm";
 import { ModalSlide } from "../ModalSlide/ModalSlide";
 import { FirstColForm } from "../SlidesFormFields/FirstColForm";
 import { InputDescription } from "../SlidesFormFields/InputDescription";
-import { InputImage } from "../SlidesFormFields/InputImage";
 
 export const SlidesForm = ({ idSlide }) => {
   const {
@@ -57,7 +57,7 @@ export const SlidesForm = ({ idSlide }) => {
           <InputImage
             formik={formik}
             schemas={formFieldsSchema.image}
-            imageToSend={handleImageToSend}
+            setImageToSend={handleImageToSend}
             imageIsEdit={dataSliceToEdit}
             loading={loadOrderSlides}
           />

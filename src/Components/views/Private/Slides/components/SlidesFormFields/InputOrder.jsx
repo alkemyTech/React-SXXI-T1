@@ -1,7 +1,7 @@
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
+import { InputField } from "Components/GlobalComponents/FormInputsField/InputField";
 import { SpanFormError } from "Components/GlobalComponents/SpanFormError/SpanFormError";
 import { getIndexSlide } from "../../utilities/getIndexSlide.util";
-import { Inputs } from "./Inputs";
 
 export const InputOrder = (props) => {
   const {
@@ -25,14 +25,14 @@ export const InputOrder = (props) => {
     <>
       {idSlide ? (
         <CustomButton
-          buttonClass="col col-12"
+          buttonClass="col col-12 p-2"
           onClick={onClick}
           background="yellow"
           color="yellow"
           text={textToEditOrder}
         />
       ) : (
-        <Inputs
+        <InputField
           formik={props.formik}
           schemas={props.schemas}
           disabled={disabled}
