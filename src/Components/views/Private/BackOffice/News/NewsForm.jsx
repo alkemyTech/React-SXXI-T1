@@ -21,7 +21,8 @@ const NewsForm = () => {
         values,
         cancel,
         setImageBase64, 
-        setFieldValue 
+        setFieldValue,
+        categories 
     } = useNewsForm();
     
     const { id } = useParams();
@@ -58,14 +59,16 @@ const NewsForm = () => {
                 controlId="formBasicCategoryId">
                 <ContainerInputError>
                     <FormLabel title="Categoría de la novedad:" />
-                    <InputForm
-                        type="number"
-                        min="0"
-                        name="category_id"
-                        value={ values.category_id }
+                    <Form.Select 
+                        aria-label="Seleccionar la categoria"
+                        name="category_id" 
                         onChange={ handleChange }
                         onBlur={ handleBlur } 
-                        placeholder="Categoria" />
+                        >
+                        <option value="">Selecciona una categoria</option>
+                        {categories.map(category => <option value={category.id} key={category.id}>{category.name}</option>)}
+                    </Form.Select>
+                    
                     {errors.category_id && touched.category_id && <Errors>{errors.category_id}</Errors>}
                 </ContainerInputError>
             </Form.Group>

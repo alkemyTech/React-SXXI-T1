@@ -26,7 +26,7 @@ export const privateRoutes = {
   EDITCATEGORY: "edit-category/:id",
   EDITORGANIZATIONFORM: "organization/edit",
   NEWSFORM: "news",
-  NEWSEDITFORM: "news/id",
+  NEWSEDITFORM: "news/:id",
   SLIDES: "slides",
   SLIDESWITHID: "slides/:id",
   TESTIMONIALSFORM: "testimonials",

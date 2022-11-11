@@ -10,6 +10,7 @@ export const useNewsForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [ imageBase64, setImageBase64] = useState("");
+  const [ categories, setCategories ] = useState([]);
   const [ loading, setLoading ] = useState(false);
   const [ news, setNews ] = useState({
       name: '',
@@ -41,6 +42,20 @@ export const useNewsForm = () => {
         });    
       }
     },[id]);
+
+  useEffect(() => {
+    api.get(`/categories`)
+    .then(res => {
+      const { data } = res.data;
+      const categories = data.map(element => {
+        return {
+          id: element.id,
+          name: element.name
+        }
+      })
+      setCategories( categories);
+    })
+  }, []);
 
   const backURL = '/backoffice';
 
@@ -138,7 +153,8 @@ export const useNewsForm = () => {
     handleImage, 
     cancel,
     setImageBase64,
-    setFieldValue
+    setFieldValue,
+    categories
   } 
 
 }

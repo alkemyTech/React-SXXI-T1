@@ -13,9 +13,7 @@ export const newsValidationSchema = (
             .min(4, validationMessages.name.fieldLength)
             .required(validationMessages.name.required),
     content: Yup.string().required(validationMessages.content.required),
-    category_id: Yup.number().positive()
-              .integer()
-              .required(validationMessages.category_id.required),
+    category_id: Yup.string().required(validationMessages.category_id.required),
     image: Yup.mixed()
             .test("format", validationMessages.image.format, (value) => {
               return id
