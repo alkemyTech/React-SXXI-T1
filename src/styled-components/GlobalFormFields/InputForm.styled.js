@@ -18,7 +18,10 @@ const InputForm = styled(Form.Control)`
   background-color: ${themeColors.white};
   color: ${themeColors.black}!important;
   border: 1px solid ${({ color }) => borderColors(color)};
+  border-radius: 8px;
+  padding: 10px;
   transition: 0.5s;
+  height: ${({ height }) => height};
 
   ${dropShadow};
 

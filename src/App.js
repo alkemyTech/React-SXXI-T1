@@ -9,7 +9,6 @@ import { textForDonation } from "Components/views/Donations/utilities/donationSc
 import { RoutesNoMatch } from "./utilities/routesNoMatch.util";
 import Home from "./Components/views/Home/Home";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
-import CategoriesForm from "./Components/views/Categories/CategoriesForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
 import UserForm from "./Components/views/Users/UsersForm";
 import MembersForm from "./Components/views/Members/MembersForm";
@@ -20,14 +19,16 @@ import SchoolCampaign from "./Components/Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Components/Campaigns/Toys/ToysCampaign";
 import Footer from "./Components/GlobalComponents/Footer/Footer";
 import Header from "./Components/GlobalComponents/Header/Header";
-import ContactUs from "Components/views/ContactUs/ContactUs";
+import Contact from "Components/views/Contact/Contact";
 import Detail from "Components/views/Activities/Detail/Detail";
 import OrganizationData from "Components/views/Private/Organization/OrganizationData/OrganizationData";
 import AuthGuard from "guard/auth.guard";
 import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes";
+import ActivitiesList from "Components/views/Activities/ActivitiesList";
 import { Donations } from "Components/views/Donations/Donations";
 import { Thanks } from "Components/views/Donations/Thanks";
 import News from "Components/views/News/News";
+import CategoriesForm from "Components/views/Categories/CategoriesForm";
 
 function App() {
   return (
@@ -38,6 +39,11 @@ function App() {
         <Row>
           <RoutesNoMatch>
             <Route path={routes.HOME} exact element={<Home />} />
+            <Route
+              path={routes.ACTIVITIES}
+              exact
+              element={<ActivitiesList />}
+            />
             <Route path={routes.ACTIVITIESFORM} element={<ActivitiesForm />} />
             <Route path={routes.AUTHLOGINFORM} element={<LoginForm />} />
             <Route path={routes.AUTHREGISTERFORM} element={<RegisterForm />} />
@@ -57,13 +63,7 @@ function App() {
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
-            <Route path={routes.CONTACTUS} element={<ContactUs />} />
-
-            <Route
-              path={routes.DONATION}
-              element={<Donations text={textForDonation.text} />}
-            />
-            <Route path={routes.THANKSDONATION} element={<Thanks />} />
+            <Route path={routes.CONTACT} element={<Contact />} />
 
             <Route
               path={routes.DONATION}

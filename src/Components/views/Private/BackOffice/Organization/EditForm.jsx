@@ -2,12 +2,12 @@ import React from "react";
 import { useFormik } from "formik";
 import Form from "react-bootstrap/Form";
 
-import Input from "./components/Input";
+import Input from "../components/Input";
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
-import { EditOrganizationSchema } from "./utilities/schemas";
-import SocialMediaInput from "./components/SocialMediaInput";
-import DescriptionEditor from "./components/DescriptionEditor";
-import FileInput from "./components/FileInput";
+import { EditOrganizationSchema } from "../utilities/schemas";
+import SocialMediaInput from "../components/SocialMediaInput";
+import DescriptionEditor from "../components/DescriptionEditor";
+import FileInput from "../components/FileInput";
 
 const EditForm = () => {
   const formik = useFormik({
