@@ -3,8 +3,8 @@ import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
 import  { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./ProyectForm.Styled";
 import { useProyectsForms } from './hooks/useProyectsForms';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
+import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
 
 const ProyectsForm = () => {
     const {
@@ -18,87 +18,94 @@ const ProyectsForm = () => {
         loading, 
         project,
         id,
-        formik
+        formik,
+        values,
+        setImageBase64,
+        setFieldValue
     } = useProyectsForms();
 
     return (
         <div className="container my-5">
             <div>
-            <CustomTitle
-                title={id ? "Edita el Proyecto" : "Crea el proyecto"} 
-                justify="center"   
-                wrapTextClass="text-center" 
-                />
-        </div>
+                <CustomTitle
+                    title={ id ? "Edita el Proyecto" : "Crea el proyecto" } 
+                    justify="center"   
+                    wrapTextClass="text-center" 
+                    />
+            </div>
             <Form 
                 className="my-5"
-                onSubmit={handleSubmit} >
-            <Form.Group 
-                className="mb-3" 
-                controlId="formBasicName">
-                <ContainerInputError>
-                    <Form.Label className="mt-3">
-                        Nombre del proyecto:
-                    </Form.Label>
-                    <InputForm
-                        type="text"
-                        name="title"
-                        defaultValue={id ? project.title : " "}
-                        onChange={handleChange}
-                        onBlur={handleBlur} 
-                        placeholder="Titulo" />
-                    {errors.title && touched.title && <Errors>{errors.title}</Errors>}
-                </ContainerInputError>
-            </Form.Group>
-            <Form.Group 
-                className="mb-3" 
-                controlId="formBasicDescription">
-                <ContainerInputError>
-                    <Form.Label className="mt-3">Descripción del testimonio:</Form.Label>
-                    <CKEditor
-                        name="description"
-                        data={ project.description ? project.description : '' }
-                        editor={ ClassicEditor }
-                        config={{ placeholder: 'Descripción' }}
-                        onChange={ (event, editor) => { 
-                            formik.setFieldValue('description', editor.getData());
-                        }}
-                    />
-                    { errors.description && <Errors>{ errors.description }</Errors> }
-                </ContainerInputError>
-            </Form.Group>
-            <Form.Group 
-                className="mb-3" 
-                controlId="formBasicImage">
-                <ContainerInputError>
-                    <Form.Label>Imagen del proyecto:</Form.Label>
-                    <InputForm 
-                        accept="image/png, image/jpg, image/jpeg" 
-                        type='file' 
-                        name="image"
-                        onChange={ handleImage } 
-                        onBlur={handleBlur}
-                        placeholder="Ingresa la imagen..." 
-                        alt="imagen del proyecto"    
+                onSubmit={ handleSubmit } >
+                <Form.Group 
+                    className="mb-3" 
+                    controlId="formBasicName">
+                    <ContainerInputError>
+                        <Form.Label 
+                            className="mt-3">
+                            Nombre del proyecto:
+                        </Form.Label>
+                        <InputForm
+                            type="text"
+                            name="title"
+                            value={ values.title }
+                            onChange={ handleChange }
+                            onBlur={ handleBlur } 
+                            placeholder="Titulo" />
+                        {errors.title && touched.title && <Errors>{errors.title}</Errors>}
+                    </ContainerInputError>
+                </Form.Group>
+                <Form.Group 
+                    className="mb-3" 
+                    controlId="formBasicDescription">
+                    <ContainerInputError>
+                        <Form.Label 
+                            className="mt-3">
+                            Descripción del testimonio:
+                        </Form.Label>
+                        <FormCKEditorField 
+                            setFieldValue={ setFieldValue }
+                            errors={ errors}
+                            touched= {touched}
+                            name="description"
+                            placeholder="Descripcion"
+                            data = { project.description }
                         />
-                    { errors.image && touched.image && <Errors>{errors.image}</Errors> }
-                </ContainerInputError>
-            </Form.Group>
-            <Form.Group 
-                className="mb-3" 
-                controlId="formBasicDate">
-                <ContainerInputError>
-                    <Form.Label>Selecciona la fecha de expiración:</Form.Label>
-                    <InputForm
-                        type="date"
-                        name="due_date"
-                        dafaultvalue={id ? project.due_date : " "} 
-                        onChange={handleChange}
-                        onBlur={handleBlur} 
-                        placeholder="Ingresa la fecha de expiracion" />
-                    {errors.due_date && touched.due_date && <Errors>{errors.due_date}</Errors>}
-                </ContainerInputError>
-            </Form.Group>
+                    </ContainerInputError>
+                </Form.Group>
+                <Form.Group 
+                    className="mb-3" 
+                    controlId="formBasicImage">
+                    <Form.Label
+                        className="mt-3">
+                        Imagen del proyecto:
+                    </Form.Label>
+                    <FormImageField 
+                        errors={errors}
+                        touched={touched}
+                        name="image"
+                        setFieldValue= { formik.setFieldValue }
+                        imageToSend= { setImageBase64 }
+                        imageIsEdit= { project.image }
+                    />
+                </Form.Group>
+                <Form.Group 
+                    className="mb-3" 
+                    controlId="formBasicDate">
+                    <ContainerInputError>
+                        <Form.Label 
+                            className="mt-3">
+                            Selecciona la fecha de expiración:
+                        </Form.Label>
+                        <InputForm
+                            type="date"
+                            name="due_date"
+                            dafaultvalue={id ? project.due_date : " "} 
+                            onChange={ handleChange }
+                            onBlur={ handleBlur } 
+                            placeholder="Ingresa la fecha de expiracion" />
+                        {errors.due_date && touched.due_date && <Errors>{errors.due_date}</Errors>}
+                    </ContainerInputError>
+                </Form.Group>
             <div className="mb-5">
                 <ButtonConfirm 
                     className='mt-2 col-sm-5 col-md-2 mx-2' 
