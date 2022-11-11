@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from "react";
-import { convertToBase64, Alert, activityValidationSchema } from "../utilities/utilities";
+import { convertToBase64, Alert, newsValidationSchema } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 
@@ -98,7 +98,7 @@ export const useNewsForm = () => {
     }
   }
 
-  const validationSchema = activityValidationSchema(id);
+  const validationSchema = newsValidationSchema(id);
 
   const formik = useFormik({initialValues, onSubmit, validationSchema});
 

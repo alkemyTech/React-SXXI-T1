@@ -5,7 +5,7 @@ import { FILE_SIZE } from 'Components/GlobalComponents/FormImageField/utilities/
 
 const FORMAT = ['image/png', 'image/jpg', 'image/jpeg'];
 
-export const activityValidationSchema = (
+export const newsValidationSchema = (
   id
 ) => {
   const validationSchema = Yup.object().shape({

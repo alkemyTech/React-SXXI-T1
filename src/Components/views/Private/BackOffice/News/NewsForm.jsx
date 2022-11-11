@@ -3,9 +3,9 @@ import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
 import { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./NewsForm.Styled";
 import { useNewsForm } from './hooks/useNewsForm';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
+import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
+import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
 import FormLabel from './FormLabel';
 
 const NewsForm = () => {
@@ -18,8 +18,10 @@ const NewsForm = () => {
         news, 
         loading, 
         formik, 
-        handleImage, 
-        cancel 
+        values,
+        cancel,
+        setImageBase64, 
+        setFieldValue 
     } = useNewsForm();
     
     const { id } = useParams();
@@ -44,10 +46,10 @@ const NewsForm = () => {
                     <InputForm
                         type="text"
                         name="name"
-                        defaultValue={id? news.name : " "}
-                        onChange={handleChange}
-                        onBlur={handleBlur} 
-                        placeholder="Nombre" />
+                        value={ values.name }
+                        onChange={ handleChange }
+                        onBlur={ handleBlur } 
+                        placeholder="Titulo" />
                     {errors.name && touched.name && <Errors>{errors.name}</Errors>}
                 </ContainerInputError>
             </Form.Group>
@@ -60,11 +62,11 @@ const NewsForm = () => {
                         type="number"
                         min="0"
                         name="category_id"
-                        defaultValue={id? news.category_id : " "}
-                        onChange={handleChange}
-                        onBlur={handleBlur} 
-                        placeholder="Id" />
-                    {errors.name && touched.category_id && <Errors>{errors.category_id}</Errors>}
+                        value={ values.category_id }
+                        onChange={ handleChange }
+                        onBlur={ handleBlur } 
+                        placeholder="Categoria" />
+                    {errors.category_id && touched.category_id && <Errors>{errors.category_id}</Errors>}
                 </ContainerInputError>
             </Form.Group>
             <Form.Group 
@@ -72,34 +74,28 @@ const NewsForm = () => {
                 controlId="formBasicContent">
                 <ContainerInputError>
                     <FormLabel title="Contenido de la novedad:" />
-                    <CKEditor
+                    <FormCKEditorField 
+                        setFieldValue={ setFieldValue }
+                        errors={ errors }
+                        touched= {touched }
                         name="content"
-                        data={ news.content ? news.content : '' }
-                        editor={ ClassicEditor }
-                        config={{ placeholder: 'Descripción' }}
-                        onChange={ (event, editor) => { 
-                            formik.setFieldValue('content', editor.getData());
-                        }}
+                        placeholder="Contenido de la novedad"
+                        data = { news.content }
                     />
-                    { errors.content && <Errors>{ errors.content }</Errors> }
                 </ContainerInputError>
             </Form.Group>
             <Form.Group 
                 className="mb-5" 
                 controlId="formBasicImage">
-                <ContainerInputError>
-                    <FormLabel title="Selecciona una imagen:" />
-                    <InputForm 
-                        accept="image/png, image/jpeg, image/jpg" 
-                        type="file"
-                        name="image"
-                        onChange={handleImage}
-                        onBlur={handleBlur} 
-                        placeholder="Ingresa la imagen..." 
-                        alt="testimonial form image"
-                        />
-                    {errors.image && touched.image && <Errors>{errors.image}</Errors>}
-                </ContainerInputError>
+                <FormLabel title="Imagen de la actividad:" />
+                <FormImageField 
+                errors={ errors }
+                touched={ touched }
+                name="image"
+                setFieldValue= { formik.setFieldValue }
+                imageToSend= { setImageBase64 }
+                imageIsEdit= { news.image }
+                    />
             </Form.Group>
             <div className="mb-5">
                 <ButtonConfirm 
