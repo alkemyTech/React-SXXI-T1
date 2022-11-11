@@ -29,7 +29,7 @@ const ActivitiesForm = () => {
                 className="mb-3" 
                 controlId="formBasicName">
                 <ContainerInputError>
-                    <FormLabel title="Nombre de la actividad proyecto:" />
+                    <FormLabel title="Nombre de la actividad:" />
                     <InputForm
                         type="text"
                         name="name"
