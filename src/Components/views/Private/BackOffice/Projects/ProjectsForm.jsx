@@ -1,18 +1,17 @@
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
-import  { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./ProyectForm.Styled";
-import { useProyectsForms } from './hooks/useProyectsForms';
+import  { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./ProjectForm.Styled";
+import { useProjectsForms } from './hooks/useProjectsForms';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
 import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
 
-const ProyectsForm = () => {
+const ProjectsForm = () => {
     const {
         errors, 
         handleBlur, 
         handleSubmit, 
         handleChange, 
-        handleImage, 
         touched, 
         cancel, 
         loading, 
@@ -22,7 +21,7 @@ const ProyectsForm = () => {
         values,
         setImageBase64,
         setFieldValue
-    } = useProyectsForms();
+    } = useProjectsForms();
 
     return (
         <div className="container my-5">
@@ -132,4 +131,4 @@ const ProyectsForm = () => {
     );
 }
  
-export default ProyectsForm;
+export default ProjectsForm;
