@@ -2,9 +2,10 @@ import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from 'react';
-import {  Alert, projectsValidationSchema } from "../utilities/utilities";
+import {  projectsValidationSchema } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
+import Alert from "../../components/Alert";
 
 export const useProjectsForms = () => {
     const { id } = useParams();
@@ -44,10 +45,6 @@ export const useProjectsForms = () => {
     },[id]);
 
     const backURL =  '/backoffice';
-
-    const cancel = () => {
-        navigate(backURL);
-    }
 
     const onSubmit = async () => {
         const { title, description, due_date } = values;
@@ -94,17 +91,6 @@ export const useProjectsForms = () => {
             }
           }
       }
-
-      /*
-    function handleImage(e){
-      const image = e.target.files[0];
-      if(image) {
-          formik.setFieldValue('image', image);
-          convertToBase64( image, setImageBase64 );
-      } else {
-        formik.setFieldValue('image', '');
-      } 
-    }*/
  
     const validationSchema = projectsValidationSchema(id);
 
@@ -139,7 +125,6 @@ export const useProjectsForms = () => {
         project,
         loading, 
         formik,
-        cancel,
         setImageBase64,  
         id, 
         setFieldValue 

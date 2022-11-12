@@ -26,9 +26,6 @@ export const convertToBase64 = (image, setImage) => {
     reader.onloadend = function () {
         setImage(reader.result);
     };
-    reader.onerror = function (error) {
-        console.log('Error: ', error);
-    };
 }
 
 export const Alert = ({icon, title, cancelText})=>{

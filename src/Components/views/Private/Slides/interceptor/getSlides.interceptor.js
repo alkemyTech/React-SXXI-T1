@@ -1,4 +1,5 @@
-import { apiCall } from "Services/apiCall.service";
+import axios from "axios";
+import { api } from "Services/axiosService";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 import { slidesAdapter } from "../adapter/slides.adapter";
 
@@ -6,20 +7,25 @@ export const getSlides = async ({ id = null }) => {
   try {
     const restUrl = id ? "slides/" + id : "slides";
 
-    const getData = await apiCall({ restUrl });
+    const { data } = await api(restUrl, {
+      method: "get",
+    });
 
-    if (!getData || !getData.success)
+    if (!data || !data.success)
       throw new Error(
-        getData ? getData.message : requestMessagesSchema.problemExistTryLater
+        data ? data.message : requestMessagesSchema.problemExistTryLater
       );
 
     const dataAdapter = id
-      ? slidesAdapter(getData.data)
-      : getData.data.map((slice) => slidesAdapter(slice));
+      ? slidesAdapter(data.data)
+      : data.data.map((slice) => slidesAdapter(slice));
 
-    return { success: getData.success, data: dataAdapter };
+    return { success: data.success, data: dataAdapter };
   } catch (error) {
     console.error("error interceptor getSlides", error.message);
+    if (axios.isCancel(error)) {
+      return { message: "solicitud axios cancelada" };
+    }
     return { success: false, message: error.message };
   }
 };

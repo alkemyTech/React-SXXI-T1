@@ -14,7 +14,6 @@ const LoginForm = () => {
     },
     validationSchema: LoginSchema,
     onSubmit: (values) => {
-      console.log(values);
       formik.resetForm();
       localStorage.setItem("token", "tokenValueExample");
     },

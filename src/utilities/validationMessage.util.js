@@ -40,4 +40,14 @@ export const validationMessages = {
   due_date: {
     required: "El campo due_date es obligatorio",
   },
+  welcomeText: {
+    required: "El campo welcome es obligatorio",
+    fieldLength: "El campo welcome debe contener al menos 20 caracteres",
+  },
+  content: {
+    required: "El campo content es obligatorio",
+  },
+  category_id: {
+    required: "El campo category id es obligatorio",
+  }
 };

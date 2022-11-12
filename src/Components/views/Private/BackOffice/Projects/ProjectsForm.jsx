@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
-import  { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./ProjectForm.Styled";
+import  {  ButtonConfirm, ContainerInputError, Errors } from "./ProjectForm.Styled";
 import { useProjectsForms } from './hooks/useProjectsForms';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
 import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
 import FormLabel from './FormLabel';
+import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
+import { privateRoutes } from 'models/routes';
 
 const ProjectsForm = () => {
     const {
@@ -15,7 +17,6 @@ const ProjectsForm = () => {
         handleSubmit, 
         handleChange, 
         touched, 
-        cancel, 
         loading, 
         project,
         formik,
@@ -28,6 +29,12 @@ const ProjectsForm = () => {
     
     return (
         <div className="container my-5">
+            <div className="my-5">
+                <BackTo
+                    wrapLink="my-4"
+                    to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
+                />
+            </div>
             <div>
                 <CustomTitle
                     title={ id ? "Edita el Proyecto" : "Crea el proyecto" } 
@@ -77,7 +84,7 @@ const ProjectsForm = () => {
                         touched={touched}
                         name="image"
                         setFieldValue= { formik.setFieldValue }
-                        imageToSend= { setImageBase64 }
+                        setImageToSend= { setImageBase64 }
                         imageIsEdit= { project.image }
                     />
                 </Form.Group>
@@ -96,7 +103,7 @@ const ProjectsForm = () => {
                         {errors.due_date && touched.due_date && <Errors>{errors.due_date}</Errors>}
                     </ContainerInputError>
                 </Form.Group>
-            <div className="mb-5">
+            <div className="mb-5 d-grid gap-2 d-md-block mx-auto">
                 <ButtonConfirm 
                     className='mt-2 col-sm-5 col-md-2 mx-2' 
                     disabled={loading}
@@ -106,16 +113,6 @@ const ProjectsForm = () => {
                 >
                     Confirmar
                 </ButtonConfirm>
-                <ButtonCancel 
-                    className='col-sm-5 col-md-2 mx-2 mt-2' 
-                    disabled={loading}
-                    background='default' 
-                    color='success' 
-                    type='button'
-                    onClick={ cancel }
-                >
-                    Atrás
-                </ButtonCancel>
             </div>
         </Form>
         </div>

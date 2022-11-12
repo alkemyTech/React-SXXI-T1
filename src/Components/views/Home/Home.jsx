@@ -5,15 +5,21 @@ const Home = () => {
   return (
     <div>
       HOME
-      <Link to={`${privateRoutes.BACKOFFICE}/${privateRoutes.SLIDES}/1491`}>
+      <Link to={`${privateRoutes.BACKOFFICE}${privateRoutes.SLIDES}/1491`}>
         EDITAR slide
       </Link>
       <br />
-      <Link to={`${privateRoutes.BACKOFFICE}/${privateRoutes.SLIDES}/`}>
+      <Link to={`${privateRoutes.BACKOFFICE}${privateRoutes.SLIDES}`}>
         CREAR slide
       </Link>
       <br />
       <Link to={routes.DONATION}>Hacer donación</Link>
+      <br />
+      <Link to={routes.NEWS}>Novedades</Link>
+      <br />
+      <Link to={privateRoutes.BACKOFFICE + privateRoutes.BACKHOME}>
+        private backhome
+      </Link>
     </div>
   );
 };
