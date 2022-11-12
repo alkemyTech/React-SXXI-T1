@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 export const useConvertImageToBase64 = () => {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(undefined);
 
-  const handleResetImage = () => setImage("");
+  const handleResetImage = () => setImage(undefined);
 
   const convertBase64 = (file) => {
     const reader = new FileReader();
