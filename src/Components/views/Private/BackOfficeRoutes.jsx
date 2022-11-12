@@ -7,6 +7,7 @@ import CategoriesForm from "../Categories/CategoriesForm";
 import NewsForm from "./BackOffice/News/NewsForm";
 import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
+import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import PrivateHome from "./Home/PrivateHome";
 import PrivateSlides from "./Slides/PrivateSlides";
@@ -31,6 +32,12 @@ const BackOfficeRoutes = () => {
         element={<EditOrganizationForm />}
       />
       <Route 
+        path={privateRoutes.CREATECATEGORY} 
+        element={<CategoriesForm />} />
+      <Route 
+        path={privateRoutes.EDITCATEGORY} 
+        element={<CategoriesForm />} />
+      <Route
         path={privateRoutes.NEWSFORM} 
         element={<NewsForm />} />
       <Route 
@@ -46,6 +53,12 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.TESTIMONIALSEDITFORM}
         element={<TestimonialsForm />}
       />
+      <Route 
+        path={privateRoutes.CREATEPROJECT} 
+        element={<ProjectsForm />} />
+      <Route 
+        path={privateRoutes.EDITPROJECT} 
+        element={<ProjectsForm />} />
     </RoutesNoMatch>
   );
 };
