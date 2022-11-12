@@ -20,12 +20,12 @@ export const routes = {
 };
 
 export const privateRoutes = {
+  ACTIVITIESEDITFORM: "activities/:id",
+  ACTIVITIESFORM: "activities",
   BACKOFFICE: "backoffice/",
   BACKHOME: "home",
-  ACTIVITIESFORM: "activities",
-  ACTIVITIESEDITFORM: "activities/:id",
-  EDITMEMBERSFORM: "members/edit",
   CREATECATEGORY: "create-category",
+  EDITMEMBERSFORM: "members/edit",
   EDITCATEGORY: "edit-category/:id",
   EDITORGANIZATIONFORM: "organization/edit",
   SLIDES: "slides",
