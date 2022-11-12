@@ -6,7 +6,7 @@ export const NewsCard = ({ item }) => {
     <CustomCard
       cardInfo={item}
       to={`${routes.NEWS}/${item.id}`}
-      typeStyle="gold"
+      typeStyle="green"
       grid="oneColumn"
     />
   );

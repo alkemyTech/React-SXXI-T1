@@ -6,6 +6,7 @@ import { Animate } from "styled-components/animation.styled";
 import { useNews } from "./hooks/useNews";
 import { newsSchema } from "./utilities/newsSchema.util";
 import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection";
+import { routes } from "models/routes";
 
 const News = () => {
   const { loadingNews, newsData } = useNews();
@@ -20,7 +21,7 @@ const News = () => {
   return (
     <Animate>
       <HeadTitle title={newsSchema.title} />
-      <BackTo wrapLink="my-4 col col-7 col-sm-5 col-lg-4" to="home" />
+      <BackTo wrapLink="my-4" to={routes.HOME} text="Ir a inicio" />
 
       <div className="d-flex flex-row flex-wrap justify-content-center">
         {newsData.length > 0 ? (

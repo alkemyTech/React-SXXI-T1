@@ -14,8 +14,8 @@ export const routes = {
   ORGANIZATIONDATA: "/backoffice/organization",
   PROJECTFORM: "/create-project",
   SCHOOLCAMPAIGN: "/school-campaign",
-  THANKSDONATION: "/gracias",
   TESTIMONIALSFORM: "/create-testimonials",
+  THANKSDONATION: "/gracias",
   TOYSCAMPAIGN: "/toys-campaign",
 };
 
