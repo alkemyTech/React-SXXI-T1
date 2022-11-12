@@ -6,6 +6,9 @@ const Home = () => {
     <div>
       <CustomTitle title='Hola, bienvenida/o' height="5rem"/>
       <CarouselComponent />
+      <div>
+        Novedades
+      </div>
     </div>
   );
 };
