@@ -1,27 +1,31 @@
-import { apiCall } from "Services/apiCall.service";
+import axios from "axios";
+import { api } from "Services/axiosService";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 
-export const postSlides = async (data) => {
+export const postSlides = async (dataToSend) => {
   try {
     const restUrl = "slides";
 
-    const postData = await apiCall({
-      restUrl,
-      body: { ...data, user_id: null },
+    const { data } = await api(restUrl, {
       method: "post",
+      data: { ...dataToSend, user_id: null },
     });
 
-    if (!postData || !postData.success)
+    if (!data || !data.success)
       throw new Error(
-        postData ? postData.message : requestMessagesSchema.problemExistTryLater
+        data ? data.message : requestMessagesSchema.problemExistTryLater
       );
 
     return {
-      success: postData.success,
+      success: data.success,
       message: requestMessagesSchema.successfullyOperation,
     };
   } catch (error) {
     console.error("error interceptor postSlides", error.message);
+    if (axios.isCancel(error)) {
+      return { message: "solicitud axios cancelada" };
+    }
+
     return { success: false, message: error.message };
   }
 };
