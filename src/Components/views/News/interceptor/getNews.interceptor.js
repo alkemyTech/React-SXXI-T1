@@ -1,4 +1,5 @@
-import { apiCall } from "Services/apiCall.service";
+import axios from "axios";
+import { api } from "Services/axiosService";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 import { newsAdapter } from "../adapter/news.adapter";
 
@@ -6,18 +7,23 @@ export const getNews = async () => {
   try {
     const restUrl = "news";
 
-    const getData = await apiCall({ restUrl });
+    const { data } = await api(restUrl, {
+      method: "get",
+    });
 
-    if (!getData || !getData.success)
+    if (!data || !data.success)
       throw new Error(
-        getData ? getData.message : requestMessagesSchema.problemExistTryLater
+        data ? data.message : requestMessagesSchema.problemExistTryLater
       );
 
-    const dataAdapter = getData.data.map((item) => newsAdapter(item));
+    const dataAdapter = data.data.map((item) => newsAdapter(item));
 
-    return { success: getData.success, data: dataAdapter };
+    return { success: data.success, data: dataAdapter };
   } catch (error) {
     console.error("error interceptor getSlides", error.message);
+    if (axios.isCancel(error)) {
+      return { message: "solicitud axios cancelada" };
+    }
     return { success: false, message: error.message };
   }
 };

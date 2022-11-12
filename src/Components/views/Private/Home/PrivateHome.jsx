@@ -1,6 +1,7 @@
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 import { InputField } from "Components/GlobalComponents/FormInputsField/InputField";
+import { privateRoutes } from "models/routes";
 import { Form } from "react-bootstrap";
 import { Animate } from "styled-components/animation.styled";
 import { HomeFormImageField } from "./components/HomeFormImageField/HomeFormImageField";
@@ -19,7 +20,10 @@ const PrivateHome = () => {
 
   return (
     <Animate className="my-3">
-      <BackTo wrapLink="my-4 col col-7 col-sm-5 col-lg-4" />
+      <BackTo
+        wrapLink="my-4"
+        to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
+      />
       <Form className="my-3" onSubmit={handleSubmit}>
         <Form.Group className="my-3">
           <InputField

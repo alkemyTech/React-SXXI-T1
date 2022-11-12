@@ -2,9 +2,10 @@ import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from "react";
-import { convertToBase64, Alert, newsValidationSchema } from "../utilities/utilities";
+import { newsValidationSchema } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
+import Alert from "../../components/Alert";
 
 export const useNewsForm = () => {
   const { id } = useParams();
@@ -103,16 +104,6 @@ export const useNewsForm = () => {
     }
   }
 
-  function handleImage(e){
-    const image = e.target.files[0];
-    if(image) {
-      formik.setFieldValue('image', image);
-      convertToBase64( image, setImageBase64 );
-    } else {
-      formik.setFieldValue('image', '');
-    }
-  }
-
   const validationSchema = newsValidationSchema(id);
 
   const formik = useFormik({initialValues, onSubmit, validationSchema});
@@ -150,7 +141,6 @@ export const useNewsForm = () => {
     news, 
     loading, 
     formik, 
-    handleImage, 
     cancel,
     setImageBase64,
     setFieldValue,

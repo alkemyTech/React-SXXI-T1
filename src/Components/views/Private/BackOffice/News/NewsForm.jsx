@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
-import { ButtonCancel, ButtonConfirm, ContainerInputError, Errors } from "./NewsForm.Styled";
+import { ButtonConfirm, ContainerInputError, Errors } from "./NewsForm.Styled";
 import { useNewsForm } from './hooks/useNewsForm';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
 import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
-import FormLabel from './FormLabel';
+import FormLabel from '../components/FormLabel';
+import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
+import { privateRoutes } from 'models/routes';
 
 const NewsForm = () => {
     const { 
@@ -19,7 +21,6 @@ const NewsForm = () => {
         loading, 
         formik, 
         values,
-        cancel,
         setImageBase64, 
         setFieldValue,
         categories 
@@ -29,6 +30,12 @@ const NewsForm = () => {
 
   return(
     <div className="container my-5">
+        <div className="my-5">
+            <BackTo
+                wrapLink="my-4"
+                to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
+            />
+        </div>
         <div>
             <CustomTitle
                 title={id ? "Edita la novedad" : "Crea una novedad"} 
@@ -100,9 +107,9 @@ const NewsForm = () => {
                 imageIsEdit= { news.image }
                     />
             </Form.Group>
-            <div className="mb-5">
+            <div className="mb-5 d-grid gap-2 d-md-block mx-auto">
                 <ButtonConfirm 
-                    className='mt-2 col-sm-5 col-md-2 mx-2' 
+                    className='mt-2 col-sm-5 col-md-3 mx-2' 
                     disabled={loading}
                     background='success' 
                     color='success' 
@@ -110,16 +117,6 @@ const NewsForm = () => {
                 >
                     Confirmar
                 </ButtonConfirm>
-                <ButtonCancel 
-                    className='col-sm-5 col-md-2 mx-2 mt-2' 
-                    disabled={loading}
-                    background='default' 
-                    color='success' 
-                    type='button'
-                    onClick={ cancel }
-                >
-                    Volver
-                </ButtonCancel>
             </div>
           </Form>
         </div>
