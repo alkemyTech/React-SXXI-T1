@@ -4,6 +4,7 @@ import { RoutesNoMatch } from "utilities/routesNoMatch.util";
 
 import EditMembersForm from "./BackOffice/Members/EditForm";
 import CategoriesForm from "../Categories/CategoriesForm";
+import NewsForm from "./BackOffice/News/NewsForm";
 import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
@@ -29,6 +30,12 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
       />
+      <Route 
+        path={privateRoutes.NEWSFORM} 
+        element={<NewsForm />} />
+      <Route 
+        path={privateRoutes.NEWSEDITFORM} 
+        element={<NewsForm />} />
       <Route path={privateRoutes.SLIDES} element={<PrivateSlides />} />
       <Route path={privateRoutes.SLIDESWITHID} element={<PrivateSlides />} />
       <Route
