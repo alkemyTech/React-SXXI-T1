@@ -13,7 +13,7 @@ const PrivateSlides = () => {
       <div className=" my-3 d-flex col col-12">
         <CustomTitle title={idSlide ? titleSchema.edit : titleSchema.confirm} />
       </div>
-      <BackTo wrapLink="my-4 col col-7 col-sm-5 col-lg-4" />
+      <BackTo wrapLink="my-4" />
       <SlidesForm idSlide={idSlide} />
     </>
   );

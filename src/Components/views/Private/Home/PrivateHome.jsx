@@ -19,7 +19,7 @@ const PrivateHome = () => {
 
   return (
     <Animate className="my-3">
-      <BackTo wrapLink="my-4 col col-7 col-sm-5 col-lg-4" />
+      <BackTo wrapLink="my-4" />
       <Form className="my-3" onSubmit={handleSubmit}>
         <Form.Group className="my-3">
           <InputField

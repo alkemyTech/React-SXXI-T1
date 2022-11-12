@@ -14,24 +14,18 @@ export const routes = {
   ORGANIZATIONDATA: "/backoffice/organization",
   PROJECTFORM: "/create-project",
   SCHOOLCAMPAIGN: "/school-campaign",
-<<<<<<< HEAD
-=======
   TESTIMONIALSFORM: "/create-testimonials",
->>>>>>> 8828d402fdc8663a18b44d1ec59ed6796e96bdbb
   THANKSDONATION: "/gracias",
   TOYSCAMPAIGN: "/toys-campaign",
 };
 
 export const privateRoutes = {
-  BACKOFFICE: "backoffice/",
-  BACKHOME: "home",
-<<<<<<< HEAD
   ACTIVITIESFORM: "activities",
   ACTIVITIESEDITFORM: "activities/:id",
-=======
->>>>>>> 8828d402fdc8663a18b44d1ec59ed6796e96bdbb
-  EDITMEMBERSFORM: "members/edit",
+  BACKOFFICE: "backoffice/",
+  BACKHOME: "home",
   CREATECATEGORY: "create-category",
+  EDITMEMBERSFORM: "members/edit",
   EDITCATEGORY: "edit-category/:id",
   EDITORGANIZATIONFORM: "organization/edit",
   SLIDES: "slides",
