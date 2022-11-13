@@ -70,7 +70,7 @@ export const useNewsForm = () => {
         image: imageBase64 || await convertUrlToBase64(news.image)
       }
       const alertWarning = await Alert({ icon:'warning', 
-            title:'¿Estas segura/o de cancelar?', 
+            title:'¿Estas segura/o de enviarlo?', 
             cancelText: 'Cancelar' })
       
       if (alertWarning.isConfirmed) {

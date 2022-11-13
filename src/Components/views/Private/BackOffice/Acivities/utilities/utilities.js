@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-import Swal from 'sweetalert2';
 import { validationMessages } from 'utilities/validationMessage.util';
 import { FILE_SIZE } from 'Components/GlobalComponents/FormImageField/utilities/ImageFieldSchemas.util';
 
@@ -31,8 +30,6 @@ export const activityValidationSchema = (
   return validationSchema;
 }
 
-
-
 export const convertToBase64 = (image, setImage) => {
   const reader = new FileReader();
   
@@ -43,17 +40,3 @@ export const convertToBase64 = (image, setImage) => {
   reader.readAsDataURL(image);
   
 }
-
-
-export const Alert = ({icon, title, cancelText})=>{
-  return Swal.fire({
-          title: title,
-          icon: icon,
-          iconColor: '#0038FF',
-          showCancelButton: cancelText ? true : false,
-          confirmButtonColor: '#0038FF',
-          cancelButtonColor: cancelText ? '#FF0000' : false,
-          confirmButtonText: 'Aceptar',
-          cancelButtonText: cancelText ? 'Cancelar' : false
-      })
-  }

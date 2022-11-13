@@ -75,7 +75,6 @@ const NewsForm = () => {
                         <option value="">Selecciona una categoria</option>
                         {categories.map(category => <option value={category.id} key={category.id}>{category.name}</option>)}
                     </Form.Select>
-                    
                     {errors.category_id && touched.category_id && <Errors>{errors.category_id}</Errors>}
                 </ContainerInputError>
             </Form.Group>
