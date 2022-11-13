@@ -22,9 +22,7 @@ export const convertToBase64 = (image, setImage) => {
   reader.onloadend = function () {
       setImage(reader.result.toString());
   };
-  reader.onerror = function (error) {
-    console.log('Error: ', error);
-  };
+
 }
 
 

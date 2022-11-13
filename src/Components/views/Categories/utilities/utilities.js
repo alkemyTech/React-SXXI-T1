@@ -8,10 +8,14 @@ export const validationSchema = Yup.object().shape({
             .matches( nameRegExp, 'Debe ser un nombre valido' )
             .min( 4, 'El nombre debe contener almenos 4 caracteres' )
             .required( 'Campo obligatorio' ),
-    image: Yup.mixed().required( 'Campo obligatorio' )
+    image: Yup.mixed()
             .test( "fileFormat", "Solo formato .jpg y .png",
-                value => value && FORMAT.includes(value.type)
-            ),
+                value => {
+                    if(typeof value === 'string') {
+                        return true;
+                    }else return value && FORMAT.includes(value.type);
+                } )
+            .required( 'Campo obligatorio' ),
     description: Yup.string().required( 'Campo obligatorio' )
 });
 
@@ -20,10 +24,7 @@ export const convertToBase64 = (image, setImage) => {
     reader.readAsDataURL(image);
     
     reader.onloadend = function () {
-        setImage(reader.result.toString());
-    };
-    reader.onerror = function (error) {
-        console.log('Error: ', error);
+        setImage(reader.result);
     };
 }
 
