@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
-import {  projectsValidationSchema } from "../utilities/utilities";
-
+import {  usersValidationSchema } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
 import Alert from "../../components/Alert";
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
@@ -12,20 +11,22 @@ import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 export const useUsersForm = () => {
   const {id} = useParams();
   const navigate = useNavigate();
-  const [ imageBase64, setImageBase64] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState({
+  const [ imageBase64, setImageBase64 ] = useState("");
+  const [ loading, setLoading ] = useState(false);
+  const [ user, setUser ] = useState({
     name: '',
     email: '',
     role_id: '',
-    profile_image: ''
+    profile_image: '',
+    password: ''
   });
 
   const initialValues = {
     name: '',
     email: '',
     role_id: '',
-    profile_image: ''
+    profile_image: '',
+    password: ''
   };
 
   useEffect(()=>{
@@ -37,7 +38,8 @@ export const useUsersForm = () => {
             name: data.name,
             email: data.email,
             role_id: data.role_id,
-            profile_image: data.profile_image
+            profile_image: data.profile_image,
+            password: data.password
           });
         })
         .catch(() => {
@@ -49,15 +51,8 @@ export const useUsersForm = () => {
   const backURL =  '/backoffice';
 
   const onSubmit =async  () => {
-    const { name, email, role_id } = values;
-    const body = { name, email, role_id, image: imageBase64 };
-    const alertWarning = await Alert(
-      { 
-        icon:'warning', 
-        title:'¿Segura/o?', 
-        cancelText: 'Cancelar' 
-      }
-    );
+    const { name, email, role_id, password } = values;
+    const body = { name, email, role_id, password, image: imageBase64 };
 
     if(id) {
       const bodyEdit = { 
@@ -65,6 +60,10 @@ export const useUsersForm = () => {
         ...body, 
         image: imageBase64 || await convertUrlToBase64(user.image)
       }
+      const alertWarning = await Alert({ icon:'warning', 
+            title:'¿Estas segura/o de enviarlo?', 
+            cancelText: 'Cancelar' })
+
       if(alertWarning.isConfirmed) {
         setLoading(true);
         const apiResponse = await api.put(`/users/${id}`, bodyEdit)
@@ -77,41 +76,50 @@ export const useUsersForm = () => {
         }
       }
     } else {
-
-
-      Alert({ icon:'warning', 
-              title:'¿Estas segura/o de cancelar?', 
-              cancelText: 'Cancelar' })
-      .then((res) => {
-        if (res.isConfirmed) {
-          setLoading(true);
-          api.post(`/users`, body)
-          .then(()=> {
-            Alert({ icon: 'success', title: 'Operación éxitosa'})
-            .then(()=> navigate(backURL));
-          })
-          .catch(()=> {
-            Alert({ icon: 'error', title: 'Ha ocurrido un error'});
-          });
-        } 
-      })
-      setLoading(false);
+      const alertWarning = await Alert({ icon:'warning', 
+                title:'¿Estas segura/o de enviarlo?', 
+                cancelText: 'Cancelar' })
+      if(alertWarning.isConfirmed) {
+        setLoading(true);
+        const apiResponse = await api.post(`/users`, body)
+        if(apiResponse.data.success) {
+          setLoading(false);
+          await Alert({ icon: 'success', title: 'Operación éxitosa'})
+          navigate(backURL)
+        } else {
+          await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+        }
+      }
     }
   }
 
-  function handleImage(e){
-    const image = e.target.files[0];
-    if(image) {
-      formik.setFieldValue('image', image);
-      convertToBase64( image, setImageBase64 );
-    } else {
-      formik.setFieldValue('image', '');
-    }
-  }
+  const validationSchema = usersValidationSchema(id);
   
   const formik = useFormik({initialValues, onSubmit, validationSchema});
 
-  const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
+  const {
+    values, 
+    errors, 
+    handleBlur, 
+    handleSubmit, 
+    handleChange, 
+    touched,
+    setFieldValue
+  } = formik;
+
+  useEffect(() => {
+    if (Object.keys(user).length > 0) {
+      setFieldValue("name", user.name);
+      setFieldValue("email", user.email);
+      setFieldValue("role_id", user.role_id);
+      setFieldValue("profile_image", user.profile_image);
+      setFieldValue("password", user.password);
+    }
+  }, [user, setFieldValue]);
+
+  const cancel = () => {
+    navigate(backURL);
+  }
 
   return {
     values, 
@@ -123,8 +131,9 @@ export const useUsersForm = () => {
     user, 
     loading, 
     formik, 
-    handleImage, 
-    cancel
+    cancel,
+    setImageBase64,
+    setFieldValue
   } 
 
 }

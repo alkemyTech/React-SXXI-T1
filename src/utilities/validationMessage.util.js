@@ -43,6 +43,10 @@ export const validationMessages = {
     format: "El campo phone debe tener un formato de teléfono válido",
     fieldLength: "El campo phone debe contener al menos 8 digitos",
   },
+  password: {
+    required: "El campo password es obligatorio",
+    fieldLength: "El campo password debe contener al menos 8 caracteres",
+  },
   profile_photo: {
     required: "El campo imagen de perfil es obligatorio",
     format: "El formato debe ser png, jpg o jpeg",

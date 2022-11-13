@@ -27,7 +27,9 @@ export const usersValidationSchema = (
               (value) =>
                 id ? value : value && value.size <= FILE_SIZE
             )
-            .required(validationMessages.image.required)
+            .required(validationMessages.image.required),
+    password: Yup.string().min(8, validationMessages.password.fieldLength)
+            .required(validationMessages.password.required),
   });
 
   return validationSchema;

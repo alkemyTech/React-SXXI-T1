@@ -118,7 +118,7 @@ const NewsForm = () => {
                 </ButtonConfirm>
             </div>
           </Form>
-        </div>
+    </div>
   )
 }
 
