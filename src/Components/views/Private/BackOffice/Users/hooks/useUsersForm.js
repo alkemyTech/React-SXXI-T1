@@ -7,11 +7,11 @@ import { api } from 'Services/axiosService';
 import Alert from "../../components/Alert";
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 
-
 export const useUsersForm = () => {
   const {id} = useParams();
   const navigate = useNavigate();
   const [ imageBase64, setImageBase64 ] = useState("");
+  const [ roles, setRoles ] = useState([]);
   const [ loading, setLoading ] = useState(false);
   const [ user, setUser ] = useState({
     name: '',
@@ -48,9 +48,23 @@ export const useUsersForm = () => {
       }
   },[id]);
 
+  useEffect(() => {
+    api.get(`/roles`)
+    .then(res => {
+      const { data } = res.data;
+      const roles = data.map(element => {
+        return {
+          id: element.id,
+          name: element.name
+        }
+      })
+      setRoles( roles);
+    })
+  }, []);
+
   const backURL =  '/backoffice';
 
-  const onSubmit =async  () => {
+  const onSubmit = async  () => {
     const { name, email, role_id, password } = values;
     const body = { name, email, role_id, password, image: imageBase64 };
 
@@ -79,6 +93,7 @@ export const useUsersForm = () => {
       const alertWarning = await Alert({ icon:'warning', 
                 title:'¿Estas segura/o de enviarlo?', 
                 cancelText: 'Cancelar' })
+
       if(alertWarning.isConfirmed) {
         setLoading(true);
         const apiResponse = await api.post(`/users`, body)
@@ -133,7 +148,8 @@ export const useUsersForm = () => {
     formik, 
     cancel,
     setImageBase64,
-    setFieldValue
+    setFieldValue,
+    roles
   } 
 
 }

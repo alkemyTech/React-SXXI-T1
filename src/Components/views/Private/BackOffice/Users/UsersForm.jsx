@@ -21,7 +21,8 @@ const UsersForm = () => {
     formik, 
     values,
     setImageBase64, 
-    setFieldValue
+    setFieldValue,
+    roles
   } = useUsersForm();
 
   const { id } = useParams();
@@ -55,7 +56,7 @@ const UsersForm = () => {
                         value={ values.name }
                         onChange={ handleChange }
                         onBlur={ handleBlur } 
-                        placeholder="Titulo" />
+                        placeholder="Nombre" />
                     {errors.name && touched.name && <Errors>{errors.name}</Errors>}
                 </ContainerInputError>
             </Form.Group>
@@ -65,13 +66,13 @@ const UsersForm = () => {
                 <ContainerInputError>
                     <FormLabel title="Rol del usuario:" />
                     <Form.Select 
-                        aria-label="Seleccionar el rol"
+                        aria-label="Seleccionar un rol"
                         name="role_id" 
                         onChange={ handleChange }
                         onBlur={ handleBlur } 
                         >
-                        <option value="1" key={1}>Administrador</option>
-                        <option value="2" key={2}>Regular</option>
+                        <option value="">Selecciona un rol</option>
+                        {roles.map(rol => <option value={rol.id} key={rol.id}>{rol.name}</option>)}
                     </Form.Select>
                     {errors.role_id && touched.role_id && <Errors>{errors.role_id}</Errors>}
                 </ContainerInputError>
@@ -100,7 +101,7 @@ const UsersForm = () => {
                         value={ values.email }
                         onChange={ handleChange }
                         onBlur={ handleBlur } 
-                        placeholder="Titulo" />
+                        placeholder="Email" />
                     {errors.email && touched.email && <Errors>{errors.email}</Errors>}
                 </ContainerInputError>
             </Form.Group>

@@ -63,6 +63,7 @@ export const useNewsForm = () => {
   const onSubmit = async () => {
     const { name, content, category_id } = values;
     const body = { name, content, category_id, image: imageBase64 }
+
     if(id) {
       const bodyEdit = { 
         ...news, 
@@ -84,7 +85,6 @@ export const useNewsForm = () => {
           await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
         }
       }
-
     } else {
       const alertWarning = await Alert({ icon:'warning', 
                 title:'¿Estas segura/o de enviarlo?', 
