@@ -12,12 +12,11 @@ const ActivitiesForm = () => {
             setInitialValues({...initialValues, name: e.target.value})
         } if(e.target.name === 'description'){
             setInitialValues({...initialValues, description: e.target.value})
-        }
+        } 
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(initialValues);
     }
     
     return (

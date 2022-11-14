@@ -54,7 +54,7 @@ const typography = {
 };
 
 const titleCssStyle = css`
-  color: ${themeColors.black} !important;
+  color: ${themeColors.black};
   ${typography.mobileTitle()}
 
   ${responsiveDesign.desktop} {
@@ -63,7 +63,7 @@ const titleCssStyle = css`
 `;
 
 const subtitleCssStyle = css`
-  color: ${themeColors.black} !important;
+  color: ${themeColors.black};
   ${typography.mobileSsubTitle()}
   line-height: 30px !important;
 
@@ -73,7 +73,7 @@ const subtitleCssStyle = css`
 `;
 
 const inputTextCssStyle = css`
-  color: ${themeColors.black} !important;
+  color: ${themeColors.black};
   ${typography.mobileInputText()}
 
   ${responsiveDesign.desktop} {
@@ -82,7 +82,7 @@ const inputTextCssStyle = css`
 `;
 
 const smallTextCssStyle = css`
-  color: ${themeColors.black} !important;
+  color: ${themeColors.black};
   ${typography.mobileSmallText()};
 
   ${responsiveDesign.desktop} {

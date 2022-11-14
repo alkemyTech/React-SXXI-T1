@@ -23,12 +23,31 @@ export const validationMessages = {
   name: {
     required: "El campo name es obligatorio",
     fieldLength: "El campo name debe contener al menos 4 caracteres",
+    format: "El campo name solo puede contener letras",
   },
   order: {
     required: "El campo order es obligatorio",
     fieldLength: "El campo order debe contener un número mayor que ",
+    dontEdit: "No puedes modificar este campo",
   },
   description: {
     required: "El campo description es obligatorio",
+    fieldLength: "El campo description debe contener como maximo 255 caracteres",
   },
+  title: {
+    required: "El campo title es obligatorio",
+  },
+  due_date: {
+    required: "El campo due_date es obligatorio",
+  },
+  welcomeText: {
+    required: "El campo welcome es obligatorio",
+    fieldLength: "El campo welcome debe contener al menos 20 caracteres",
+  },
+  content: {
+    required: "El campo content es obligatorio",
+  },
+  category_id: {
+    required: "El campo category id es obligatorio",
+  }
 };

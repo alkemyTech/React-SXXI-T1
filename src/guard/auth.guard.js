@@ -15,7 +15,12 @@ const AuthGuard = () => {
     }, 500);
   }, []);
 
-  if (authLoading) return <SpinnerLoad />;
+  if (authLoading)
+    return (
+      <div>
+        <SpinnerLoad />
+      </div>
+    );
 
   return isAuth ? <Outlet /> : <Navigate replace to={routes.HOME} />;
 };
