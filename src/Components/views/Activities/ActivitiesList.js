@@ -1,15 +1,17 @@
 import React from "react";
-import { Card } from "react-bootstrap";
-import "../CardListStyles.css";
-import { Link } from "react-router-dom";
 
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
+import { CustomCard } from "Components/GlobalComponents/CustomCard/CustomCard";
+import { routes } from "models/routes";
 
 const ActivitiesList = () => {
   const activitiesMock = [
-    { id: 1, name: "Titulo de prueba", description: "Descripcion de prueba" },
-    { id: 2, name: "Titulo de prueba", description: "Descripcion de prueba" },
-    { id: 3, name: "Titulo de prueba", description: "Descripcion de prueba" },
+    { id: 1, name: "Titulo de prueba", content: "Descripcion de prueba" },
+    { id: 2, name: "Titulo de prueba", content: "Descripcion de prueba" },
+    { id: 3, name: "Titulo de prueba", content: "Descripcion de prueba" },
+    { id: 4, name: "Titulo de prueba", content: "Descripcion de prueba" },
+    { id: 5, name: "Titulo de prueba", content: "Descripcion de prueba" },
+    { id: 6, name: "Titulo de prueba", content: "Descripcion de prueba" },
   ];
 
   return (
@@ -18,19 +20,17 @@ const ActivitiesList = () => {
         wrapTitleClass="d-block h-auto"
         title="Listado Actividades"
       />
-      <ul className="d-flex justify-content-around gap-2">
+      <div className="d-flex flex-row flex-wrap justify-content-center">
         {activitiesMock.map((activity) => (
-          <Card key={activity.id}>
-            <Card.Body>
-              <Card.Title>{activity.name}</Card.Title>
-              <Card.Text>{activity.description}</Card.Text>
-              <Card.Link as={Link} to={`/actividades/${activity.id}`}>
-                Ver Actividad
-              </Card.Link>
-            </Card.Body>
-          </Card>
+          <div className="col col-12 col-sm-6 col-lg-4 mb-3">
+            <CustomCard
+              cardInfo={activity}
+              to={`${routes.ACTIVITIES}/${activity.id}`}
+              grid="oneColumn"
+            />
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
