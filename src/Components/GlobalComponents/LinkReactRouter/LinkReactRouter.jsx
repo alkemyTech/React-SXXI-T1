@@ -5,6 +5,7 @@ export const LinkReactRouter = ({
   to,
   text,
   color = "default",
+  border = undefined,
   background = "default",
   icon = "",
   wrapLink = "",
@@ -18,6 +19,7 @@ export const LinkReactRouter = ({
         background={background}
         padding={padding}
         to={to}
+        border={border}
       >
         {icon} {text}
       </CustomLink>

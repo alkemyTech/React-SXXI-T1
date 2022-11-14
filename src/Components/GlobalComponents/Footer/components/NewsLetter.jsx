@@ -18,7 +18,7 @@ export const NewsLetter = ({ handleNewsLetter }) => {
   } = useNewsLetter(handleNewsLetter);
 
   return (
-    <FormNewsLetter className="col col-12 col-sm-8" onSubmit={handleSubmit}>
+    <FormNewsLetter className="col col-12" onSubmit={handleSubmit}>
       <TextSubscribeNewsLetter>
         {textSubscribtion.subNewsLetterText}
       </TextSubscribeNewsLetter>
