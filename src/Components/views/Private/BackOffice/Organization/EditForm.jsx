@@ -20,7 +20,6 @@ const EditForm = () => {
     },
     validationSchema: EditOrganizationSchema,
     onSubmit: (values) => {
-      console.log(values);
       formik.resetForm();
       localStorage.setItem("token", "tokenValueExample");
     },

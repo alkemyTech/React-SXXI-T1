@@ -15,7 +15,6 @@ const RegisterForm = () => {
     },
     validationSchema: RegisterSchema,
     onSubmit: (values) => {
-      console.log(values);
       formik.resetForm();
       localStorage.setItem("token", "tokenValueExample");
     },
