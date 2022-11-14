@@ -29,6 +29,7 @@ import { Donations } from "Components/views/Donations/Donations";
 import { Thanks } from "Components/views/Donations/Thanks";
 import News from "Components/views/News/News";
 import CategoriesForm from "Components/views/Categories/CategoriesForm";
+import About from "Components/views/About/About";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Row>
           <RoutesNoMatch>
             <Route path={routes.HOME} exact element={<Home />} />
+            <Route path={routes.ABOUT} element={<About />} />
             <Route
               path={routes.ACTIVITIES}
               exact
