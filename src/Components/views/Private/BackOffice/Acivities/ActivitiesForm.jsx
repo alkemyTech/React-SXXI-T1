@@ -65,7 +65,7 @@ const ActivitiesForm = () => {
                     touched={touched}
                     name="image"
                     setFieldValue= { formik.setFieldValue }
-                    imageToSend= { setImageBase64 }
+                    setImageToSend= { setImageBase64 }
                     imageIsEdit= { activity.image }
                 />
             </Form.Group>
