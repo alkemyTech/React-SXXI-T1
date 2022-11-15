@@ -1,7 +1,7 @@
 import { NewsLetter } from "./components/NewsLetter";
 import { WrapFooter } from "./styled-components/WrapFooter.styled";
-import { useShowNewsLetter } from "./hooks/useShowNewsLetter";
-import { Col, Row } from "react-bootstrap";
+
+import { Col, Collapse, Row } from "react-bootstrap";
 import { NavFooter } from "./components/NavFooter/NavFooter";
 import { publicNavItems } from "utilities/navitems/navItems.util";
 import { FooterLogo } from "./components/FooterLogo/FooterLogo";
@@ -10,8 +10,8 @@ import { useFooter } from "./hooks/useFooter";
 import { FooterDataLoading } from "./components/FooterDataLoading/FooterDataLoading";
 
 const Footer = () => {
-  const { handleNewsLetter, newsLetter } = useShowNewsLetter();
-  const { contactData, loadingData } = useFooter();
+  const { contactData, loadingData, handleNewsLetter, newsLetter } =
+    useFooter();
 
   return (
     <WrapFooter className="py-3">
@@ -24,7 +24,7 @@ const Footer = () => {
       </Row>
 
       <Row className="col col-12 p-0 my-3 mx-0 d-flex flex-wrap flex-sm-nowrap justify-content-evenly align-items-center">
-        <Col className="d-none d-sm-flex flex-column align-items-center justify-content-center col-12 col-sm-2 col-md-2">
+        <Col className="d-none d-sm-flex flex-column align-items-center justify-content-center col-12 col-sm-3 col-md-2">
           <FooterDataLoading loading={loadingData}>
             <FooterLogo
               logo={contactData?.data?.logo}
@@ -33,15 +33,18 @@ const Footer = () => {
           </FooterDataLoading>
         </Col>
 
-        {newsLetter && (
+        <Collapse in={!newsLetter} dimension="width">
           <Col className="col col-12 col-sm-6 col-md-5 ">
             <FooterDataLoading loading={loadingData}>
-              <NewsLetter handleNewsLetter={handleNewsLetter} />
+              <NewsLetter
+                handleNewsLetter={handleNewsLetter}
+                newsLetter={newsLetter}
+              />
             </FooterDataLoading>
           </Col>
-        )}
+        </Collapse>
 
-        <Col className="d-flex flex-column align-items-center justify-content-center d-sm-none col-5">
+        <Col className="d-flex flex-column align-items-center justify-content-center d-sm-none col-5 p-1">
           <FooterDataLoading loading={loadingData}>
             <FooterLogo
               logo={contactData?.data?.logo}
