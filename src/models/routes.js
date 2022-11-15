@@ -36,4 +36,6 @@ export const privateRoutes = {
   SLIDESWITHID: "slides/:id",
   TESTIMONIALSFORM: "testimonials",
   TESTIMONIALSEDITFORM: "testimonials/:id",
+  USERSFORM: "users",
+  USERSEDITFORM: "users/:id"
 };
