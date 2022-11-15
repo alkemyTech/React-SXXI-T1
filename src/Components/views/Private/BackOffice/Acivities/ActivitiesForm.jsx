@@ -6,9 +6,9 @@ import { useActivitiesForm } from "./hooks/useActivitiesForm";
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
 import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
-import FormLabel from './FormLabel';
 import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
 import { privateRoutes } from 'models/routes';
+import FormLabel from '../components/FormLabel';
 
 const ActivitiesForm = () => {
 
@@ -57,8 +57,8 @@ const ActivitiesForm = () => {
                         type="text"
                         name="name"
                         value={ values.name}
-                        onChange={handleChange}
-                        onBlur={handleBlur} 
+                        onChange={ handleChange }
+                        onBlur={ handleBlur } 
                         placeholder="Nombre" />
                     {errors.name && touched.name && <Errors>{errors.name}</Errors>}
                 </ContainerInputError>
@@ -73,7 +73,7 @@ const ActivitiesForm = () => {
                         errors={ errors}
                         touched= {touched}
                         name="description"
-                        placeholder="Descripcion"
+                        placeholder="Descripcion de la actividad"
                         data = { activity.description }
                     />
                 </ContainerInputError>
