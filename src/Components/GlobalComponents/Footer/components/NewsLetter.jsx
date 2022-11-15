@@ -1,6 +1,5 @@
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 import { SpanFormError } from "Components/GlobalComponents/SpanFormError/SpanFormError";
-import { Collapse } from "react-bootstrap";
 import { useNewsLetter } from "../hooks/useNewsLetter";
 import {
   FormGroup,
@@ -13,7 +12,7 @@ import {
   textSubscribtion,
 } from "../utilities/newsLetterSchemas.util";
 
-export const NewsLetter = ({ handleNewsLetter, newsLetter }) => {
+export const NewsLetter = ({ handleNewsLetter }) => {
   const {
     formik: { handleSubmit, values, handleChange, handleBlur, errors, touched },
   } = useNewsLetter(handleNewsLetter);

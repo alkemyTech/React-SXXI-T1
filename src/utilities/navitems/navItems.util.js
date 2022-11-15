@@ -6,7 +6,7 @@ const publicNavItems = [
   { text: "Novedades", to: routes.NEWS },
   { text: "Testimonios", to: routes.HOME },
   { text: "Contacto", to: routes.CONTACT },
-  { text: "Contribuye", to: routes.HOME },
+  { text: "Contribuye", to: routes.DONATION },
 ];
 
 export { publicNavItems };
