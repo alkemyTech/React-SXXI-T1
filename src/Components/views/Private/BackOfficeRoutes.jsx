@@ -11,11 +11,13 @@ import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import PrivateHome from "./Home/PrivateHome";
 import PrivateSlides from "./Slides/PrivateSlides";
+import Dashboard from "./AdminDashboard/Dashboard";
 
 const BackOfficeRoutes = () => {
   return (
     <RoutesNoMatch>
       <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
+      <Route path={privateRoutes.BACKOFFICE} element={<Dashboard />} />
       <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
       <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
       <Route path={privateRoutes.ACTIVITIESFORM} element={<ActivitiesForm />} />

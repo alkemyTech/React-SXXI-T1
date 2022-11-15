@@ -29,14 +29,15 @@ import { Donations } from "Components/views/Donations/Donations";
 import { Thanks } from "Components/views/Donations/Thanks";
 import News from "Components/views/News/News";
 import CategoriesForm from "Components/views/Categories/CategoriesForm";
+import HeaderBackOffice from "Components/views/Private/Header/HeaderBackOffice";
 
 function App() {
   return (
     <>
       <GlobalStyle windowSize={windowSize()} />
       <Animate className="col-with-animate">
-        <Header />
         <Row>
+          <Header />
           <RoutesNoMatch>
             <Route path={routes.HOME} exact element={<Home />} />
             <Route
@@ -70,7 +71,12 @@ function App() {
               element={<Donations text={textForDonation.text} />}
             />
             <Route path={routes.THANKSDONATION} element={<Thanks />} />
-
+          </RoutesNoMatch>
+          <Footer />
+        </Row>
+        <Row>
+          <HeaderBackOffice />
+          <RoutesNoMatch>
             <Route element={<AuthGuard />}>
               <Route
                 path={`${privateRoutes.BACKOFFICE}/*`}
@@ -79,7 +85,6 @@ function App() {
             </Route>
           </RoutesNoMatch>
         </Row>
-        <Footer />
       </Animate>
     </>
   );

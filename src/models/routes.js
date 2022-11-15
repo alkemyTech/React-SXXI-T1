@@ -22,7 +22,7 @@ export const routes = {
 export const privateRoutes = {
   ACTIVITIESEDITFORM: "activities/:id",
   ACTIVITIESFORM: "activities",
-  BACKOFFICE: "backoffice/",
+  BACKOFFICE: "backoffice",
   BACKHOME: "home",
   CREATECATEGORY: "create-category",
   CREATEPROJECT: "projects",
