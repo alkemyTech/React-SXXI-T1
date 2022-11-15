@@ -4,17 +4,17 @@ import { SlideTitle, SlideDescription, SlideImage } from './CarouselStyled/Carou
 import { api } from "Services/axiosService";
 import Swal from "sweetalert2";
 
-export default function CarouselComponent(){
+export default function CarouselComponent({endPoint, content}){
     const [slides, setSlides] = useState([]);
     
     useEffect(() => {
-        api('/slides').then(res => {
+        api(`/${endPoint}`).then(res => {
             const { data } = res.data;
             const slidesData = data.map(el => {
                 return { id: el.id,
                          title: el.name,
                          image: el.image,
-                         description: el.description };
+                         description: content === 'description' ? el.description : el.content};
             });
             setSlides(slidesData);
         })
@@ -26,20 +26,24 @@ export default function CarouselComponent(){
                 confirmButtonText: 'Aceptar',
             })
         });
-    }, []);
-    
+    }, [endPoint, content]);
+
     return(
-        <Carousel>
+        <Carousel variant="dark" className="shadow rounded">
             {
                 slides?.slice(0, 5).map( slide => {
+                    let sliceDes = slide.description;
+                    if(slide.description.length > 75){
+                        sliceDes = sliceDes.slice(0,48).concat('...');
+                    }
                     return <Carousel.Item key={slide.id}>
                                 <SlideImage
-                                    className="d-block w-100"
+                                    className="d-block w-100 rounded"
                                     src={slide.image}
                                     alt={slide.title} />
                                 <Carousel.Caption>
                                   <SlideTitle>{slide.title}</SlideTitle>
-                                  <SlideDescription dangerouslySetInnerHTML={{__html: slide.description}}/>
+                                  <SlideDescription dangerouslySetInnerHTML={{__html: sliceDes}}/>
                                 </Carousel.Caption>
                            </Carousel.Item>
                 })
