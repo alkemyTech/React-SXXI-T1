@@ -41,6 +41,7 @@ const NewsForm = () => {
                 title={id ? "Edita la novedad" : "Crea una novedad"} 
                 justify="center"   
                 wrapTextClass="text-center" 
+                wrapTitleClass="d-block h-auto"
                 />
         </div>
           <Form 

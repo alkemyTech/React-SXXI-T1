@@ -40,6 +40,7 @@ const ProjectsForm = () => {
                     title={ id ? "Edita el Proyecto" : "Crea el proyecto" } 
                     justify="center"   
                     wrapTextClass="text-center" 
+                    wrapTitleClass="d-block h-auto"
                     />
             </div>
             <Form 
