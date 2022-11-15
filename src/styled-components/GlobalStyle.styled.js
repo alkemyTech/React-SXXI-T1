@@ -1,6 +1,4 @@
-import { createGlobalStyle, css } from "styled-components";
-
-const minHeight = "100vh - 112px";
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     html {

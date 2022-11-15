@@ -1,21 +1,14 @@
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
-
 export const OverlayToolTips = ({
   children,
   initialTextToolTIp = "Ir a ",
   strongTextToolTip = "",
-  direction = "top",
 }) => {
   return (
-    <OverlayTrigger
-      placement={direction}
-      overlay={
-        <Tooltip>
-          {initialTextToolTIp} <strong>{strongTextToolTip}</strong>
-        </Tooltip>
-      }
+    <div
+      title={`${initialTextToolTIp} ${strongTextToolTip}`}
+      className="m-0 p-0"
     >
-      <div>{children}</div>
-    </OverlayTrigger>
+      {children}
+    </div>
   );
 };

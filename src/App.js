@@ -33,10 +33,10 @@ import { WrapMainRoutes } from "styled-components/App.styled";
 function App() {
   return (
     <>
-      <GlobalStyle windowSize={windowSize()} />
+      <GlobalStyle />
       <Animate className="col-with-animate">
-        <Header />
-        <WrapMainRoutes size={windowSize()}>
+        <Header windowSize={windowSize()} />
+        <WrapMainRoutes className="wrap-main-routes" size={windowSize()}>
           <RoutesNoMatch>
             <Route path={routes.HOME} exact element={<Home />} />
             <Route

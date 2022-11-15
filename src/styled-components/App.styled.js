@@ -165,6 +165,8 @@ const WrapMainRoutes = styled(Row)`
   max-width: ${({ size: { width } }) => (width > 1199 ? "1200px" : "100%")};
   padding: ${({ size: { width } }) => (width < 400 ? "0 5px" : "0 1.5rem")};
 
+  min-height: calc(100vh - 410px);
+
   ${fadeIn}
 `;
 
