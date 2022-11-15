@@ -1,7 +1,16 @@
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 
 const About = () => {
   return (
-    <h1>About</h1>
+    <>
+      <div>
+        <CustomTitle
+          title="Nosotros"
+          justify="center"   
+          wrapTextClass="text-center" 
+        />
+      </div>
+    </>
   )
 }
 
