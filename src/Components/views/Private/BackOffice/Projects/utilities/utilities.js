@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-import Swal from 'sweetalert2';
 import { validationMessages } from 'utilities/validationMessage.util';
 import { FILE_SIZE } from 'Components/GlobalComponents/FormImageField/utilities/ImageFieldSchemas.util';
 

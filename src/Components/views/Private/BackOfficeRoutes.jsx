@@ -2,15 +2,16 @@ import { privateRoutes } from "models/routes";
 import { Route } from "react-router-dom";
 import { RoutesNoMatch } from "utilities/routesNoMatch.util";
 
-import EditMembersForm from "./BackOffice/Members/EditForm";
-import CategoriesForm from "../Categories/CategoriesForm";
-import NewsForm from "./BackOffice/News/NewsForm";
 import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
+import CategoriesForm from "../Categories/CategoriesForm";
+import EditMembersForm from "./BackOffice/Members/EditForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
+import NewsForm from "./BackOffice/News/NewsForm";
 import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
-import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import PrivateHome from "./Home/PrivateHome";
 import PrivateSlides from "./Slides/PrivateSlides";
+import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
+import UsersForm from "./BackOffice/Users/UsersForm";
 
 const BackOfficeRoutes = () => {
   return (
@@ -37,7 +38,7 @@ const BackOfficeRoutes = () => {
       <Route 
         path={privateRoutes.EDITCATEGORY} 
         element={<CategoriesForm />} />
-      <Route
+       <Route
         path={privateRoutes.NEWSFORM} 
         element={<NewsForm />} />
       <Route 
@@ -59,6 +60,14 @@ const BackOfficeRoutes = () => {
       <Route 
         path={privateRoutes.EDITPROJECT} 
         element={<ProjectsForm />} />
+      <Route
+        path={privateRoutes.USERSFORM}
+        element={<UsersForm />}
+      />
+      <Route
+        path={privateRoutes.USERSEDITFORM}
+        element={<UsersForm />}
+      />
     </RoutesNoMatch>
   );
 };
