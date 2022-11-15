@@ -11,6 +11,7 @@ import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
 import { privateRoutes } from 'models/routes';
 
 const ActivitiesForm = () => {
+
   const {
     errors, 
     handleBlur, 
@@ -24,6 +25,7 @@ const ActivitiesForm = () => {
     setImageBase64, 
     setFieldValue 
 } = useActivitiesForm();
+
     
   const { id } = useParams();
 

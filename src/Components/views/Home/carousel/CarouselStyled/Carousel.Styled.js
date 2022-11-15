@@ -15,7 +15,9 @@ export const SlideImage = styled.img`
 
 export const SlideTitle = styled.h4`
     font-size: 1.5rem;
-    text-shadow: 1px 1px 2px black;
+    background-color: #bdbdbda1;
+    color: black;
+    border-radius: 5px;
     @media screen and (max-width: 690px){
         font-size: 1rem;
     }
@@ -23,7 +25,9 @@ export const SlideTitle = styled.h4`
 
 export const SlideDescription = styled.p`
     font-size: 1.1rem;
-    text-shadow: 1px 1px 2px black;
+    background-color: #bdbdbda1;
+    color: black;
+    border-radius: 5px;
     @media screen and (max-width: 690px){
         font-size: 0.8rem;
     }

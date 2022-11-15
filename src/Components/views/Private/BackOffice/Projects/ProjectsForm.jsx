@@ -6,9 +6,9 @@ import { useProjectsForms } from './hooks/useProjectsForms';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
 import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
-import FormLabel from './FormLabel';
 import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
 import { privateRoutes } from 'models/routes';
+import FormLabel from '../components/FormLabel';
 
 const ProjectsForm = () => {
     const {
