@@ -35,7 +35,7 @@ const ActivitiesForm = () => {
                 to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
             />
         </div>
-        <div>
+        <div className="my-5">
             <CustomTitle
                 title={id ? "Edita la actividad" : "Crea la actividad"} 
                 justify="center"   

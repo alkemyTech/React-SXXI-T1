@@ -6,7 +6,7 @@ const About = ( title) => {
   
   return (
     <>
-      <div>
+      <div className="my-5">
         <CustomTitle
           title={title}
           wrapTitleClass="d-block h-auto"

@@ -33,9 +33,9 @@ const TestimonialsForm = () => {
                     to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
                 />
             </div>
-            <div>
+            <div lassName="my-5">
                 <CustomTitle
-                    title={id?"Edita el testimonio":"Crea el testimonio"} 
+                    title={id ? "Edita el testimonio" : "Crea el testimonio"} 
                     justify="center"   
                     wrapTextClass="text-center" 
                     wrapTitleClass="d-block h-auto"

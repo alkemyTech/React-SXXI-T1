@@ -35,7 +35,7 @@ const ProjectsForm = () => {
                     to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
                 />
             </div>
-            <div>
+            <div className="my-5">
                 <CustomTitle
                     title={ id ? "Edita el Proyecto" : "Crea el proyecto" } 
                     justify="center"   
