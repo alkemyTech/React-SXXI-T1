@@ -1,32 +1,31 @@
 import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { InputForm } from 'styled-components/GlobalFormFields/InputForm.styled';
-import { ButtonConfirm, ContainerInputError, Errors } from "./NewsForm.Styled";
-import { useNewsForm } from './hooks/useNewsForm';
+import { ButtonConfirm, ContainerInputError, Errors } from "./UsersForm.Styled";
+import { useUsersForm } from './hooks/useUsersForm';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
-import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
 import FormLabel from '../components/FormLabel';
 import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
 import { privateRoutes } from 'models/routes';
 
-const NewsForm = () => {
-    const { 
-        errors, 
-        handleBlur, 
-        handleSubmit, 
-        handleChange, 
-        touched, 
-        news, 
-        loading, 
-        formik, 
-        values,
-        setImageBase64, 
-        setFieldValue,
-        categories 
-    } = useNewsForm();
-    
-    const { id } = useParams();
+const UsersForm = () => {
+  const { 
+    errors, 
+    handleBlur, 
+    handleSubmit, 
+    handleChange, 
+    touched, 
+    user, 
+    loading, 
+    formik, 
+    values,
+    setImageBase64, 
+    setFieldValue,
+    roles
+  } = useUsersForm();
+
+  const { id } = useParams();
 
   return(
     <div className="container my-5">
@@ -38,7 +37,7 @@ const NewsForm = () => {
         </div>
         <div>
             <CustomTitle
-                title={id ? "Edita la novedad" : "Crea una novedad"} 
+                title={id ? "Edita el usuario" : "Crea el usuario"} 
                 justify="center"   
                 wrapTextClass="text-center" 
                 />
@@ -50,61 +49,61 @@ const NewsForm = () => {
                 className="mb-3" 
                 controlId="formBasicName">
                 <ContainerInputError>
-                    <FormLabel title="Titulo de la novedad:" />
+                    <FormLabel title="Nombre del usuario:" />
                     <InputForm
                         type="text"
                         name="name"
                         value={ values.name }
                         onChange={ handleChange }
                         onBlur={ handleBlur } 
-                        placeholder="Titulo" />
+                        placeholder="Nombre" />
                     {errors.name && touched.name && <Errors>{errors.name}</Errors>}
                 </ContainerInputError>
             </Form.Group>
             <Form.Group 
                 className="mb-3" 
-                controlId="formBasicCategoryId">
+                controlId="formBasicRoleId">
                 <ContainerInputError>
-                    <FormLabel title="Categoría de la novedad:" />
+                    <FormLabel title="Rol del usuario:" />
                     <Form.Select 
-                        aria-label="Seleccionar la categoria"
-                        name="category_id" 
+                        aria-label="Seleccionar un rol"
+                        name="role_id" 
                         onChange={ handleChange }
                         onBlur={ handleBlur } 
                         >
-                        <option value="">Selecciona una categoria</option>
-                        {categories.map(category => <option value={category.id} key={category.id}>{category.name}</option>)}
+                        <option value="">Selecciona un rol</option>
+                        {roles.map(rol => <option value={rol.id} key={rol.id}>{rol.name}</option>)}
                     </Form.Select>
-                    {errors.category_id && touched.category_id && <Errors>{errors.category_id}</Errors>}
-                </ContainerInputError>
-            </Form.Group>
-            <Form.Group 
-                className="mb-3" 
-                controlId="formBasicContent">
-                <ContainerInputError>
-                    <FormLabel title="Contenido de la novedad:" />
-                    <FormCKEditorField 
-                        setFieldValue={ setFieldValue }
-                        errors={ errors }
-                        touched= {touched }
-                        name="content"
-                        placeholder="Contenido de la novedad"
-                        data = { news.content }
-                    />
+                    {errors.role_id && touched.role_id && <Errors>{errors.role_id}</Errors>}
                 </ContainerInputError>
             </Form.Group>
             <Form.Group 
                 className="mb-5" 
                 controlId="formBasicImage">
-                <FormLabel title="Imagen de la actividad:" />
+                <FormLabel title="Imagen del usuario:" />
                 <FormImageField 
-                errors={ errors }
-                touched={ touched }
-                name="image"
-                setFieldValue= { formik.setFieldValue }
-                setImageToSend= { setImageBase64 }
-                imageIsEdit= { news.image }
-                    />
+                  errors={ errors }
+                  touched={ touched }
+                  name="profile_image"
+                  setFieldValue= { formik.setFieldValue }
+                  setImageToSend= { setImageBase64 }
+                  imageIsEdit= { user.profile_image }
+                />
+            </Form.Group>
+            <Form.Group 
+                className="mb-3" 
+                controlId="formBasicPassword">
+                <ContainerInputError>
+                    <FormLabel title="Email del usuario:" />
+                    <InputForm
+                        type="text"
+                        name="email"
+                        value={ values.email }
+                        onChange={ handleChange }
+                        onBlur={ handleBlur } 
+                        placeholder="Email" />
+                    {errors.email && touched.email && <Errors>{errors.email}</Errors>}
+                </ContainerInputError>
             </Form.Group>
             <div className="mb-5 d-grid gap-2 d-md-block mx-auto">
                 <ButtonConfirm 
@@ -122,4 +121,4 @@ const NewsForm = () => {
   )
 }
 
-export default NewsForm;
+export default UsersForm;

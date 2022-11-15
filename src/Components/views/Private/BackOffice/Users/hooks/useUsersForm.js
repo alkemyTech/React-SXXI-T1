@@ -1,88 +1,92 @@
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
-import { useEffect, useState } from "react";
-import { newsValidationSchema } from "../utilities/utilities";
+import {  usersValidationSchema } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
-import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 import Alert from "../../components/Alert";
+import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 
-export const useNewsForm = () => {
-  const { id } = useParams();
+export const useUsersForm = () => {
+  const {id} = useParams();
   const navigate = useNavigate();
-  const [ imageBase64, setImageBase64] = useState("");
-  const [ categories, setCategories ] = useState([]);
+  const [ imageBase64, setImageBase64 ] = useState("");
+  const [ roles, setRoles ] = useState([]);
   const [ loading, setLoading ] = useState(false);
-  const [ news, setNews ] = useState({
-      name: '',
-      category_id: '',
-      content: '',
-      image: ''
+  const [ user, setUser ] = useState({
+    name: '',
+    email: '',
+    role_id: '',
+    profile_image: '',
+    password: ''
   });
+
   const initialValues = {
-      name: '',
-      category_id: '',
-      content: '',
-      image: ''
+    name: '',
+    email: '',
+    role_id: '',
+    profile_image: '',
+    password: ''
   };
 
   useEffect(()=>{
       if(id) {
-        api.get(`/news/${id}`)
+        api.get(`/users/${id}`)
         .then(res => {
           const { data } = res.data;
-          setNews({
+          setUser({
             name: data.name,
-            category_id: data.category_id,
-            content: data.content,
-            image: data.image
+            email: data.email,
+            role_id: data.role_id,
+            profile_image: data.profile_image,
+            password: data.password
           });
         })
         .catch(() => {
           Alert({ icon: 'error', title: 'Ha ocurrido un error'});
         });    
       }
-    },[id]);
+  },[id]);
 
   useEffect(() => {
-    api.get(`/categories`)
+    api.get(`/roles`)
     .then(res => {
       const { data } = res.data;
-      const categories = data.map(element => {
+      const roles = data.map(element => {
         return {
           id: element.id,
           name: element.name
         }
       })
-      setCategories( categories);
+      setRoles( roles);
     })
   }, []);
 
-  const backURL = '/backoffice';
+  const backURL =  '/backoffice';
 
-  const onSubmit = async () => {
-    const { name, content, category_id } = values;
-    const body = { name, content, category_id, image: imageBase64 }
+  const onSubmit = async  () => {
+    const { name, email, role_id, password } = values;
+    const body = { name, email, role_id, password, image: imageBase64 };
 
     if(id) {
       const bodyEdit = { 
-        ...news, 
+        ...user, 
         ...body, 
-        image: imageBase64 || await convertUrlToBase64(news.image)
+        image: imageBase64 || await convertUrlToBase64(user.image)
       }
       const alertWarning = await Alert({ icon:'warning', 
             title:'¿Estas segura/o de enviarlo?', 
             cancelText: 'Cancelar' })
-      
-      if (alertWarning.isConfirmed) {
+
+      if(alertWarning.isConfirmed) {
         setLoading(true);
-        const apiResponse = await api.put(`/news/${id}`, bodyEdit)
+        const apiResponse = await api.put(`/users/${id}`, bodyEdit)
         if(apiResponse.data.success) {
-          setLoading(false);
-          await Alert({ icon: 'success', title: 'Operación éxitosa'})
-          navigate(backURL)
+            setLoading(false);
+            await Alert({ icon: 'success', title: 'Operación éxitosa'});
+            navigate(backURL);
         } else {
-          await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+            await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
         }
       }
     } else {
@@ -92,7 +96,7 @@ export const useNewsForm = () => {
 
       if(alertWarning.isConfirmed) {
         setLoading(true);
-        const apiResponse = await api.post(`/news`, body)
+        const apiResponse = await api.post(`/users`, body)
         if(apiResponse.data.success) {
           setLoading(false);
           await Alert({ icon: 'success', title: 'Operación éxitosa'})
@@ -104,8 +108,8 @@ export const useNewsForm = () => {
     }
   }
 
-  const validationSchema = newsValidationSchema(id);
-
+  const validationSchema = usersValidationSchema(id);
+  
   const formik = useFormik({initialValues, onSubmit, validationSchema});
 
   const {
@@ -115,17 +119,18 @@ export const useNewsForm = () => {
     handleSubmit, 
     handleChange, 
     touched,
-    setFieldValue 
+    setFieldValue
   } = formik;
 
   useEffect(() => {
-    if (Object.keys(news).length > 0) {
-      setFieldValue("name", news.name);
-      setFieldValue("content", news.content);
-      setFieldValue("image", news.image);
-      setFieldValue("category_id", news.category_id);
+    if (Object.keys(user).length > 0) {
+      setFieldValue("name", user.name);
+      setFieldValue("email", user.email);
+      setFieldValue("role_id", user.role_id);
+      setFieldValue("profile_image", user.profile_image);
+      setFieldValue("password", user.password);
     }
-  }, [news, setFieldValue]);
+  }, [user, setFieldValue]);
 
   const cancel = () => {
     navigate(backURL);
@@ -138,13 +143,13 @@ export const useNewsForm = () => {
     handleSubmit, 
     handleChange, 
     touched, 
-    news, 
+    user, 
     loading, 
     formik, 
     cancel,
     setImageBase64,
     setFieldValue,
-    categories
+    roles
   } 
 
 }
