@@ -1,6 +1,6 @@
 export const routes = {
   ACTIVITIES: "/actividades",
-  ACIVITIESDETAIL: "/actividades/:id",
+  ACTIVITIESDETAIL: "/actividades/:id",
   ACTIVITIESFORM: "/create-activity",
   AUTHLOGINFORM: "/auth/login",
   AUTHREGISTERFORM: "/auth/register",
