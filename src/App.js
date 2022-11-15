@@ -7,7 +7,7 @@ import { GlobalStyle } from "styled-components/GlobalStyle.styled";
 import { windowSize } from "utilities/windowSize.util";
 import { textForDonation } from "Components/views/Donations/utilities/donationSchema.util";
 import { RoutesNoMatch } from "./utilities/routesNoMatch.util";
-import Home from "./Components/views/Home/Home";
+import Home from "./Components/views/Home/index";
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
 import LoginForm from "./Components/views/Auth/LoginForm";
 import UserForm from "./Components/views/Users/UsersForm";
