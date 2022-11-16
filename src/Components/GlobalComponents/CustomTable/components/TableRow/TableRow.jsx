@@ -13,14 +13,14 @@ export const TableRow = ({
 }) => {
   return (
     <tr>
-      <>
-        <td>
-          {children?.idx + 1 || <Spinner animation="grow" variant="primary" />}
-        </td>
+      <td>
+        {children?.idx + 1 || <Spinner animation="grow" variant="primary" />}
+      </td>
 
-        <PersonalTableData children={children} loading={loading} />
+      <PersonalTableData children={children} loading={loading} />
 
-        <td>
+      <td>
+        <div className="d-flex flex-nowrap justify-content-center align-items-center ">
           {buttonsActions.map((btn, idx) =>
             loading ? (
               <Spinner key={idx} animation="grow" variant="primary" />
@@ -39,8 +39,8 @@ export const TableRow = ({
               />
             )
           )}
-        </td>
-      </>
+        </div>
+      </td>
     </tr>
   );
 };
