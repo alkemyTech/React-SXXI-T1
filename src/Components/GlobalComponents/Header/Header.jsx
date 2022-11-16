@@ -2,12 +2,24 @@ import { Nav, Navbar as BootstrapNavbar, Offcanvas } from "react-bootstrap";
 import {
   CustomImage,
   dropShadow,
-  InputTexts,
+  SubtitleText,
 } from "styled-components/App.styled";
 import logoSomosMasONG from "assets/logoSomosMasONG.svg";
 import styled from "styled-components";
+import { publicHeaderNavItems } from "utilities/navitems/navItems.util";
+import NavLinkReactRouter from "Components/GlobalComponents/NavLinkReactRouter/NavLinkReactRouter";
+import { OffcanvasHeader } from "../NavLinkReactRouter/styled-components/OffCanvasHeader.styled";
+import { useRef } from "react";
+import { useResize } from "hooks/useResize";
 
 const Header = ({ windowSize }) => {
+  const closeOffCanvas = useRef(null);
+  const { isPhone } = useResize();
+
+  const handleCloseOffCanvas = () => {
+    closeOffCanvas.current.click();
+  };
+
   return (
     <Navbar className="mb-4" bg="light" expand="md">
       <ContainerNav size={windowSize}>
@@ -18,15 +30,22 @@ const Header = ({ windowSize }) => {
           width=" "
           height="35px"
         />
-        <Navbar.Toggle />
+        <Navbar.Toggle ref={closeOffCanvas} />
         <Navbar.Offcanvas placement="end">
-          <Offcanvas.Header closeButton>
-            <InputTexts>ONG Somos Más</InputTexts>
-          </Offcanvas.Header>
+          <OffcanvasHeader closeButton>
+            <SubtitleText>ONG Somos Más</SubtitleText>
+          </OffcanvasHeader>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Link</Nav.Link>
+              {publicHeaderNavItems.map((item) => (
+                <NavLinkReactRouter
+                  key={item.text}
+                  text={item.text}
+                  to={item.to}
+                  navLinkClass="m-sm-1 m-lg-2"
+                  handleCloseToggle={isPhone ? handleCloseOffCanvas : undefined}
+                />
+              ))}
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
