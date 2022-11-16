@@ -16,8 +16,8 @@ import Dashboard from "./AdminDashboard/Dashboard";
 const BackOfficeRoutes = () => {
   return (
     <RoutesNoMatch>
+      <Route path={'/'} element={<Dashboard />} />
       <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
-      <Route path={privateRoutes.BACKOFFICE} element={<Dashboard />} />
       <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
       <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
       <Route path={privateRoutes.ACTIVITIESFORM} element={<ActivitiesForm />} />
