@@ -2,9 +2,10 @@ import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from "react";
-import { convertToBase64, Alert, activityValidationSchema } from "../utilities/utilities";
+import { convertToBase64, activityValidationSchema } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
+import Alert from "../../components/Alert";
 
 export const useActivitiesForm = () => {
   const { id } = useParams();
