@@ -4,8 +4,8 @@ export const MainContainer = styled.div`
     display: flex;
     align-items: center;
     height: 4rem;
-    gap: 3rem;
-    background-color: #039be5;
+    gap: 2rem;
+    background-color: #0D6EFD;
     transition: 0.5s;
 `;
 
@@ -20,6 +20,6 @@ export const Button = styled.button`
     padding: 5px;
     margin: 4px 1px;
     &:hover {
-        background-color: #0277bd;
+        background-color: #0091ea;
     }
 `;
