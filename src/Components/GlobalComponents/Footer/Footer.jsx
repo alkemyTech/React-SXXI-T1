@@ -3,7 +3,7 @@ import { WrapFooter } from "./styled-components/WrapFooter.styled";
 
 import { Col, Collapse, Row } from "react-bootstrap";
 import { NavFooter } from "./components/NavFooter/NavFooter";
-import { publicNavItems } from "utilities/navitems/navItems.util";
+import { footerNavItems } from "utilities/navitems/navItems.util";
 import { FooterLogo } from "./components/FooterLogo/FooterLogo";
 import { FooterSocialNetworks } from "./components/FooterSocialNetworks/FooterSocialNetworks";
 import { useFooter } from "./hooks/useFooter";
@@ -18,7 +18,7 @@ const Footer = () => {
       <Row className="m-0 p-0 d-flex justify-content-center">
         <Col className="mx-0 p-0 d-flex flex-wrap justify-content-center ">
           <FooterDataLoading loading={loadingData}>
-            <NavFooter>{publicNavItems}</NavFooter>
+            <NavFooter>{footerNavItems}</NavFooter>
           </FooterDataLoading>
         </Col>
       </Row>
