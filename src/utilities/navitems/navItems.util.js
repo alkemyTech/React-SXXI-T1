@@ -2,9 +2,9 @@ import { routes } from "models/routes";
 // editar resto de rutas cuando existan
 const publicNavItems = [
   { text: "Inicio", to: routes.HOME },
-  { text: "Nosotros", to: "/about" },
+  { text: "Nosotros", to: routes.ABOUT },
   { text: "Novedades", to: routes.NEWS },
-  { text: "Testimonios", to: "/testimonios" },
+  { text: "Testimonios", to: routes.TESTIMONIALS },
   { text: "Contacto", to: routes.CONTACT },
   { text: "Contribuye", to: routes.DONATION },
 ];
