@@ -5,6 +5,7 @@ import { privateRoutes } from "models/routes";
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
 import { usePrivateSlides } from "./hooks/usePrivateSlides";
 import { myTableData, tableHead } from "./utilities/slidesSchema.util";
+import { addIcon } from "assets/images";
 
 const PrivateSlides = () => {
   const { loadSlides, slides, handleEdit, handleDelete } = usePrivateSlides();
@@ -14,10 +15,19 @@ const PrivateSlides = () => {
       <div className=" mt-2 d-flex col col-12">
         <CustomTitle title="Slides" />
       </div>
-      <div className="d-flex justify-content-start">
+      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-start">
         <BackTo
-          wrapLink="my-1"
+          wrapLink="col col-10 col-sm-5 my-2 me-1"
+          text="Ir dashboard"
           to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
+        />
+        <BackTo
+          wrapLink="col col-10 col-sm-5 my-2"
+          text="Crear Slide"
+          to={"/" + privateRoutes.BACKOFFICE + privateRoutes.SLIDESCREATE}
+          color="success"
+          background="success"
+          icon={addIcon}
         />
       </div>
       <CustomTable
