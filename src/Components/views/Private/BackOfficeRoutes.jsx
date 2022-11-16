@@ -1,7 +1,6 @@
 import { privateRoutes } from "models/routes";
 import { Route } from "react-router-dom";
 import { RoutesNoMatch } from "utilities/routesNoMatch.util";
-
 import EditMembersForm from "./BackOffice/Members/EditForm";
 import CategoriesForm from "../Categories/CategoriesForm";
 import NewsForm from "./BackOffice/News/NewsForm";
@@ -12,6 +11,7 @@ import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import PrivateHome from "./Home/PrivateHome";
 import PrivateSlides from "./Slides/PrivateSlides";
 import Dashboard from "./AdminDashboard/Dashboard";
+import OrganizationData from "./Organization/OrganizationData/OrganizationData";
 
 const BackOfficeRoutes = () => {
   return (
@@ -45,6 +45,10 @@ const BackOfficeRoutes = () => {
       <Route 
         path={privateRoutes.NEWSEDITFORM} 
         element={<NewsForm />} />
+      <Route
+              path={privateRoutes.ORGANIZATIONDATA}
+              element={<OrganizationData />}
+            />
       <Route path={privateRoutes.SLIDES} element={<PrivateSlides />} />
       <Route path={privateRoutes.SLIDESWITHID} element={<PrivateSlides />} />
       <Route
