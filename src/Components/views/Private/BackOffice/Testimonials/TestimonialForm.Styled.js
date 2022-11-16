@@ -23,15 +23,6 @@ export const ButtonConfirm = styled(Button)`
       }
 `;
 
-export const ButtonCancel = styled(Button)`
-    border: 1px solid #FF0000;
-    &:hover {
-        background-color: #f5f5f5 !important;
-        color: #FF0000 !important;
-        border: 1px solid #FF0000;
-      }
-`;
-
 export const Errors = styled.span`
 color: red;
 font-size: 15px;

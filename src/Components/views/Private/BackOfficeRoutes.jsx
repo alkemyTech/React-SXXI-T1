@@ -7,11 +7,12 @@ import NewsForm from "./BackOffice/News/NewsForm";
 import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
 import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
-import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import PrivateHome from "./Home/PrivateHome";
 import PrivateSlides from "./Slides/PrivateSlides";
 import Dashboard from "./AdminDashboard/Dashboard";
 import OrganizationData from "./Organization/OrganizationData/OrganizationData";
+import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
+import UsersForm from "./BackOffice/Users/UsersForm";
 
 const BackOfficeRoutes = () => {
   return (
@@ -39,7 +40,7 @@ const BackOfficeRoutes = () => {
       <Route 
         path={privateRoutes.EDITCATEGORY} 
         element={<CategoriesForm />} />
-      <Route
+       <Route
         path={privateRoutes.NEWSFORM} 
         element={<NewsForm />} />
       <Route 
@@ -65,6 +66,14 @@ const BackOfficeRoutes = () => {
       <Route 
         path={privateRoutes.EDITPROJECT} 
         element={<ProjectsForm />} />
+      <Route
+        path={privateRoutes.USERSFORM}
+        element={<UsersForm />}
+      />
+      <Route
+        path={privateRoutes.USERSEDITFORM}
+        element={<UsersForm />}
+      />
     </RoutesNoMatch>
   );
 };
