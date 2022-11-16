@@ -11,6 +11,7 @@ import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import PrivateHome from "./Home/PrivateHome";
 import PrivateSlides from "./Slides/PrivateSlides";
+import ActionsSlider from "./Slides/components/ActionsSlider/ActionsSlider";
 
 const BackOfficeRoutes = () => {
   return (
@@ -31,20 +32,16 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
       />
-      <Route 
-        path={privateRoutes.CREATECATEGORY} 
-        element={<CategoriesForm />} />
-      <Route 
-        path={privateRoutes.EDITCATEGORY} 
-        element={<CategoriesForm />} />
-      <Route
-        path={privateRoutes.NEWSFORM} 
-        element={<NewsForm />} />
-      <Route 
-        path={privateRoutes.NEWSEDITFORM} 
-        element={<NewsForm />} />
+      <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
+      <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
+      <Route path={privateRoutes.NEWSFORM} element={<NewsForm />} />
+      <Route path={privateRoutes.NEWSEDITFORM} element={<NewsForm />} />
       <Route path={privateRoutes.SLIDES} element={<PrivateSlides />} />
-      <Route path={privateRoutes.SLIDESWITHID} element={<PrivateSlides />} />
+      <Route path={privateRoutes.SLIDESCREATE} element={<ActionsSlider />} />
+      <Route
+        path={privateRoutes.SLIDESEDITWITHID}
+        element={<ActionsSlider />}
+      />
       <Route
         path={privateRoutes.TESTIMONIALSFORM}
         element={<TestimonialsForm />}
@@ -53,12 +50,8 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.TESTIMONIALSEDITFORM}
         element={<TestimonialsForm />}
       />
-      <Route 
-        path={privateRoutes.CREATEPROJECT} 
-        element={<ProjectsForm />} />
-      <Route 
-        path={privateRoutes.EDITPROJECT} 
-        element={<ProjectsForm />} />
+      <Route path={privateRoutes.CREATEPROJECT} element={<ProjectsForm />} />
+      <Route path={privateRoutes.EDITPROJECT} element={<ProjectsForm />} />
     </RoutesNoMatch>
   );
 };

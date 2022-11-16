@@ -33,7 +33,9 @@ export const privateRoutes = {
   NEWSEDITFORM: "news/:id",
   NEWSFORM: "news",
   SLIDES: "slides",
-  SLIDESWITHID: "slides/:id",
+  SLIDESCREATE: "slides/create",
+  SLIDESEDIT: "slides/edit/",
+  SLIDESEDITWITHID: "slides/edit/:id",
   TESTIMONIALSFORM: "testimonials",
   TESTIMONIALSEDITFORM: "testimonials/:id",
 };
