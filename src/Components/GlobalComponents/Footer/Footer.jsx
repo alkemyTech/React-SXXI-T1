@@ -1,6 +1,5 @@
 import { NewsLetter } from "./components/NewsLetter";
 import { WrapFooter } from "./styled-components/WrapFooter.styled";
-
 import { Col, Collapse, Row } from "react-bootstrap";
 import { NavFooter } from "./components/NavFooter/NavFooter";
 import { footerNavItems } from "utilities/navitems/navItems.util";
@@ -34,7 +33,7 @@ const Footer = () => {
         </Col>
 
         <Collapse in={!newsLetter} dimension="width">
-          <Col className="col col-12 col-sm-6 col-md-5 ">
+          <Col className="col col-12 col-sm-6 col-md-7 ">
             <FooterDataLoading loading={loadingData}>
               <NewsLetter
                 handleNewsLetter={handleNewsLetter}
