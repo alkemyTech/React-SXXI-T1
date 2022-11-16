@@ -10,11 +10,6 @@ export const MainContainer = styled.div`
 export const TitleContainer = styled.div`
     
 `;
-// height: 5rem;
-
-// @media screen and (max-width: 767px) {
-//     height: 2.2rem;
-// }
 
 export const Container1 = styled.div`
     display: flex;
