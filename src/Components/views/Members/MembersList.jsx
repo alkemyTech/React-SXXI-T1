@@ -8,6 +8,7 @@ const MembersList = () => {
       {
         id: 1, 
         name: "Miembro 1", 
+        image:"https://picsum.photos/200/300",
         description: "Descripcion de miembro 1", 
         facebookUrl: "https://www.facebook.com/miembro1", 
         linkedInUrl: "https://www.linkedin.com/miembro1"
@@ -15,6 +16,7 @@ const MembersList = () => {
       {
         id: 2, 
         name: "Miembro 2", 
+        image:"https://picsum.photos/200/300",
         description: "Descripcion de miembro 2", 
         facebookUrl: "https://www.facebook.com/miembro2",
         linkedInUrl: "https://www.linkedin.com/miembro2"
@@ -22,6 +24,7 @@ const MembersList = () => {
       {
         id: 3, 
         name: "Miembro 3", 
+        image:"https://picsum.photos/200/300",
         description: "Descripcion de miembro 3", 
         facebookUrl: "https://www.facebook.com/miembro3", 
         linkedInUrl: "https://www.linkedin.com/miembro3"
@@ -35,6 +38,7 @@ const MembersList = () => {
                 title="Lista de miembros"
                 justify="center"   
                 wrapTextClass="text-center" 
+                wrapTitleClass="h-auto" 
                 />
         </div>
         <ul className="list-container">

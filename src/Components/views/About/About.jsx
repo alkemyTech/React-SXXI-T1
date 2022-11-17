@@ -1,4 +1,5 @@
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
+import MembersList from "../Members/MembersList";
 
 const About = () => {
   return (
@@ -7,9 +8,11 @@ const About = () => {
         <CustomTitle
           title="Nosotros"
           justify="center"   
-          wrapTextClass="text-center" 
+          wrapTextClass="text-center"
+          wrapTitleClass="h-auto" 
         />
       </div>
+      <MembersList />
     </>
   )
 }
