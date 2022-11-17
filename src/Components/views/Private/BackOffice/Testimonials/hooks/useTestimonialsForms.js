@@ -2,23 +2,25 @@ import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from "react";
-import { validationSchema, convertToBase64, Alert } from "./../utilities/utilities";
+import { testimonialsValidationSchema } from "./../utilities/utilities";
 import { api } from 'Services/axiosService';
+import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
+import Alert from "../../components/Alert";
 
 export const useTestimonialsForms = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [ imageBase64, setImageBase64] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [testimonial, setTestimonial] = useState({
+  const [ imageBase64, setImageBase64 ] = useState("");
+  const [ loading, setLoading ] = useState(false);
+  const [ testimonial, setTestimonial ] = useState({
         name: '',
-        image: '',
-        description: ''
+        description: '',
+        image: ''
     });
   const initialValues = {
       name: '',
-      image: '',
-      description: ''
+      description: '',
+      image: ''
   };
 
   useEffect(()=>{
@@ -28,8 +30,8 @@ export const useTestimonialsForms = () => {
           const { data } = res.data;
           setTestimonial({
             name: data.name,
-            image: data.image,
-            description: data.description
+            description: data.description,
+            image: data.image
           });
         })
         .catch(() => {
@@ -38,68 +40,90 @@ export const useTestimonialsForms = () => {
       }
     },[id]);
 
-  const backURL = '/backoffice/testimonials';
+  const backURL = '/backoffice';
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const { name, description } = values;
-    const body = { name, description, imageBase64 }
+    const body = { name, description, image: imageBase64 }
     if(id) {
-      Alert({ icon:'warning', 
-            title:'¿Estas segura/o de cancelar?', 
-            cancelText: 'Cancelar' })
-      .then((res) => {
-          if (res.isConfirmed) {
-            setLoading(true);
-            api.put(`/testimonials/${id}`, body)
-              .then(()=> {
-                Alert({ icon: 'success', title: 'Operación éxitosa'})
-                  .then(() => navigate(backURL));
-            })
-            .catch(() => {
-              Alert({ icon: 'error', title: 'Ha ocurrido un error'});
-            });
-          }
-        })
-        setLoading(false);
-      } else {
-        Alert({ icon:'warning', 
-                title:'¿Estas segura/o de cancelar?', 
-                cancelText: 'Cancelar' })
-        .then((res) => {
-          if (res.isConfirmed) {
-            setLoading(true);
-            api.post(`/testimonials`, body)
-            .then(()=> {
-              Alert({ icon: 'success', title: 'Operación éxitosa'})
-              .then(()=> navigate(backURL));
-            })
-            .catch(()=> {
-              Alert({ icon: 'error', title: 'Ha ocurrido un error'});
-            });
-          } 
-        })
-        setLoading(false);
+      const bodyEdit = { 
+        ...testimonial, 
+        ...body, 
+        image: imageBase64 || await convertUrlToBase64(testimonial.image)
       }
-  }
+      const alertWarning = await Alert({ icon:'warning', 
+            title:'¿Estas segura/o de enviarlo?', 
+            cancelText: 'Cancelar' })
 
-  function handleImage(e){
-    const image = e.target.files[0];
-    if(image) {
-      formik.setFieldValue('image', image);
-      convertToBase64( image, setImageBase64 );
+      if (alertWarning.isConfirmed) {
+        setLoading(true);
+        const apiResponse = await api.put(`/testimonials/${id}`, bodyEdit)
+        if(apiResponse.data.success) {
+          setLoading(false);
+          await Alert({ icon: 'success', title: 'Operación éxitosa'})
+          navigate(backURL)
+        } else {
+          await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+        }
+      }
     } else {
-      formik.setFieldValue('image', '');
+      const alertWarning = await Alert({ icon:'warning', 
+                title:'¿Estas segura/o de enviarlo?', 
+                cancelText: 'Cancelar' })
+
+      if(alertWarning.isConfirmed) {
+        setLoading(true);
+        const apiResponse = await api.post(`/testimonials`, body)
+        if(apiResponse.data.success) {
+          setLoading(false);
+          await Alert({ icon: 'success', title: 'Operación éxitosa'})
+          navigate(backURL)
+        } else {
+          await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+        }
+      }
     }
   }
+
+  const validationSchema = testimonialsValidationSchema(id);
   
   const formik = useFormik({initialValues, onSubmit, validationSchema});
 
-  const {values, errors, handleBlur, handleSubmit, handleChange, touched} = formik;
+  const {
+    values, 
+    errors, 
+    handleBlur, 
+    handleSubmit, 
+    handleChange, 
+    touched,
+    setFieldValue
+  } = formik;
+
+  useEffect(() => {
+    if (Object.keys(testimonial).length > 0) {
+      setFieldValue("name", testimonial.name);
+      setFieldValue("image", testimonial.image);
+      setFieldValue("description", testimonial.description);
+    }
+  }, [testimonial, setFieldValue]);
 
   const cancel = () => {
     navigate(backURL);
-}
+  }
 
-  return {values, errors, handleBlur, handleSubmit, handleChange, touched, testimonial, loading, formik , handleImage, cancel} 
+  return {
+    values, 
+    errors, 
+    handleBlur, 
+    handleSubmit, 
+    handleChange, 
+    touched, 
+    testimonial, 
+    loading, 
+    formik , 
+    cancel,
+    setImageBase64,
+    setFieldValue
+  } 
 
 }
