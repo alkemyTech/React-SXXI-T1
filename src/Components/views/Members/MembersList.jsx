@@ -1,4 +1,3 @@
-import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import React from 'react';
 import '../CardListStyles.css';
 
@@ -33,14 +32,6 @@ const MembersList = () => {
 
     return (
       <div className="container my-5">
-        <div>
-        <CustomTitle
-                title="Lista de miembros"
-                justify="center"   
-                wrapTextClass="text-center" 
-                wrapTitleClass="h-auto" 
-                />
-        </div>
         <ul className="list-container">
             {membersMock.length > 0 ?
                 membersMock.map((member) => {
