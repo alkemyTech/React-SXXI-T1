@@ -2,8 +2,8 @@ import React from 'react';
 import { Card, Row } from 'react-bootstrap';
 import { useMembers } from "./hooks/useMembers"; 
 import { Icon } from "./Members.Styled.js";
-import TwitterIcon from 'assets/icon-twitter.svg';
-import LinkedinIcon from 'assets/linkedin2.svg';
+import LinkedinIcon from "assets/linkedin2.svg";
+import FacebookIcon from "assets/facebookIcon2.svg"
 import "./Members.css";
 
 const Members = () => {
@@ -33,10 +33,10 @@ const Members = () => {
                         dangerouslySetInnerHTML={{__html:element.description}}></p>
                       <Card.Text className="text-center">
                         <a href={element.facebookUrl} target="_blank" rel="noopener noreferrer">
-                          <Icon src={TwitterIcon} alt="icono de Twitter" />
+                          <Icon src={ FacebookIcon } alt="icono de Twitter" />
                         </a>
                         <a href={element.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                          <Icon src={LinkedinIcon} alt="icono de Twitter" />
+                          <Icon src={ LinkedinIcon } alt="icono de Twitter" />
                         </a>
                       </Card.Text>
                     </Card.ImgOverlay>
