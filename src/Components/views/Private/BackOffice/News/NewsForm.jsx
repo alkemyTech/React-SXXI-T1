@@ -9,7 +9,6 @@ import { FormCKEditorField } from "Components/GlobalComponents/FormCKEditorField
 import FormLabel from "../components/FormLabel";
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { privateRoutes } from "models/routes";
-import NewsList from "./components/NewsList";
 
 const NewsForm = () => {
   const {
@@ -32,13 +31,7 @@ const NewsForm = () => {
   return (
     <div className="container my-5">
       <div className="my-5">
-        <BackTo
-          wrapLink="my-4"
-          to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
-        />
-      </div>
-      <div className="my-5">
-        <NewsList />
+        <BackTo wrapLink="my-4" to={"/" + privateRoutes.BACKOFFICE + "news"} />
       </div>
       <div>
         <CustomTitle
