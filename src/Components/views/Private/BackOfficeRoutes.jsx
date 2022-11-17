@@ -12,6 +12,7 @@ import PrivateSlides from "./Slides/PrivateSlides";
 import Dashboard from "./AdminDashboard/Dashboard";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import UsersForm from "./BackOffice/Users/UsersForm";
+import CategoriesList from "./CategoriesList/CategoriesList";
 
 const BackOfficeRoutes = () => {
   return (
@@ -19,7 +20,7 @@ const BackOfficeRoutes = () => {
       <Route path={'/'} element={<Dashboard />} />
       <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
       <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
-      <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
+      <Route path={privateRoutes.EDITCATEGORYWITHID} element={<CategoriesForm />} />
       <Route path={privateRoutes.ACTIVITIESFORM} element={<ActivitiesForm />} />
       <Route
         path={privateRoutes.ACTIVITIESEDITFORM}
@@ -33,6 +34,7 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
       />
+      <Route path={privateRoutes.CATEGORIESLIST} element={<CategoriesList />}/>
       <Route 
         path={privateRoutes.CREATECATEGORY} 
         element={<CategoriesForm />} />
