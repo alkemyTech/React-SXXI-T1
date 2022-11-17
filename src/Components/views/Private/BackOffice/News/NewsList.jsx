@@ -1,3 +1,4 @@
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { privateRoutes } from "models/routes";
@@ -48,6 +49,12 @@ const NewsList = () => {
         wrapTextClass="text-center"
         wrapTitleClass="h-auto"
       />
+      <div className="d-flex justify-content-start">
+        <BackTo
+          wrapLink="my-1"
+          to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
+        />
+      </div>
       <div>
         <CustomTable
           tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
