@@ -6,6 +6,7 @@ import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
 import CategoriesForm from "../Categories/CategoriesForm";
 import EditMembersForm from "./BackOffice/Members/EditForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
+import NewsList from "./BackOffice/News/NewsList";
 import NewsForm from "./BackOffice/News/NewsForm";
 import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
 import PrivateHome from "./Home/PrivateHome";
@@ -32,18 +33,11 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
       />
-      <Route 
-        path={privateRoutes.CREATECATEGORY} 
-        element={<CategoriesForm />} />
-      <Route 
-        path={privateRoutes.EDITCATEGORY} 
-        element={<CategoriesForm />} />
-       <Route
-        path={privateRoutes.NEWSFORM} 
-        element={<NewsForm />} />
-      <Route 
-        path={privateRoutes.NEWSEDITFORM} 
-        element={<NewsForm />} />
+      <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
+      <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
+      <Route path={privateRoutes.NEWSLIST} element={<NewsList />} />
+      <Route path={privateRoutes.NEWSCREATEFORM} element={<NewsForm />} />
+      <Route path={privateRoutes.NEWSEDITFORMWITHID} element={<NewsForm />} />
       <Route path={privateRoutes.SLIDES} element={<PrivateSlides />} />
       <Route path={privateRoutes.SLIDESWITHID} element={<PrivateSlides />} />
       <Route
@@ -54,20 +48,10 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.TESTIMONIALSEDITFORM}
         element={<TestimonialsForm />}
       />
-      <Route 
-        path={privateRoutes.CREATEPROJECT} 
-        element={<ProjectsForm />} />
-      <Route 
-        path={privateRoutes.EDITPROJECT} 
-        element={<ProjectsForm />} />
-      <Route
-        path={privateRoutes.USERSFORM}
-        element={<UsersForm />}
-      />
-      <Route
-        path={privateRoutes.USERSEDITFORM}
-        element={<UsersForm />}
-      />
+      <Route path={privateRoutes.CREATEPROJECT} element={<ProjectsForm />} />
+      <Route path={privateRoutes.EDITPROJECT} element={<ProjectsForm />} />
+      <Route path={privateRoutes.USERSFORM} element={<UsersForm />} />
+      <Route path={privateRoutes.USERSEDITFORM} element={<UsersForm />} />
     </RoutesNoMatch>
   );
 };

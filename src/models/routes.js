@@ -30,12 +30,14 @@ export const privateRoutes = {
   EDITMEMBERSFORM: "members/edit",
   EDITORGANIZATIONFORM: "organization/edit",
   EDITPROJECT: "projects/:id",
-  NEWSEDITFORM: "news/:id",
-  NEWSFORM: "news",
+  NEWSLIST: "news",
+  NEWSEDITFORM: "news/edit/",
+  NEWSEDITFORMWITHID: "news/edit/:id",
+  NEWSCREATEFORM: "news/create",
   SLIDES: "slides",
   SLIDESWITHID: "slides/:id",
   TESTIMONIALSFORM: "testimonials",
   TESTIMONIALSEDITFORM: "testimonials/:id",
   USERSFORM: "users",
-  USERSEDITFORM: "users/:id"
+  USERSEDITFORM: "users/:id",
 };
