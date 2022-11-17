@@ -1,5 +1,5 @@
 import { THead, CustomTable as Table } from "./styled-components/Table.styled";
-import { TableRow } from "./components/TableRow./TableRow";
+import { TableRow } from "./components/TableRow/TableRow";
 import { TableHead } from "./components/TableHead/TableHead";
 
 export const CustomTable = ({
