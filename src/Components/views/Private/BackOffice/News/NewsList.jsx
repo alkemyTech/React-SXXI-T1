@@ -1,20 +1,24 @@
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
+import { privateRoutes } from "models/routes";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const DUMMY_NEWS = [
   {
+    id: 1,
     name: "News 1",
     image: "https://www.w3schools.com/w3css/img_lights.jpg",
     createdAt: new Date().toLocaleString(),
   },
   {
+    id: 2,
     name: "News 2",
     image: "https://www.w3schools.com/w3css/img_lights.jpg",
     createdAt: new Date().toLocaleString(),
   },
   {
+    id: 3,
     name: "News 3",
     image: "https://www.w3schools.com/w3css/img_lights.jpg",
     createdAt: new Date().toLocaleString(),
@@ -24,12 +28,13 @@ const DUMMY_NEWS = [
 const NewsList = () => {
   const navigate = useNavigate();
 
-  const editHandler = () => {
-    console.log("Edit clicked");
+  const editHandler = (id) => {
+    console.log("Edit clicked", id);
+    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSEDITFORM}${id}`);
   };
 
-  const deleteHandler = () => {
-    console.log("Delete clicked");
+  const deleteHandler = (id) => {
+    console.log("Delete clicked", id);
   };
 
   return (
