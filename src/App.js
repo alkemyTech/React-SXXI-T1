@@ -42,11 +42,6 @@ function App() {
             <Route path={routes.HOME} exact element={<Home />} />
             <Route path={routes.ABOUT} element={<About />} />
             <Route
-              path={routes.ABOUT}
-              exact
-              element={<About />}
-            />
-            <Route
               path={routes.ACTIVITIES}
               exact
               element={<ActivitiesList />}

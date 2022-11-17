@@ -1,7 +1,8 @@
 import { useAbout } from "./hook/useAbout";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import MembersList from "../Members/MembersList";
 import { MainContainer, CustomText } from "./about.styled";
+import Members from "../Members/Detail/Members";
+
 
 const About = () => {
   const info = useAbout();
@@ -26,7 +27,7 @@ const About = () => {
           wrapTitleClass="h-auto" 
         />
       </div>
-      <MembersList />
+      <Members/>
     </MainContainer>
   )
 }

@@ -36,7 +36,9 @@ const MembersList = () => {
             {membersMock.length > 0 ?
                 membersMock.map((member) => {
                     return(
-                        <li className="card-info" key={member.id}>
+                        <li 
+                          className="card-info" 
+                          key={member.id}>
                             <h3>{member.name}</h3>
                             <p>{member.description}</p>
                             <p>{member.facebookUrl}</p>
