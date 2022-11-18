@@ -48,4 +48,14 @@ const titleSchema = {
   edit: "Editar Slide",
 };
 
-export { modalSchema, formFieldsSchema, buttonSchema, titleSchema };
+const tableHead = ["#", "Título", "Imagen", "Orden", "Acciones"];
+const myTableData = { name: "name", image: "image", order: "order" };
+
+export {
+  modalSchema,
+  formFieldsSchema,
+  buttonSchema,
+  titleSchema,
+  tableHead,
+  myTableData,
+};

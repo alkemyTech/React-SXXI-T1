@@ -5,10 +5,16 @@ const NavLinkReactRouter = ({
   to,
   navLinkClass = "",
   handleCloseToggle = undefined,
+  icon = ''
 }) => {
   return (
-    <CustomNavLink className={navLinkClass} onClick={handleCloseToggle} to={to}>
-      {text}
+    <CustomNavLink
+      className={navLinkClass}
+      onClick={handleCloseToggle}
+      to={to}
+      end
+    >
+      {icon} {text}
     </CustomNavLink>
   );
 };

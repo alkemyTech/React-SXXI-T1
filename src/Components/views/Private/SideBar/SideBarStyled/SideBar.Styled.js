@@ -16,7 +16,7 @@ export const NavLinkStyled = styled(NavLink)`
         color: white;
     }
     &.active{
-        color: white;
+        color: blue;
     }
 `;
 

@@ -29,7 +29,7 @@ export const useSlidesEditAction = ({ setInitialValues, idSlide }) => {
         console.error("error SlidesForm - fetchAllSlides", error.message);
         feedbackUser(
           "top-end",
-          "success",
+          "error",
           requestMessagesSchema.problemExistTryLater +
             " " +
             requestMessagesSchema.contactAdmin

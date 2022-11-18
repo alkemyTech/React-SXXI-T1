@@ -1,7 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { privateRoutes, routes } from "./models/routes";
-import { Row } from "react-bootstrap";
 import { Animate } from "styled-components/animation.styled";
 import { GlobalStyle } from "styled-components/GlobalStyle.styled";
 import { windowSize } from "utilities/windowSize.util";
@@ -28,16 +27,19 @@ import { Donations } from "Components/views/Donations/Donations";
 import { Thanks } from "Components/views/Donations/Thanks";
 import News from "Components/views/News/News";
 import CategoriesForm from "Components/views/Categories/CategoriesForm";
+import { WrapMainRoutes } from "styled-components/App.styled";
+import About from "Components/views/About/About";
 
 function App() {
   return (
     <>
-      <GlobalStyle windowSize={windowSize()} />
+      <GlobalStyle />
       <Animate className="col-with-animate">
-        <Header />
-        <Row>
+        <Header windowSize={windowSize()} />
+        <WrapMainRoutes className="wrap-main-routes" size={windowSize()}>
           <RoutesNoMatch>
             <Route path={routes.HOME} exact element={<Home />} />
+            <Route path={routes.ABOUT} exact element={<About />} />
             <Route
               path={routes.ACTIVITIES}
               exact
@@ -59,7 +61,6 @@ function App() {
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
             <Route path={routes.CONTACT} element={<Contact />} />
-
             <Route
               path={routes.DONATION}
               element={<Donations text={textForDonation.text} />}
@@ -72,7 +73,7 @@ function App() {
               />
             </Route>
           </RoutesNoMatch>
-        </Row>
+        </WrapMainRoutes>
         <Footer />
       </Animate>
     </>

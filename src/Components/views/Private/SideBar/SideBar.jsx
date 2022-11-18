@@ -6,8 +6,7 @@ import { privateLinks } from './utilities/utilities';
 export default function SideBar({show, handleClose}){
 
     return(
-        <Offcanvas show={show} onHide={handleClose}
-            className='bg-primary'>
+        <Offcanvas show={show} onHide={handleClose}>
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Somos más</Offcanvas.Title>
             </Offcanvas.Header>
