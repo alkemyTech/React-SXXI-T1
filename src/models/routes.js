@@ -40,6 +40,7 @@ export const privateRoutes = {
   SLIDESEDITWITHID: "slides/edit/:id",
   TESTIMONIALSFORM: "testimonials",
   TESTIMONIALSEDITFORM: "testimonials/:id",
-  USERSFORM: "users",
-  USERSEDITFORM: "users/:id"
+  USERS: "users",
+  USERSFORM: "users/create",
+  USERSEDITFORM: "users/edit/:id"
 };
