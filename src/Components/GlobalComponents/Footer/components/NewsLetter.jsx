@@ -18,14 +18,14 @@ export const NewsLetter = ({ handleNewsLetter }) => {
   } = useNewsLetter(handleNewsLetter);
 
   return (
-    <FormNewsLetter className="col col-12 col-sm-8" onSubmit={handleSubmit}>
+    <FormNewsLetter className="col col-12" onSubmit={handleSubmit}>
       <TextSubscribeNewsLetter>
         {textSubscribtion.subNewsLetterText}
       </TextSubscribeNewsLetter>
 
       <FormGroup className="col col-12">
         <InputNewsLetter
-          className="me-1 col col-12"
+          className="me-1 mb-1 col col-12"
           type={formSchema.inputNewsLetterAttr.type}
           placeholder={formSchema.inputNewsLetterAttr.placeholder}
           name={formSchema.inputNewsLetterAttr.name}

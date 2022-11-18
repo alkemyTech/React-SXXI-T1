@@ -1,0 +1,18 @@
+export const contactDataAdapter = (data) => ({
+  id: data.id,
+  name: data.name,
+  logo: data.logo || null,
+  short_description: data.short_description || "",
+  welcome_text: data.welcome_text || "",
+  address: data.address || "",
+  phone: data.phone || null,
+  cellphone: data.cellphone || null,
+  created_at: data.created_at || null,
+  updated_at: data.updated_at || null,
+  deleted_at: data.deleted_at || null,
+  group_id: data.group_id || "",
+  facebook_url: data.facebook_url || "",
+  linkedin_url: data.linkedin_url || "",
+  instagram_url: data.instagram_url || "",
+  twitter_url: data.twitter_url || "",
+});

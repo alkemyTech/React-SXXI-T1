@@ -13,36 +13,34 @@ export const TableRow = ({
 }) => {
   return (
     <tr>
-      <>
-        <td>
-          {children?.idx + 1 || <Spinner animation="grow" variant="primary" />}
-        </td>
+      <td>
+        {children?.idx + 1 || <Spinner animation="grow" variant="primary" />}
+      </td>
 
-        <PersonalTableData children={children} loading={loading} />
+      <PersonalTableData children={children} loading={loading} />
 
-        <td>
-          <div className="d-flex flex-nowrap justify-content-center align-items-center ">
-            {buttonsActions.map((btn, idx) =>
-              loading ? (
-                <Spinner key={idx} animation="grow" variant="primary" />
-              ) : (
-                <CustomButton
-                  key={idx}
-                  buttonClass="me-1 "
-                  text={btn}
-                  color={!idx ? "success" : undefined}
-                  background={!idx ? "success" : undefined}
-                  onClick={() =>
-                    !idx
-                      ? handleEdit(children?.element?.id)
-                      : handleDelete(children?.element?.id)
-                  }
-                />
-              )
-            )}
-          </div>
-        </td>
-      </>
+      <td>
+        <div className="d-flex flex-nowrap justify-content-center align-items-center ">
+          {buttonsActions.map((btn, idx) =>
+            loading ? (
+              <Spinner key={idx} animation="grow" variant="primary" />
+            ) : (
+              <CustomButton
+                key={idx}
+                buttonClass="me-1 "
+                text={btn}
+                color={!idx ? "success" : undefined}
+                background={!idx ? "success" : undefined}
+                onClick={() =>
+                  !idx
+                    ? handleEdit(children?.element?.id)
+                    : handleDelete(children?.element?.id)
+                }
+              />
+            )
+          )}
+        </div>
+      </td>
     </tr>
   );
 };
