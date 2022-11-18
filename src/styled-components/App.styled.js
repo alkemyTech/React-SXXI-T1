@@ -162,8 +162,13 @@ const WrapMainRoutes = styled(Row)`
   width: 100%;
   display: flex;
   justify-content: center;
-  max-width: ${({ size: { width } }) => (width > 1199 ? "1200px" : "100%")};
-  padding: ${({ size: { width } }) => (width < 400 ? "0 5px" : "0 1.5rem")};
+  max-width: 95%;
+  padding: ${({ size: { width } }) => (width < 400 ? "5px" : "5px 1.5rem")};
+  min-height: calc(100vh - 353px);
+
+  ${responsiveDesign.desktop} {
+    max-width: 85%;
+  }
 
   ${fadeIn}
 `;
