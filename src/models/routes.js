@@ -28,6 +28,7 @@ export const privateRoutes = {
   BACKHOME: "home",
   CREATECATEGORY: "create-category",
   CREATEPROJECT: "projects",
+  DASHBOARD: "dashboard",
   EDITCATEGORY: "edit-category/:id",
   EDITMEMBERSFORM: "members/edit",
   EDITORGANIZATIONFORM: "organization/edit",
@@ -41,5 +42,5 @@ export const privateRoutes = {
   TESTIMONIALSFORM: "testimonials",
   TESTIMONIALSEDITFORM: "testimonials/:id",
   USERSFORM: "users",
-  USERSEDITFORM: "users/:id"
+  USERSEDITFORM: "users/:id",
 };
