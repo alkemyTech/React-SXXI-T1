@@ -9,7 +9,7 @@ import NewsForm from "./BackOffice/News/NewsForm";
 import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
 import PrivateHome from "./Home/PrivateHome";
 import PrivateSlides from "./Slides/PrivateSlides";
-import Dashboard from "./AdminDashboard/Dashboard";
+import ActionsSlider from "./Slides/components/ActionsSlider/ActionsSlider";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import UsersForm from "./BackOffice/Users/UsersForm";
 import CategoriesList from "./CategoriesList/CategoriesList";
@@ -17,19 +17,18 @@ import CategoriesList from "./CategoriesList/CategoriesList";
 const BackOfficeRoutes = () => {
   return (
     <RoutesNoMatch>
-      <Route path={'/'} element={<Dashboard />} />
-      <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
-      <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
-      <Route path={privateRoutes.EDITCATEGORYWITHID} element={<CategoriesForm />} />
       <Route path={privateRoutes.ACTIVITIESFORM} element={<ActivitiesForm />} />
       <Route
         path={privateRoutes.ACTIVITIESEDITFORM}
         element={<ActivitiesForm />}
       />
+      <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
+      <Route path={privateRoutes.CREATEPROJECT} element={<ProjectsForm />} />
       <Route
         path={privateRoutes.EDITMEMBERSFORM}
         element={<EditMembersForm />}
       />
+      <Route path={privateRoutes.EDITPROJECT} element={<ProjectsForm />} />
       <Route
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
@@ -48,7 +47,11 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.NEWSEDITFORM} 
         element={<NewsForm />} />
       <Route path={privateRoutes.SLIDES} element={<PrivateSlides />} />
-      <Route path={privateRoutes.SLIDESWITHID} element={<PrivateSlides />} />
+      <Route path={privateRoutes.SLIDESCREATE} element={<ActionsSlider />} />
+      <Route
+        path={privateRoutes.SLIDESEDITWITHID}
+        element={<ActionsSlider />}
+      />
       <Route
         path={privateRoutes.TESTIMONIALSFORM}
         element={<TestimonialsForm />}
@@ -57,20 +60,8 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.TESTIMONIALSEDITFORM}
         element={<TestimonialsForm />}
       />
-      <Route 
-        path={privateRoutes.CREATEPROJECT} 
-        element={<ProjectsForm />} />
-      <Route 
-        path={privateRoutes.EDITPROJECT} 
-        element={<ProjectsForm />} />
-      <Route
-        path={privateRoutes.USERSFORM}
-        element={<UsersForm />}
-      />
-      <Route
-        path={privateRoutes.USERSEDITFORM}
-        element={<UsersForm />}
-      />
+      <Route path={privateRoutes.USERSFORM} element={<UsersForm />} />
+      <Route path={privateRoutes.USERSEDITFORM} element={<UsersForm />} />
     </RoutesNoMatch>
   );
 };

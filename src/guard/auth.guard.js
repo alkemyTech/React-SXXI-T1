@@ -23,10 +23,7 @@ const AuthGuard = () => {
       </div>
     );
 
-  return isAuth ? <>
-                    <HeaderBackOffice/>
-                    <Outlet />
-                  </>
+  return isAuth ? <Outlet />
                 : <Navigate replace to={routes.HOME} />;
 };
 
