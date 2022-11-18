@@ -1,8 +1,8 @@
+import { addIcon } from "assets/images";
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { privateRoutes } from "models/routes";
-import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const DUMMY_NEWS = [
@@ -40,19 +40,25 @@ const NewsList = () => {
 
   return (
     <div>
-      <Button onClick={() => navigate("/backoffice/news/create")}>
-        Crear Novedad
-      </Button>
       <CustomTitle
         title="Listado de Novedades"
         justify="center"
         wrapTextClass="text-center"
         wrapTitleClass="h-auto"
       />
-      <div className="d-flex justify-content-start">
+      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
         <BackTo
-          wrapLink="my-1"
+          wrapLink="col col-10 col-sm-5 my-2 me-1"
+          text="Ir dashboard"
           to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
+        />
+        <BackTo
+          wrapLink="col col-10 col-sm-5 my-2"
+          text="Crear Novedad"
+          to={"/" + privateRoutes.BACKOFFICE + privateRoutes.NEWSCREATEFORM}
+          color="success"
+          background="success"
+          icon={addIcon}
         />
       </div>
       <div>
