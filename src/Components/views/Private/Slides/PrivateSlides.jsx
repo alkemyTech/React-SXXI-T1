@@ -1,65 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { privateRoutes } from "models/routes";
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
-import { feedbackUser } from "utilities/alerts/feedbackUser.util";
-import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
-import { personalSlides } from "utilities/slides/slides.util";
-import { getSlides } from "./interceptor/getSlides.interceptor";
-import { useNavigate } from "react-router-dom";
-
-const tableHead = ["#", "Título", "Imagen", "Orden", "Acciones"];
-const myTableData = { name: "name", image: "image", order: "order" };
+import { usePrivateSlides } from "./hooks/usePrivateSlides";
+import { myTableData, tableHead } from "./utilities/slidesSchema.util";
+import { addIcon } from "assets/images";
 
 const PrivateSlides = () => {
-  const [loadSlides, setLoadSlides] = useState(false);
-  const [slides, setSlides] = useState([]);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchAllSlides = async () => {
-      try {
-        setLoadSlides(true);
-        const getData = await getSlides({});
-
-        if (getData && !getData.success) throw new Error(getData.message);
-
-        setSlides(personalSlides(getData.data));
-      } catch (error) {
-        console.error("error SlidesForm - fetchAllSlides", error.message);
-        feedbackUser(
-          "top-end",
-          "error",
-          requestMessagesSchema.problemExistTryLater +
-            " " +
-            requestMessagesSchema.contactAdmin
-        );
-      } finally {
-        setLoadSlides(false);
-      }
-    };
-
-    fetchAllSlides();
-  }, []);
-
-  const handleEdit = (id) => {
-    navigate("/" + privateRoutes.BACKOFFICE + privateRoutes.SLIDESEDIT + id);
-  };
-
-  const handleDelete = () => {
-    console.log("delete");
-  };
+  const { loadSlides, slides, handleEdit, handleDelete } = usePrivateSlides();
 
   return (
     <>
       <div className=" mt-2 d-flex col col-12">
         <CustomTitle title="Slides" />
       </div>
-      <div className="d-flex justify-content-start">
+      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
         <BackTo
-          wrapLink="my-1"
+          wrapLink="col col-10 col-sm-5 my-2 me-1"
+          text="Ir dashboard"
           to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
+        />
+        <BackTo
+          wrapLink="col col-10 col-sm-5 my-2"
+          text="Crear Slide"
+          to={"/" + privateRoutes.BACKOFFICE + privateRoutes.SLIDESCREATE}
+          color="success"
+          background="success"
+          icon={addIcon}
         />
       </div>
       <CustomTable

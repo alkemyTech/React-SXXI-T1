@@ -11,7 +11,7 @@ export const useBodyDonation = () => {
 
   const handleClickDonate = async () => {
     const actionConfirm = await handleUserConfirm(
-      "Seguro quieres hacer una donación?"
+      "¿Seguro quieres hacer una donación?"
     );
 
     if (!actionConfirm) return;

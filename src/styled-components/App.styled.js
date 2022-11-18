@@ -163,8 +163,8 @@ const WrapMainRoutes = styled(Row)`
   display: flex;
   justify-content: center;
   max-width: 95%;
-  padding: ${({ size: { width } }) => (width < 400 ? "0 5px" : "0 1.5rem")};
-  min-height: calc(100vh - 399px);
+  padding: ${({ size: { width } }) => (width < 400 ? "5px" : "5px 1.5rem")};
+  min-height: calc(100vh - 313px);
 
   ${responsiveDesign.desktop} {
     max-width: 85%;

@@ -1,4 +1,5 @@
 export const routes = {
+  ABOUT: "/nosotros",
   ACTIVITIES: "/actividades",
   ACTIVITIESDETAIL: "/actividades/:id",
   ACTIVITIESFORM: "/create-activity",
@@ -14,6 +15,7 @@ export const routes = {
   ORGANIZATIONDATA: "/backoffice/organization",
   PROJECTFORM: "/create-project",
   SCHOOLCAMPAIGN: "/school-campaign",
+  TESTIMONIALS: "/testimonials",
   TESTIMONIALSFORM: "/create-testimonials",
   THANKSDONATION: "/gracias",
   TOYSCAMPAIGN: "/toys-campaign",

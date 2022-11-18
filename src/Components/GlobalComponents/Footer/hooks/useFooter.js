@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { feedbackUser } from "utilities/alerts/feedbackUser.util";
+import { getLocalStorage } from "utilities/localStorage.util";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 import { getContactData } from "../interceptor/getContactData.interceptor";
 
 export const useFooter = () => {
   const [contactData, setContactData] = useState(undefined);
   const [loadingData, setLoadingData] = useState(false);
+
+  const [newsLetter, setNewsLetter] = useState(!!getLocalStorage("newsLetter"));
+
+  const handleNewsLetter = (value) => setNewsLetter(value);
 
   useEffect(() => {
     const fetchContactData = async () => {
@@ -28,5 +33,5 @@ export const useFooter = () => {
     fetchContactData();
   }, []);
 
-  return { contactData, loadingData };
+  return { contactData, loadingData, handleNewsLetter, newsLetter };
 };
