@@ -46,14 +46,14 @@ const ActivitiesList = () => {
         wrapTextClass="text-center"
         wrapTitleClass="h-auto"
       />
-      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
+      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-md-between">
         <BackTo
-          wrapLink="col col-10 col-sm-5 my-2 me-1"
+          wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3 me-1"
           text="Ir dashboard"
           to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
         />
         <BackTo
-          wrapLink="col col-10 col-sm-5 my-2"
+          wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3"
           text="Crear Actividad"
           to={"/" + privateRoutes.BACKOFFICE + privateRoutes.ACTIVITIESCREATE}
           color="success"
