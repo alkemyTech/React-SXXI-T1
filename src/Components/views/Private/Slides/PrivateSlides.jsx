@@ -15,7 +15,7 @@ const PrivateSlides = () => {
       <div className=" mt-2 d-flex col col-12">
         <CustomTitle title="Slides" />
       </div>
-      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-start">
+      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
         <BackTo
           wrapLink="col col-10 col-sm-5 my-2 me-1"
           text="Ir dashboard"
