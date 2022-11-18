@@ -4,7 +4,7 @@ import { themeColors } from "styled-components/Theme.styled";
 import styled from "styled-components";
 
 const FormNewsLetter = styled(Form)`
-  margin: 1rem 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   text-align: center;

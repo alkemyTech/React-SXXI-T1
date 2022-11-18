@@ -16,10 +16,13 @@ const CustomLink = styled(Link)`
   padding: ${({ padding }) => padding || "6px 12px"};
   text-decoration: none;
   text-align: center;
-
-  background-color: ${({ background }) => backGroundColors(background)};
+  background-color: ${({ background }) =>
+    backGroundColors(background) || background};
   color: ${({ color }) => colors(color)}!important;
-  border: 1px solid ${({ color }) => borderColors(color)};
+  border-radius: ${({ borderRadius }) => borderRadius || "none"};
+  border: ${({ border, color }) =>
+    border || `1px solid ${borderColors(color)}`};
+  border-radius: 8px;
   ${dropShadow}
 
   ${responsiveDesign.desktop} {

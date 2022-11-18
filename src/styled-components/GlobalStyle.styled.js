@@ -1,6 +1,4 @@
-import { createGlobalStyle, css } from "styled-components";
-
-const minHeight = "100vh - 112px";
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     html {
@@ -30,24 +28,20 @@ export const GlobalStyle = createGlobalStyle`
         }
 
         body {
-            background: white;
-            min-height: ${({ windowSize: { height } }) =>
-              height > 600 ? "100vh" : css`calc(${minHeight})`};
-            max-width: ${({ windowSize: { width } }) =>
-              width > 1199 ? "1200px" : width > 999 ? "1000px" : "650px"};
-            
+            background: -webkit-linear-gradient(to bottom, #e4e4e4, #ffffff);
+            background: linear-gradient(to bottom, #e4e4e4, #ffffff);
+            min-height: 100vh;
+            max-width: 100%; 
             overscroll-behavior: none;
+            height: 100%;
             width: 100%;
             margin: 0 auto;
             transition: 0.5s;
-            padding: 0 1.5rem;
         }
-
+        
         #root {
             width: 100%;
             overflow-x: hidden;
-            min-height: 100vh;
-            padding: 0 1.5rem;
         }
     }
 `;
