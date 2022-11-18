@@ -11,7 +11,6 @@ import { privateRoutes } from 'models/routes';
 import FormLabel from '../components/FormLabel';
 
 const ActivitiesForm = () => {
-
   const {
     errors, 
     handleBlur, 
@@ -25,7 +24,6 @@ const ActivitiesForm = () => {
     setImageBase64, 
     setFieldValue 
 } = useActivitiesForm();
-
     
   const { id } = useParams();
 
