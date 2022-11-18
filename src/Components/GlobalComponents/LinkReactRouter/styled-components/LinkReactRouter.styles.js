@@ -23,6 +23,7 @@ const CustomLink = styled(Link)`
   border: ${({ border, color }) =>
     border || `1px solid ${borderColors(color)}`};
   border-radius: 8px;
+  ${dropShadow}
 
   ${responsiveDesign.desktop} {
     width: 124px;
