@@ -14,7 +14,7 @@ const Footer = () => {
     useFooter();
 
   return (
-    <WrapFooter className="py-3">
+    <WrapFooter className="py-4">
       <Row className="first-row m-0 p-0 d-flex justify-content-center">
         <Col className="mx-0 p-0 d-flex flex-wrap justify-content-center ">
           <FooterDataLoading loading={loadingData}>
