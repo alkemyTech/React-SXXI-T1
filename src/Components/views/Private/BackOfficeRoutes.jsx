@@ -13,6 +13,7 @@ import PrivateSlides from "./Slides/PrivateSlides";
 import ActionsSlider from "./Slides/components/ActionsSlider/ActionsSlider";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import UsersForm from "./BackOffice/Users/UsersForm";
+import UsersList from "./BackOffice/Users/UsersList";
 
 const BackOfficeRoutes = () => {
   return (
@@ -51,6 +52,7 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.TESTIMONIALSEDITFORM}
         element={<TestimonialsForm />}
       />
+      <Route path={privateRoutes.USERS} element={<UsersList />} />
       <Route path={privateRoutes.USERSCREATE} element={<UsersForm />} />
       <Route path={privateRoutes.USERSEDITWITHID} element={<UsersForm />} />
     </RoutesNoMatch>
