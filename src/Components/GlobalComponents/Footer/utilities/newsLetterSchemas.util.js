@@ -1,10 +1,9 @@
 const valuesSchema = { email: "" };
 
 const formSchema = {
-  textSubscribe: "Suscribite al NewsLetter para poder recibir actualizaciones",
   inputNewsLetterAttr: {
     type: "email",
-    placeholder: "Ingresá tu correo",
+    placeholder: "Ingresa tu email",
     name: "email",
   },
   submitButtonAttr: {
@@ -13,8 +12,7 @@ const formSchema = {
 };
 
 const textSubscribtion = {
-  subNewsLetterText:
-    "Suscribite al NewsLetter para poder recibir actualizaciones",
+  subNewsLetterText: "Suscribite para recibir actualizaciones",
 };
 
 export { formSchema, textSubscribtion, valuesSchema };

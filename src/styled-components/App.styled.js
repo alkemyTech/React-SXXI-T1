@@ -1,4 +1,4 @@
-import { Row as BootstrapRow } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import styled, { css } from "styled-components";
 import { fadeIn } from "./animation.styled";
 import { themeColors } from "./Theme.styled";
@@ -118,13 +118,6 @@ const SmallTexts = styled.h6`
     `};
 `;
 
-const Row = styled(BootstrapRow)`
-  margin: 0;
-  min-height: calc(100vh - 87px);
-  padding-top: 6rem;
-  ${fadeIn}
-`;
-
 const disabledCssStyle = css`
   background-color: ${themeColors.gray};
   color: ${themeColors.txtGray};
@@ -164,12 +157,22 @@ const dropShadow = css`
   filter: drop-shadow(0px 4px 4px ${themeColors.blackShadow});
 `;
 
+const WrapMainRoutes = styled(Row)`
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-width: ${({ size: { width } }) => (width > 1199 ? "1200px" : "100%")};
+  padding: ${({ size: { width } }) => (width < 400 ? "0 5px" : "0 1.5rem")};
+
+  ${fadeIn}
+`;
+
 export {
   someOtherProperties,
   responsiveDesign,
   Hr,
   typography,
-  Row,
   CustomImage,
   TitleText,
   SubtitleText,
@@ -181,4 +184,5 @@ export {
   inputTextCssStyle,
   disabledCssStyle,
   dropShadow,
+  WrapMainRoutes,
 };
