@@ -1,18 +1,18 @@
 import { routes } from "models/routes";
 // editar resto de rutas cuando existan
-const publicNavItems = [
+const footerNavItems = [
   { text: "Inicio", to: routes.HOME },
-  { text: "Nosotros", to: "/about" },
+  { text: "Nosotros", to: routes.ABOUT },
   { text: "Novedades", to: routes.NEWS },
-  { text: "Testimonios", to: "/testimonios" },
+  { text: "Testimonios", to: routes.TESTIMONIALS },
   { text: "Contacto", to: routes.CONTACT },
   { text: "Contribuye", to: routes.DONATION },
 ];
 
 const publicHeaderNavItems = [
-  ...publicNavItems,
+  ...footerNavItems,
   { text: "Login", to: routes.AUTHLOGINFORM },
   { text: "Registrar", to: routes.AUTHREGISTERFORM },
 ];
 
-export { publicNavItems, publicHeaderNavItems };
+export { footerNavItems, publicHeaderNavItems };
