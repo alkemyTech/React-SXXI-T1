@@ -29,6 +29,7 @@ import { Thanks } from "Components/views/Donations/Thanks";
 import News from "Components/views/News/News";
 import CategoriesForm from "Components/views/Categories/CategoriesForm";
 import { WrapMainRoutes } from "styled-components/App.styled";
+import About from "Components/views/About/About";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <WrapMainRoutes className="wrap-main-routes" size={windowSize()}>
           <RoutesNoMatch>
             <Route path={routes.HOME} exact element={<Home />} />
+            <Route path={routes.ABOUT} exact element={<About />} />
             <Route
               path={routes.ACTIVITIES}
               exact
