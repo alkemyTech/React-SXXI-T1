@@ -17,9 +17,9 @@ import UsersForm from "./BackOffice/Users/UsersForm";
 const BackOfficeRoutes = () => {
   return (
     <RoutesNoMatch>
-      <Route path={privateRoutes.ACTIVITIESFORM} element={<ActivitiesForm />} />
+      <Route path={privateRoutes.ACTIVITIESCREATE} element={<ActivitiesForm />} />
       <Route
-        path={privateRoutes.ACTIVITIESEDITFORM}
+        path={privateRoutes.ACTIVITIESEDITSWITHID}
         element={<ActivitiesForm />}
       />
       <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
