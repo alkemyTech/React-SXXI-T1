@@ -1,4 +1,6 @@
+import { Table } from "react-bootstrap";
 import styled from "styled-components";
+import { inputTextCssStyle } from "styled-components/App.styled";
 import { themeColors } from "styled-components/Theme.styled";
 
 const THead = styled.thead`
@@ -6,4 +8,8 @@ const THead = styled.thead`
   color: ${themeColors.white};
 `;
 
-export { THead };
+const CustomTable = styled(Table)`
+  ${inputTextCssStyle}
+`;
+
+export { THead, CustomTable };

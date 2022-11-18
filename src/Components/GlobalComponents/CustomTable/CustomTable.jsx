@@ -1,6 +1,5 @@
-import { Table } from "react-bootstrap";
-import { THead } from "./styled-components/Table.styled";
-import { TableRow } from "./components/TableRow./TableRow";
+import { THead, CustomTable as Table } from "./styled-components/Table.styled";
+import { TableRow } from "./components/TableRow/TableRow";
 import { TableHead } from "./components/TableHead/TableHead";
 
 export const CustomTable = ({

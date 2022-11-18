@@ -7,14 +7,15 @@ import { FooterLogo } from "./components/FooterLogo/FooterLogo";
 import { FooterSocialNetworks } from "./components/FooterSocialNetworks/FooterSocialNetworks";
 import { useFooter } from "./hooks/useFooter";
 import { FooterDataLoading } from "./components/FooterDataLoading/FooterDataLoading";
+import { SecondRow } from "./styled-components/SecondRow.styled";
 
 const Footer = () => {
   const { contactData, loadingData, handleNewsLetter, newsLetter } =
     useFooter();
 
   return (
-    <WrapFooter className="py-3">
-      <Row className="m-0 p-0 d-flex justify-content-center">
+    <WrapFooter className="py-4">
+      <Row className="first-row m-0 p-0 d-flex justify-content-center">
         <Col className="mx-0 p-0 d-flex flex-wrap justify-content-center ">
           <FooterDataLoading loading={loadingData}>
             <NavFooter>{footerNavItems}</NavFooter>
@@ -22,7 +23,7 @@ const Footer = () => {
         </Col>
       </Row>
 
-      <Row className="col col-12 p-0 my-3 mx-0 d-flex flex-wrap flex-sm-nowrap justify-content-evenly align-items-center">
+      <SecondRow className="second-row col col-12 p-0 my-2 mx-0 d-flex flex-wrap flex-sm-nowrap justify-content-evenly align-items-center">
         <Col className="d-none d-sm-flex flex-column align-items-center justify-content-center col-12 col-sm-3 col-md-2">
           <FooterDataLoading loading={loadingData}>
             <FooterLogo
@@ -57,7 +58,7 @@ const Footer = () => {
             <FooterSocialNetworks contactData={contactData} />
           </FooterDataLoading>
         </Col>
-      </Row>
+      </SecondRow>
     </WrapFooter>
   );
 };

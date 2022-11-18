@@ -28,7 +28,8 @@ export const GlobalStyle = createGlobalStyle`
         }
 
         body {
-            background: white;
+            background: -webkit-linear-gradient(to bottom, #e4e4e4, #ffffff);
+            background: linear-gradient(to bottom, #e4e4e4, #ffffff);
             min-height: 100vh;
             max-width: 100%; 
             overscroll-behavior: none;
