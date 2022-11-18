@@ -30,17 +30,18 @@ const NewsForm = () => {
 
   return (
     <div className="container my-5">
-      <div className="my-5">
-        <BackTo wrapLink="my-4" to={"/" + privateRoutes.BACKOFFICE + "news"} />
-      </div>
       <div>
         <CustomTitle
           title={id ? "Edita la novedad" : "Crea una novedad"}
           justify="center"
           wrapTextClass="text-center"
+          wrapTitleClass="h-auto"
         />
       </div>
-      <Form className="my-5" onSubmit={handleSubmit}>
+      <div>
+        <BackTo wrapLink="my-4" to={"/" + privateRoutes.BACKOFFICE + "news"} />
+      </div>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicName">
           <ContainerInputError>
             <FormLabel title="Titulo de la novedad:" />
@@ -89,7 +90,7 @@ const NewsForm = () => {
             />
           </ContainerInputError>
         </Form.Group>
-        <Form.Group className="mb-5" controlId="formBasicImage">
+        <Form.Group className="mb-2" controlId="formBasicImage">
           <FormLabel title="Imagen de la actividad:" />
           <FormImageField
             errors={errors}
