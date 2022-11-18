@@ -51,8 +51,8 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.TESTIMONIALSEDITFORM}
         element={<TestimonialsForm />}
       />
-      <Route path={privateRoutes.USERSFORM} element={<UsersForm />} />
-      <Route path={privateRoutes.USERSEDITFORM} element={<UsersForm />} />
+      <Route path={privateRoutes.USERSCREATE} element={<UsersForm />} />
+      <Route path={privateRoutes.USERSEDITWITHID} element={<UsersForm />} />
     </RoutesNoMatch>
   );
 };
