@@ -25,7 +25,7 @@ export const NewsLetter = ({ handleNewsLetter }) => {
 
       <FormGroup className="col col-12">
         <InputNewsLetter
-          className="me-1 col col-12"
+          className="me-1 mb-1 col col-12"
           type={formSchema.inputNewsLetterAttr.type}
           placeholder={formSchema.inputNewsLetterAttr.placeholder}
           name={formSchema.inputNewsLetterAttr.name}

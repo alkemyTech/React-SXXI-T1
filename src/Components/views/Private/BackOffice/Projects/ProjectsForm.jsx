@@ -6,9 +6,9 @@ import { useProjectsForms } from './hooks/useProjectsForms';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { FormImageField } from 'Components/GlobalComponents/FormImageField/FormImageField';
 import { FormCKEditorField } from 'Components/GlobalComponents/FormCKEditorField/FormCKEditorField';
-import FormLabel from './FormLabel';
 import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
 import { privateRoutes } from 'models/routes';
+import FormLabel from '../components/FormLabel';
 
 const ProjectsForm = () => {
     const {
@@ -35,11 +35,12 @@ const ProjectsForm = () => {
                     to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
                 />
             </div>
-            <div>
+            <div className="my-5">
                 <CustomTitle
                     title={ id ? "Edita el Proyecto" : "Crea el proyecto" } 
                     justify="center"   
                     wrapTextClass="text-center" 
+                    wrapTitleClass="d-block h-auto"
                     />
             </div>
             <Form 

@@ -2,8 +2,9 @@ import { useFormik } from "formik";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from "react";
-import { convertToBase64, Alert, activityValidationSchema } from "../utilities/utilities";
+import { convertToBase64, activityValidationSchema } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
+import Alert from "../../components/Alert";
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 
 export const useActivitiesForm = () => {
@@ -64,8 +65,7 @@ export const useActivitiesForm = () => {
         } else {
           await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
         }
-      }
-       
+      }  
     } else {
         const alertWarning = await Alert({ icon:'warning', 
             title:'¿Segura/o?', 
