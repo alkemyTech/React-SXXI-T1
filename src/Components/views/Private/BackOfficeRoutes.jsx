@@ -4,8 +4,9 @@ import { RoutesNoMatch } from "utilities/routesNoMatch.util";
 
 import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
 import CategoriesForm from "../Categories/CategoriesForm";
-import EditMembersForm from "./BackOffice/Members/EditForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
+import MembersForm from "./BackOffice/Members/MembersForm";
+import MembersList from "./BackOffice/Members/MembersList";
 import NewsList from "./BackOffice/News/NewsList";
 import NewsForm from "./BackOffice/News/NewsForm";
 import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
@@ -27,9 +28,11 @@ const BackOfficeRoutes = () => {
       <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
       <Route path={privateRoutes.CREATEPROJECT} element={<ProjectsForm />} />
       <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
+      <Route path={privateRoutes.MEMBERSLIST} element={<MembersList />} />
+      <Route path={privateRoutes.MEMBERSCREATEFORM} element={<MembersForm />} />
       <Route
-        path={privateRoutes.EDITMEMBERSFORM}
-        element={<EditMembersForm />}
+        path={privateRoutes.MEMBERSEDITFORMWITHID}
+        element={<MembersForm />}
       />
       <Route path={privateRoutes.EDITPROJECT} element={<ProjectsForm />} />
       <Route
