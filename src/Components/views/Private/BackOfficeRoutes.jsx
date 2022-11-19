@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import { RoutesNoMatch } from "utilities/routesNoMatch.util";
 
 import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
+import ActivitiesList from "./BackOffice/Acivities/ActivitiesList";
 import CategoriesForm from "../Categories/CategoriesForm";
 import EditMembersForm from "./BackOffice/Members/EditForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
@@ -18,11 +19,12 @@ import UsersList from "./BackOffice/Users/UsersList";
 const BackOfficeRoutes = () => {
   return (
     <RoutesNoMatch>
-      <Route path={privateRoutes.ACTIVITIESFORM} element={<ActivitiesForm />} />
+      <Route path={privateRoutes.ACTIVITIESCREATE} element={<ActivitiesForm />} />
       <Route
-        path={privateRoutes.ACTIVITIESEDITFORM}
+        path={privateRoutes.ACTIVITIESEDITSWITHID}
         element={<ActivitiesForm />}
       />
+      <Route path={privateRoutes.ACTIVITIES} element={<ActivitiesList />} /> 
       <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
       <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
       <Route path={privateRoutes.CREATEPROJECT} element={<ProjectsForm />} />
