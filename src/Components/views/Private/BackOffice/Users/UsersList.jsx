@@ -28,7 +28,7 @@ const UsersList = () => {
 
   const editHandler = (id) => {
     console.log("Edit clicked", id);
-    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.USERSEDIT}/:${id}`);
+    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.USERSEDIT}/${id}`);
   };
 
   const deleteHandler = (id) => {
