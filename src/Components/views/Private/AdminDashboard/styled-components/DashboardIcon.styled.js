@@ -1,9 +1,9 @@
-import { activityIcon } from "assets/images";
 import styled from "styled-components";
+import { subtitleCssStyle } from "styled-components/App.styled";
+import { themeColors } from "styled-components/Theme.styled";
 
-export const DashboardIcon = styled.div`
-  background-image: url(${({ image }) => (image ? image : "not image")});
-  background-size: ${({ backgroundSize }) => backgroundSize || "cover"};
-  height: ${({ height }) => height || "50px"};
-  width: ${({ width }) => width || "100%"};
+export const TitleDashboardCard = styled.div`
+  ${subtitleCssStyle}
+  color: ${themeColors.white};
+  text-align: center;
 `;
