@@ -67,13 +67,11 @@ function App() {
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
             <Route path={routes.CONTACT} element={<Contact />} />
-
             <Route
               path={routes.DONATION}
               element={<Donations text={textForDonation.text} />}
             />
             <Route path={routes.THANKSDONATION} element={<Thanks />} />
-
             <Route element={<AuthGuard />}>
               <Route
                 path={`${privateRoutes.BACKOFFICE}/*`}
