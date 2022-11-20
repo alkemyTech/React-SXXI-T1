@@ -21,15 +21,17 @@ export const routes = {
 };
 
 export const privateRoutes = {
-  ACTIVITIESEDITFORM: "activities/:id",
-  ACTIVITIESFORM: "activities",
   ACTIVITIES: "activities",
-  BACKOFFICE: "backoffice",
+  ACTIVITIESCREATE: "activities/create",
+  ACTIVITIESEDIT: "activities/edit",
+  ACTIVITIESEDITSWITHID: "activities/edit/:id",
+  BACKOFFICE: "backoffice/",
   BACKHOME: "home",
   CATEGORIES: "categories",
-  CREATECATEGORY: "create-category",
+  CATEGORIESCREATE: "categories/create",
   CREATEPROJECT: "projects",
-  EDITCATEGORY: "edit-category/:id",
+  CATEGORIESEDIT: "categories/edit",
+  CATEGORIESEDITWITHID: "categories/edit/:id",
   EDITMEMBERSFORM: "members/edit",
   EDITORGANIZATIONFORM: "organization/edit",
   EDITPROJECT: "projects/:id",
