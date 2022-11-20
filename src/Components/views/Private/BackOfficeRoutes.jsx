@@ -2,6 +2,7 @@ import { privateRoutes } from "models/routes";
 import { Route } from "react-router-dom";
 import { RoutesNoMatch } from "utilities/routesNoMatch.util";
 import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
+import ActivitiesList from "./BackOffice/Acivities/ActivitiesList";
 import CategoriesForm from "../Categories/CategoriesForm";
 import EditMembersForm from "./BackOffice/Members/EditForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
@@ -17,11 +18,12 @@ import CategoriesList from "./CategoriesList/CategoriesList";
 const BackOfficeRoutes = () => {
   return (
     <RoutesNoMatch>
-      <Route path={privateRoutes.ACTIVITIESFORM} element={<ActivitiesForm />} />
+      <Route path={privateRoutes.ACTIVITIESCREATE} element={<ActivitiesForm />} />
       <Route
-        path={privateRoutes.ACTIVITIESEDITFORM}
+        path={privateRoutes.ACTIVITIESEDITSWITHID}
         element={<ActivitiesForm />}
       />
+      <Route path={privateRoutes.ACTIVITIES} element={<ActivitiesList />} /> 
       <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
       <Route path={privateRoutes.CREATEPROJECT} element={<ProjectsForm />} />
       <Route
@@ -33,12 +35,12 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
       />
-      <Route path={privateRoutes.CATEGORIESLIST} element={<CategoriesList />}/>
+      <Route path={privateRoutes.CATEGORIES} element={<CategoriesList />}/>
       <Route 
-        path={privateRoutes.CREATECATEGORY} 
+        path={privateRoutes.CATEGORIESCREATE} 
         element={<CategoriesForm />} />
       <Route 
-        path={privateRoutes.EDITCATEGORY} 
+        path={privateRoutes.CATEGORIESEDITWITHID} 
         element={<CategoriesForm />} />
        <Route
         path={privateRoutes.NEWSFORM} 

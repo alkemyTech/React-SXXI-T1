@@ -45,7 +45,7 @@ export default function CategoriesList(){
               <BackTo
                 wrapLink="col col-10 col-sm-5 my-2"
                 text="Crear Categoría"
-                to={"/" + privateRoutes.BACKOFFICE + "/" + privateRoutes.CREATECATEGORY}
+                to={"/" + privateRoutes.BACKOFFICE + "/" + privateRoutes.CATEGORIESCREATE}
                 color="success"
                 background="success"
                 icon={addIcon}
