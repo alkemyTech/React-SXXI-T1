@@ -30,7 +30,7 @@ export const privateRoutes = {
   CATEGORIES: "categories",
   CATEGORIESCREATE: "categories/create",
   CREATEPROJECT: "projects",
-  CATEGORIESEDIT: "categories/edit",
+  CATEGORIESEDIT: "categories/edit/",
   CATEGORIESEDITWITHID: "categories/edit/:id",
   EDITMEMBERSFORM: "members/edit",
   EDITORGANIZATIONFORM: "organization/edit",
