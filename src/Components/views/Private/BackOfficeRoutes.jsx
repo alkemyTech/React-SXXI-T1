@@ -1,7 +1,6 @@
 import { privateRoutes } from "models/routes";
 import { Route } from "react-router-dom";
 import { RoutesNoMatch } from "utilities/routesNoMatch.util";
-
 import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
 import ActivitiesList from "./BackOffice/Acivities/ActivitiesList";
 import CategoriesForm from "../Categories/CategoriesForm";
@@ -14,6 +13,7 @@ import PrivateSlides from "./Slides/PrivateSlides";
 import ActionsSlider from "./Slides/components/ActionsSlider/ActionsSlider";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
 import UsersForm from "./BackOffice/Users/UsersForm";
+import CategoriesList from "./CategoriesList/CategoriesList";
 
 const BackOfficeRoutes = () => {
   return (
@@ -25,9 +25,7 @@ const BackOfficeRoutes = () => {
       />
       <Route path={privateRoutes.ACTIVITIES} element={<ActivitiesList />} /> 
       <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
-      <Route path={privateRoutes.CREATECATEGORY} element={<CategoriesForm />} />
       <Route path={privateRoutes.CREATEPROJECT} element={<ProjectsForm />} />
-      <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
       <Route
         path={privateRoutes.EDITMEMBERSFORM}
         element={<EditMembersForm />}
@@ -37,8 +35,19 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.EDITORGANIZATIONFORM}
         element={<EditOrganizationForm />}
       />
-      <Route path={privateRoutes.NEWSFORM} element={<NewsForm />} />
-      <Route path={privateRoutes.NEWSEDITFORM} element={<NewsForm />} />
+      <Route path={privateRoutes.CATEGORIES} element={<CategoriesList />}/>
+      <Route 
+        path={privateRoutes.CATEGORIESCREATE} 
+        element={<CategoriesForm />} />
+      <Route 
+        path={privateRoutes.CATEGORIESEDITWITHID} 
+        element={<CategoriesForm />} />
+       <Route
+        path={privateRoutes.NEWSFORM} 
+        element={<NewsForm />} />
+      <Route 
+        path={privateRoutes.NEWSEDITFORM} 
+        element={<NewsForm />} />
       <Route path={privateRoutes.SLIDES} element={<PrivateSlides />} />
       <Route path={privateRoutes.SLIDESCREATE} element={<ActionsSlider />} />
       <Route
