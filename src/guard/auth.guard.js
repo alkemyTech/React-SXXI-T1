@@ -23,11 +23,7 @@ const AuthGuard = () => {
       </div>
     );
 
-  return isAuth === "admin" ? (
-    <Outlet />
-  ) : (
-    <Navigate replace to={routes.HOME} />
-  );
+  return ROLE === "admin" ? <Outlet /> : <Navigate replace to={routes.HOME} />;
 };
 
 export default AuthGuard;

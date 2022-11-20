@@ -45,12 +45,10 @@ const Home = () => {
 
   return (
     <MainContainer>
-      <Link to={`/${privateRoutes.BACKOFFICE}${privateRoutes.DASHBOARD}`}>
-        BORAR DESPUESS probando DASHBOARD
-      </Link>
       <TitleContainer>
         <CustomTitle
           title={info.welcomeText ? info.welcomeText : "Bienvenida/o"}
+          height="none"
         />
       </TitleContainer>
 
