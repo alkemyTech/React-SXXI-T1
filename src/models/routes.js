@@ -35,10 +35,11 @@ export const privateRoutes = {
   EDITMEMBERSFORM: "members/edit",
   EDITORGANIZATIONFORM: "organization/edit",
   EDITPROJECT: "projects/:id",
+  NEWSLIST: "news",
+  NEWSEDITFORM: "news/edit/",
+  NEWSEDITFORMWITHID: "news/edit/:id",
+  NEWSCREATEFORM: "news/create",
   MEMBERS: "members",
-  NEWS: "news",
-  NEWSEDITFORM: "news/:id",
-  NEWSFORM: "news",
   ORGANIZATIONDATA: "organization",
   PROJECTS: "projects",
   SLIDES: "slides",
@@ -50,5 +51,5 @@ export const privateRoutes = {
   TESTIMONIALSEDITFORM: "testimonials/:id",
   USERS: "users",
   USERSFORM: "users",
-  USERSEDITFORM: "users/:id"
+  USERSEDITFORM: "users/:id",
 };
