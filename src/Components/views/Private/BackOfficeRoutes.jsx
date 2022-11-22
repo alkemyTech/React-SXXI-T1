@@ -73,8 +73,6 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.TESTIMONIALSEDITFORM}
         element={<TestimonialsForm />}
       />
-      <Route path={privateRoutes.CREATEPROJECT} element={<ProjectsForm />} />
-      <Route path={privateRoutes.EDITPROJECT} element={<ProjectsForm />} />
       <Route path={privateRoutes.USERSFORM} element={<UsersForm />} />
       <Route path={privateRoutes.USERSEDITFORM} element={<UsersForm />} />
     </RoutesNoMatch>
