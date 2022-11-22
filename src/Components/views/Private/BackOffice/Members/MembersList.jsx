@@ -40,7 +40,7 @@ const MembersList = () => {
   return (
     <div>
       <CustomTitle
-        title="Listado de Miembros"
+        title="Miembros"
         justify="center"
         wrapTextClass="text-center"
         wrapTitleClass="h-auto"
@@ -52,7 +52,7 @@ const MembersList = () => {
           to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
         />
         <BackTo
-          wrapLink="col col-10 col-sm-5 my-2"
+          wrapLink="col col-10 col-sm-5 col-md-4 my-2"
           text="Crear Miembro"
           to={"/" + privateRoutes.BACKOFFICE + privateRoutes.MEMBERSCREATEFORM}
           color="success"
@@ -64,7 +64,7 @@ const MembersList = () => {
         <CustomTable
           tHead={["#", "Nombre", "Foto", "Acciones"]}
           tBody={DUMMY_MEMBERS}
-          myTableData={{ name: "name", image: "photo" }}
+          myTableData={{ name: "name", photo: "photo" }}
           handleEdit={editHandler}
           handleDelete={deleteHandler}
         />

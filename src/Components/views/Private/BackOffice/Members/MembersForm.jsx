@@ -67,7 +67,10 @@ const EditForm = () => {
           to={"/" + privateRoutes.BACKOFFICE + "members"}
         />
       </div>
-      <Form className="d-grid gap-3" onSubmit={formik.handleSubmit}>
+      <Form
+        className="d-grid gap-3 col col-12 col-sm-10 col-md-8 col-lg-6 my-3"
+        onSubmit={formik.handleSubmit}
+      >
         <Input
           value={formik.values.name}
           label="Name:"
@@ -102,7 +105,7 @@ const EditForm = () => {
           error={formik.errors.socialMediaLinks}
         />
         <CustomButton
-          buttonClass="w-100"
+          buttonClass="mt-2 col-sm-5 col-md-3 mx-2"
           type="submit"
           background="success"
           color="success"
