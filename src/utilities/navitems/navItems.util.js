@@ -15,7 +15,6 @@ const footerNavItems = [
   { text: "Inicio", to: routes.HOME },
   { text: "Nosotros", to: routes.ABOUT },
   { text: "Novedades", to: routes.NEWS },
-  { text: "Testimonios", to: routes.TESTIMONIALS },
   { text: "Contacto", to: routes.CONTACT },
   { text: "Contribuye", to: routes.DONATION },
 ];

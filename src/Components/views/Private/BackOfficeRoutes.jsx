@@ -5,8 +5,9 @@ import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
 import ActivitiesList from "./BackOffice/Acivities/ActivitiesList";
 import CategoriesForm from "../Categories/CategoriesForm";
 import EditMembersForm from "./BackOffice/Members/EditForm";
-import NewsForm from "./BackOffice/News/NewsForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
+import NewsList from "./BackOffice/News/NewsList";
+import NewsForm from "./BackOffice/News/NewsForm";
 import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
 import PrivateHome from "./Home/PrivateHome";
 import PrivateSlides from "./Slides/PrivateSlides";
@@ -31,7 +32,6 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.ACTIVITIESEDITSWITHID}
         element={<ActivitiesForm />}
       />
-      <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
       <Route path={privateRoutes.CATEGORIES} element={<CategoriesList />} />
       <Route
         path={privateRoutes.CATEGORIESCREATE}
@@ -41,8 +41,11 @@ const BackOfficeRoutes = () => {
         path={privateRoutes.CATEGORIESEDITWITHID}
         element={<CategoriesForm />}
       />
+      <Route
+        path={privateRoutes.CATEGORIESEDITWITHID}
+        element={<CategoriesForm />}
+      />
       <Route path={privateRoutes.CREATEPROJECT} element={<ProjectsForm />} />
-      <Route path={privateRoutes.DASHBOARD} element={<Dashboard />} />
       <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
       <Route
         path={privateRoutes.EDITMEMBERSFORM}
@@ -55,6 +58,9 @@ const BackOfficeRoutes = () => {
       />
       <Route path={privateRoutes.NEWSFORM} element={<NewsForm />} />
       <Route path={privateRoutes.NEWSEDITFORM} element={<NewsForm />} />
+      <Route path={privateRoutes.NEWSLIST} element={<NewsList />} />
+      <Route path={privateRoutes.NEWSCREATEFORM} element={<NewsForm />} />
+      <Route path={privateRoutes.NEWSEDITFORMWITHID} element={<NewsForm />} />
       <Route
         path={privateRoutes.ORGANIZATIONDATA}
         element={<OrganizationData />}
