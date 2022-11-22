@@ -5,7 +5,7 @@ export const PersonalTableData = ({ children, loading }) => {
   const showLoad = () => <Spinner animation="grow" variant="primary" />;
 
   const whatRender = (item) =>
-    item !== "image" ? (
+    item !== "image" && item !== "photo" ? (
       children?.element[item]
     ) : (
       <CustomImage image={children?.element[item]} />
