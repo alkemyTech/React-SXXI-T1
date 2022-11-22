@@ -17,6 +17,7 @@ const CustomNavLink = styled(NavLink)`
   justify-content: start;
   align-items: center;
   transition: 0.5s;
+  gap: 1rem;
 
   ${responsiveDesign.desktop} {
     /* margin: 0 5px; */

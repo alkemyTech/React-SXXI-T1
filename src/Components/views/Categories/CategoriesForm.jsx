@@ -25,36 +25,14 @@ const CategoriesForm = () => {
         image: '',
         description: ''
     };
-    
-    useEffect(()=>{
-        if(id) {
-            api.get(`/categories/${id}`)
-            .then(res => {
-                const { data } = res.data;
-                setCategory({
-                    name: data.name,
-                    image: data.image,
-                    description: data.description
-                });
-                formik.setFieldValue('name', data.name);
-                formik.setFieldValue('image', data.image);
-                formik.setFieldValue('description', data.description);
-            })
-            .catch(()=>{
-                Alert({ icon: 'error', title: 'Ha ocurrido un error'});
-            });
-        }
-    },[id, formik]);
-    
     const backURL = '/backoffice/categories';
     const onSubmit = () => {
         const { name, description } = values;
         const body = { name, description, image: imageB64 };
-
         if(id) {
             Alert({ icon:'warning', 
-                    title:'¿Estas segura/o?', 
-                    cancelText: 'Cancelar' })
+            title:'¿Estas segura/o?', 
+            cancelText: 'Cancelar' })
             .then(res => {
                 if(res.isConfirmed) {
                     setLoading(true);
@@ -99,6 +77,25 @@ const CategoriesForm = () => {
     }
     const formik = useFormik({ initialValues, onSubmit, validationSchema });
     const { handleChange, handleSubmit, values, errors, handleBlur, touched } = formik;
+    useEffect(()=>{
+        if(id) {
+            api.get(`/categories/${id}`)
+            .then(res => {
+                const { data } = res.data;
+                setCategory({
+                    name: data.name,
+                    image: data.image,
+                    description: data.description
+                });
+                formik.setFieldValue('name', data.name);
+                formik.setFieldValue('image', data.image);
+                formik.setFieldValue('description', data.description);
+            })
+            .catch(()=>{
+                Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+            });
+        }
+    },[id, formik]);
     
     const cancel = () => {
         navigate(backURL);
