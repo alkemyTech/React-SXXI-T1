@@ -52,6 +52,9 @@ export const privateRoutes = {
   TESTIMONIALSFORM: "testimonials",
   TESTIMONIALSEDITFORM: "testimonials/:id",
   USERS: "users",
+  USERSCREATE: "users/create",
+  USERSEDIT: "users/edit",
+  USERSEDITWITHID: "users/edit/:id",
   USERSFORM: "users",
   USERSEDITFORM: "users/:id",
 };
