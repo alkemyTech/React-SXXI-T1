@@ -41,7 +41,10 @@ const NewsForm = () => {
       <div>
         <BackTo wrapLink="my-4" to={"/" + privateRoutes.BACKOFFICE + "news"} />
       </div>
-      <Form onSubmit={handleSubmit}>
+      <Form
+        className="col col-12 col-sm-10 col-md-8 col-lg-6 my-3"
+        onSubmit={handleSubmit}
+      >
         <Form.Group className="mb-3" controlId="formBasicName">
           <ContainerInputError>
             <FormLabel title="Titulo de la novedad:" />

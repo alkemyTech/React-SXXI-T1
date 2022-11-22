@@ -41,7 +41,7 @@ const NewsList = () => {
   return (
     <div>
       <CustomTitle
-        title="Listado de Novedades"
+        title="Novedades"
         justify="center"
         wrapTextClass="text-center"
         wrapTitleClass="h-auto"
@@ -53,7 +53,7 @@ const NewsList = () => {
           to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
         />
         <BackTo
-          wrapLink="col col-10 col-sm-5 my-2"
+          wrapLink="col col-10 col-sm-5 col-md-4 my-2"
           text="Crear Novedad"
           to={"/" + privateRoutes.BACKOFFICE + privateRoutes.NEWSCREATEFORM}
           color="success"
