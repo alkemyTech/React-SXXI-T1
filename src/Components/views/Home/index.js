@@ -40,7 +40,7 @@ const Home = () => {
     <MainContainer>
       
       <TitleContainer>
-        <CustomTitle title={ info.welcomeText ? info.welcomeText : 'Bienvenida/o'}/>
+        <CustomTitle title={ info.welcomeText ? info.welcomeText : 'Bienvenida/o'} height='none'/>
       </TitleContainer>
 
       <CarouselComponent endPoint='slides' content='description'/>
