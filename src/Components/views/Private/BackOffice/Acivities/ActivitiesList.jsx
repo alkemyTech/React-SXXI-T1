@@ -5,33 +5,33 @@ import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle
 import { privateRoutes } from "models/routes";
 import { useNavigate } from "react-router-dom";
 
-const DUMMY_NEWS = [
+const DUMMY_ACTIVITIES = [
   {
     id: 1,
-    name: "News 1",
+    name: "Activity 1",
     image: "https://www.w3schools.com/w3css/img_lights.jpg",
     createdAt: new Date().toLocaleString(),
   },
   {
     id: 2,
-    name: "News 2",
+    name: "Activity 2",
     image: "https://www.w3schools.com/w3css/img_lights.jpg",
     createdAt: new Date().toLocaleString(),
   },
   {
     id: 3,
-    name: "News 3",
+    name: "Activity 3",
     image: "https://www.w3schools.com/w3css/img_lights.jpg",
     createdAt: new Date().toLocaleString(),
   },
 ];
 
-const NewsList = () => {
+const ActivitiesList = () => {
   const navigate = useNavigate();
 
   const editHandler = (id) => {
     console.log("Edit clicked", id);
-    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSEDITFORM}${id}`);
+    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.ACTIVITIESEDIT}/:${id}`);
   };
 
   const deleteHandler = (id) => {
@@ -39,32 +39,32 @@ const NewsList = () => {
   };
 
   return (
-    <div>
+    <div className="my-5">
       <CustomTitle
-        title="Novedades"
+        title="Listado de Actividades"
         justify="center"
         wrapTextClass="text-center"
         wrapTitleClass="h-auto"
       />
-      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
+      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-md-between">
         <BackTo
-          wrapLink="col col-10 col-sm-5 my-2 me-1"
+          wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3 me-1"
           text="Ir dashboard"
           to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
         />
         <BackTo
-          wrapLink="col col-10 col-sm-5 col-md-4 my-2"
-          text="Crear Novedad"
-          to={"/" + privateRoutes.BACKOFFICE + privateRoutes.NEWSCREATEFORM}
+          wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3"
+          text="Crear Actividad"
+          to={"/" + privateRoutes.BACKOFFICE + privateRoutes.ACTIVITIESCREATE}
           color="success"
           background="success"
           icon={addIcon}
         />
       </div>
-      <div>
+      <div className="mt-3">
         <CustomTable
           tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
-          tBody={DUMMY_NEWS}
+          tBody={DUMMY_ACTIVITIES}
           myTableData={{ name: "name", image: "image", createdAt: "createdAt" }}
           handleEdit={editHandler}
           handleDelete={deleteHandler}
@@ -74,4 +74,4 @@ const NewsList = () => {
   );
 };
 
-export default NewsList;
+export default ActivitiesList;
