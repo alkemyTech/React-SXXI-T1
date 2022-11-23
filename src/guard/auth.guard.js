@@ -1,5 +1,4 @@
 import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
-import HeaderBackOffice from "Components/views/Private/Header/HeaderBackOffice";
 import { routes } from "models/routes";
 import { useState, useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";

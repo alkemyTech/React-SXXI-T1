@@ -2,14 +2,15 @@ import styled from "styled-components";
 
 export const SlideImage = styled.img`
     height: 180px;
-    @media screen and (min-width: 577px){
-        height: 230px;
+    object-fit: cover;
+    @media screen and (min-width: 357px){
+        height: ${({hmin})=> hmin ? hmin : '300px'};
     }
     @media screen and (min-width: 768px){
-        height: 330px;
+        height: ${({hmed})=> hmed ? hmed : '320px'};
     }
     @media screen and (min-width: 975px){
-        height: 388px;
+        height: ${({hmax})=> hmax ? hmax : '420px'};
     }
 `;
 
