@@ -7,6 +7,7 @@ import { Animate } from "styled-components/animation.styled";
 import { useNews } from "./hooks/useNews";
 import { newsSchema } from "./utilities/newsSchema.util";
 import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection";
+import SearchNews from "./components/SearchNews";
 import { routes } from "models/routes";
 
 const News = () => {
@@ -35,10 +36,7 @@ const News = () => {
 
       <div className="col col-12 d-flex justify-content-center mb-3">
         <div className="col col-10">
-          <SearchInput
-            onSearch={searchNewsHandler}
-            placeholder="Buscar novedad..."
-          />
+          <SearchNews onSearchNews={searchNewsHandler} />
         </div>
       </div>
       <div className="d-flex flex-row flex-wrap justify-content-center">
