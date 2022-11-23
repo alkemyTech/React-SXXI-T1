@@ -53,7 +53,7 @@ export const postCategory = async (body) => {
     try {
         const { data } = await privateApi(url, {
             method: 'post',
-            body: body,
+            data: body,
         });
         if (!data || !data.success)
           throw new Error(
@@ -74,9 +74,9 @@ export const postCategory = async (body) => {
 
 export const putCategory = async (id, body) => {
     try {
-        const { data } = await api.privateApi(`${url}/${id}`, {
+        const { data } = await privateApi(`${url}/${id}`, {
             method: 'put',
-            body: body,
+            data: body,
         });
         if (!data || !data.success)
           throw new Error(
@@ -97,7 +97,7 @@ export const putCategory = async (id, body) => {
 
 export const deleteCategory = async (id) => {
     try {
-        const { data } = await api.privateApi(`${url}/${id}`, {
+        const { data } = await privateApi(`${url}/${id}`, {
             method: 'delete',
         });
         if (!data || !data.success)
