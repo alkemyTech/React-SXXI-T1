@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 import { addIcon } from "assets/images";
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { privateRoutes } from "models/routes";
-import { useNavigate } from "react-router-dom";
+import SearchNews from "./components/SearchNews";
 
 const DUMMY_NEWS = [
   {
@@ -38,6 +40,14 @@ const NewsList = () => {
     console.log("Delete clicked", id);
   };
 
+  const searchNewsHandler = (searchText) => {
+    if (searchText.length >= 3) {
+      console.log(`Buscar a /news?search={${searchText}}`);
+    } else {
+      console.log("Buscar a /news");
+    }
+  };
+
   return (
     <div>
       <CustomTitle
@@ -60,6 +70,9 @@ const NewsList = () => {
           background="success"
           icon={addIcon}
         />
+      </div>
+      <div>
+        <SearchNews onSearchNews={searchNewsHandler} />
       </div>
       <div>
         <CustomTable
