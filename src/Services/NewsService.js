@@ -1,12 +1,13 @@
 import axios from "axios";
-import { api } from "./axiosService";
+import { publicApi } from "./publicApiService";
+import { privateApi } from "./privateApiService";
 import { requestMessagesSchema } from 'utilities/requestMessagesSchema.util'
 
 const url = 'news';
 
-export const getNews = async () => {
+export const getAllNews = async () => {
     try {
-        const { data } = await api(url, {
+        const { data } = await publicApi(url, {
             method: 'get',
         });
         if (!data || !data.success)
@@ -26,9 +27,9 @@ export const getNews = async () => {
     }
 }
 
-export const getNew = async (id) => {
+export const getOneNews = async (id) => {
     try {
-        const { data } = await api(`${url}/${id}`,{
+        const { data } = await publicApi(`${url}/${id}`,{
             method: 'get'
         });
         if (!data || !data.success)
@@ -48,9 +49,9 @@ export const getNew = async (id) => {
     }
 }
 
-export const postNew = async (body) => {
+export const postNews = async (body) => {
     try {
-        const { data } = await api(url, {
+        const { data } = await privateApi(url, {
             method: 'post',
             body: body,
         });
@@ -71,9 +72,9 @@ export const postNew = async (body) => {
     }
 }
 
-export const putNew = async (id, body) => {
+export const putNews = async (id, body) => {
     try {
-        const { data } = await api(`${url}/${id}`, {
+        const { data } = await privateApi(`${url}/${id}`, {
             method: 'put',
             body: body,
         });
@@ -94,9 +95,9 @@ export const putNew = async (id, body) => {
     }
 }
 
-export const deleteNew = async (id) => {
+export const deleteNews = async (id) => {
     try {
-        const { data } = await api(`${url}/${id}`, {
+        const { data } = await privateApi(`${url}/${id}`, {
             method: 'delete',
         });
         if (!data || !data.success)
