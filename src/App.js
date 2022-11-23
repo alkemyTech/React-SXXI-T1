@@ -29,6 +29,7 @@ import News from "Components/views/News/News"
 import CategoriesForm from "Components/views/Categories/CategoriesForm"
 import { WrapMainRoutes } from "styled-components/App.styled"
 import About from "Components/views/About/About"
+import { ROLE } from "./MOCKAUTH"
 
 function App() {
   return (
@@ -61,7 +62,7 @@ function App() {
             </Route>
           </RoutesNoMatch>
         </WrapMainRoutes>
-        <Footer />
+        {ROLE !== "admin" && <Footer />}
       </Animate>
     </>
   )
