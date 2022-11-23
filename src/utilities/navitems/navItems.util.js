@@ -14,7 +14,7 @@ const publicHeaderNavItems = [...footerNavItems, { text: "Login", to: routes.AUT
 export { footerNavItems, publicHeaderNavItems }
 
 export const privateLinks = [
-  { text: "Dashboard", icon: homeIcon, to: `${privateRoutes.BACKOFFICE}${privateRoutes.DASHBOARD}` },
+  { text: "Dashboard", icon: homeIcon, to: privateRoutes.BACKOFFICE },
   {
     text: "Actividades",
     icon: activityIcon,

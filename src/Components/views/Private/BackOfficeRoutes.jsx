@@ -23,7 +23,7 @@ import CategoriesList from "./CategoriesList/CategoriesList"
 const BackOfficeRoutes = () => {
   return (
     <RoutesNoMatch>
-      <Route path={privateRoutes.DASHBOARD} element={<Dashboard />} />
+      <Route path={"/"} element={<Dashboard />} />
       <Route path={privateRoutes.BACKHOME} element={<PrivateHome />} />
       <Route path={privateRoutes.ACTIVITIES} element={<ActivitiesList />} />
       <Route path={privateRoutes.ACTIVITIESCREATE} element={<ActivitiesForm />} />
