@@ -2,6 +2,8 @@ import { LinkReactRouter } from "Components/GlobalComponents/LinkReactRouter/Lin
 import { OverlayToolTips } from "Components/GlobalComponents/OverlayToolTips/OverlayToolTips";
 
 export const NavFooter = ({ children }) => {
+  const scrollToTop = () => window.scrollTo(0, 0);
+
   const _children = children.map((item, idx) => (
     <OverlayToolTips key={idx} strongTextToolTip={item.text}>
       <LinkReactRouter
@@ -12,6 +14,7 @@ export const NavFooter = ({ children }) => {
         background="none"
         border="none"
         color="light"
+        onClick={scrollToTop}
       />
     </OverlayToolTips>
   ));
