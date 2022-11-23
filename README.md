@@ -1,5 +1,26 @@
 # <img src="https://img.icons8.com/color/30/null/project-management.png"/> Proyecto : Somos más
 
+
+### Situación inicial
+
+Somos un equipo de desarrollo y nuestro líder técnico nos comparte el pedido de un cliente nuevo que está buscando nuestra ayuda. El pedido lo hizo Marita, la Directora de la ONG Somos Más, que está buscando desarrollar un sitio web para su organización.
+
+Marita y su equipo buscan que el sitio web funcione como carta de presentación, medio de contacto, y que les permita participar del concurso “Juntos por el Cambio Social”. Dicho concurso es organizado por una reconocida institución universitaria de Córdoba, Argentina, y el premio les permitiría ayudar a 150 familias extra por, al menos, los próximos 12 meses. Sin embargo, es requisito obligatorio para participar del concurso, incluir el link a un sitio web para dar visibilidad a su trabajo.
+
+### Tu objetivo
+
+Como parte de un equipo de desarrolladores, deberás desarrollar un sitio web que represente a la organización de Marita y el gran esfuerzo que su equipo realiza para la comunidad.
+
+### Requerimientos
+
+El equipo de Marita debe contar con un rol de usuario administrador para gestionar el sitio, sin necesidad de contactar a un técnico. Necesita poder seleccionar y actualizar la información a mostrar de cada sección (novedades, actividades, miembros, entre otras).
+
+Además, el sitio debe tener acceso público para que cualquier persona pueda recorrer las secciones e informarse acerca de la ONG, sin posibilidad de modiﬁcar la información disponible.
+
+Por pedido de Marita, les gustaría que el sitio tenga una sección para presentar a los miembros del equipo y las responsabilidades de cada uno. También, una sección donde se informe a la gente acerca de las actividades, últimas novedades, y testimonios de la ONG.
+
+Por último, sería de gran utilidad, que el sitio web les permita ampliar su comunidad, invitando a interesados/as a contactarse con el equipo para participar como voluntarios/as, o bien para ser donantes de dinero y/o materiales.
+
 ---
 
 ## <img src="https://img.icons8.com/color/26/null/person-male.png"/> Integrantes del grupo:
@@ -53,8 +74,53 @@ Realizamos cada mañana a las 9.00 la **daily** (reunión corta donde cada integ
 
 ## <img src="https://img.icons8.com/color/30/null/figma--v1.png"/> Template guia
 
+### Diseño UX
 
-Nos guiamos con [este](https://www.figma.com/file/6RRQfy0CZLlMrToMu9fyO7/Caso-ONG-Desktop-y-mobile-Onboardings?node-id=28%3A107&t=1yFVQHcN2CeigA1J-0) Figma
+Ellos enviaron un diseño UI representativo, imágenes y otros contenidos que sugieren que utilicemos para inspirarnos y crear la carta de presentación online de Somos Más (disponible en sección “Diseño UI”). Por supuesto recibirán más que felices otras ideas y funcionalidades que sumen a su causa y los ayude a posicionarse en el concurso.
+
+La UX (User Experience) que el equipo de diseño construyó la encontrarán haciendo [click acá](https://www.figma.com/file/6RRQfy0CZLlMrToMu9fyO7/Caso-ONG-Desktop-y-mobile-Onboardings?node-id=28%3A107&t=1yFVQHcN2CeigA1J-0).
+
+
+---
+
+## <img src="https://img.icons8.com/external-filled-outline-icons-pause-08/24/null/external-archive-business-filled-outline-icons-pause-08.png"/> Estructura del proyecto
+
+```
+> node_modules
+> public
+- src
+   - app
+   - assets
+   - Components
+     - Campaigns
+     - GlobalComponents
+     - views
+   - features
+   - guard
+   - hooks
+   - models
+   - Services
+   - styled-cmponents
+   - utilities
+   App.js
+   App.test.js
+   index.js
+   MOCKAUTH.js
+   serviceWorker.js
+   setupTest.js
+.enc
+.gitignore
+jsconfig.json
+package-lock.json
+package.json
+README.md
+```
+
+
+### Algunos de los componentes globales
+
+
+1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones.
 
 
 ---
@@ -72,3 +138,5 @@ Para correr la app en el modo development.
 
 Para poder verlo en el navegador, abrir: [http://localhost:3000](http://localhost:3000).
 
+
+---
