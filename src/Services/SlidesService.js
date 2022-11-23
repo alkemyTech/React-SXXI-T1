@@ -2,9 +2,9 @@ import axios from "axios";
 import { api } from "./axiosService";
 import { requestMessagesSchema } from 'utilities/requestMessagesSchema.util'
 
-const url = 'users';
+const url = 'slides';
 
-export const getUsers = async () => {
+export const getSlides = async () => {
     try {
         const { data } = await api(url, {
             method: 'get',
@@ -26,7 +26,7 @@ export const getUsers = async () => {
     }
 }
 
-export const getUser = async (id) => {
+export const getSlide = async (id) => {
     try {
         const { data } = await api(`${url}/${id}`,{
             method: 'get'
@@ -48,7 +48,7 @@ export const getUser = async (id) => {
     }
 }
 
-export const postUser = async (body) => {
+export const postSlide = async (body) => {
     try {
         const { data } = await api(url, {
             method: 'post',
@@ -71,7 +71,7 @@ export const postUser = async (body) => {
     }
 }
 
-export const putUser = async (id, body) => {
+export const putSlide = async (id, body) => {
     try {
         const { data } = await api(`${url}/${id}`, {
             method: 'put',
@@ -94,7 +94,7 @@ export const putUser = async (id, body) => {
     }
 }
 
-export const deleteUser = async (id) => {
+export const deleteSlide = async (id) => {
     try {
         const { data } = await api(`${url}/${id}`, {
             method: 'delete',
