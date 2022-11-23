@@ -1,6 +1,7 @@
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle";
+import { SearchInput } from "Components/GlobalComponents/SearchInput/SearchInput";
 import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
 import { Animate } from "styled-components/animation.styled";
 import { useNews } from "./hooks/useNews";
@@ -11,18 +12,35 @@ import { routes } from "models/routes";
 const News = () => {
   const { loadingNews, newsData } = useNews();
 
-  if (loadingNews)
+  if (loadingNews) {
     return (
       <div>
         <SpinnerLoad />
       </div>
     );
+  }
+
+  const searchNewsHandler = (searchText) => {
+    if (searchText.length >= 3) {
+      console.log(`Buscar a /news?search={${searchText}}`);
+    } else {
+      console.log("Buscar a /news");
+    }
+  };
 
   return (
     <Animate>
       <HeadTitle title={newsSchema.title} />
       <BackTo wrapLink="my-4" to={routes.HOME} text="Ir a inicio" />
 
+      <div className="col col-12 d-flex justify-content-center mb-3">
+        <div className="col col-10">
+          <SearchInput
+            onSearch={searchNewsHandler}
+            placeholder="Buscar novedad..."
+          />
+        </div>
+      </div>
       <div className="d-flex flex-row flex-wrap justify-content-center">
         {newsData.length > 0 ? (
           newsData.map((item) => (
