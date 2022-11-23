@@ -1,30 +1,72 @@
-# Ong Client
+# <img src="https://img.icons8.com/color/30/null/project-management.png"/> Proyecto : Somos más
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+---
 
-## Available Scripts
+## <img src="https://img.icons8.com/color/26/null/person-male.png"/> Integrantes del grupo:
 
-In the project directory, you can run:
+- [Luis Gerez Martinez](https://github.com/LuisGerezM)
 
-### `yarn start`
+- [Cristian ALbornoz](https://github.com/cris-al)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Yoshi Debat](https://github.com/LYoshi02)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- [María Eugenia Costa](https://github.com/eugenia1984)
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `yarn build`
+## <img src="https://img.icons8.com/emoji/26/null/hammer-and-pick.png"/> Tecnologías
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Este proyecto fue creado con [**Create React App**](https://github.com/facebook/create-react-app), utilizando las siguientes **tecnologías**:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- <img src="https://img.icons8.com/color/24/null/html-5--v1.png" alt="icono de HTML5"/> **HTML5**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- <img src="https://img.icons8.com/color/24/null/css3.png" alt="icono de CSS3"/> **CSS3**
+
+- <img src="https://img.icons8.com/color/24/null/javascript--v1.png" alt="icono de JavaSCript" /> **JavaScript**
+
+- <img src="https://img.icons8.com/color/24/null/bootstrap.png" alt="icono de Bootstrap"/> [**Bootrstrap**](https://getbootstrap.com/) y [**React-Bootstrap**](https://react-bootstrap.github.io/)
+
+- <img src="https://img.icons8.com/office/24/null/react.png" alt="icono de React" /> [**React**](https://reactjs.org/)
+
+- [**Styled Components**](https://styled-components.com/)
+
+- [**Sweet Alert 2**](https://sweetalert2.github.io/)
+
+- [**Formik**](https://formik.org/), [**Yup**](https://www.npmjs.com/package/yup) y [**ckeditor**](https://ckeditor.com/) en los formularios.
+
+
+---
+
+## <img src="https://img.icons8.com/external-flaticons-flat-flat-icons/26/null/external-scrum-agile-flaticons-flat-flat-icons-3.png"/> Metodología
+
+Utilizamos la metodología **scrum** durante todo el proceso de creación de la aplicación.
+
+Realizamos cada mañana a las 9.00 la **daily** (reunión corta donde cada integrante cuenta que esta haciendo y si tiene algún bloqueo). Y una vez a la semana la **retro** (reunión para hacer un balance de la semana viendo que tenemos de positivo para seguir haciendo, qué hay como problema para poder modificar).
+
+<img src="https://img.icons8.com/external-flaticons-flat-flat-icons/24/null/external-scrum-agile-flaticons-flat-flat-icons-7.png"/> Tablero en Jira donde podíamos ver el **backlog**, la **hoja de ruta** y el **sprint activo**
+
+
+---
+
+## <img src="https://img.icons8.com/color/30/null/figma--v1.png"/> Template guia
+
+
+Nos guiamos con [este](https://www.figma.com/file/6RRQfy0CZLlMrToMu9fyO7/Caso-ONG-Desktop-y-mobile-Onboardings?node-id=28%3A107&t=1yFVQHcN2CeigA1J-0) Figma
+
+
+---
+
+## <img src="https://img.icons8.com/office/30/null/console.png"/> Scripts disponibles
+
+En este proyecto, podés correr:
+
+### `npm install`
+
+Para instalarte todos las dependencias que utiliza el proyecto.
+### `npm start`
+
+Para correr la app en el modo development.
+
+Para poder verlo en el navegador, abrir: [http://localhost:3000](http://localhost:3000).
+
