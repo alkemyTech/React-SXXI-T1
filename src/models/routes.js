@@ -18,7 +18,7 @@ export const routes = {
   TESTIMONIALSFORM: "/create-testimonials",
   THANKSDONATION: "/gracias",
   TOYSCAMPAIGN: "/toys-campaign",
-};
+}
 
 export const privateRoutes = {
   ACTIVITIES: "activities",
@@ -37,11 +37,14 @@ export const privateRoutes = {
   EDITMEMBERSFORM: "members/edit",
   EDITORGANIZATIONFORM: "organization/edit",
   EDITPROJECT: "projects/:id",
+  MEMBERSLIST: "members",
+  MEMBERSCREATEFORM: "members/create",
+  MEMBERSEDITFORM: "members/edit/",
+  MEMBERSEDITFORMWITHID: "members/edit/:id",
   NEWSLIST: "news",
   NEWSEDITFORM: "news/edit/",
   NEWSEDITFORMWITHID: "news/edit/:id",
   NEWSCREATEFORM: "news/create",
-  MEMBERS: "members",
   ORGANIZATIONDATA: "organization",
   PROJECTS: "projects",
   SLIDES: "slides",
@@ -52,6 +55,9 @@ export const privateRoutes = {
   TESTIMONIALSFORM: "testimonials",
   TESTIMONIALSEDITFORM: "testimonials/:id",
   USERS: "users",
+  USERSCREATE: "users/create",
+  USERSEDIT: "users/edit",
+  USERSEDITWITHID: "users/edit/:id",
   USERSFORM: "users",
   USERSEDITFORM: "users/:id",
-};
+}
