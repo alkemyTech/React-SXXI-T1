@@ -18,7 +18,7 @@ export const routes = {
   TESTIMONIALSFORM: "/create-testimonials",
   THANKSDONATION: "/gracias",
   TOYSCAMPAIGN: "/toys-campaign",
-};
+}
 
 export const privateRoutes = {
   ACTIVITIES: "activities",
@@ -29,9 +29,12 @@ export const privateRoutes = {
   BACKHOME: "home",
   CATEGORIES: "categories",
   CATEGORIESCREATE: "categories/create",
-  CREATEPROJECT: "projects",
   CATEGORIESEDIT: "categories/edit/",
   CATEGORIESEDITWITHID: "categories/edit/:id",
+  CREATEPROJECT: "projects",
+  DASHBOARD: "dashboard",
+  EDITCATEGORY: "edit-category/:id",
+  EDITMEMBERSFORM: "members/edit",
   EDITORGANIZATIONFORM: "organization/edit",
   EDITPROJECT: "projects/:id",
   MEMBERSLIST: "members",
@@ -57,4 +60,4 @@ export const privateRoutes = {
   USERSEDITWITHID: "users/edit/:id",
   USERSFORM: "users",
   USERSEDITFORM: "users/:id",
-};
+}

@@ -4,7 +4,7 @@ import { fadeIn } from "styled-components/animation.styled";
 import { themeColors } from "styled-components/Theme.styled";
 import { SubtitleText, InputTexts } from "styled-components/App.styled.js";
 
-const cardStyles = {
+export const cardStyles = {
   veryDarkBlue: "hsl(232, 19%, 15%)",
   darkDesaturatedBlue: "hsl(228, 28%, 20%)",
   blue: "hsl(208, 92%, 53%)",
@@ -48,17 +48,17 @@ const CustomCard = styled(Card)`
   ${whatStyle};
   border: 1px solid ${(props) => styles[props.type]["border"]};
   filter: drop-shadow(0px 5px 5px ${cardStyles.veryDarkBlue});
-  transition: 5s;
+  transition: 0.5s;
   ${fadeIn}
 `;
 
 const CardBody = styled.div`
-  transition: 5s;
+  transition: 0.5s;
   ${fadeIn}
 `;
 
 const CardFooter = styled.div`
-  transition: 5s;
+  transition: 0.5s;
   ${fadeIn}
 `;
 
