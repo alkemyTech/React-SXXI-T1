@@ -1,7 +1,6 @@
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle";
-import { SearchInput } from "Components/GlobalComponents/SearchInput/SearchInput";
 import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
 import { Animate } from "styled-components/animation.styled";
 import { useNews } from "./hooks/useNews";
