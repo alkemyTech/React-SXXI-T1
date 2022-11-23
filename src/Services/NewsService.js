@@ -53,7 +53,7 @@ export const postNews = async (body) => {
     try {
         const { data } = await privateApi(url, {
             method: 'post',
-            body: body,
+            data: body,
         });
         if (!data || !data.success)
           throw new Error(
@@ -76,7 +76,7 @@ export const putNews = async (id, body) => {
     try {
         const { data } = await privateApi(`${url}/${id}`, {
             method: 'put',
-            body: body,
+            data: body,
         });
         if (!data || !data.success)
           throw new Error(
