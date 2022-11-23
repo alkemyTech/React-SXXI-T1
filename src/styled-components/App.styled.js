@@ -149,6 +149,7 @@ const CustomImage = styled.div`
   background-position: top center;
   height: ${({ height }) => height || "50px"};
   width: ${({ width }) => width || "100%"};
+  border-radius: ${({ borderRadius }) => borderRadius || "none"};
 
   ${fadeIn}
 `

@@ -2,7 +2,7 @@ import { Card } from "react-bootstrap"
 import styled, { css } from "styled-components"
 import { fadeIn } from "styled-components/animation.styled"
 import { themeColors } from "styled-components/Theme.styled"
-import { SubtitleText, InputTexts, filterSaturate } from "styled-components/App.styled.js"
+import { SubtitleText, InputTexts } from "styled-components/App.styled.js"
 
 export const cardStyles = {
   veryDarkBlue: "hsl(232, 19%, 15%)",
@@ -47,6 +47,7 @@ const whatStyle = css`
 const CustomCard = styled(Card)`
   ${whatStyle};
   border: 1px solid ${(props) => styles[props.type]["border"]};
+  outline: 1px solid ${(props) => styles[props.type]["border"]};
   filter: drop-shadow(0px -5px 5px ${cardStyles.veryDarkBlue});
   transition: 0.5s;
 
@@ -55,7 +56,19 @@ const CustomCard = styled(Card)`
   &:hover {
     filter: drop-shadow(0px 6px 6px ${cardStyles.veryDarkBlue});
     background: hsla(194, 74%, 41%, 1);
-    outline: 3px solid hsla(194, 74%, 41%, 1);
+    outline: 1px solid hsla(194, 74%, 41%, 1);
+
+    p,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      background: hsla(194, 74%, 41%, 1);
+    }
   }
 `
 
@@ -71,10 +84,12 @@ const CardFooter = styled.div`
 
 const CardSubTitleText = styled(SubtitleText)`
   color: ${(props) => styles[props.type]["color"]};
+  transition: 0.5s;
 `
 
 const CardText = styled(InputTexts)`
   color: ${(props) => styles[props.type]["color"]};
+  transition: 0.5s;
 `
 
 export { CardBody, CardFooter, CustomCard, CardSubTitleText, CardText, whatStyle }
