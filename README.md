@@ -44,7 +44,9 @@ Utilizamos la metodología **scrum** durante todo el proceso de creación de la 
 
 Realizamos cada mañana a las 9.00 la **daily** (reunión corta donde cada integrante cuenta que esta haciendo y si tiene algún bloqueo). Y una vez a la semana la **retro** (reunión para hacer un balance de la semana viendo que tenemos de positivo para seguir haciendo, qué hay como problema para poder modificar).
 
-<img src="https://img.icons8.com/external-flaticons-flat-flat-icons/24/null/external-scrum-agile-flaticons-flat-flat-icons-7.png"/> Tablero en Jira donde podíamos ver el **backlog**, la **hoja de ruta** y el **sprint activo**
+<img src="https://img.icons8.com/external-flaticons-flat-flat-icons/24/null/external-scrum-agile-flaticons-flat-flat-icons-7.png"/> Tablero en Jira donde podíamos ver el **backlog**, la **hoja de ruta** y el **sprint activo**:
+
+<img src="https://user-images.githubusercontent.com/72580574/203558540-1dd6783e-fa52-4109-a8cc-58a67a5a7c39.png" widht=200 alt="imagen de un sprint" />
 
 
 ---
