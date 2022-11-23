@@ -4,6 +4,7 @@ const textForDonation = {
   ongText: "Somos más ONG",
   thanks: "Gracias por su colaboración",
   meliDonate: "Donar con MercadoPago",
+  areYouSure: "¿Esta seguro de hacer una donación?",
 }
 
 export { textForDonation }

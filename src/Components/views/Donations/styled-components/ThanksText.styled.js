@@ -8,5 +8,6 @@ export const ThanksText = styled(SubtitleText)`
   backdrop-filter: blur(10px);
   padding: 5px;
   font-weight: 900;
+  border-radius: 8px;
   ${fadeIn}
 `
