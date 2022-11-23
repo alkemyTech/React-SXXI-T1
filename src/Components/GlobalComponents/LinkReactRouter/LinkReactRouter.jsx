@@ -10,6 +10,7 @@ export const LinkReactRouter = ({
   icon = "",
   wrapLink = "",
   padding = "",
+  onClick = undefined,
 }) => {
   return (
     <div className={wrapLink}>
@@ -20,6 +21,7 @@ export const LinkReactRouter = ({
         padding={padding}
         to={to}
         border={border}
+        onClick={onClick}
       >
         {icon} {text}
       </CustomLink>
