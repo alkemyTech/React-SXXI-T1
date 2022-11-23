@@ -27,7 +27,7 @@ Por último, sería de gran utilidad, que el sitio web les permita ampliar su co
 
 - Luis Gerez Martinez [<img src="https://img.icons8.com/material-rounded/24/null/github.png"/>](https://github.com/LuisGerezM) [<img src="https://img.icons8.com/fluency/24/null/linkedin.png"/>](https://www.linkedin.com/in/luisgerezm/)
 
-- Cristian ALbornoz [<img src="https://img.icons8.com/material-rounded/24/null/github.png"/>](https://github.com/cris-al) [<img src="https://img.icons8.com/fluency/24/null/linkedin.png"/>](https://www.linkedin.com/in/cristian-gabriel-albornoz-06bb07238/)
+- Cristian Albornoz [<img src="https://img.icons8.com/material-rounded/24/null/github.png"/>](https://github.com/cris-al) [<img src="https://img.icons8.com/fluency/24/null/linkedin.png"/>](https://www.linkedin.com/in/cristian-gabriel-albornoz-06bb07238/)
 
 - Yoshi Debat [<img src="https://img.icons8.com/material-rounded/24/null/github.png"/>](https://github.com/LYoshi02) [<img src="https://img.icons8.com/fluency/24/null/linkedin.png"/>](https://www.linkedin.com/in/yoshidebat/)
 
