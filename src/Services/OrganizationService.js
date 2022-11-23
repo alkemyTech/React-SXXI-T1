@@ -2,9 +2,9 @@ import axios from "axios";
 import { api } from "./axiosService";
 import { requestMessagesSchema } from 'utilities/requestMessagesSchema.util'
 
-const url = 'users';
+const url = 'organization';
 
-export const getUsers = async () => {
+export const getOrg = async () => {
     try {
         const { data } = await api(url, {
             method: 'get',
@@ -26,7 +26,7 @@ export const getUsers = async () => {
     }
 }
 
-export const getUser = async (id) => {
+export const getOrgID = async (id) => {
     try {
         const { data } = await api(`${url}/${id}`,{
             method: 'get'
@@ -48,7 +48,7 @@ export const getUser = async (id) => {
     }
 }
 
-export const postUser = async (body) => {
+export const postOrg = async (body) => {
     try {
         const { data } = await api(url, {
             method: 'post',
@@ -71,33 +71,11 @@ export const postUser = async (body) => {
     }
 }
 
-export const putUser = async (id, body) => {
+export const putOrg = async (id, body) => {
     try {
         const { data } = await api(`${url}/${id}`, {
             method: 'put',
             body: body,
-        });
-        if (!data || !data.success)
-          throw new Error(
-            data ? data.message : requestMessagesSchema.problemExistTryLater
-          );
-
-        const dataAdapter = data.data;
-
-        return { success: data.success, data: dataAdapter };
-    } catch (error) {
-        console.error("error interceptor: ", error.message);
-        if (axios.isCancel(error)) {
-          return { message: "solicitud axios cancelada" };
-        }
-        return { success: false, message: error.message };
-    }
-}
-
-export const deleteUser = async (id) => {
-    try {
-        const { data } = await api(`${url}/${id}`, {
-            method: 'delete',
         });
         if (!data || !data.success)
           throw new Error(
