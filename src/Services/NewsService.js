@@ -2,7 +2,7 @@ import axios from "axios";
 import { api } from "./axiosService";
 import { requestMessagesSchema } from 'utilities/requestMessagesSchema.util'
 
-const url = 'activities';
+const url = 'news';
 
 export const getNews = async () => {
     try {
