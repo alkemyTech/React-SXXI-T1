@@ -1,12 +1,13 @@
 import axios from "axios";
-import { api } from "./axiosService";
+import { publicApi } from "./publicApiService";
+import { privateApi } from "./privateApiService";
 import { requestMessagesSchema } from 'utilities/requestMessagesSchema.util'
 
 const url = 'categories';
 
 export const getCategories = async () => {
     try {
-        const { data } = await api(url, {
+        const { data } = await publicApi(url, {
             method: 'get',
         });
         if (!data || !data.success)
@@ -28,7 +29,7 @@ export const getCategories = async () => {
 
 export const getCategory = async (id) => {
     try {
-        const { data } = await api(`${url}/${id}`,{
+        const { data } = await publicApi(`${url}/${id}`,{
             method: 'get'
         });
         if (!data || !data.success)
@@ -50,7 +51,7 @@ export const getCategory = async (id) => {
 
 export const postCategory = async (body) => {
     try {
-        const { data } = await api(url, {
+        const { data } = await privateApi(url, {
             method: 'post',
             body: body,
         });
@@ -73,8 +74,8 @@ export const postCategory = async (body) => {
 
 export const putCategory = async (id, body) => {
     try {
-        const { data } = await api.get(`${url}/${id}`, {
-            method: 'post',
+        const { data } = await api.privateApi(`${url}/${id}`, {
+            method: 'put',
             body: body,
         });
         if (!data || !data.success)
@@ -96,7 +97,7 @@ export const putCategory = async (id, body) => {
 
 export const deleteCategory = async (id) => {
     try {
-        const { data } = await api.get(`${url}/${id}`, {
+        const { data } = await api.privateApi(`${url}/${id}`, {
             method: 'delete',
         });
         if (!data || !data.success)
