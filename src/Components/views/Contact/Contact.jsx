@@ -1,6 +1,7 @@
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import ContactForm from "./ContactForm/ContactForm";
-import { Icon, Container, ContainerIcon } from './Contact.Styled';
+import { Icon, Container, ContainerIcon,
+    Paragraph1, Paragraph2 } from './ContactStyled/Contact.Styled';
 import facebookIcon from 'assets/facebookIcon2.svg';
 import InstagramIcon from 'assets/instagramIcon3.svg';
 import TwitterIcon from 'assets/icon-twitter.svg';
@@ -9,44 +10,44 @@ import LinkedinIcon from 'assets/linkedin2.svg';
 export default function Contact({ facebookURL, instagramURL, twitterURL, linkedinURL, phone }){
 
     return(
-        <div>
-            <CustomTitle title='Contacto' height="5rem" justify="center"/>
-            <p style={{fontSize: '1.5rem', marginTop: '1rem'}}>
+        <div className="mt-3 mb-5">
+            <CustomTitle title='Contacto' height="none" justify="center"/>
+            <Paragraph1>
                 Podes contactarte con nosotros a través de:
-            </p>
+            </Paragraph1>
             <Container>
                 <ContainerIcon>
-                    <p>Facebook: </p>
+                    <Paragraph2><i>Facebook: </i></Paragraph2>
                     <a href={facebookURL} target="_blank" rel="noopener noreferrer">
                         <Icon src={facebookIcon} alt="icono de Facebook" />
                     </a>
                 </ContainerIcon>
                 <ContainerIcon>
-                    <p>Instagram: </p>
+                    <Paragraph2><i>Instagram: </i></Paragraph2>
                     <a href={instagramURL} target="_blank" rel="noopener noreferrer">
                         <Icon src={InstagramIcon} alt="icono de Instagram" />
                     </a>
                 </ContainerIcon>
                 <ContainerIcon>
-                    <p>Twitter: </p>
+                    <Paragraph2><i>Twitter: </i></Paragraph2>
                     <a href={twitterURL} target="_blank" rel="noopener noreferrer">
                         <Icon src={TwitterIcon} alt="icono de Twitter" />
                     </a>
                 </ContainerIcon>
                 <ContainerIcon>
-                    <p>Linkedin: </p>
+                    <Paragraph2><i>Linkedin: </i></Paragraph2>
                     <a href={linkedinURL} target="_blank" rel="noopener noreferrer">
                         <Icon src={LinkedinIcon} alt="icono de Linkedin" />
                     </a>
                 </ContainerIcon>
                 <ContainerIcon>
-                    <p>Telefono: </p>
-                    <p>{phone}</p>
+                    <Paragraph2><i>Teléfono: </i></Paragraph2>
+                    <Paragraph2><i>{phone}</i></Paragraph2>
                 </ContainerIcon>
             </Container>
-            <p style={{fontSize: '1.5rem', marginTop: '0.5rem'}}>
+            <Paragraph1>
                 O llenando el siguiente formulario:
-            </p>
+            </Paragraph1>
             <ContactForm />
         </div>
     )
