@@ -1,4 +1,5 @@
 import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
+import { ROLE } from "MOCKAUTH";
 import { routes } from "models/routes";
 import { useState, useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
@@ -10,7 +11,7 @@ const AuthGuard = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setIsAuth(true);
+      setIsAuth(ROLE);
       setAuthLoading(false);
     }, 500);
   }, []);
@@ -22,8 +23,7 @@ const AuthGuard = () => {
       </div>
     );
 
-  return isAuth ? <Outlet />
-                : <Navigate replace to={routes.HOME} />;
+  return ROLE === "admin" ? <Outlet /> : <Navigate replace to={routes.HOME} />;
 };
 
 export default AuthGuard;

@@ -17,6 +17,18 @@ export const Container2 = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 1rem 0;
+
+    @media screen and (max-width: 400px) {
+        flex-direction: column;
+    }
+`;
+
+export const Container3 = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;  
 `;
 
 export const MembAndTest = styled.div`
@@ -31,10 +43,11 @@ export const MembAndTest = styled.div`
 export const ContainerImageAndP = styled.div`
     display: flex;
     flex-direction: column-reverse;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
     background-color: #c0c0c021;
     padding: 2rem;
+    transition: 1s;
 
     @media screen and (min-width: 920px) {
         flex-direction: row;
@@ -45,11 +58,16 @@ export const ContainerImageAndP = styled.div`
 `;
 
 export const ORGImage = styled.img`
-    height: 350px;
-    width: 350px;
+    height: 130px;
+    width: 140px;
     border-radius: 5px;
-    @media screen and (max-width: 590px) {
+
+    @media screen and (min-width: 400px) {
+        height: 150px;
+        width: 190px;
+    }
+    @media screen and (min-width: 700px) {
         height: 250px;
-        width: 250px;
+        width: 260px;
     }
 `;
