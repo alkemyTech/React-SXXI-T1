@@ -29,8 +29,8 @@ export const TableRow = ({
                 key={idx}
                 buttonClass="me-1 "
                 text={btn}
-                color={!idx ? "success" : undefined}
-                background={!idx ? "success" : undefined}
+                color={!idx ? "yellow" : undefined}
+                background={!idx ? "yellow" : undefined}
                 onClick={() =>
                   !idx
                     ? handleEdit(children?.element?.id)
