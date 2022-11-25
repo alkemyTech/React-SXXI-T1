@@ -27,7 +27,7 @@ Por último, sería de gran utilidad, que el sitio web les permita ampliar su co
 
 - Luis Gerez Martinez [<img src="https://img.icons8.com/material-rounded/24/null/github.png"/>](https://github.com/LuisGerezM) [<img src="https://img.icons8.com/fluency/24/null/linkedin.png"/>](https://www.linkedin.com/in/luisgerezm/)
 
-- Cristian Albornoz [<img src="https://img.icons8.com/material-rounded/24/null/github.png"/>](https://github.com/cris-al) [<img src="https://img.icons8.com/fluency/24/null/linkedin.png"/>](https://www.linkedin.com/in/cristian-gabriel-albornoz-06bb07238/)
+- Cristian ALbornoz [<img src="https://img.icons8.com/material-rounded/24/null/github.png"/>](https://github.com/cris-al) [<img src="https://img.icons8.com/fluency/24/null/linkedin.png"/>](https://www.linkedin.com/in/cristian-gabriel-albornoz-06bb07238/)
 
 - Yoshi Debat [<img src="https://img.icons8.com/material-rounded/24/null/github.png"/>](https://github.com/LYoshi02) [<img src="https://img.icons8.com/fluency/24/null/linkedin.png"/>](https://www.linkedin.com/in/yoshidebat/)
 
@@ -120,7 +120,9 @@ README.md
 ### Algunos de los componentes globales
 
 
-1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones. Nos ayuda a mostrar un feedback al usuario mientras se esté cargando un recurso.
+1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones. Nos ayuda a mostrar un feedback al usuario mientras se esté cargando un recurso. Se lo puede ver en: ```src > Components > GlobalComonents > SpinnerLoad.js```.
+
+2. **Alerta ** : para mostrar alertas de *confirmación*, *error* e *información*, utilizando la librería:  [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en: ```src > utilities > alerts``` a **feedbackUser** y **userConfirm**.
 
 
 ---
@@ -139,4 +141,8 @@ Para correr la app en el modo development.
 Para poder verlo en el navegador, abrir: [http://localhost:3000](http://localhost:3000).
 
 
+<<<<<<< HEAD
 ---
+=======
+---
+>>>>>>> 20c82ce183acaaf41f5759e87ad5c04b25e8def2
