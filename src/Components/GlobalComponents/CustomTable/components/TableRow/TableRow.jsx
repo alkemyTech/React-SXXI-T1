@@ -1,7 +1,7 @@
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 import { editIcon, deleteIcon } from "assets/images";
-import { Spinner } from "react-bootstrap";
 import { PersonalTableData } from "../PersonalTableData/PersonalTableData";
+import { SpinnerGrow } from "Components/GlobalComponents/Loading/SpinnerGrow/SpinnerGrow";
 
 const buttonsActions = [editIcon, deleteIcon];
 
@@ -14,7 +14,7 @@ export const TableRow = ({
   return (
     <tr>
       <td>
-        {children?.idx + 1 || <Spinner animation="grow" variant="primary" />}
+        {children?.idx + 1 || <SpinnerGrow animation="grow" variant="primary" />}
       </td>
 
       <PersonalTableData children={children} loading={loading} />
@@ -23,7 +23,7 @@ export const TableRow = ({
         <div className="d-flex flex-nowrap justify-content-center align-items-center ">
           {buttonsActions.map((btn, idx) =>
             loading ? (
-              <Spinner key={idx} animation="grow" variant="primary" />
+              <SpinnerGrow key={idx} animation="grow" variant="primary" />
             ) : (
               <CustomButton
                 key={idx}
