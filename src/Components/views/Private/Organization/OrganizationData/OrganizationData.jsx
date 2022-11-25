@@ -7,43 +7,37 @@ import {
 } from "./OrganizationDataStiled/OrganizationData.Styled";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { api } from "Services/axiosService";
-import Swal from "sweetalert2";
+import publicService from "Services/publicApiService";
+import { URLs } from "Services/ServicesURLS";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 
 export default function OrganizationData() {
   const navigate = useNavigate();
   const [organizationData, setOrganizationData] = useState({
-    name: "",
+    welcomeText: "",
     image: "",
     shortDescription: "",
   });
-  const urlNavigate = "/backoffice/organization/edit";
 
   useEffect(() => {
-    api
-      .get("/organization")
-      .then((res) => {
-        const { data } = res.data;
+    const req = async () => {
+      const info = await publicService.get(URLs.organization);
+      if(info.success){
+        const {data} = info;
         setOrganizationData({
-          name: data.name,
+          welcomeText: data.welcome_text,
           image: data.logo,
-          shortDescription: data.short_description,
+          shortDescription: data.short_description
         });
-      })
-      .catch(() => {
-        Swal.fire({
-          title: "Hubo un error",
-          icon: "error",
-          confirmButtonColor: "#0038FF",
-          confirmButtonText: "Aceptar",
-        }).then(() => {
-          navigate("/backoffice");
-        });
-      });
-  }, [navigate]);
+      }else{
+        feedbackUser('center', 'error', 'Ha ocurrido un error');
+      }
+    }
+    req();
+  }, []);
 
-  function handleClick() {
-    navigate(urlNavigate);
+  function toEdit() {
+    navigate('edit');
   }
 
   return (
@@ -54,15 +48,15 @@ export default function OrganizationData() {
           background="success"
           color="success"
           type="button"
-          onClick={handleClick}
+          onClick={toEdit}
         >
           Editar Información
         </EditButton>
       </ContainerEditInf>
 
-      <h1 style={{ textAlign: "center" }}>{organizationData.name}</h1>
+      <h1 style={{ textAlign: "center" }}>{organizationData.welcomeText}</h1>
       <ContainerImage>
-        <Image src={organizationData.image} alt={organizationData.name} />
+        <Image src={organizationData.image} alt={organizationData.welcomeText} />
       </ContainerImage>
       <div
         dangerouslySetInnerHTML={{ __html: organizationData.shortDescription }}
