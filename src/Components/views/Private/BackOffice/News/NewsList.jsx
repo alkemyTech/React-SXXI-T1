@@ -22,8 +22,12 @@ const NewsList = () => {
     console.log("Delete clicked", id);
   };
 
-  const searchNewsHandler = async (searchText) => {
+  const searchNewsHandler = async (searchText, selectedCategory) => {
     const fetchParams = {};
+
+    if (selectedCategory.length > 0) {
+      fetchParams["category"] = selectedCategory;
+    }
 
     if (searchText.length >= 3) {
       fetchParams["search"] = searchText;
@@ -70,9 +74,7 @@ const NewsList = () => {
           icon={addIcon}
         />
       </div>
-      <div className="my-3">
-        <SearchNews onSearchNews={searchNewsHandler} />
-      </div>
+      <SearchNews onSearchNews={searchNewsHandler} />
       <div>{newsContent}</div>
     </div>
   );
