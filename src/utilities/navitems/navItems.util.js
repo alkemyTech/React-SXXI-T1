@@ -42,12 +42,12 @@ export const privateLinks = [
   {
     text: "Miembros",
     icon: memberIcon,
-    to: `${privateRoutes.BACKOFFICE}${privateRoutes.MEMBERS}`,
+    to: `${privateRoutes.BACKOFFICE}${privateRoutes.MEMBERSLIST}`,
   },
   {
     text: "Novedades",
     icon: newsIcon,
-    to: `${privateRoutes.BACKOFFICE}${privateRoutes.NEWS}`,
+    to: `${privateRoutes.BACKOFFICE}${privateRoutes.NEWSLIST}`,
   },
   {
     text: "Organización",
