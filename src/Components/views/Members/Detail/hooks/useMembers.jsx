@@ -1,4 +1,4 @@
-import Alert from "Components/views/Private/BackOffice/components/Alert";
+import { feedbackUser as AlertWarning } from "utilities/alerts/feedbackUser.util";
 import { useEffect, useState } from "react";
 import { api } from "Services/axiosService";
 
@@ -22,7 +22,7 @@ export const useMembers = () => {
       setInfo(membersList);
     })
     .catch(() => {
-      Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+      AlertWarning("center", "error", "Ha ocurrido un error al buscar los miembros.");
     });
   }, []);
 
