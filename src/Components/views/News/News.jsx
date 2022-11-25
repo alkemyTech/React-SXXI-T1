@@ -10,23 +10,32 @@ import SearchNews from "./components/SearchNews";
 import { routes } from "models/routes";
 
 const News = () => {
-  const { loadingNews, newsData } = useNews();
+  const { loadingNews, newsData, fetchNews } = useNews();
 
+  const searchNewsHandler = async (searchText) => {
+    const fetchParams = {};
+
+    if (searchText.length >= 3) {
+      fetchParams["search"] = searchText;
+    }
+
+    await fetchNews(fetchParams);
+  };
+
+  let newsContent;
   if (loadingNews) {
-    return (
-      <div>
-        <SpinnerLoad />
+    newsContent = <SpinnerLoad />;
+  } else if (newsData.length > 0) {
+    newsContent = newsData.map((item) => (
+      <ShowNewsCardsSection key={item.id} item={item} />
+    ));
+  } else {
+    newsContent = (
+      <div className="col col-12 d-flex justify-content-center">
+        <CustomAlertMessage alertClass="col col-10" text={newsSchema.noNews} />
       </div>
     );
   }
-
-  const searchNewsHandler = (searchText) => {
-    if (searchText.length >= 3) {
-      console.log(`Buscar a /news?search={${searchText}}`);
-    } else {
-      console.log("Buscar a /news");
-    }
-  };
 
   return (
     <Animate>
@@ -34,23 +43,12 @@ const News = () => {
       <BackTo wrapLink="my-4" to={routes.HOME} text="Ir a inicio" />
 
       <div className="col col-12 d-flex justify-content-center mb-3">
-        <div className="col col-10">
+        <div className="col col-12">
           <SearchNews onSearchNews={searchNewsHandler} />
         </div>
       </div>
       <div className="d-flex flex-row flex-wrap justify-content-center">
-        {newsData.length > 0 ? (
-          newsData.map((item) => (
-            <ShowNewsCardsSection key={item.id} item={item} />
-          ))
-        ) : (
-          <div className="col col-12 d-flex justify-content-center">
-            <CustomAlertMessage
-              alertClass="col col-10"
-              text={newsSchema.noNews}
-            />
-          </div>
-        )}
+        {newsContent}
       </div>
     </Animate>
   );
