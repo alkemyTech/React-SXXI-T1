@@ -122,7 +122,13 @@ README.md
 
 1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones. Nos ayuda a mostrar un feedback al usuario mientras se esté cargando un recurso. Se lo puede ver en: ```src > Components > GlobalComponents > Loading > SpinnerLoad```.
 
-2. **Alerta** : para mostrar alertas de *confirmación*, *error* e *información*, utilizando la librería:  [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en: ```src > utilities > alerts``` a **feedbackUser** y **userConfirm**.
+2. **Spinner (SpinnerGrow)**: utilizamos el componente ```<Spinner>``` de [React-Bootstrap](https://react-bootstrap.netlify.app/components/spinners/) para darle un feed back al administrador mientras se está cargando un recurso. Recibe por *props* : 
+
+-**animation** : 'border' | 'grow', para cambiar el estilo de la animación.
+
+-**variant**: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark', el color que tendrá el spinner.
+
+3. **Alerta** : para mostrar alertas de *confirmación*, *error* e *información*, utilizando la librería:  [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en: ```src > utilities > alerts``` a **feedbackUser** y **userConfirm**.
 
 
 ---
