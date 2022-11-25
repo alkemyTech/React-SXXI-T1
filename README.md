@@ -140,9 +140,3 @@ Para correr la app en el modo development.
 
 Para poder verlo en el navegador, abrir: [http://localhost:3000](http://localhost:3000).
 
-
-<<<<<<< HEAD
----
-=======
----
->>>>>>> 20c82ce183acaaf41f5759e87ad5c04b25e8def2
