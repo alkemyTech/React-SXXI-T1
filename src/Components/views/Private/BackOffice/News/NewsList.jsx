@@ -6,29 +6,11 @@ import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { privateRoutes } from "models/routes";
 import SearchNews from "./components/SearchNews";
-
-const DUMMY_NEWS = [
-  {
-    id: 1,
-    name: "News 1",
-    image: "https://www.w3schools.com/w3css/img_lights.jpg",
-    createdAt: new Date().toLocaleString(),
-  },
-  {
-    id: 2,
-    name: "News 2",
-    image: "https://www.w3schools.com/w3css/img_lights.jpg",
-    createdAt: new Date().toLocaleString(),
-  },
-  {
-    id: 3,
-    name: "News 3",
-    image: "https://www.w3schools.com/w3css/img_lights.jpg",
-    createdAt: new Date().toLocaleString(),
-  },
-];
+import { useNews } from "./hooks/useNews";
+import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
 
 const NewsList = () => {
+  const { loadingNews, newsData, fetchNews } = useNews();
   const navigate = useNavigate();
 
   const editHandler = (id) => {
@@ -40,13 +22,30 @@ const NewsList = () => {
     console.log("Delete clicked", id);
   };
 
-  const searchNewsHandler = (searchText) => {
+  const searchNewsHandler = async (searchText) => {
+    const fetchParams = {};
+
     if (searchText.length >= 3) {
-      console.log(`Buscar a /news?search={${searchText}}`);
-    } else {
-      console.log("Buscar a /news");
+      fetchParams["search"] = searchText;
     }
+
+    await fetchNews(fetchParams);
   };
+
+  let newsContent;
+  if (loadingNews) {
+    newsContent = <SpinnerLoad />;
+  } else {
+    newsContent = (
+      <CustomTable
+        tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
+        tBody={newsData}
+        myTableData={{ name: "name", image: "image", created_at: "created_at" }}
+        handleEdit={editHandler}
+        handleDelete={deleteHandler}
+      />
+    );
+  }
 
   return (
     <div>
@@ -71,18 +70,10 @@ const NewsList = () => {
           icon={addIcon}
         />
       </div>
-      <div>
+      <div className="my-3">
         <SearchNews onSearchNews={searchNewsHandler} />
       </div>
-      <div>
-        <CustomTable
-          tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
-          tBody={DUMMY_NEWS}
-          myTableData={{ name: "name", image: "image", createdAt: "createdAt" }}
-          handleEdit={editHandler}
-          handleDelete={deleteHandler}
-        />
-      </div>
+      <div>{newsContent}</div>
     </div>
   );
 };
