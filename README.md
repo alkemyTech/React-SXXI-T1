@@ -120,9 +120,9 @@ README.md
 ### Algunos de los componentes globales
 
 
-1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones. Nos ayuda a mostrar un feedback al usuario mientras se esté cargando un recurso. Se lo puede ver en: ```src > Components > GlobalComonents > SpinnerLoad.js```.
+1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones. Nos ayuda a mostrar un feedback al usuario mientras se esté cargando un recurso. Se lo puede ver en: ```src > Components > GlobalComponents > Loading > SpinnerLoad```.
 
-2. **Alerta ** : para mostrar alertas de *confirmación*, *error* e *información*, utilizando la librería:  [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en: ```src > utilities > alerts``` a **feedbackUser** y **userConfirm**.
+2. **Alerta** : para mostrar alertas de *confirmación*, *error* e *información*, utilizando la librería:  [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en: ```src > utilities > alerts``` a **feedbackUser** y **userConfirm**.
 
 
 ---

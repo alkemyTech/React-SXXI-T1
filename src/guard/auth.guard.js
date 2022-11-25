@@ -1,4 +1,4 @@
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 import { ROLE } from "MOCKAUTH";
 import { routes } from "models/routes";
 import { useState, useEffect } from "react";
