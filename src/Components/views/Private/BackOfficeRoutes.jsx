@@ -31,19 +31,18 @@ const BackOfficeRoutes = () => {
       <Route path={privateRoutes.CATEGORIES} element={<CategoriesList />} />
       <Route path={privateRoutes.CATEGORIESCREATE} element={<CategoriesForm />} />
       <Route path={privateRoutes.CATEGORIESEDITWITHID} element={<CategoriesForm />} />
-      <Route path={privateRoutes.CATEGORIESEDITWITHID} element={<CategoriesForm />} />
       <Route path={privateRoutes.CREATEPROJECT} element={<ProjectsForm />} />
       <Route path={privateRoutes.EDITCATEGORY} element={<CategoriesForm />} />
       <Route path={privateRoutes.EDITPROJECT} element={<ProjectsForm />} />
       <Route path={privateRoutes.EDITORGANIZATIONFORM} element={<EditOrganizationForm />} />
-      <Route path={privateRoutes.NEWSFORM} element={<NewsForm />} />
+      <Route path={privateRoutes.NEWSCREATEFORM} element={<NewsForm />} />
       <Route path={privateRoutes.NEWSEDITFORM} element={<NewsForm />} />
+      <Route path={privateRoutes.NEWSEDITFORMWITHID} element={<NewsForm />} />
+      <Route path={privateRoutes.NEWSFORM} element={<NewsForm />} />
+      <Route path={privateRoutes.NEWSLIST} element={<NewsList />} />
       <Route path={privateRoutes.MEMBERSLIST} element={<MembersList />} />
       <Route path={privateRoutes.MEMBERSCREATEFORM} element={<MembersForm />} />
       <Route path={privateRoutes.MEMBERSEDITFORMWITHID} element={<MembersForm />} />
-      <Route path={privateRoutes.NEWSLIST} element={<NewsList />} />
-      <Route path={privateRoutes.NEWSCREATEFORM} element={<NewsForm />} />
-      <Route path={privateRoutes.NEWSEDITFORMWITHID} element={<NewsForm />} />
       <Route path={privateRoutes.ORGANIZATIONDATA} element={<OrganizationData />} />
       <Route path={privateRoutes.SLIDES} element={<PrivateSlides />} />
       <Route path={privateRoutes.SLIDESCREATE} element={<ActionsSlider />} />
