@@ -1,12 +1,12 @@
-import activityImage from "assets/actvityIcon.svg";
-import categoryImage from "assets/categoryIcon.svg";
-import membersImage from "assets/membersIcon.svg";
-import testimonialsImage from "assets/testimonialsIcon.svg";
-import usersImage from "assets/usersIcon.svg";
-import slideImage from "assets/slideIcon.svg";
-import newsImage from "assets/newsIcon.svg";
-import organizationImage from "assets/organizationIcon.svg";
-import { privateRoutes } from "models/routes";
+import activityImage from "assets/actvityIcon.svg"
+import categoryImage from "assets/categoryIcon.svg"
+import membersImage from "assets/membersIcon.svg"
+import testimonialsImage from "assets/testimonialsIcon.svg"
+import usersImage from "assets/usersIcon.svg"
+import slideImage from "assets/slideIcon.svg"
+import newsImage from "assets/newsIcon.svg"
+import organizationImage from "assets/organizationIcon.svg"
+import { privateRoutes } from "models/routes"
 
 export const dashboardLinks = [
   {
@@ -26,8 +26,8 @@ export const dashboardLinks = [
   },
   {
     text: "Novedades",
-    icon: testimonialsImage,
-    to: `/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSLIST}`,
+    icon: newsImage,
+    to: `/${privateRoutes.BACKOFFICE}${privateRoutes.NEWS}`,
   },
   {
     text: "Organización",
@@ -41,7 +41,7 @@ export const dashboardLinks = [
   },
   {
     text: "Testimonios",
-    icon: newsImage,
+    icon: testimonialsImage,
     to: `/${privateRoutes.BACKOFFICE}${privateRoutes.TESTIMONIALS}`,
   },
   {
@@ -49,4 +49,4 @@ export const dashboardLinks = [
     icon: organizationImage,
     to: `/${privateRoutes.BACKOFFICE}${privateRoutes.USERS}`,
   },
-];
+]

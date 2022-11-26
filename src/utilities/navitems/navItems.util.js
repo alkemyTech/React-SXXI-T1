@@ -1,15 +1,5 @@
-import { privateRoutes, routes } from "models/routes";
-import {
-  activityIcon,
-  categoryIcon,
-  memberIcon,
-  newsIcon,
-  organizationIcon,
-  slideIcon,
-  testimonialIcon,
-  userIcon,
-  homeIcon,
-} from "assets/images";
+import { privateRoutes, routes } from "models/routes"
+import { activityIcon, categoryIcon, memberIcon, newsIcon, organizationIcon, slideIcon, testimonialIcon, userIcon, homeIcon } from "assets/images"
 
 const footerNavItems = [
   { text: "Inicio", to: routes.HOME },
@@ -17,15 +7,11 @@ const footerNavItems = [
   { text: "Novedades", to: routes.NEWS },
   { text: "Contacto", to: routes.CONTACT },
   { text: "Contribuye", to: routes.DONATION },
-];
+]
 
-const publicHeaderNavItems = [
-  ...footerNavItems,
-  { text: "Login", to: routes.AUTHLOGINFORM },
-  { text: "Registrar", to: routes.AUTHREGISTERFORM },
-];
+const publicHeaderNavItems = [...footerNavItems, { text: "Login", to: routes.AUTHLOGINFORM }, { text: "Registrar", to: routes.AUTHREGISTERFORM }]
 
-export { footerNavItems, publicHeaderNavItems };
+export { footerNavItems, publicHeaderNavItems }
 
 export const privateLinks = [
   { text: "Dashboard", icon: homeIcon, to: privateRoutes.BACKOFFICE },
@@ -69,4 +55,4 @@ export const privateLinks = [
     icon: userIcon,
     to: `${privateRoutes.BACKOFFICE}${privateRoutes.USERS}`,
   },
-];
+]
