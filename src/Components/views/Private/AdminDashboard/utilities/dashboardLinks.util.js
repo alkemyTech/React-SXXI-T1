@@ -22,7 +22,7 @@ export const dashboardLinks = [
   {
     text: "Miembros",
     icon: membersImage,
-    to: `/${privateRoutes.BACKOFFICE}${privateRoutes.MEMBERS}`,
+    to: `/${privateRoutes.BACKOFFICE}${privateRoutes.MEMBERSLIST}`,
   },
   {
     text: "Novedades",

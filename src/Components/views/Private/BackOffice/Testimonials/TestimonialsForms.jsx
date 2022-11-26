@@ -31,12 +31,6 @@ const TestimonialsForm = () => {
     return (
         <div className="container my-5">
             <div className="my-5">
-                <BackTo
-                    wrapLink="my-4"
-                    to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
-                />
-            </div>
-            <div className="my-5">
                 <CustomTitle
                     title={id ? "Edita el testimonio" : "Crea el testimonio"} 
                     justify="center"   
@@ -44,8 +38,14 @@ const TestimonialsForm = () => {
                     wrapTitleClass="d-block h-auto"
                     />
             </div>
+            <div className="my-5">
+                <BackTo
+                    wrapLink="my-4"
+                    to={"/" + privateRoutes.BACKOFFICE + privateRoutes.TESTIMONIALS }
+                />
+            </div>
             <Form 
-                className="my-5"
+                className="my-5 col-sm-10 col-lg-6 mx-auto"
                 onSubmit={handleSubmit} >
             <Form.Group 
                 className="mb-3" 
@@ -90,9 +90,9 @@ const TestimonialsForm = () => {
                     imageIsEdit= { testimonial.image }
                 />
             </Form.Group>
-            <div className="mb-5">
+            <div className="my-5 d-flex justify-content-center">
                 <ButtonConfirm 
-                    className='mt-2 col-sm-5 col-md-2 mx-2' 
+                    className='col-7 col-sm-4 col-md-3 py-2 px-3' 
                     disabled={loading}
                     background='success' 
                     color='success' 

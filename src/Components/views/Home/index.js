@@ -11,7 +11,7 @@ import {
   ORGImage,
 } from "./index.Styled";
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
-import { privateRoutes, routes } from "models/routes";
+import { routes } from "models/routes";
 import { useEffect, useState } from "react";
 import { api } from "Services/axiosService";
 import Swal from "sweetalert2";

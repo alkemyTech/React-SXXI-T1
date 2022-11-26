@@ -4,53 +4,50 @@ import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { privateRoutes } from "models/routes";
 import { useNavigate } from "react-router-dom";
+import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
+import { feedbackUser as AlertSuccess } from "utilities/alerts/feedbackUser.util";
 
 const DUMMY_USERS = [
-  {
-    id: 1,
-    name: "User 1",
-    email: "email1@email.com",
-  },
-  {
-    id: 2,
-    name: "User 2",
-    email: "email2@email.com",
-  },
-  {
-    id: 3,
-    name: "User 3",
-    email: "email3@email.com",
-  },
+  { id: 1, name: "User 1", email: "email1@email.com" },
+  { id: 2, name: "User 2", email: "email2@email.com" },
+  { id: 3, name: "User 3", email: "email3@email.com" },
+  { id: 4, name: "User 4", email: "email4@email.com" },
+  { id: 5, name: "User 5", email: "email5@email.com" },
+  { id: 6, name: "User 6", email: "email6@email.com" }
 ];
 
 const UsersList = () => {
   const navigate = useNavigate();
 
+  const tHead = [ "#", "Nombre", "Email", "Acciones" ];
+
+  const myTableData = { name: "name", email: "email" };
+
   const editHandler = (id) => {
-    console.log("Edit clicked", id);
     navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.USERSEDIT}/${id}`);
   };
 
-  const deleteHandler = (id) => {
-    console.log("Delete clicked", id);
+  const deleteHandler = async (id) => {
+    const response = await AlertWarning("¿Estas segura/o que deseas eliminar?");
+    if(response) await AlertSuccess("center", "success", "Usuario eliminado");
   };
 
   return (
     <div className="my-5">
       <CustomTitle
-        title="Listado de Usuarios"
+        title="Usuarios"
         justify="center"
         wrapTextClass="text-center"
         wrapTitleClass="h-auto"
       />
       <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-md-between">
         <BackTo
-          wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3 me-1"
+          wrapLink="col col-10 col-sm-5 col-md-4 my-2 me-1"
           text="Ir dashboard"
-          to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
+          to={"/" + privateRoutes.BACKOFFICE }
         />
         <BackTo
-          wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3"
+          wrapLink="col col-10 col-sm-5 col-md-4 my-2"
           text="Crear Usuario"
           to={"/" + privateRoutes.BACKOFFICE + privateRoutes.USERSCREATE}
           color="success"
@@ -60,9 +57,9 @@ const UsersList = () => {
       </div>
       <div className="mt-5">
         <CustomTable
-          tHead={[ "#", "Nombre", "Email", "Acciones" ]}
+          tHead={ tHead }
           tBody={DUMMY_USERS}
-          myTableData={{ name: "name", email: "email" }}
+          myTableData={ myTableData}
           handleEdit={ editHandler }
           handleDelete={ deleteHandler }
         />

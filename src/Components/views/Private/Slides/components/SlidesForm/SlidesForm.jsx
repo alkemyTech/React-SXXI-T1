@@ -1,5 +1,5 @@
 import { InputImage } from "Components/GlobalComponents/FormInputsField/InputImage"
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
 import { Form } from "react-bootstrap"
 import { useSlidesForm } from "../../hooks/useSlidesForm"
 import { formFieldsSchema } from "../../utilities/slidesSchema.util"
