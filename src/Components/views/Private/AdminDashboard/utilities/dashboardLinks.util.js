@@ -22,12 +22,12 @@ export const dashboardLinks = [
   {
     text: "Miembros",
     icon: membersImage,
-    to: `/${privateRoutes.BACKOFFICE}${privateRoutes.MEMBERS}`,
+    to: `/${privateRoutes.BACKOFFICE}${privateRoutes.MEMBERSLIST}`,
   },
   {
     text: "Novedades",
     icon: testimonialsImage,
-    to: `/${privateRoutes.BACKOFFICE}${privateRoutes.NEWS}`,
+    to: `/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSLIST}`,
   },
   {
     text: "Organización",

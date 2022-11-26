@@ -2,7 +2,7 @@ import { useAbout } from "./hook/useAbout";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { MainContainer, CustomText } from "./about.styled";
 import Members from "../Members/Detail/Members";
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 
 
 const About = () => {

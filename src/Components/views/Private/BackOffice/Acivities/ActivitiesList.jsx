@@ -39,7 +39,7 @@ const ActivitiesList = () => {
         wrapTextClass="text-center"
         wrapTitleClass="h-auto"
       />
-      <div className="my-3 d-flex flex-wrap justify-content-center justify-content-md-between">
+      <div className="my-4 d-flex flex-wrap justify-content-center justify-content-md-between">
         <BackTo
           wrapLink="col col-10 col-sm-5 col-md-4 my-2 me-1"
           text="Ir dashboard"

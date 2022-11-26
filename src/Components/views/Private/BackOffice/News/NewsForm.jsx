@@ -42,7 +42,7 @@ const NewsForm = () => {
         <BackTo wrapLink="my-4" to={"/" + privateRoutes.BACKOFFICE + "news"} />
       </div>
       <Form
-        className="col col-12 col-sm-10 col-md-8 col-lg-6 my-3"
+        className="my-5 col-sm-10 col-lg-6 mx-auto"
         onSubmit={handleSubmit}
       >
         <Form.Group className="mb-3" controlId="formBasicName">
@@ -104,9 +104,9 @@ const NewsForm = () => {
             imageIsEdit={news.image}
           />
         </Form.Group>
-        <div className="mb-5 d-grid gap-2 d-md-block mx-auto">
+        <div className="my-5 d-flex justify-content-center">
           <ButtonConfirm
-            className="mt-2 col-sm-5 col-md-3 mx-2"
+            className="col-7 col-sm-4 col-md-3 py-2 px-3"
             disabled={loading}
             background="success"
             color="success"
