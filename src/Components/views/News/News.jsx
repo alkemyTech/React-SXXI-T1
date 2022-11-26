@@ -1,10 +1,10 @@
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage"
 import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle"
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad"
 import { Animate } from "styled-components/animation.styled"
 import { useNews } from "./hooks/useNews"
 import { newsSchema } from "./utilities/newsSchema.util"
 import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
 
 const News = () => {
   const { loadingNews, newsData } = useNews()
