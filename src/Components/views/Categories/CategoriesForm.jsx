@@ -73,7 +73,7 @@ const CategoriesForm = () => {
         else formik.setFieldValue('image', '');
     }
     const formik = useFormik({ initialValues, onSubmit, validationSchema });
-    const { handleChange, handleSubmit, values, errors, handleBlur, touched } = formik;
+    const { handleChange, handleSubmit, values, errors, handleBlur, touched, setFieldValue } = formik;
     useEffect(()=>{
         if(id) {
             api.get(`/categories/${id}`)
@@ -84,9 +84,9 @@ const CategoriesForm = () => {
                     image: data.image,
                     description: data.description
                 });
-                formik.setFieldValue('name', data.name);
-                formik.setFieldValue('image', data.image);
-                formik.setFieldValue('description', data.description);
+                setFieldValue('name', data.name);
+                setFieldValue('image', data.image);
+                setFieldValue('description', data.description);
             })
             .catch(()=>{
                 Alert({ icon: 'error', title: 'Ha ocurrido un error'});
