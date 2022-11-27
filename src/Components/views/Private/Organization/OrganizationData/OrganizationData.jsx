@@ -14,7 +14,7 @@ import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 export default function OrganizationData() {
   const navigate = useNavigate();
   const [organizationData, setOrganizationData] = useState({
-    welcomeText: "",
+    name: "",
     image: "",
     shortDescription: "",
   });
@@ -25,7 +25,7 @@ export default function OrganizationData() {
       if(info.success){
         const {data} = info;
         setOrganizationData({
-          welcomeText: data.welcome_text,
+          name: data.name,
           image: data.logo,
           shortDescription: data.short_description
         });
@@ -54,9 +54,9 @@ export default function OrganizationData() {
         </EditButton>
       </ContainerEditInf>
 
-      <h1 style={{ textAlign: "center" }}>{organizationData.welcomeText}</h1>
+      <h1 style={{ textAlign: "center" }}>{organizationData.name}</h1>
       <ContainerImage>
-        <Image src={organizationData.image} alt={organizationData.welcomeText} />
+        <Image src={organizationData.image} alt={organizationData.name} />
       </ContainerImage>
       <div
         dangerouslySetInnerHTML={{ __html: organizationData.shortDescription }}

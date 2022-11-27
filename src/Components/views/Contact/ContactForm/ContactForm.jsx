@@ -2,40 +2,17 @@ import { ContainerContactStyled, ContactFormStyled, Errors,
     TextAreaStyled, InputStyled, Button, ContainerInputError,
     ButtonIrInicio} from "./ContactForm.Styled";
 import { Form } from "react-bootstrap";
-import { useFormik } from "formik";
-import * as Yup from 'yup';
 import { useNavigate } from "react-router-dom/dist";
+import { useContact } from "./useContactHook/useContact";
 
 export default function ContactForm(){
     const navigate = useNavigate();
-    const initialValues = {
-        fullname: '',
-        email: '',
-        phone: '',
-        message: ''
-    };
-    function onSubmit(){
-        values.fullname = '';
-        values.email = '';
-        values.phone = '';
-        values.message = '';
-        alert('hola buenas');
-    }
+    const { handleSubmit, handleBlur, handleChange, values, errors, touched } = useContact();
+
     function handleClickIraInicio(){
         navigate('/');
     }
-    const required='Campo obligatorio';
-    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-    const validationSchema = Yup.object().shape({
-        fullname: Yup.string().required(required),
-        email : Yup.string().email('Debe ser un email valido').required(required),
-        phone: Yup.string().min(8,'Debe contener al menos 8 digitos')
-                  .matches(phoneRegExp, 'Debe ser un numero de telefono valido')
-                  .required(required),
-        message: Yup.string().required(required)
-    });
-    const formik = useFormik({initialValues, onSubmit, validationSchema});
-    const {handleChange, handleSubmit, values, errors, handleBlur, touched} = formik;
+    
     return(
         <ContainerContactStyled className="col-12 mb-5">
             <ContactFormStyled onSubmit={handleSubmit} >

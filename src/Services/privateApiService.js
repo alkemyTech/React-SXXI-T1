@@ -4,7 +4,6 @@ import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 // a futuro agregar Bearer.  headers: {'Authorization': 'Bearer '+ token}
 const privateApi = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
-  timeout: 5000,
 });
 
 const get = async (restURL) => {
@@ -53,11 +52,13 @@ const post = async (restURL, body) => {
 };
 
 const put = async (restURL, id, body) => {
+  
   try {
     const { data } = await privateApi(`${restURL}/${id}`, {
         method: 'put',
         data: body,
     });
+    console.log("data: ", data);
     if (!data || !data.success)
       throw new Error(
         data ? data.message : requestMessagesSchema.problemExistTryLater
