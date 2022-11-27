@@ -3,18 +3,19 @@ import { Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Formulary, Input, ButtonConfirm, Errors, PreviewImg,
-        ContainerInputError, ButtonCancel } from './CategoriesStyled/CategoriesStyled';
+import { Formulary, Input, Errors, PreviewImg,
+        ContainerInputError } from './CategoriesStyled/CategoriesStyled';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import { validationSchema, convertToBase64, Alert } from './utilities/utilities';
 import { api } from 'Services/axiosService';
+import { CustomButton } from 'Components/GlobalComponents/CustomButton/CustomButton';
+import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 
 const CategoriesForm = () => {
     const {id} = useParams();
     const navigate = useNavigate();
     const [imageB64, setImageB64] = useState('');
-    const [loading, setLoading] = useState(false);
     const [category, setCategory] = useState({
         name: '',
         image: '',
@@ -35,10 +36,8 @@ const CategoriesForm = () => {
             cancelText: 'Cancelar' })
             .then(res => {
                 if(res.isConfirmed) {
-                    setLoading(true);
                     api.put(`/categories/${id}`, body)
                     .then(() => {
-                        setLoading(false);
                         Alert({ icon: 'success', title: 'Operación éxitosa'})
                         .then(() => navigate(backURL));
                     })
@@ -53,10 +52,8 @@ const CategoriesForm = () => {
                     cancelText: 'Cancelar' })
             .then(res => {
                 if(res.isConfirmed) {
-                    setLoading(true);
                     api.post(`/categories`, body)
                     .then(() => {
-                        setLoading(false);
                         Alert({ icon: 'success', title: 'Operación éxitosa'})
                         .then(() => navigate(backURL));
                     })
@@ -95,16 +92,12 @@ const CategoriesForm = () => {
                 Alert({ icon: 'error', title: 'Ha ocurrido un error'});
             });
         }
-    },[id, setFieldValue]);
-    
-    const cancel = () => {
-        navigate(backURL);
-    }
+    },[id, formik]);
     return (
         <>
-        <Formulary className='my-5' onSubmit={ handleSubmit }>
-        <h1>{ id ? 'Formulario de edición de categoría' : 'Formulario de creación de categoría'}</h1>
-            <Form.Group className='col-sm-12 col-md-8'>
+        <CustomTitle title={id ? 'Editar Categoría' : 'Crear Categoría'}/>
+        <Formulary className='form-container col col-12 col-sm-10 col-xxl-8 my-3 p-0 p-sm-1' onSubmit={ handleSubmit }>
+            <Form.Group>
                 <ContainerInputError>
                     <Form.Label>Nombre de la categoría:</Form.Label>
                     <Input type="text" name="name" placeholder='Nombre' onBlur={ handleBlur }
@@ -112,16 +105,7 @@ const CategoriesForm = () => {
                     { errors.name && touched.name && <Errors>{errors.name}</Errors> }
                 </ContainerInputError>
             </Form.Group>
-            <Form.Group className='col-sm-12 col-md-8'>
-                <ContainerInputError>
-                    <Form.Label>Selecciona una imagen:</Form.Label>
-                    <Input accept="image/png,image/jpg" type='file' name="image"
-                         onChange={ handleImage } onBlur={handleBlur}/>
-                        { errors.image && touched.image && <Errors>{errors.image}</Errors> }
-                </ContainerInputError>
-                { imageB64 ? <PreviewImg src={imageB64}/> : <PreviewImg src={values.image}/>}
-            </Form.Group>
-            <Form.Group className='col-sm-12 col-md-8'>
+            <Form.Group>
                 <ContainerInputError>
                     <Form.Label>Agrega una descripción:</Form.Label>
                     <CKEditor
@@ -136,17 +120,24 @@ const CategoriesForm = () => {
                     { errors.description && <Errors>{ errors.description }</Errors> }
                 </ContainerInputError>
             </Form.Group>
-            <ButtonConfirm className='mt-2 col-sm-5 col-md-2' disabled={loading}
-                background='success' color='success' type='submit'
-            >
-                Confirmar
-            </ButtonConfirm>
-            <ButtonCancel className='col-sm-5 col-md-2' disabled={loading}
-                background='default' color='success' type='button'
-                onClick={ cancel }
-            >
-                Cancelar
-            </ButtonCancel>
+            <Form.Group>
+                <ContainerInputError>
+                    <Form.Label>Selecciona una imagen:</Form.Label>
+                    <Input accept="image/png,image/jpg" type='file' name="image"
+                         onChange={ handleImage } onBlur={handleBlur}/>
+                        { errors.image && touched.image && <Errors>{errors.image}</Errors> }
+                </ContainerInputError>
+                { imageB64 ? <PreviewImg src={imageB64}/> : <PreviewImg src={values.image}/>}
+            </Form.Group>
+            <div className='d-flex justify-content-center'>
+            <CustomButton
+                buttonClass='col col-12 col-sm-6 col-md-4 col-lg-3'
+                text='Confirmar'
+                color='success'
+                background='success'
+                type='submit'
+                />
+            </div>
         </Formulary>
         </>
     );
