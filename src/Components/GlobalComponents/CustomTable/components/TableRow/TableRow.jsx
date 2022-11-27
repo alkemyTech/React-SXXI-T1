@@ -1,21 +1,14 @@
-import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
-import { editIcon, deleteIcon } from "assets/images";
-import { Spinner } from "react-bootstrap";
-import { PersonalTableData } from "../PersonalTableData/PersonalTableData";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton"
+import { editIcon, deleteIcon } from "assets/images"
+import { Spinner } from "react-bootstrap"
+import { PersonalTableData } from "../PersonalTableData/PersonalTableData"
 
-const buttonsActions = [editIcon, deleteIcon];
+const buttonsActions = [editIcon, deleteIcon]
 
-export const TableRow = ({
-  handleEdit,
-  handleDelete,
-  children,
-  loading = false,
-}) => {
+export const TableRow = ({ handleEdit, handleDelete, children, loading = false }) => {
   return (
     <tr>
-      <td>
-        {children?.idx + 1 || <Spinner animation="grow" variant="primary" />}
-      </td>
+      <td>{children?.idx + 1 || <Spinner animation="grow" variant="primary" />}</td>
 
       <PersonalTableData children={children} loading={loading} />
 
@@ -31,16 +24,12 @@ export const TableRow = ({
                 text={btn}
                 color={!idx ? "yellow" : undefined}
                 background={!idx ? "yellow" : undefined}
-                onClick={() =>
-                  !idx
-                    ? handleEdit(children?.element?.id)
-                    : handleDelete(children?.element?.id)
-                }
+                onClick={() => (!idx ? handleEdit(children?.element?.id) : handleDelete(children?.element?.id))}
               />
             )
           )}
         </div>
       </td>
     </tr>
-  );
-};
+  )
+}
