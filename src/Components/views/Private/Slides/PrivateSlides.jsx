@@ -11,11 +11,16 @@ const PrivateSlides = () => {
   const { loadSlides, slides, handleEdit, handleDelete } = usePrivateSlides()
 
   return (
-    <>
-      <div className=" mt-2 d-flex col col-12">
-        <CustomTitle title="Slides" />
+    <section>
+      <div className=" mt-4 d-flex col col-12">
+        <CustomTitle 
+          title="Slides" 
+          justify="center"
+          wrapTextClass="text-center"
+          wrapTitleClass="h-auto"
+          />
       </div>
-      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
+      <div className="my-4 d-flex flex-wrap justify-content-center justify-content-sm-between">
         <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE} />
         <BackTo
           wrapLink="col col-10 col-sm-5 my-2"
@@ -26,15 +31,17 @@ const PrivateSlides = () => {
           icon={addIcon}
         />
       </div>
-      <CustomTable
-        tHead={tableHead}
-        tBody={slides}
-        loading={loadSlides}
-        myTableData={myTableData}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
-    </>
+      <div className="my-3">
+        <CustomTable
+          tHead={tableHead}
+          tBody={slides}
+          loading={loadSlides}
+          myTableData={myTableData}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
+      </div>
+    </section>
   )
 }
 

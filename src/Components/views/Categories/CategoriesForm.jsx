@@ -11,6 +11,8 @@ import { validationSchema, convertToBase64, Alert } from './utilities/utilities'
 import { api } from 'Services/axiosService';
 import { CustomButton } from 'Components/GlobalComponents/CustomButton/CustomButton';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
+import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
+import { privateRoutes } from 'models/routes';
 
 const CategoriesForm = () => {
     const {id} = useParams();
@@ -94,8 +96,20 @@ const CategoriesForm = () => {
         }
     },[id, formik]);
     return (
-        <>
-        <CustomTitle title={id ? 'Editar Categoría' : 'Crear Categoría'}/>
+        <section className="container my-5">
+            <div className="my-5">
+                <CustomTitle title={id ? 'Editar Categoría' : 'Crear Categoría'}
+                justify="center"   
+                wrapTextClass="text-center" 
+                wrapTitleClass="d-block h-auto"
+                />
+            </div>
+            <div className="my-5">
+            <BackTo
+                wrapLink="my-4"
+                to={"/" + privateRoutes.BACKOFFICE + privateRoutes.CATEGORIES}
+            />
+        </div>
         <Formulary className='form-container col col-12 col-sm-10 col-xxl-8 my-3 p-0 p-sm-1' onSubmit={ handleSubmit }>
             <Form.Group>
                 <ContainerInputError>
@@ -131,7 +145,7 @@ const CategoriesForm = () => {
             </Form.Group>
             <div className='d-flex justify-content-center'>
             <CustomButton
-                buttonClass='col col-12 col-sm-6 col-md-4 col-lg-3'
+                buttonClass='col-7 col-lg-8 py-2 px-3 mx-auto'
                 text='Confirmar'
                 color='success'
                 background='success'
@@ -139,7 +153,7 @@ const CategoriesForm = () => {
                 />
             </div>
         </Formulary>
-        </>
+        </section>
     );
 }
  

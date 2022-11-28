@@ -1,9 +1,9 @@
-import { addIcon } from "assets/images";
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { privateRoutes } from "models/routes";
-import { useNavigate } from "react-router-dom";
+import { addIcon } from "assets/images"
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { privateRoutes } from "models/routes"
+import { useNavigate } from "react-router-dom"
 
 const DUMMY_NEWS = [
   {
@@ -40,13 +40,15 @@ const NewsList = () => {
 
   return (
     <div>
-      <CustomTitle
-        title="Novedades"
-        justify="center"
-        wrapTextClass="text-center"
-        wrapTitleClass="h-auto"
-      />
-      <div className="mt-5 mb-4 d-flex flex-wrap justify-content-center justify-content-sm-between">
+      <div className=" mt-4 d-flex col col-12">
+        <CustomTitle
+          title="Novedades"
+          justify="center"
+          wrapTextClass="text-center"
+          wrapTitleClass="h-auto"
+        />
+      </div>
+      <div className="my-4 d-flex flex-wrap justify-content-center justify-content-sm-between">
         <BackTo
           wrapLink="col col-10 col-sm-5 my-2 me-1"
           text="Ir dashboard"
@@ -61,7 +63,7 @@ const NewsList = () => {
           icon={addIcon}
         />
       </div>
-      <div>
+      <div className="my-3">
         <CustomTable
           tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
           tBody={DUMMY_NEWS}
