@@ -1,13 +1,13 @@
-import { useParams } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import { InputForm } from "styled-components/GlobalFormFields/InputForm.styled";
-import { ButtonConfirm, ContainerInputError, Errors } from "./UsersForm.Styled";
-import { useUsersForm } from "./hooks/useUsersForm";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { FormImageField } from "Components/GlobalComponents/FormImageField/FormImageField";
-import FormLabel from "../components/FormLabel";
+import { useParams } from "react-router-dom"
+import Form from "react-bootstrap/Form"
+import { InputForm } from "styled-components/GlobalFormFields/InputForm.styled"
+import { ButtonConfirm, ContainerInputError, Errors } from "./UsersForm.Styled"
+import { useUsersForm } from "./hooks/useUsersForm"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { FormImageField } from "Components/GlobalComponents/FormImageField/FormImageField"
+import FormLabel from "../components/FormLabel"
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { privateRoutes } from "models/routes";
+import { privateRoutes } from "models/routes"
 
 const UsersForm = () => {
   const {
@@ -30,7 +30,7 @@ const UsersForm = () => {
     <div className="container my-5">
       <div>
         <CustomTitle
-          title={id ? "Edita el usuario" : "Crea el usuario"}
+          title={id ? "Edita usuario" : "Crea  usuario"}
           justify="center"
           wrapTextClass="text-center"
           wrapTitleClass="h-auto"
@@ -105,7 +105,7 @@ const UsersForm = () => {
         </Form.Group>
         <div className="my-5 d-flex justify-content-center">
           <ButtonConfirm
-            className="mt-2 col-sm-5 col-md-3 mx-2"
+            className="col-7 col-lg-8 py-2 px-3 mx-auto"
             disabled={loading}
             background="success"
             color="success"

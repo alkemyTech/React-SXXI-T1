@@ -32,7 +32,7 @@ const NewsForm = () => {
     <div className="container my-5">
       <div>
         <CustomTitle
-          title={id ? "Edita la novedad" : "Crea una novedad"}
+          title={id ? "Edita novedad" : "Crea novedad"}
           justify="center"
           wrapTextClass="text-center"
           wrapTitleClass="h-auto"
@@ -106,7 +106,7 @@ const NewsForm = () => {
         </Form.Group>
         <div className="my-5 d-flex justify-content-center">
           <ButtonConfirm
-            className="col-7 col-sm-4 col-md-3 py-2 px-3"
+            className="col-7 col-lg-8 py-2 px-3"
             disabled={loading}
             background="success"
             color="success"

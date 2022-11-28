@@ -1,11 +1,11 @@
-import { addIcon } from "assets/images";
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { privateRoutes } from "models/routes";
-import { useNavigate } from "react-router-dom";
-import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
-import { feedbackUser as AlertSuccess } from "utilities/alerts/feedbackUser.util";
+import { addIcon } from "assets/images"
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { privateRoutes } from "models/routes"
+import { useNavigate } from "react-router-dom"
+import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util"
+import { feedbackUser as AlertSuccess } from "utilities/alerts/feedbackUser.util"
 
 const DUMMY_USERS = [
   { id: 1, name: "User 1", email: "email1@email.com" },
@@ -33,16 +33,18 @@ const UsersList = () => {
   };
 
   return (
-    <div className="my-5">
-      <CustomTitle
-        title="Usuarios"
-        justify="center"
-        wrapTextClass="text-center"
-        wrapTitleClass="h-auto"
-      />
-      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-md-between">
+    <section>
+      <div className=" mt-4 d-flex col col-12">
+        <CustomTitle
+          title="Usuarios"
+          justify="center"
+          wrapTextClass="text-center"
+          wrapTitleClass="h-auto"
+        />
+      </div>
+      <div className="my-4 d-flex flex-wrap justify-content-center justify-content-md-between">
         <BackTo
-          wrapLink="col col-10 col-sm-5 col-md-4 my-2 me-1"
+          wrapLink="col col-10 col-sm-5 my-2 me-1"
           text="Ir dashboard"
           to={"/" + privateRoutes.BACKOFFICE }
         />
@@ -55,7 +57,7 @@ const UsersList = () => {
           icon={addIcon}
         />
       </div>
-      <div className="mt-5">
+      <div className="my-3">
         <CustomTable
           tHead={ tHead }
           tBody={DUMMY_USERS}
@@ -64,7 +66,7 @@ const UsersList = () => {
           handleDelete={ deleteHandler }
         />
       </div>
-    </div>
+    </section>
   );
 };
 
