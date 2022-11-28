@@ -24,7 +24,6 @@ const UsersList = () => {
   const myTableData = { name: "name", email: "email" };
 
   const editHandler = (id) => {
-    console.log("Edit clicked", id);
     navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.USERSEDIT}/${id}`);
   };
 

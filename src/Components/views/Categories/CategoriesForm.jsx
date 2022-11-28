@@ -10,6 +10,7 @@ import { URLs } from 'Services/ServicesURLS';
 import { feedbackUser as AlertError } from 'utilities/alerts/feedbackUser.util';
 import { convertUrlToBase64 } from 'utilities/convertURLtoBase64.util';
 import axios from 'axios';
+import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 
 const CategoriesForm = () => {
     const { handleImage, id, imageB64, handleChange, handleBlur, handleSubmit,
@@ -39,9 +40,9 @@ const CategoriesForm = () => {
     
     return (
         <>
-        <Formulary className='my-5' onSubmit={ handleSubmit }>
-        <h1>{ id ? 'Formulario de edición de categoría' : 'Formulario de creación de categoría'}</h1>
-            <Form.Group className='col-sm-12 col-md-8'>
+        <CustomTitle title={id ? 'Editar Categoría' : 'Crear Categoría'}/>
+        <Formulary className='form-container col col-12 col-sm-10 col-xxl-8 my-3 p-0 p-sm-1' onSubmit={ handleSubmit }>
+            <Form.Group>
                 <ContainerInputError>
                     <Form.Label>Nombre de la categoría:</Form.Label>
                     <Input type="text" name="name" placeholder='Nombre' onBlur={ handleBlur }
