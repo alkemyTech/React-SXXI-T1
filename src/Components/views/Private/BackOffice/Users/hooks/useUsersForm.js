@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { useFormik } from "formik";
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom/dist';
-import {  usersValidationSchema } from "../utilities/utilities";
-import { api } from 'Services/axiosService';
-import Alert from "../../components/Alert";
-import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
+import { useEffect, useState } from "react"
+import { useFormik } from "formik"
+import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom/dist'
+import {  usersValidationSchema } from "../utilities/utilities"
+import { api } from 'Services/axiosService'
+import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util"
+import { feedbackUser as AlertSuccessError } from "utilities/alerts/feedbackUser.util"
+import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util"
 
 export const useUsersForm = () => {
   const {id} = useParams();
@@ -43,7 +44,7 @@ export const useUsersForm = () => {
           });
         })
         .catch(() => {
-          Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+          AlertSuccessError('center', 'error', 'Ha ocurrido un error');
         });    
       }
   },[id]);
@@ -74,35 +75,31 @@ export const useUsersForm = () => {
         ...body, 
         image: imageBase64 || await convertUrlToBase64(user.image)
       }
-      const alertWarning = await Alert({ icon:'warning', 
-            title:'¿Estas segura/o de enviarlo?', 
-            cancelText: 'Cancelar' })
+      const alertWarning = await AlertWarning('¿Estas segura/o de enviarlo?');
 
       if(alertWarning.isConfirmed) {
         setLoading(true);
         const apiResponse = await api.put(`/users/${id}`, bodyEdit)
         if(apiResponse.data.success) {
             setLoading(false);
-            await Alert({ icon: 'success', title: 'Operación éxitosa'});
+            await AlertSuccessError('center', 'success', 'Operación éxitosa');
             navigate(backURL);
         } else {
-            await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+            await AlertSuccessError('center', 'success', 'Operación éxitosa');
         }
       }
     } else {
-      const alertWarning = await Alert({ icon:'warning', 
-                title:'¿Estas segura/o de enviarlo?', 
-                cancelText: 'Cancelar' })
+      const alertWarning = await  AlertWarning('¿Estas segura/o de enviarlo?');
 
       if(alertWarning.isConfirmed) {
         setLoading(true);
         const apiResponse = await api.post(`/users`, body)
         if(apiResponse.data.success) {
           setLoading(false);
-          await Alert({ icon: 'success', title: 'Operación éxitosa'})
+          await AlertSuccessError('center', 'success', 'Operación éxitosa');
           navigate(backURL)
         } else {
-          await Alert({ icon: 'error', title: 'Ha ocurrido un error'});
+          await AlertSuccessError('center', 'success', 'Operación éxitosa'); 
         }
       }
     }
