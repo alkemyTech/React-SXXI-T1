@@ -4,7 +4,7 @@ import { SlideTitle, SlideDescription, SlideImage } from './CarouselStyled/Carou
 import { api } from "Services/axiosService";
 import Swal from "sweetalert2";
 
-export default function CarouselComponent({endPoint, content}){
+export default function CarouselComponent({endPoint, content, hxl, hlg, hmd, hsm, hxs}){
     const [slides, setSlides] = useState([]);
     
     useEffect(() => {
@@ -38,6 +38,7 @@ export default function CarouselComponent({endPoint, content}){
                     }
                     return <Carousel.Item key={slide.id}>
                                 <SlideImage
+                                    hxl={hxl} hlg={hlg} hmd={hmd} hsm={hsm} hxs={hxs}
                                     className="d-block w-100 rounded"
                                     src={slide.image}
                                     alt={slide.title} />

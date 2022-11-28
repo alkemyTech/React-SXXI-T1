@@ -168,4 +168,9 @@ Para instalarte todos las dependencias que utiliza el proyecto.
 
 Para correr la app en el modo development.
 
+<<<<<<< HEAD
 Para poder verlo en el navegador, abrir: [http://localhost:3000](http://localhost:3000).
+=======
+Para poder verlo en el navegador, abrir: [http://localhost:3000](http://localhost:3000).
+
+>>>>>>> 8d3103155981401bb3be8e554b1770e4a4b39550
