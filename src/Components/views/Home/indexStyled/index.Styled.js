@@ -22,7 +22,7 @@ export const Container2 = styled.div`
     align-items: center;
     margin: 1rem 0;
 
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 330px) {
         flex-direction: column;
     }
 `;

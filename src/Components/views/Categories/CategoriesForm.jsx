@@ -94,7 +94,7 @@ const CategoriesForm = () => {
     return (
         <div style={{padding: '0'}}>
         <CustomTitle title={id ? 'Editar Categoría' : 'Crear Categoría'} height='none' wrapTextClass='text-center'/>
-        <BackTo />
+        <BackTo to='/backoffice/categories'/>
         <Formulary className='form-container col col-12 col-sm-10 col-xxl-8 my-3 p-0 p-sm-1' onSubmit={ handleSubmit }>
             <Form.Group>
                 <ContainerInputError>
