@@ -8,13 +8,12 @@ import { useCategory } from './CategoryHook/useCategory';
 import privateService from 'Services/privateApiService';
 import { URLs } from 'Services/ServicesURLS';
 import { feedbackUser as AlertError } from 'utilities/alerts/feedbackUser.util';
-import { convertUrlToBase64 } from 'utilities/convertURLtoBase64.util';
-import axios from 'axios';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 
 const CategoriesForm = () => {
     const { handleImage, id, imageB64, handleChange, handleBlur, handleSubmit,
-        setFieldValue, values, errors, touched, setImageB64, setCategory } = useCategory();
+        setFieldValue, values, errors, touched, setCategory, loading } = useCategory();
 
     useEffect(()=>{
         if(id) {
@@ -36,7 +35,7 @@ const CategoriesForm = () => {
             })
             .catch(()=> AlertError('center', 'error', 'Ha ocurrido un error'));
         }
-    },[id, setFieldValue, setImageB64]);
+    },[id, setFieldValue, setCategory]);
     
     return (
         <>
@@ -74,10 +73,10 @@ const CategoriesForm = () => {
                     { errors.description && <Errors>{ errors.description }</Errors> }
                 </ContainerInputError>
             </Form.Group>
-            <ButtonConfirm className='mt-2 col-sm-5 col-md-2'
+            <ButtonConfirm className='mt-2 col-sm-5 col-md-2' disabled={loading}
                 background='success' color='success' type='submit'
             >
-                Confirmar
+                {loading ? 'Loading...' : 'Confirmar'}
             </ButtonConfirm>
         </Formulary>
         </>

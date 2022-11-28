@@ -6,12 +6,12 @@ import { validationSchema, convertToBase64 } from '../utilities/utilities';
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { privateRoutes } from "models/routes";
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 
 export const useCategory = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const [ loading, setLoading ] = useState(false);
     const schema = { name: '' };
     const [ category, setCategory ] = useState({
         name: '',
@@ -30,7 +30,32 @@ export const useCategory = () => {
             .then(confirm => {
                 if(confirm){
                     privateService.post(URLs.category, body)
+                    .then(res => {
+                        setLoading(false);
+                        if(res.success){
+                            Alert('center', 'success', 'Operación éxitosa')
+                                .then(()=>{
+                                    setFieldValue('name', '');
+                                    setFieldValue('image', '');
+                                    setFieldValue('description', '');
+                                    setImageB64('');
+                                    navigate('/backoffice/categories');
+                                });
+                            }else Alert('center', 'error', 'Ha ocurrido un error');
+                        })
+                        .catch(() => Alert('center', 'error', 'Ha ocurrido un error'));
+                }
+                setLoading(false);
+            });
+    }
+
+    const editCategory = (id, body) => {
+        AlertWarning('¿Estas Segura/o?')
+            .then(confirm => {
+                if(confirm){
+                    privateService.put(URLs.category, id, body)
                         .then(res => {
+                            setLoading(false);
                             if(res.success){
                                 Alert('center', 'success', 'Operación éxitosa')
                                     .then(()=>{
@@ -38,67 +63,20 @@ export const useCategory = () => {
                                         setFieldValue('image', '');
                                         setFieldValue('description', '');
                                         setImageB64('');
-                                        navigate(privateRoutes.BACKOFFICE+privateRoutes.CATEGORIES);
+                                        navigate('/backoffice/categories');
                                     });
                             }else Alert('center', 'error', 'Ha ocurrido un error');
                         })
                         .catch(() => Alert('center', 'error', 'Ha ocurrido un error'));
                 }
+                setLoading(false);
             });
     }
 
-    const editCategory = async (id, body) => {
-        if(category.image && !imageB64) {
-            console.log(await convertUrlToBase64(category.image));
-            // AlertWarning('¿Estas Segura/o?')
-            // .then(confirm => {
-            //     if(confirm){
-            //         privateService.put(URLs.category, id, body)
-            //             .then(res => {
-            //                 // console.log(res);
-            //                 if(res.success){
-            //                     Alert('center', 'success', 'Operación éxitosa')
-            //                         .then(()=>{
-            //                             setFieldValue('name', '');
-            //                             setFieldValue('image', '');
-            //                             setFieldValue('description', '');
-            //                             setImageB64('');
-            //                             navigate(privateRoutes.BACKOFFICE+privateRoutes.CATEGORIES);
-            //                         });
-            //                 }else Alert('center', 'error', 'Ha ocurrido un error 1');
-            //             })
-            //             .catch(() => Alert('center', 'error', 'Ha ocurrido un error 2'));
-            //     }
-            // });
-        } else {
-            console.log(false);
-        }
-
-        // AlertWarning('¿Estas Segura/o?')
-        //     .then(confirm => {
-        //         if(confirm){
-        //             privateService.put(URLs.category, id, body)
-        //                 .then(res => {
-        //                     // console.log(res);
-        //                     if(res.success){
-        //                         Alert('center', 'success', 'Operación éxitosa')
-        //                             .then(()=>{
-        //                                 setFieldValue('name', '');
-        //                                 setFieldValue('image', '');
-        //                                 setFieldValue('description', '');
-        //                                 setImageB64('');
-        //                                 navigate(privateRoutes.BACKOFFICE+privateRoutes.CATEGORIES);
-        //                             });
-        //                     }else Alert('center', 'error', 'Ha ocurrido un error 1');
-        //                 })
-        //                 .catch(() => Alert('center', 'error', 'Ha ocurrido un error 2'));
-        //         }
-        //     });
-    }
-
-    const onSubmit = () => {
+    const onSubmit = async () => {
+        setLoading(true);
         const { name, description } = values;
-        const body = { name, description, image: imageB64 };
+        const body = { name, description, image: imageB64 ? imageB64 : await convertUrlToBase64(category.image)};
         if(id) {
             editCategory(id, body);
         }else {
@@ -131,6 +109,7 @@ export const useCategory = () => {
         handleImage,
         category,
         setCategory,
-        schema
+        schema,
+        loading
     }
 }

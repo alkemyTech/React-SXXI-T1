@@ -7,8 +7,7 @@ import InstagramIcon from 'assets/instagramIcon3.svg';
 import TwitterIcon from 'assets/icon-twitter.svg';
 import LinkedinIcon from 'assets/linkedin2.svg';
 
-export default function Contact({ facebookURL, instagramURL, twitterURL, linkedinURL, phone }){
-
+export default function Contact({ info }){
     return(
         <div className="mt-3 mb-5">
             <CustomTitle title='Contacto' height="none" justify="center"/>
@@ -18,31 +17,31 @@ export default function Contact({ facebookURL, instagramURL, twitterURL, linkedi
             <Container>
                 <ContainerIcon>
                     <Paragraph2><i>Facebook: </i></Paragraph2>
-                    <a href={facebookURL} target="_blank" rel="noopener noreferrer">
+                    <a href={info?.facebook_url} target="_blank" rel="noopener noreferrer">
                         <Icon src={facebookIcon} alt="icono de Facebook" />
                     </a>
                 </ContainerIcon>
                 <ContainerIcon>
                     <Paragraph2><i>Instagram: </i></Paragraph2>
-                    <a href={instagramURL} target="_blank" rel="noopener noreferrer">
+                    <a href={info?.instagram_url} target="_blank" rel="noopener noreferrer">
                         <Icon src={InstagramIcon} alt="icono de Instagram" />
                     </a>
                 </ContainerIcon>
                 <ContainerIcon>
                     <Paragraph2><i>Twitter: </i></Paragraph2>
-                    <a href={twitterURL} target="_blank" rel="noopener noreferrer">
+                    <a href={info?.twitter_url} target="_blank" rel="noopener noreferrer">
                         <Icon src={TwitterIcon} alt="icono de Twitter" />
                     </a>
                 </ContainerIcon>
                 <ContainerIcon>
                     <Paragraph2><i>Linkedin: </i></Paragraph2>
-                    <a href={linkedinURL} target="_blank" rel="noopener noreferrer">
+                    <a href={info?.linkedin_url} target="_blank" rel="noopener noreferrer">
                         <Icon src={LinkedinIcon} alt="icono de Linkedin" />
                     </a>
                 </ContainerIcon>
                 <ContainerIcon>
                     <Paragraph2><i>Teléfono: </i></Paragraph2>
-                    <Paragraph2><i>{phone}</i></Paragraph2>
+                    <Paragraph2><i>{info?.phone}</i></Paragraph2>
                 </ContainerIcon>
             </Container>
             <Paragraph1>

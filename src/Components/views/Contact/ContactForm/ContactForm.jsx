@@ -5,7 +5,7 @@ import { useContact } from "./useContactHook/useContact";
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 
 export default function ContactForm(){
-    const { handleSubmit, handleBlur, handleChange, values, errors, touched } = useContact();
+    const { handleSubmit, handleBlur, handleChange, values, errors, touched, loading } = useContact();
     
     return(
             <ContactFormStyled onSubmit={handleSubmit} >
@@ -40,7 +40,8 @@ export default function ContactForm(){
                     </ContainerInputError>
                 </Form.Group>
                 <CustomButton
-                    text='Enviar Consulta'
+                    text={ loading ? 'loading..' : 'Enviar Consulta'}
+                    disabled={loading}
                     color='success'
                     background='success'
                     type='submit'

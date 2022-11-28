@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import privateService from "Services/privateApiService";
 import { useCategoryHook } from "./CategoryHook/useCategoryHook";
 import { URLs } from "Services/ServicesURLS";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 
 export default function CategoriesList(){
   const {categories, setCategories, handleDelete, toEdit, tHead, myTableData} = useCategoryHook();
@@ -26,10 +27,10 @@ export default function CategoriesList(){
           });
           setCategories(info);
         }else{
-          alert("error 2");
+          feedbackUser('center', 'error', 'Ha ocurrido un error');
         }
       })
-      .catch(() => alert('error'));
+      .catch(() => feedbackUser('center', 'error', 'Ha ocurrido un error'));
   }, [setCategories]);
 
   return(
