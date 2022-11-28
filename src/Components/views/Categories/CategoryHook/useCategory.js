@@ -7,11 +7,18 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { privateRoutes } from "models/routes";
+import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 
 export const useCategory = () => {
-    const navigate = useNavigate();
-    const [imageB64, setImageB64] = useState('');
     const { id } = useParams();
+    const navigate = useNavigate();
+    const schema = { name: '' };
+    const [ category, setCategory ] = useState({
+        name: '',
+        image: '',
+        description: ''
+    });
+    const [imageB64, setImageB64] = useState('');
     const initialValues = {
         name: '',
         image: '',
@@ -40,28 +47,53 @@ export const useCategory = () => {
             });
     }
 
-    const editCategory = (id, body) => {
-        // console.log("id: ",id, "body: ", body);
-        AlertWarning('¿Estas Segura/o?')
-            .then(confirm => {
-                if(confirm){
-                    privateService.put(URLs.category, id, body)
-                        .then(res => {
-                            // console.log(res);
-                            if(res.success){
-                                Alert('center', 'success', 'Operación éxitosa')
-                                    .then(()=>{
-                                        setFieldValue('name', '');
-                                        setFieldValue('image', '');
-                                        setFieldValue('description', '');
-                                        setImageB64('');
-                                        navigate(privateRoutes.BACKOFFICE+privateRoutes.CATEGORIES);
-                                    });
-                            }else Alert('center', 'error', 'Ha ocurrido un error 1');
-                        })
-                        .catch(() => Alert('center', 'error', 'Ha ocurrido un error 2'));
-                }
-            });
+    const editCategory = async (id, body) => {
+        if(category.image && !imageB64) {
+            console.log(await convertUrlToBase64(category.image));
+            // AlertWarning('¿Estas Segura/o?')
+            // .then(confirm => {
+            //     if(confirm){
+            //         privateService.put(URLs.category, id, body)
+            //             .then(res => {
+            //                 // console.log(res);
+            //                 if(res.success){
+            //                     Alert('center', 'success', 'Operación éxitosa')
+            //                         .then(()=>{
+            //                             setFieldValue('name', '');
+            //                             setFieldValue('image', '');
+            //                             setFieldValue('description', '');
+            //                             setImageB64('');
+            //                             navigate(privateRoutes.BACKOFFICE+privateRoutes.CATEGORIES);
+            //                         });
+            //                 }else Alert('center', 'error', 'Ha ocurrido un error 1');
+            //             })
+            //             .catch(() => Alert('center', 'error', 'Ha ocurrido un error 2'));
+            //     }
+            // });
+        } else {
+            console.log(false);
+        }
+
+        // AlertWarning('¿Estas Segura/o?')
+        //     .then(confirm => {
+        //         if(confirm){
+        //             privateService.put(URLs.category, id, body)
+        //                 .then(res => {
+        //                     // console.log(res);
+        //                     if(res.success){
+        //                         Alert('center', 'success', 'Operación éxitosa')
+        //                             .then(()=>{
+        //                                 setFieldValue('name', '');
+        //                                 setFieldValue('image', '');
+        //                                 setFieldValue('description', '');
+        //                                 setImageB64('');
+        //                                 navigate(privateRoutes.BACKOFFICE+privateRoutes.CATEGORIES);
+        //                             });
+        //                     }else Alert('center', 'error', 'Ha ocurrido un error 1');
+        //                 })
+        //                 .catch(() => Alert('center', 'error', 'Ha ocurrido un error 2'));
+        //         }
+        //     });
     }
 
     const onSubmit = () => {
@@ -96,6 +128,9 @@ export const useCategory = () => {
         imageB64,
         setImageB64,
         id,
-        handleImage
+        handleImage,
+        category,
+        setCategory,
+        schema
     }
 }

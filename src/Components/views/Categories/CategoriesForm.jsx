@@ -13,7 +13,7 @@ import axios from 'axios';
 
 const CategoriesForm = () => {
     const { handleImage, id, imageB64, handleChange, handleBlur, handleSubmit,
-        setFieldValue, values, errors, touched, setImageB64 } = useCategory();
+        setFieldValue, values, errors, touched, setImageB64, setCategory } = useCategory();
 
     useEffect(()=>{
         if(id) {
@@ -21,13 +21,14 @@ const CategoriesForm = () => {
             .then(res => {
                 if(res.success){
                     const { data } = res;
-                    console.log(data.image)
                     setFieldValue('name', data.name);
                     setFieldValue('image', data.image);
                     setFieldValue('description', data.description);
-                    convertUrlToBase64(data.image)
-                    
-                    setImageB64(data.image);
+                    setCategory({
+                        name: data.name,
+                        image: data.image,
+                        description: data.description
+                    })
                 }else{
                     AlertError('center', 'error', 'Ha ocurrido un error');
                 }
