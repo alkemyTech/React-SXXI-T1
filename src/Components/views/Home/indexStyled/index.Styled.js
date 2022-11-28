@@ -3,7 +3,11 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    padding: 0;
+    gap: 1rem;
+    @media screen and (min-width: 375px) {
+        gap: 1.5rem;
+    }
 `;
 
 export const Container1 = styled.div`
@@ -18,7 +22,7 @@ export const Container2 = styled.div`
     align-items: center;
     margin: 1rem 0;
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 320px) {
         flex-direction: column;
     }
 `;
@@ -58,16 +62,28 @@ export const ContainerImageAndP = styled.div`
 `;
 
 export const ORGImage = styled.img`
-    height: 130px;
+    height: 120px;
     width: 140px;
     border-radius: 5px;
 
-    @media screen and (min-width: 400px) {
+    @media screen and (min-width: 500px) {
         height: 150px;
         width: 190px;
     }
-    @media screen and (min-width: 700px) {
-        height: 250px;
+    @media screen and (min-width: 720px) {
+        height: 200px;
         width: 260px;
+    }
+`;
+export const Paragraph = styled.p`
+    font-size: 0.7rem;
+    @media screen and (min-width: 375px) {
+        font-size: 0.8rem;
+    }
+    @media screen and (min-width: 500px) {
+        font-size: 0.9rem;
+    }
+    @media screen and (min-width: 1200px) {
+        font-size: 1rem;
     }
 `;
