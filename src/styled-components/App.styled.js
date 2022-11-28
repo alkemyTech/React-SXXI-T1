@@ -5,10 +5,12 @@ import { themeColors } from "./Theme.styled"
 
 const tabletStartWidth = 600
 const desktopStartWidth = 768
+const extraLargeStartWidth = 1300
 
 const responsiveDesign = {
   tablet: `@media (min-width: ${tabletStartWidth}px)`,
   desktop: `@media (min-width: ${desktopStartWidth}px)`,
+  extraLarge: `@media (min-width: ${extraLargeStartWidth}px)`,
 }
 
 const someOtherProperties = {
@@ -151,6 +153,15 @@ const CustomImage = styled.div`
   width: ${({ width }) => width || "100%"};
   border-radius: ${({ borderRadius }) => borderRadius || "none"};
 
+  ${responsiveDesign.tablet} {
+    height: ${({ heightTablet }) => heightTablet};
+    width: ${({ widthTablet }) => widthTablet};
+  }
+  ${responsiveDesign.desktop} {
+    height: ${({ heightDesktop }) => heightDesktop};
+    width: ${({ widthDesktop }) => widthDesktop};
+  }
+
   ${fadeIn}
 `
 
@@ -165,7 +176,7 @@ const WrapMainRoutes = styled(Row)`
   justify-content: center;
   max-width: 95%;
   padding: ${({ size: { width } }) => (width < 400 ? "5px" : "5px 1.5rem")};
-  min-height: calc(100vh - 296px);
+  min-height: calc(100vh - 212px);
 
   ${responsiveDesign.desktop} {
     max-width: 85%;
@@ -175,7 +186,41 @@ const WrapMainRoutes = styled(Row)`
 `
 
 const filterSaturate = css`
-  filter: saturate(180%);
+  filter: saturate(150%);
+`
+
+const WrapFirstCol = styled.div`
+  backdrop-filter: blur(4px);
+  position: absolute;
+  z-index: 10;
+
+  ${responsiveDesign.tablet} {
+    position: initial;
+    z-index: 1;
+    backdrop-filter: blur(0px);
+  }
+
+  h6 {
+    font-weight: bold;
+    ${responsiveDesign.tablet} {
+      font-weight: normal;
+    }
+  }
+`
+
+const WrapImageSecondCol = styled.div`
+  position: absolute;
+  opacity: 0.4;
+  z-index: -1;
+  ${responsiveDesign.tablet} {
+    position: initial;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  &:hover {
+    ${filterSaturate}
+  }
 `
 
 export {
@@ -196,4 +241,6 @@ export {
   disabledCssStyle,
   dropShadow,
   WrapMainRoutes,
+  WrapFirstCol,
+  WrapImageSecondCol,
 }
