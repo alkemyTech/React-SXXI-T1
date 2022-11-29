@@ -24,36 +24,27 @@ const DUMMY_NEWS = [
     image: "https://www.w3schools.com/w3css/img_lights.jpg",
     createdAt: new Date().toLocaleString(),
   },
-];
+]
 
 const NewsList = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const editHandler = (id) => {
-    console.log("Edit clicked", id);
-    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSEDITFORM}${id}`);
-  };
+    console.log("Edit clicked", id)
+    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSEDITFORM}${id}`)
+  }
 
   const deleteHandler = (id) => {
-    console.log("Delete clicked", id);
-  };
+    console.log("Delete clicked", id)
+  }
 
   return (
     <div>
       <div className=" mt-4 d-flex col col-12">
-        <CustomTitle
-          title="Novedades"
-          justify="center"
-          wrapTextClass="text-center"
-          wrapTitleClass="h-auto"
-        />
+        <CustomTitle title="Novedades" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
       </div>
       <div className="my-4 d-flex flex-wrap justify-content-center justify-content-sm-between">
-        <BackTo
-          wrapLink="col col-10 col-sm-5 my-2 me-1"
-          text="Ir dashboard"
-          to={"/" + privateRoutes.BACKOFFICE }
-        />
+        <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE} />
         <BackTo
           wrapLink="col col-10 col-sm-5 col-md-4 my-2"
           text="Crear Novedad"
@@ -73,7 +64,7 @@ const NewsList = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NewsList;
+export default NewsList
