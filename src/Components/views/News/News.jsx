@@ -1,13 +1,11 @@
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage"
-import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle"
 import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
 import { Animate } from "styled-components/animation.styled"
 import { useNews } from "./hooks/useNews"
 import { newsSchema } from "./utilities/newsSchema.util"
 import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection"
 import SearchNews from "./components/SearchNews"
-import { routes } from "models/routes"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
 
 const News = () => {
   const { loadingNews, newsData, fetchNews } = useNews()
@@ -37,10 +35,14 @@ const News = () => {
 
   return (
     <Animate>
-      <HeadTitle title={newsSchema.title} />
-      <BackTo wrapLink="my-4" to={routes.HOME} text="Ir a inicio" />
-
-      <div className="col col-12 d-flex justify-content-center mb-3">
+      <div className="my-5">
+        <CustomTitle
+          title={newsSchema.title}
+          wrapTitleClass="d-block h-auto"
+          justify="center"   
+        />
+      </div>
+      <div className="col col-12 d-flex justify-content-center mb-5">
         <div className="col col-12">
           <SearchNews onSearchNews={searchNewsHandler} />
         </div>
