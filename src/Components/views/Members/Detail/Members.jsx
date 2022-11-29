@@ -10,13 +10,13 @@ import { SpinnerLoad } from 'Components/GlobalComponents/Loading/SpinnerLoad/Spi
 
 const Members = () => {
 
-    const info = useMembers();
+    const { membersData, loadingMembers } = useMembers();
 
     return (
       <div className="container my-5">
         <Row xs={1} md={2} lg={3} className="g-4">
-          {info.length > 0 ?
-              info.map((element) => {
+          {membersData.length > 0 ?
+            membersData.map((element) => {
                 return(
                   <Card
                     key={element.id}>

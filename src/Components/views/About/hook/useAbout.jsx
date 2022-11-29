@@ -28,7 +28,7 @@ export const useAbout = () => {
       AlertError(
         'center', 
         'error', 
-        `${requestMessagesSchema.problemExistTryLater}`
+        'No hay descripción'
       );
     } finally {
       setLoadingAbout(false);
