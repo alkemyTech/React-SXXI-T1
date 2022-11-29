@@ -1,4 +1,4 @@
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 import { ShowDetailData } from "./components/ShowDetailData";
 import { useDetail } from "./hooks/useDetail";
 import { defaultDetailText } from "./utilities/detailSchema.util";

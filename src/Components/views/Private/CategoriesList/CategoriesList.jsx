@@ -1,11 +1,11 @@
-import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
+import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable"
 import { useNavigate } from "react-router-dom"
-import { privateRoutes } from "models/routes";
-import { addIcon } from "assets/images";
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
-import { feedbackUser as AlertSuccess } from "utilities/alerts/feedbackUser.util";
+import { privateRoutes } from "models/routes"
+import { addIcon } from "assets/images"
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util"
+import { feedbackUser as AlertSuccess } from "utilities/alerts/feedbackUser.util"
 
 export default function CategoriesList(){
     const navigate = useNavigate();
@@ -32,31 +32,39 @@ export default function CategoriesList(){
         navigate(`edit/${id}`);
     }
     return(
-        <>
+      <section>
         <div className=" mt-2 d-flex col col-12">
-        <CustomTitle title="Categorías" />
-            </div>
-            <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
-              <BackTo
-                wrapLink="col col-10 col-sm-5 my-2 me-1"
-                text="Ir dashboard"
-                to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
-              />
-              <BackTo
-                wrapLink="col col-10 col-sm-5 my-2"
-                text="Crear Categoría"
-                to={"/" + privateRoutes.BACKOFFICE + "/" + privateRoutes.CATEGORIESCREATE}
-                color="success"
-                background="success"
-                icon={addIcon}
-              />
-            </div>
-        <CustomTable
-                tHead={tHead}
-                myTableData={myTableData}
-                tBody={CategoriesTest}
-                handleDelete={handleDelete}
-                handleEdit={toEdit}/>
-        </>
+          <CustomTitle 
+            title="Categorías" 
+            justify="center"
+            wrapTextClass="text-center"
+            wrapTitleClass="h-auto"
+            />
+        </div>
+        <div className="my-4 d-flex flex-wrap justify-content-center justify-content-sm-between">
+          <BackTo
+            wrapLink="col col-10 col-sm-5 my-2 me-1"
+            text="Ir dashboard"
+            to={"/" + privateRoutes.BACKOFFICE }
+          />
+          <BackTo
+            wrapLink="col col-10 col-sm-5 my-2"
+            text="Crear Categoría"
+            to={"/" + privateRoutes.BACKOFFICE + privateRoutes.CATEGORIESCREATE}
+            color="success"
+            background="success"
+            icon={addIcon}
+          />
+        </div>
+        <div className="my-3">
+          <CustomTable
+            tHead={tHead}
+            myTableData={myTableData}
+            tBody={CategoriesTest}
+            handleDelete={handleDelete}
+            handleEdit={toEdit}
+          />
+        </div>
+      </section>
     )
 }
