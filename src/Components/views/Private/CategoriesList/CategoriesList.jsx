@@ -43,8 +43,8 @@ export default function CategoriesList() {
 
   return (
     <>
-      <div className=" mt-2 d-flex col col-12">
-        <CustomTitle title="Categorías" />
+      <div className="mt-2 d-flex col col-12">
+        <CustomTitle title="Categorías" height="none"/>
       </div>
       <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
         <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE + "dashboard"} />

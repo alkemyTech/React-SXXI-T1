@@ -3,16 +3,18 @@ import { Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Formulary, Input, Errors, PreviewImg,
+import { Formulary, Input, Errors,
         ContainerInputError } from './CategoriesStyled/CategoriesStyled';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
-import { validationSchema, convertToBase64, Alert } from './utilities/utilities';
+import { validationSchema, Alert } from './utilities/utilities';
 import { api } from 'Services/axiosService';
 import { CustomButton } from 'Components/GlobalComponents/CustomButton/CustomButton';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
-import { privateRoutes } from 'models/routes';
+import { InputImage } from 'Components/GlobalComponents/FormInputsField/InputImage';
+
+const schemas = { name: 'image' }
 
 const CategoriesForm = () => {
     const {id} = useParams();
@@ -66,14 +68,7 @@ const CategoriesForm = () => {
             })
         }
     }
-    function handleImage(e){
-        const image = e.target.files[0];
-        if(image) {
-            formik.setFieldValue('image', image);
-            convertToBase64( image, setImageB64 );
-        }
-        else formik.setFieldValue('image', '');
-    }
+
     const formik = useFormik({ initialValues, onSubmit, validationSchema });
     const { handleChange, handleSubmit, values, errors, handleBlur, touched, setFieldValue } = formik;
     useEffect(()=>{
@@ -94,22 +89,12 @@ const CategoriesForm = () => {
                 Alert({ icon: 'error', title: 'Ha ocurrido un error'});
             });
         }
-    },[id, formik]);
+    },[id, setFieldValue]);
+
     return (
-        <section className="container my-5">
-            <div className="my-5">
-                <CustomTitle title={id ? 'Editar Categoría' : 'Crear Categoría'}
-                justify="center"   
-                wrapTextClass="text-center" 
-                wrapTitleClass="d-block h-auto"
-                />
-            </div>
-            <div className="my-5">
-            <BackTo
-                wrapLink="my-4"
-                to={"/" + privateRoutes.BACKOFFICE + privateRoutes.CATEGORIES}
-            />
-        </div>
+        <div style={{padding: '0'}}>
+        <CustomTitle title={id ? 'Editar Categoría' : 'Crear Categoría'} height='none' wrapTextClass='text-center'/>
+        <BackTo to='/backoffice/categories'/>
         <Formulary className='form-container col col-12 col-sm-10 col-xxl-8 my-3 p-0 p-sm-1' onSubmit={ handleSubmit }>
             <Form.Group>
                 <ContainerInputError>
@@ -135,13 +120,13 @@ const CategoriesForm = () => {
                 </ContainerInputError>
             </Form.Group>
             <Form.Group>
-                <ContainerInputError>
-                    <Form.Label>Selecciona una imagen:</Form.Label>
-                    <Input accept="image/png,image/jpg" type='file' name="image"
-                         onChange={ handleImage } onBlur={handleBlur}/>
-                        { errors.image && touched.image && <Errors>{errors.image}</Errors> }
-                </ContainerInputError>
-                { imageB64 ? <PreviewImg src={imageB64}/> : <PreviewImg src={values.image}/>}
+                <InputImage
+                    formik={formik}
+                    schemas={schemas}
+                    setImageToSend={setImageB64}
+                    setFieldValue={setFieldValue}
+                    imageIsEdit={category}
+                />
             </Form.Group>
             <div className='d-flex justify-content-center'>
             <CustomButton
@@ -153,7 +138,7 @@ const CategoriesForm = () => {
                 />
             </div>
         </Formulary>
-        </section>
+        </div>
     );
 }
  
