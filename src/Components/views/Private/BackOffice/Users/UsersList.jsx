@@ -6,7 +6,7 @@ import { privateRoutes } from "models/routes"
 import { useNavigate } from "react-router-dom"
 import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util"
 import { feedbackUser as AlertSuccess } from "utilities/alerts/feedbackUser.util"
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
 import SearchUsers from "./components/SearchUsers"
 import { useUsers } from "./hooks/useUsers"
 

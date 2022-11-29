@@ -120,9 +120,39 @@ README.md
 ### Algunos de los componentes globales
 
 
-1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones. Nos ayuda a mostrar un feedback al usuario mientras se esté cargando un recurso.
+1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones. Nos ayuda a mostrar un feedback al usuario mientras se esté cargando un recurso. Se lo puede ver en: ```src > Components > GlobalComponents > Loading > SpinnerLoad```.
 
-2. **Alerta** para mostrar alertas de *confirmación*, *error* e *información*, utilizando la librería:  [**sweetAlert**](https://www.npmjs.com/package/sweetalert2-react).
+2. **Spinner (SpinnerGrow)**: utilizamos el componente ```<Spinner>``` de [React-Bootstrap](https://react-bootstrap.netlify.app/components/spinners/) para darle un feed back al administrador mientras se está cargando un recurso. Recibe por *props* : 
+
+| Nombre | Valor | Descripción |
+| ------ | ----- | ----------- |
+| **animation** |  'border' , 'grow' | para cambiar el estilo de la animación |
+| **variant** | 'primary' , 'secondary' , 'success' , 'danger' , 'warning' , 'info' , 'light' , 'dark' | el color que tendrá el spinner |
+
+Se lo puede ver en: ```src > Components > GlobalComponents > Loading > SpinnerGrow```.
+
+3. **Loader para textos (TextLoader)**: como **skeleton** utilizamos el componente ```Placeholder``` de [React-Bootrstrap](https://react-bootstrap.netlify.app/components/placeholder/#example) para hacer un efecto de carga en el texto. Ya tiene las clases **d-flex flex-wrap justify-content-center** para que este centrado. Recibe por *props* : 
+
+| Nombre | Valor | Descripción |
+| ------ | ----- | ----------- |
+| **animation** | 'glow' , 'wave' | para cambiar el estilo de la animación | 
+| **variant**  | primary' , 'secondary' , 'success' , 'danger' , 'warning' , 'info' , 'light' , 'dark'  | el color que tendrá el texto |
+| **xs** | 1, 2,..., 12 | la cantidad de columnas que tendra |
+
+Se lo puede ver en: ```src > Components > GlobalComponents > Loading > TextLoader```.
+
+4. **Loader para botones (ButtonLoader)**: como **skeleton** utilizamos el componente ```Placeholder``` de [React-Bootrstrap](https://react-bootstrap.netlify.app/components/placeholder/#example). Recibe por *props* : 
+
+| Nombre | Valor | Descripción |
+| ------ | ----- | ----------- |
+| **animation** | 'glow' , 'wave' | para cambiar el estilo de la animación | 
+| **variant**  | primary' , 'secondary' , 'success' , 'danger' , 'warning' , 'info' , 'light' , 'dark'  | el color que tendrá el texto |
+| **xs** | 1, 2,..., 12 | la cantidad de columnas que tendra |
+| **size**  | 'xs' , 'sm' , 'lg' |  para el tamaño |
+
+Se lo puede ver en: ```src > Components > GlobalComponents > Loading > ButtonLoader```.
+
+5. **Alerta** : para mostrar alertas de *confirmación*, *error* e *información*, utilizando la librería:  [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en: ```src > utilities > alerts``` a **feedbackUser** y **userConfirm**.
 
 
 ---
@@ -134,11 +164,12 @@ En este proyecto, podés correr:
 ### `npm install`
 
 Para instalarte todos las dependencias que utiliza el proyecto.
+
 ### `npm start`
 
 Para correr la app en el modo development.
 
 Para poder verlo en el navegador, abrir: [http://localhost:3000](http://localhost:3000).
 
-
 ---
+
