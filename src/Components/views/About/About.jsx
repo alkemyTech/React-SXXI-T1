@@ -1,38 +1,53 @@
-import { useAbout } from "./hook/useAbout";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { MainContainer, CustomText } from "./about.styled";
-import Members from "../Members/Detail/Members";
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
+import { useAbout } from "./hook/useAbout"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { MainContainer, CustomText } from "./about.styled"
+import Members from "../Members/Detail/Members"
+import { useSkeleton } from "hooks/useSkeleton"
 
 
 const About = () => {
-  const info = useAbout();
+  const { loadingAbout, aboutData, fetchAbout } = useAbout();
+  const { titleSkeleton, textSkeleton } = useSkeleton();
 
   return (
     <MainContainer>
       <div>
-        <CustomTitle
-          title="Nosotros"
-          wrapTitleClass="d-block h-auto"
-          justify="center"   
-        />
+        {aboutData.title !== "" ?
+          <CustomTitle
+            title="Nosotros"
+            wrapTitleClass="d-block h-auto"
+            justify="center"   
+          />
+          :
+          <>
+            {  titleSkeleton }
+          </>
+        }
       </div>
       <CustomText className="mb-5">
-        {info.longDescription !== "" ?
-          <p>{info.longDescription}</p>
+        {aboutData.longDescription !== "" ?
+          <p>{aboutData.longDescription}</p>
           :
-          <SpinnerLoad />
+          <>
+            { textSkeleton }
+          </>
         }
       </CustomText>
       <div>
-        <CustomTitle
-          title="Lista de miembros"
-          justify="center"   
-          wrapTextClass="text-center" 
-          wrapTitleClass="h-auto" 
-        />
-      </div>
-      <Members/>
+        {aboutData.title !== "" ?
+          <CustomTitle
+            title="Lista de miembros"
+            justify="center"   
+            wrapTextClass="text-center" 
+            wrapTitleClass="h-auto" 
+          />
+          :
+          <>
+            {  titleSkeleton }
+          </>
+        }
+    </div>
+      <Members />
     </MainContainer>
   )
 }

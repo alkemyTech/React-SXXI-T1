@@ -5,7 +5,7 @@ import { Icon } from "./Members.Styled.js";
 import LinkedinIcon from "assets/linkedin2.svg";
 import FacebookIcon from "assets/facebookIcon2.svg"
 import "./Members.css";
-import { SpinnerLoad } from 'Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad';
+import { SkeletonLoader } from 'Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader';
 
 const Members = () => {
 
@@ -46,7 +46,13 @@ const Members = () => {
                 )
               })
             :
-              <SpinnerLoad />
+            <>
+              <SkeletonLoader  />
+              <SkeletonLoader />
+              <SkeletonLoader />
+              <SkeletonLoader />
+              <SkeletonLoader />
+            </>
             }
         </Row>
       </div>
