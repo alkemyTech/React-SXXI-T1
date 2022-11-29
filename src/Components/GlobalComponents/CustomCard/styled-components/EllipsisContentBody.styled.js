@@ -1,27 +1,27 @@
-import styled from "styled-components";
-import { InputTexts } from "styled-components/App.styled";
-import { whatStyle } from "./SectionsCard.styled";
+import styled, { css } from "styled-components"
+import { InputTexts } from "styled-components/App.styled"
+import { whatStyle } from "./SectionsCard.styled"
+
+const attr = css`
+  border: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  ${whatStyle};
+  transition: 0.5s;
+`
 
 const EllipsisContentBody = styled(InputTexts)`
   p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    ${whatStyle};
+    ${attr}
   }
 
   ol {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    ${whatStyle};
+    ${attr}
   }
 
   li {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    ${whatStyle};
+    ${attr}
   }
 
   h1,
@@ -30,11 +30,8 @@ const EllipsisContentBody = styled(InputTexts)`
   h4,
   h5,
   h6 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    ${whatStyle};
+    ${attr}
   }
-`;
+`
 
-export { EllipsisContentBody };
+export { EllipsisContentBody }

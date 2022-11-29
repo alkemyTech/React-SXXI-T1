@@ -1,9 +1,11 @@
-import { addIcon } from "assets/images";
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { privateRoutes } from "models/routes";
-import { useNavigate } from "react-router-dom";
+import { addIcon } from "assets/images"
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { privateRoutes } from "models/routes"
+import { useNavigate } from "react-router-dom"
+import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util"
+import { feedbackUser as AlertSuccess } from "utilities/alerts/feedbackUser.util"
 
 const DUMMY_MEMBERS = [
   {
@@ -27,29 +29,31 @@ const MembersList = () => {
   const navigate = useNavigate();
 
   const editHandler = (id) => {
-    console.log("Edit clicked", id);
     navigate(
       `/${privateRoutes.BACKOFFICE}${privateRoutes.MEMBERSEDITFORM}${id}`
     );
   };
 
-  const deleteHandler = (id) => {
-    console.log("Delete clicked", id);
+  const deleteHandler = async (id) => {
+    const response = await AlertWarning("¿Estas segura/o que deseas eliminar?");
+    if(response) await AlertSuccess("center", "success", "Usuario eliminado");
   };
 
   return (
-    <div>
-      <CustomTitle
-        title="Miembros"
-        justify="center"
-        wrapTextClass="text-center"
-        wrapTitleClass="h-auto"
-      />
-      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
+    <section>
+      <div className=" mt-4 d-flex col col-12">
+        <CustomTitle
+          title="Miembros"
+          justify="center"
+          wrapTextClass="text-center"
+          wrapTitleClass="h-auto"
+        />
+      </div>
+      <div className="my-4 d-flex flex-wrap justify-content-center justify-content-sm-between">
         <BackTo
           wrapLink="col col-10 col-sm-5 my-2 me-1"
           text="Ir dashboard"
-          to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
+          to={"/" + privateRoutes.BACKOFFICE }
         />
         <BackTo
           wrapLink="col col-10 col-sm-5 col-md-4 my-2"
@@ -60,7 +64,7 @@ const MembersList = () => {
           icon={addIcon}
         />
       </div>
-      <div>
+      <div className="my-3">
         <CustomTable
           tHead={["#", "Nombre", "Foto", "Acciones"]}
           tBody={DUMMY_MEMBERS}
@@ -69,7 +73,7 @@ const MembersList = () => {
           handleDelete={deleteHandler}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

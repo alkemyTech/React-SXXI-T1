@@ -1,40 +1,38 @@
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
-import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle";
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
-import { Animate } from "styled-components/animation.styled";
-import { useNews } from "./hooks/useNews";
-import { newsSchema } from "./utilities/newsSchema.util";
-import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection";
-import SearchNews from "./components/SearchNews";
-import { routes } from "models/routes";
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage"
+import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
+import { Animate } from "styled-components/animation.styled"
+import { useNews } from "./hooks/useNews"
+import { newsSchema } from "./utilities/newsSchema.util"
+import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection"
+import SearchNews from "./components/SearchNews"
+import { routes } from "models/routes"
 
 const News = () => {
-  const { loadingNews, newsData, fetchNews } = useNews();
+  const { loadingNews, newsData, fetchNews } = useNews()
 
   const searchNewsHandler = async (searchText) => {
-    const fetchParams = {};
+    const fetchParams = {}
 
     if (searchText.length >= 3) {
-      fetchParams["search"] = searchText;
+      fetchParams["search"] = searchText
     }
 
-    await fetchNews(fetchParams);
-  };
+    await fetchNews(fetchParams)
+  }
 
-  let newsContent;
+  let newsContent
   if (loadingNews) {
-    newsContent = <SpinnerLoad />;
+    newsContent = <SpinnerLoad />
   } else if (newsData.length > 0) {
-    newsContent = newsData.map((item) => (
-      <ShowNewsCardsSection key={item.id} item={item} />
-    ));
+    newsContent = newsData.map((item) => <ShowNewsCardsSection key={item.id} item={item} />)
   } else {
     newsContent = (
       <div className="col col-12 d-flex justify-content-center">
         <CustomAlertMessage alertClass="col col-10" text={newsSchema.noNews} />
       </div>
-    );
+    )
   }
 
   return (
@@ -47,11 +45,9 @@ const News = () => {
           <SearchNews onSearchNews={searchNewsHandler} />
         </div>
       </div>
-      <div className="d-flex flex-row flex-wrap justify-content-center">
-        {newsContent}
-      </div>
+      <div className="d-flex flex-row flex-wrap justify-content-center">{newsContent}</div>
     </Animate>
-  );
-};
+  )
+}
 
-export default News;
+export default News

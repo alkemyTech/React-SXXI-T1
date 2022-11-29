@@ -1,27 +1,27 @@
-import { Row } from "react-bootstrap";
-import styled, { css } from "styled-components";
-import { fadeIn } from "./animation.styled";
-import { themeColors } from "./Theme.styled";
+import { Row } from "react-bootstrap"
+import styled, { css } from "styled-components"
+import { fadeIn } from "./animation.styled"
+import { themeColors } from "./Theme.styled"
 
-const tabletStartWidth = 600;
-const desktopStartWidth = 768;
+const tabletStartWidth = 600
+const desktopStartWidth = 768
 
 const responsiveDesign = {
   tablet: `@media (min-width: ${tabletStartWidth}px)`,
   desktop: `@media (min-width: ${desktopStartWidth}px)`,
-};
+}
 
 const someOtherProperties = {
   globalRadius: "8px",
   globalShadowBoxCards: `0px 4px 4px ${themeColors.blackShadow}`,
-};
+}
 
 const Hr = styled.hr`
   height: 2px !important;
   color: ${themeColors.gray};
-`;
+`
 
-const fontFamily = "'Rubik', sans-serif";
+const fontFamily = "'Rubik', sans-serif"
 
 const typography = {
   mobileTitle: () => css`
@@ -51,7 +51,7 @@ const typography = {
   desktopSmallText: () => css`
     font: 300 14px/20px ${fontFamily};
   `,
-};
+}
 
 const titleCssStyle = css`
   color: ${themeColors.black};
@@ -60,7 +60,7 @@ const titleCssStyle = css`
   ${responsiveDesign.desktop} {
     ${typography.title()}
   }
-`;
+`
 
 const subtitleCssStyle = css`
   color: ${themeColors.black};
@@ -70,7 +70,7 @@ const subtitleCssStyle = css`
   ${responsiveDesign.desktop} {
     ${typography.subTitle()}
   }
-`;
+`
 
 const inputTextCssStyle = css`
   color: ${themeColors.black};
@@ -79,7 +79,7 @@ const inputTextCssStyle = css`
   ${responsiveDesign.desktop} {
     ${typography.desktopInputText()}
   }
-`;
+`
 
 const smallTextCssStyle = css`
   color: ${themeColors.black};
@@ -88,35 +88,35 @@ const smallTextCssStyle = css`
   ${responsiveDesign.desktop} {
     ${typography.desktopSmallText()};
   }
-`;
+`
 
 const TitleText = styled.h1`
   ${() =>
     css`
       ${titleCssStyle}
     `};
-`;
+`
 
 const SubtitleText = styled.h3`
   ${() =>
     css`
       ${subtitleCssStyle}
     `};
-`;
+`
 
 const InputTexts = styled.h6`
   ${() =>
     css`
       ${inputTextCssStyle}
     `};
-`;
+`
 
 const SmallTexts = styled.h6`
   ${() =>
     css`
       ${smallTextCssStyle};
     `};
-`;
+`
 
 const disabledCssStyle = css`
   background-color: ${themeColors.gray};
@@ -140,7 +140,7 @@ const disabledCssStyle = css`
     color: ${themeColors.txtGray} !important;
     filter: brightness(1.25);
   }
-`;
+`
 
 const CustomImage = styled.div`
   background-image: url(${({ image }) => (image ? image : "not image")});
@@ -149,13 +149,14 @@ const CustomImage = styled.div`
   background-position: top center;
   height: ${({ height }) => height || "50px"};
   width: ${({ width }) => width || "100%"};
+  border-radius: ${({ borderRadius }) => borderRadius || "none"};
 
   ${fadeIn}
-`;
+`
 
 const dropShadow = css`
   filter: drop-shadow(0px 4px 4px ${themeColors.blackShadow});
-`;
+`
 
 const WrapMainRoutes = styled(Row)`
   margin: auto;
@@ -164,16 +165,21 @@ const WrapMainRoutes = styled(Row)`
   justify-content: center;
   max-width: 95%;
   padding: ${({ size: { width } }) => (width < 400 ? "5px" : "5px 1.5rem")};
-  min-height: calc(100vh - 329px);
+  min-height: calc(100vh - 296px);
 
   ${responsiveDesign.desktop} {
     max-width: 85%;
   }
 
   ${fadeIn}
-`;
+`
+
+const filterSaturate = css`
+  filter: saturate(180%);
+`
 
 export {
+  filterSaturate,
   someOtherProperties,
   responsiveDesign,
   Hr,
@@ -190,4 +196,4 @@ export {
   disabledCssStyle,
   dropShadow,
   WrapMainRoutes,
-};
+}

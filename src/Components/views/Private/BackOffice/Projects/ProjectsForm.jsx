@@ -32,7 +32,7 @@ const ProjectsForm = () => {
             <div className="my-5">
                 <BackTo
                     wrapLink="my-4"
-                    to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
+                    to={"/" + privateRoutes.BACKOFFICE }
                 />
             </div>
             <div className="my-5">

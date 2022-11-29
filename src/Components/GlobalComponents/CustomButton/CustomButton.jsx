@@ -1,4 +1,4 @@
-import { Button } from "./styled-components/Button.styled";
+import { Button } from "./styled-components/Button.styled"
 
 export const CustomButton = ({
   buttonClass = "",
@@ -20,5 +20,5 @@ export const CustomButton = ({
     >
       {text}
     </Button>
-  );
-};
+  )
+}
