@@ -7,7 +7,7 @@ import { defaultDetailText } from "../utilities/detailSchema.util";
 export const ShowDetailData = ({ title, description, responsibles }) => {
   return (
     <>
-      <CustomTitle wrapTitleClass="col col-12 h-auto" title={title} />
+      <CustomTitle wrapTitleClass="col col-12 h-auto text-center" title={title} />
       <div className="col col-12 d-flex flex-column justify-content-center align-items-center ">
         <div
           className="col col-10 my-3"
@@ -18,14 +18,8 @@ export const ShowDetailData = ({ title, description, responsibles }) => {
         </SubtitleText>
         <div className="col col-10 mb-3">
           {responsibles.map((responsible) => (
-            <span key={responsible.name}>{responsible.name}; </span>
+            <p key={responsible.name}>{responsible.name}; </p>
           ))}
-        </div>
-        <div className="col col-10 ">
-          <LinkReactRouter
-            text={defaultDetailText.returnText}
-            to={routes.HOME}
-          />
         </div>
       </div>
     </>

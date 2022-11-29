@@ -32,9 +32,11 @@ const ActivitiesList = () => {
   }
 
   return (
-    <div>
-      <CustomTitle wrapTitleClass="d-block h-auto" title="Listado Actividades" />
-      <div className="my-3">
+    <div className="container">
+      <div className="my-5">
+        <CustomTitle wrapTitleClass="d-block h-auto text-center" title="Actividades" />
+      </div>
+      <div className="my-5">
         <SearchActivities onSearchActivities={searchActivitiesHandler} />
       </div>
       <div className="d-flex flex-row flex-wrap justify-content-center">{activitiesContent}</div>
