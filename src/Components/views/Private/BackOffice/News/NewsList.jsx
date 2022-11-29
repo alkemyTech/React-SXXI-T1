@@ -7,7 +7,7 @@ import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle
 import { privateRoutes } from "models/routes"
 import SearchNews from "./components/SearchNews"
 import { useNews } from "./hooks/useNews"
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
 
 const NewsList = () => {
   const { loadingNews, newsData, fetchNews } = useNews()
