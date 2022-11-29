@@ -1,41 +1,32 @@
-import React from "react";
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { privateRoutes } from "models/routes";
-import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
-import { usePrivateSlides } from "./hooks/usePrivateSlides";
-import { myTableData, tableHead } from "./utilities/slidesSchema.util";
-import { addIcon } from "assets/images";
-import SearchSlides from "./components/SearchSlides/SearchSlides";
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
+import React from "react"
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { privateRoutes } from "models/routes"
+import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable"
+import { usePrivateSlides } from "./hooks/usePrivateSlides"
+import { myTableData, tableHead } from "./utilities/slidesSchema.util"
+import { addIcon } from "assets/images"
+import SearchSlides from "./components/SearchSlides/SearchSlides"
+import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad"
 
 const PrivateSlides = () => {
-  const { loadSlides, slides, handleEdit, handleDelete, fetchSlides } =
-    usePrivateSlides();
+  const { loadSlides, slides, handleEdit, handleDelete, fetchSlides } = usePrivateSlides()
 
   const searchSlidesHandler = async (searchText) => {
-    const fetchParams = {};
+    const fetchParams = {}
 
     if (searchText.length >= 3) {
-      fetchParams["search"] = searchText;
+      fetchParams["search"] = searchText
     }
 
-    await fetchSlides(fetchParams);
-  };
+    await fetchSlides(fetchParams)
+  }
 
-  let slidesContent;
+  let slidesContent
   if (loadSlides) {
-    slidesContent = <SpinnerLoad />;
+    slidesContent = <SpinnerLoad />
   } else {
-    slidesContent = (
-      <CustomTable
-        tHead={tableHead}
-        tBody={slides}
-        myTableData={myTableData}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
-    );
+    slidesContent = <CustomTable tHead={tableHead} tBody={slides} myTableData={myTableData} handleEdit={handleEdit} handleDelete={handleDelete} />
   }
 
   return (
@@ -44,11 +35,7 @@ const PrivateSlides = () => {
         <CustomTitle title="Slides" />
       </div>
       <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
-        <BackTo
-          wrapLink="col col-10 col-sm-5 my-2 me-1"
-          text="Ir dashboard"
-          to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
-        />
+        <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE + "dashboard"} />
         <BackTo
           wrapLink="col col-10 col-sm-5 my-2"
           text="Crear Slide"
@@ -63,7 +50,7 @@ const PrivateSlides = () => {
       </div>
       <div>{slidesContent}</div>
     </div>
-  );
-};
+  )
+}
 
-export default PrivateSlides;
+export default PrivateSlides

@@ -1,40 +1,40 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
-import { addIcon } from "assets/images";
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { privateRoutes } from "models/routes";
-import SearchNews from "./components/SearchNews";
-import { useNews } from "./hooks/useNews";
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
+import { addIcon } from "assets/images"
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { privateRoutes } from "models/routes"
+import SearchNews from "./components/SearchNews"
+import { useNews } from "./hooks/useNews"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
 
 const NewsList = () => {
-  const { loadingNews, newsData, fetchNews } = useNews();
-  const navigate = useNavigate();
+  const { loadingNews, newsData, fetchNews } = useNews()
+  const navigate = useNavigate()
 
   const editHandler = (id) => {
-    console.log("Edit clicked", id);
-    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSEDITFORM}${id}`);
-  };
+    console.log("Edit clicked", id)
+    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSEDITFORM}${id}`)
+  }
 
   const deleteHandler = (id) => {
-    console.log("Delete clicked", id);
-  };
+    console.log("Delete clicked", id)
+  }
 
   const searchNewsHandler = async (searchText) => {
-    const fetchParams = {};
+    const fetchParams = {}
 
     if (searchText.length >= 3) {
-      fetchParams["search"] = searchText;
+      fetchParams["search"] = searchText
     }
 
-    await fetchNews(fetchParams);
-  };
+    await fetchNews(fetchParams)
+  }
 
-  let newsContent;
+  let newsContent
   if (loadingNews) {
-    newsContent = <SpinnerLoad />;
+    newsContent = <SpinnerLoad />
   } else {
     newsContent = (
       <CustomTable
@@ -44,23 +44,14 @@ const NewsList = () => {
         handleEdit={editHandler}
         handleDelete={deleteHandler}
       />
-    );
+    )
   }
 
   return (
     <div>
-      <CustomTitle
-        title="Novedades"
-        justify="center"
-        wrapTextClass="text-center"
-        wrapTitleClass="h-auto"
-      />
+      <CustomTitle title="Novedades" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
       <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
-        <BackTo
-          wrapLink="col col-10 col-sm-5 my-2 me-1"
-          text="Ir dashboard"
-          to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
-        />
+        <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE + "dashboard"} />
         <BackTo
           wrapLink="col col-10 col-sm-5 col-md-4 my-2"
           text="Crear Novedad"
@@ -75,7 +66,7 @@ const NewsList = () => {
       </div>
       <div>{newsContent}</div>
     </div>
-  );
-};
+  )
+}
 
-export default NewsList;
+export default NewsList

@@ -1,42 +1,39 @@
-import { addIcon } from "assets/images";
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
-import { privateRoutes } from "models/routes";
-import { useNavigate } from "react-router-dom";
-import SearchActivities from "./components/SearchActivities";
-import { useActivities } from "./hooks/useActivities";
+import { addIcon } from "assets/images"
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
+import { privateRoutes } from "models/routes"
+import { useNavigate } from "react-router-dom"
+import SearchActivities from "./components/SearchActivities"
+import { useActivities } from "./hooks/useActivities"
 
 const ActivitiesList = () => {
-  const { loadingActivities, activitiesData, fetchActivities } =
-    useActivities();
-  const navigate = useNavigate();
+  const { loadingActivities, activitiesData, fetchActivities } = useActivities()
+  const navigate = useNavigate()
 
   const editHandler = (id) => {
-    console.log("Edit clicked", id);
-    navigate(
-      `/${privateRoutes.BACKOFFICE}${privateRoutes.ACTIVITIESEDIT}/:${id}`
-    );
-  };
+    console.log("Edit clicked", id)
+    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.ACTIVITIESEDIT}/:${id}`)
+  }
 
   const deleteHandler = (id) => {
-    console.log("Delete clicked", id);
-  };
+    console.log("Delete clicked", id)
+  }
 
   const searchActivitiesHandler = async (searchText) => {
-    const fetchParams = {};
+    const fetchParams = {}
 
     if (searchText.length >= 3) {
-      fetchParams["search"] = searchText;
+      fetchParams["search"] = searchText
     }
 
-    await fetchActivities(fetchParams);
-  };
+    await fetchActivities(fetchParams)
+  }
 
-  let activitiesContent;
+  let activitiesContent
   if (loadingActivities) {
-    activitiesContent = <SpinnerLoad />;
+    activitiesContent = <SpinnerLoad />
   } else {
     activitiesContent = (
       <CustomTable
@@ -46,23 +43,14 @@ const ActivitiesList = () => {
         handleEdit={editHandler}
         handleDelete={deleteHandler}
       />
-    );
+    )
   }
 
   return (
     <div className="my-5">
-      <CustomTitle
-        title="Listado de Actividades"
-        justify="center"
-        wrapTextClass="text-center"
-        wrapTitleClass="h-auto"
-      />
+      <CustomTitle title="Listado de Actividades" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
       <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-md-between">
-        <BackTo
-          wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3 me-1"
-          text="Ir dashboard"
-          to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
-        />
+        <BackTo wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE + "dashboard"} />
         <BackTo
           wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3"
           text="Crear Actividad"
@@ -77,7 +65,7 @@ const ActivitiesList = () => {
       </div>
       <div className="mt-3">{activitiesContent}</div>
     </div>
-  );
-};
+  )
+}
 
-export default ActivitiesList;
+export default ActivitiesList
