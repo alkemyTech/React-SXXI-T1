@@ -9,15 +9,14 @@ import privateService from 'Services/privateApiService';
 import { URLs } from 'Services/ServicesURLS';
 import { feedbackUser as AlertError } from 'utilities/alerts/feedbackUser.util';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 import { CustomButton } from 'Components/GlobalComponents/CustomButton/CustomButton';
 import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
 import { InputImage } from 'Components/GlobalComponents/FormInputsField/InputImage';
 
 const CategoriesForm = () => {
-    const { id, handleChange, handleBlur, handleSubmit, schema, formik,
+    const { id, handleChange, handleBlur, handleSubmit, schema, formik, category,
        setImageB64 , setFieldValue, values, errors, touched, setCategory, loading } = useCategory();
-
+    
     useEffect(()=>{
         if(id) {
             privateService.get(`${URLs.category}/${id}`)
@@ -68,11 +67,6 @@ const CategoriesForm = () => {
                     { errors.description && <Errors>{ errors.description }</Errors> }
                 </ContainerInputError>
             </Form.Group>
-            <ButtonConfirm className='mt-2 col-sm-5 col-md-2' disabled={loading}
-                background='success' color='success' type='submit'
-            >
-                {loading ? 'Loading...' : 'Confirmar'}
-            </ButtonConfirm>
             <Form.Group>
                 <InputImage
                     formik={formik}
@@ -82,15 +76,14 @@ const CategoriesForm = () => {
                     imageIsEdit={category}
                 />
             </Form.Group>
-            <div className='d-flex justify-content-center'>
                 <CustomButton
                     buttonClass='col-7 col-lg-8 py-2 px-3 mx-auto'
-                    text='Confirmar'
+                    text={loading ? 'Loading...' : 'Confirmar'}
                     color='success'
                     background='success'
                     type='submit'
+                    disabled={loading}
                     />
-            </div>
         </Formulary>
         </div>
     );

@@ -12,7 +12,7 @@ export const useCategory = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [ loading, setLoading ] = useState(false);
-    const schema = { name: '' };
+    const schema = { name: 'image' };
     const [ category, setCategory ] = useState({
         name: '',
         image: '',
@@ -31,21 +31,20 @@ export const useCategory = () => {
                 if(confirm){
                     privateService.post(URLs.category, body)
                     .then(res => {
-                        setLoading(false);
                         if(res.success){
                             Alert('center', 'success', 'Operación éxitosa')
-                                .then(()=>{
+                            .then(()=>{
+                                    setLoading(false);
                                     setFieldValue('name', '');
                                     setFieldValue('image', '');
                                     setFieldValue('description', '');
                                     setImageB64('');
                                     navigate('/backoffice/categories');
                                 });
-                            }else Alert('center', 'error', 'Ha ocurrido un error');
+                            }else Alert('center', 'error', 'Ha ocurrido un error').then(()=>setLoading(false));
                         })
-                        .catch(() => Alert('center', 'error', 'Ha ocurrido un error'));
+                        .catch(() => Alert('center', 'error', 'Ha ocurrido un error').then(()=>setLoading(false)));
                 }
-                setLoading(false);
             });
     }
 
@@ -55,21 +54,20 @@ export const useCategory = () => {
                 if(confirm){
                     privateService.put(URLs.category, id, body)
                         .then(res => {
-                            setLoading(false);
                             if(res.success){
                                 Alert('center', 'success', 'Operación éxitosa')
-                                    .then(()=>{
+                                .then(()=>{
+                                        setLoading(false);
                                         setFieldValue('name', '');
                                         setFieldValue('image', '');
                                         setFieldValue('description', '');
                                         setImageB64('');
                                         navigate('/backoffice/categories');
                                     });
-                            }else Alert('center', 'error', 'Ha ocurrido un error');
+                            }else Alert('center', 'error', 'Ha ocurrido un error').then(()=>setLoading(false));
                         })
-                        .catch(() => Alert('center', 'error', 'Ha ocurrido un error'));
+                        .catch(() => Alert('center', 'error', 'Ha ocurrido un error').then(()=>setLoading(false)));
                 }
-                setLoading(false);
             });
     }
 
@@ -77,6 +75,7 @@ export const useCategory = () => {
         setLoading(true);
         const { name, description } = values;
         const body = { name, description, image: imageB64 ? imageB64 : await convertUrlToBase64(category.image)};
+        
         if(id) {
             editCategory(id, body);
         }else {
@@ -101,7 +100,6 @@ export const useCategory = () => {
         setCategory,
         schema,
         loading,
-        setImageB64,
         formik
     }
 }

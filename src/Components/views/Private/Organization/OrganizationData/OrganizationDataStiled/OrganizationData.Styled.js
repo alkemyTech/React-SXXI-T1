@@ -25,8 +25,8 @@ export const ContainerImage = styled.div`
 `;
 
 export const Image = styled.img`
-    width: 160px;
-    height: 120px;
+    width: 120px;
+    height: 100px;
     border-radius: 10px;
     box-shadow: 0 0 12px #c0c0c0;
     @media screen and (min-width: 375px) {
