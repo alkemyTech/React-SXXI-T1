@@ -3,7 +3,7 @@ import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoad
 export const useSkeleton = () => {
   const titleSkeleton = <div> <SkeletonLoader /></div>
 
-  const textSkeleton = <div><SkeletonLoader /><SkeletonLoader /><SkeletonLoader /><SkeletonLoader /></div>
+  const textSkeleton = <div><SkeletonLoader /><SkeletonLoader /><SkeletonLoader /><SkeletonLoader /><SkeletonLoader /></div>
 
   const cardSkeleton = ({ cardSkClass }) => (
     <div className={cardSkClass}> 

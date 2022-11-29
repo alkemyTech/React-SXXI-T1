@@ -6,31 +6,23 @@ import { useSkeleton } from "hooks/useSkeleton"
 
 
 const About = () => {
-  const { loadingAbout, aboutData, fetchAbout } = useAbout();
+  const { loadingAbout, aboutData } = useAbout();
   const { titleSkeleton, textSkeleton } = useSkeleton();
 
   return (
     <MainContainer>
       <div>
-        {aboutData.title !== "" ?
-          <CustomTitle
-            title="Nosotros"
-            wrapTitleClass="d-block h-auto"
-            justify="center"   
-          />
-          :
-          <>
-            {  titleSkeleton }
-          </>
-        }
+        <CustomTitle
+          title="Nosotros"
+          wrapTitleClass="d-block h-auto"
+          justify="center"   
+        />
       </div>
       <CustomText className="mb-5">
-        {aboutData.longDescription !== "" ?
-          <p>{aboutData.longDescription}</p>
+        { loadingAbout ? 
+            <>{  textSkeleton }</>
           :
-          <>
-            { textSkeleton }
-          </>
+          <p>{aboutData.longDescription}</p>
         }
       </CustomText>
       <div>
@@ -46,7 +38,7 @@ const About = () => {
             {  titleSkeleton }
           </>
         }
-    </div>
+      </div>
       <Members />
     </MainContainer>
   )

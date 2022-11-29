@@ -6,6 +6,7 @@ import LinkedinIcon from "assets/linkedin2.svg";
 import FacebookIcon from "assets/facebookIcon2.svg"
 import "./Members.css";
 import { SkeletonLoader } from 'Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader';
+import { SpinnerLoad } from 'Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad';
 
 const Members = () => {
 
@@ -47,7 +48,9 @@ const Members = () => {
               })
             :
             <>
-              <SkeletonLoader  />
+              <SpinnerLoad  />
+              <SkeletonLoader />
+              <SkeletonLoader />
               <SkeletonLoader />
               <SkeletonLoader />
               <SkeletonLoader />
