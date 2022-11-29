@@ -6,11 +6,11 @@ const Alert = ({icon, title, cancelText})=>{
       icon: icon,
       iconColor: '#0038FF',
       showCancelButton: cancelText ? true : false,
-      confirmButtonColor: '#0038FF',
       cancelButtonColor: cancelText ? '#FF0000' : false,
-      confirmButtonText: 'Aceptar',
-      cancelButtonText: cancelText ? 'Cancelar' : false
+      cancelButtonText: cancelText ? 'Cancelar' : false,
+      confirmButtonColor: '#0038FF',
+      confirmButtonText: 'Aceptar'
   });
 }
 
-  export default Alert;
+export default Alert;
