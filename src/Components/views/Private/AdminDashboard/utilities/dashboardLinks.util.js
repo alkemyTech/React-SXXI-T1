@@ -27,7 +27,7 @@ export const dashboardLinks = [
   {
     text: "Novedades",
     icon: newsImage,
-    to: `/${privateRoutes.BACKOFFICE}${privateRoutes.NEWS}`,
+    to: `/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSLIST}`,
   },
   {
     text: "Organización",

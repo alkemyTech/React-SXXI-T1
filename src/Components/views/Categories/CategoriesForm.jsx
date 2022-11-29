@@ -2,18 +2,21 @@ import React, { useEffect } from 'react';
 import { Form } from "react-bootstrap";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Formulary, Input, ButtonConfirm, Errors, PreviewImg,
-        ContainerInputError } from './CategoriesStyled/CategoriesStyled';
+import { Formulary, Input, Errors,
+    ContainerInputError } from './CategoriesStyled/CategoriesStyled';
 import { useCategory } from './CategoryHook/useCategory';
 import privateService from 'Services/privateApiService';
 import { URLs } from 'Services/ServicesURLS';
 import { feedbackUser as AlertError } from 'utilities/alerts/feedbackUser.util';
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
+import { CustomButton } from 'Components/GlobalComponents/CustomButton/CustomButton';
+import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
+import { InputImage } from 'Components/GlobalComponents/FormInputsField/InputImage';
 
 const CategoriesForm = () => {
-    const { handleImage, id, imageB64, handleChange, handleBlur, handleSubmit,
-        setFieldValue, values, errors, touched, setCategory, loading } = useCategory();
+    const { id, handleChange, handleBlur, handleSubmit, schema, formik,
+       setImageB64 , setFieldValue, values, errors, touched, setCategory, loading } = useCategory();
 
     useEffect(()=>{
         if(id) {
@@ -38,8 +41,9 @@ const CategoriesForm = () => {
     },[id, setFieldValue, setCategory]);
     
     return (
-        <>
-        <CustomTitle title={id ? 'Editar Categoría' : 'Crear Categoría'}/>
+        <div style={{padding: '0'}}>
+        <CustomTitle title={id ? 'Editar Categoría' : 'Crear Categoría'} height='none' wrapTextClass='text-center'/>
+        <BackTo to='/backoffice/categories'/>
         <Formulary className='form-container col col-12 col-sm-10 col-xxl-8 my-3 p-0 p-sm-1' onSubmit={ handleSubmit }>
             <Form.Group>
                 <ContainerInputError>
@@ -49,16 +53,7 @@ const CategoriesForm = () => {
                     { errors.name && touched.name && <Errors>{errors.name}</Errors> }
                 </ContainerInputError>
             </Form.Group>
-            <Form.Group className='col-sm-12 col-md-8'>
-                <ContainerInputError>
-                    <Form.Label>Selecciona una imagen:</Form.Label>
-                    <Input accept="image/png,image/jpg,image/jpeg" type='file' name="image"
-                        onChange={ handleImage } onBlur={handleBlur}/>
-                        { errors.image && touched.image && <Errors>{errors.image}</Errors> }
-                </ContainerInputError>
-                { imageB64 ? <PreviewImg src={imageB64}/> : <PreviewImg src={values.image}/>}
-            </Form.Group>
-            <Form.Group className='col-sm-12 col-md-8'>
+            <Form.Group>
                 <ContainerInputError>
                     <Form.Label>Agrega una descripción:</Form.Label>
                     <CKEditor
@@ -78,8 +73,26 @@ const CategoriesForm = () => {
             >
                 {loading ? 'Loading...' : 'Confirmar'}
             </ButtonConfirm>
+            <Form.Group>
+                <InputImage
+                    formik={formik}
+                    schemas={schema}
+                    setImageToSend={setImageB64}
+                    setFieldValue={setFieldValue}
+                    imageIsEdit={category}
+                />
+            </Form.Group>
+            <div className='d-flex justify-content-center'>
+                <CustomButton
+                    buttonClass='col-7 col-lg-8 py-2 px-3 mx-auto'
+                    text='Confirmar'
+                    color='success'
+                    background='success'
+                    type='submit'
+                    />
+            </div>
         </Formulary>
-        </>
+        </div>
     );
 }
  

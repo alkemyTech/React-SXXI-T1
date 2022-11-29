@@ -1,52 +1,58 @@
-import { addIcon } from "assets/images";
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { privateRoutes } from "models/routes";
-import { useNavigate } from "react-router-dom";
-import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
-import { feedbackUser as AlertSuccess } from "utilities/alerts/feedbackUser.util";
+import { addIcon } from "assets/images"
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
+import { privateRoutes } from "models/routes"
+import { useNavigate } from "react-router-dom"
+import SearchActivities from "./components/SearchActivities"
+import { useActivities } from "./hooks/useActivities"
 
 const ActivitiesList = () => {
-  const navigate = useNavigate();
+  const { loadingActivities, activitiesData, fetchActivities } = useActivities()
+  const navigate = useNavigate()
 
-  const DUMMY_ACTIVITIES = [
-    { id: 1, name: "Activity 1", image: "https://www.w3schools.com/w3css/img_lights.jpg", createdAt: new Date().toLocaleString() },
-    { id: 2, name: "Activity 2", image: "https://www.w3schools.com/w3css/img_lights.jpg", createdAt: new Date().toLocaleString() },
-    { id: 3, name: "Activity 3", image: "https://www.w3schools.com/w3css/img_lights.jpg", createdAt: new Date().toLocaleString() },
-    { id: 4, name: "Activity 4", image: "https://www.w3schools.com/w3css/img_lights.jpg", createdAt: new Date().toLocaleString() },
-    { id: 5, name: "Activity 5", image: "https://www.w3schools.com/w3css/img_lights.jpg", createdAt: new Date().toLocaleString() }
-  ];
+  const editHandler = (id) => {
+    console.log("Edit clicked", id)
+    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.ACTIVITIESEDIT}/:${id}`)
+  }
 
-  const tHead = ["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"];
+  const deleteHandler = (id) => {
+    console.log("Delete clicked", id)
+  }
 
-  const myTableData = { name: "name", image: "image", createdAt: "createdAt" };
+  const searchActivitiesHandler = async (searchText) => {
+    const fetchParams = {}
 
-  const editHandler = async (id) => {
-    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.ACTIVITIESEDIT}/${id}`);
-  };
+    if (searchText.length >= 3) {
+      fetchParams["search"] = searchText
+    }
 
-  const deleteHandler = async (id) => {
-    const response = await AlertWarning("¿Estas segura/o que deseas eliminar?");
-    if(response) await AlertSuccess("center", "success", "Actividad eliminada");
-  };
+    await fetchActivities(fetchParams)
+  }
+
+  let activitiesContent
+  if (loadingActivities) {
+    activitiesContent = <SpinnerLoad />
+  } else {
+    activitiesContent = (
+      <CustomTable
+        tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
+        tBody={activitiesData}
+        myTableData={{ name: "name", image: "image", created_at: "created_at" }}
+        handleEdit={editHandler}
+        handleDelete={deleteHandler}
+      />
+    )
+  }
 
   return (
     <div className="my-5">
-      <CustomTitle
-        title="Actividades"
-        justify="center"
-        wrapTextClass="text-center"
-        wrapTitleClass="h-auto"
-      />
-      <div className="my-4 d-flex flex-wrap justify-content-center justify-content-md-between">
+      <CustomTitle title="Listado de Actividades" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
+      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-md-between">
+        <BackTo wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE + "dashboard"} />
         <BackTo
-          wrapLink="col col-10 col-sm-5 col-md-4 my-2 me-1"
-          text="Ir dashboard"
-          to={"/" + privateRoutes.BACKOFFICE }
-        />
-        <BackTo
-          wrapLink="col col-10 col-sm-5 col-md-4 my-2"
+          wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3"
           text="Crear Actividad"
           to={"/" + privateRoutes.BACKOFFICE + privateRoutes.ACTIVITIESCREATE}
           color="success"
@@ -54,17 +60,12 @@ const ActivitiesList = () => {
           icon={addIcon}
         />
       </div>
-      <div className="mt-3">
-        <CustomTable
-          tHead={ tHead }
-          tBody={DUMMY_ACTIVITIES}
-          myTableData={ myTableData }
-          handleEdit={ editHandler }
-          handleDelete={ deleteHandler }
-        />
+      <div className="my-3">
+        <SearchActivities onSearchActivities={searchActivitiesHandler} />
       </div>
+      <div className="mt-3">{activitiesContent}</div>
     </div>
-  );
-};
+  )
+}
 
-export default ActivitiesList;
+export default ActivitiesList

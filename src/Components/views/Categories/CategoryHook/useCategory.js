@@ -2,7 +2,7 @@ import privateService from "Services/privateApiService";
 import { URLs } from "Services/ServicesURLS";
 import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
 import { feedbackUser as Alert } from "utilities/alerts/feedbackUser.util";
-import { validationSchema, convertToBase64 } from '../utilities/utilities';
+import { validationSchema } from '../utilities/utilities';
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -85,15 +85,6 @@ export const useCategory = () => {
     }
     const formik = useFormik({ initialValues, onSubmit, validationSchema });
     const { handleChange, handleSubmit, values, errors, handleBlur, touched, setFieldValue } = formik;
-    
-    function handleImage(e){
-        const image = e.target.files[0];
-        if(image) {
-            setFieldValue('image', image);
-            convertToBase64( image, setImageB64 );
-        }
-        else setFieldValue('image', '');
-    }
 
     return{
         handleChange,
@@ -106,10 +97,11 @@ export const useCategory = () => {
         imageB64,
         setImageB64,
         id,
-        handleImage,
         category,
         setCategory,
         schema,
-        loading
+        loading,
+        setImageB64,
+        formik
     }
 }
