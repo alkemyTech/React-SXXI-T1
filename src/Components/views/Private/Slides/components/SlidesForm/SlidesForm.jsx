@@ -1,12 +1,12 @@
-import { InputImage } from "Components/GlobalComponents/FormInputsField/InputImage";
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad";
-import { Form } from "react-bootstrap";
-import { useSlidesForm } from "../../hooks/useSlidesForm";
-import { formFieldsSchema } from "../../utilities/slidesSchema.util";
-import { ButtonSlideForm } from "../ButtonSlideForm/ButtonSlideForm";
-import { ModalSlide } from "../ModalSlide/ModalSlide";
-import { FirstColForm } from "../SlidesFormFields/FirstColForm";
-import { InputDescription } from "../SlidesFormFields/InputDescription";
+import { InputImage } from "Components/GlobalComponents/FormInputsField/InputImage"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
+import { Form } from "react-bootstrap"
+import { useSlidesForm } from "../../hooks/useSlidesForm"
+import { formFieldsSchema } from "../../utilities/slidesSchema.util"
+import { ButtonSlideForm } from "../ButtonSlideForm/ButtonSlideForm"
+import { ModalSlide } from "../ModalSlide/ModalSlide"
+import { FirstColForm } from "../SlidesFormFields/FirstColForm"
+import { InputDescription } from "../SlidesFormFields/InputDescription"
 
 export const SlidesForm = ({ idSlide }) => {
   const {
@@ -22,11 +22,11 @@ export const SlidesForm = ({ idSlide }) => {
     handleSlideModal,
     setSlideToChangeSelected,
     slideToChangeSelected,
-  } = useSlidesForm(idSlide);
+  } = useSlidesForm(idSlide)
 
   return (
     <>
-      <Form className="form-container" onSubmit={handleSubmit}>
+      <Form className="form-container col col-12 col-sm-10 my-3 p-0 p-sm-1" onSubmit={handleSubmit}>
         <Form.Group className="col col-12 d-flex flex-wrap justify-content-between">
           <FirstColForm
             formik={formik}
@@ -41,10 +41,7 @@ export const SlidesForm = ({ idSlide }) => {
         </Form.Group>
 
         <Form.Group className="col col-12">
-          <InputDescription
-            formik={formik}
-            schemas={formFieldsSchema.ckEditor}
-          />
+          <InputDescription formik={formik} schemas={formFieldsSchema.ckEditor} />
         </Form.Group>
 
         {loadSubmitSlides && (
@@ -74,5 +71,5 @@ export const SlidesForm = ({ idSlide }) => {
         slideToChangeSelected={slideToChangeSelected}
       />
     </>
-  );
-};
+  )
+}
