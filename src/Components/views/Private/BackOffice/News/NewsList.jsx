@@ -1,9 +1,9 @@
-import { addIcon } from "assets/images";
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { privateRoutes } from "models/routes";
-import { useNavigate } from "react-router-dom";
+import { addIcon } from "assets/images"
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { privateRoutes } from "models/routes"
+import { useNavigate } from "react-router-dom"
 
 const DUMMY_NEWS = [
   {
@@ -24,34 +24,27 @@ const DUMMY_NEWS = [
     image: "https://www.w3schools.com/w3css/img_lights.jpg",
     createdAt: new Date().toLocaleString(),
   },
-];
+]
 
 const NewsList = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const editHandler = (id) => {
-    console.log("Edit clicked", id);
-    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSEDITFORM}${id}`);
-  };
+    console.log("Edit clicked", id)
+    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSEDITFORM}${id}`)
+  }
 
   const deleteHandler = (id) => {
-    console.log("Delete clicked", id);
-  };
+    console.log("Delete clicked", id)
+  }
 
   return (
     <div>
-      <CustomTitle
-        title="Novedades"
-        justify="center"
-        wrapTextClass="text-center"
-        wrapTitleClass="h-auto"
-      />
-      <div className="mt-5 mb-4 d-flex flex-wrap justify-content-center justify-content-sm-between">
-        <BackTo
-          wrapLink="col col-10 col-sm-5 my-2 me-1"
-          text="Ir dashboard"
-          to={"/" + privateRoutes.BACKOFFICE }
-        />
+      <div className=" mt-4 d-flex col col-12">
+        <CustomTitle title="Novedades" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
+      </div>
+      <div className="my-4 d-flex flex-wrap justify-content-center justify-content-sm-between">
+        <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE} />
         <BackTo
           wrapLink="col col-10 col-sm-5 col-md-4 my-2"
           text="Crear Novedad"
@@ -61,7 +54,7 @@ const NewsList = () => {
           icon={addIcon}
         />
       </div>
-      <div>
+      <div className="my-3">
         <CustomTable
           tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
           tBody={DUMMY_NEWS}
@@ -71,7 +64,7 @@ const NewsList = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NewsList;
+export default NewsList

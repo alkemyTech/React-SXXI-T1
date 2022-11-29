@@ -28,10 +28,10 @@ const ActivitiesForm = () => {
   const { id } = useParams();
 
   return (
-    <div className="container my-5">
+    <section className="container my-5">
         <div className="my-5">
             <CustomTitle
-                title={id ? "Edita la actividad" : "Crea la actividad"} 
+                title={id ? "Edita actividad" : "Crea actividad"} 
                 justify="center"   
                 wrapTextClass="text-center" 
                 wrapTitleClass="d-block h-auto"
@@ -92,7 +92,7 @@ const ActivitiesForm = () => {
             </Form.Group>
             <div className="my-5 d-flex justify-content-center">
                 <ButtonConfirm 
-                    className='col-7 col-sm-4 col-md-3 py-2 px-3' 
+                    className='col-7 col-lg-8 py-2 px-3 mx-auto' 
                     disabled={loading}
                     background='success' 
                     color='success' 
@@ -102,7 +102,7 @@ const ActivitiesForm = () => {
                 </ButtonConfirm>
             </div>
           </Form>
-        </div>
+        </section>
   )
 } 
 

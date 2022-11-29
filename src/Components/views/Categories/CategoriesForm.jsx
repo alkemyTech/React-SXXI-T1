@@ -130,7 +130,7 @@ const CategoriesForm = () => {
             </Form.Group>
             <div className='d-flex justify-content-center'>
             <CustomButton
-                buttonClass='col col-12 col-sm-6 col-md-4 col-lg-3'
+                buttonClass='col-7 col-lg-8 py-2 px-3 mx-auto'
                 text='Confirmar'
                 color='success'
                 background='success'
