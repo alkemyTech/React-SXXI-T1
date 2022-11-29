@@ -7,7 +7,7 @@ import { usePrivateSlides } from "./hooks/usePrivateSlides"
 import { myTableData, tableHead } from "./utilities/slidesSchema.util"
 import { addIcon } from "assets/images"
 import SearchSlides from "./components/SearchSlides/SearchSlides"
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
 
 const PrivateSlides = () => {
   const { loadSlides, slides, handleEdit, handleDelete, fetchSlides } = usePrivateSlides()
