@@ -7,7 +7,7 @@ import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle
 import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util"
 import { feedbackUser as AlertSuccess } from "utilities/alerts/feedbackUser.util"
 import { useCategories } from "./hooks/useCategories"
-import { SpinnerLoad } from "Components/GlobalComponents/SpinnerLoad/SpinnerLoad"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
 import SearchCategories from "./components/SearchActivities"
 
 export default function CategoriesList() {
