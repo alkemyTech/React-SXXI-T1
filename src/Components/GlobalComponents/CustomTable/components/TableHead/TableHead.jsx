@@ -1,7 +1,7 @@
-import { Spinner } from "react-bootstrap";
+import { SpinnerGrow } from "Components/GlobalComponents/Loading/SpinnerGrow/SpinnerGrow";
 
 export const TableHead = ({ load, element }) => {
   return (
-    <th>{load ? <Spinner animation="grow" variant="ligth" /> : element}</th>
+    <th>{load ? <SpinnerGrow animation="grow" variant="ligth" /> : element}</th>
   );
 };
