@@ -2,11 +2,12 @@ import { useAbout } from "./hook/useAbout";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { MainContainer, CustomText } from "./about.styled";
 import Members from "../Members/Detail/Members";
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 
 
 const About = () => {
   const info = useAbout();
- 
+
   return (
     <MainContainer>
       <div>
@@ -17,7 +18,11 @@ const About = () => {
         />
       </div>
       <CustomText className="mb-5">
-        <p>{info.longDescription}</p>
+        {info.longDescription !== "" ?
+          <p>{info.longDescription}</p>
+          :
+          <SpinnerLoad />
+        }
       </CustomText>
       <div>
         <CustomTitle

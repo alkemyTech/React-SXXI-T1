@@ -15,4 +15,4 @@ export const URLs = {
   socialMediaItem: "socialMediaItems",
   testimonial: "testimonials",
   users: "users",
-};
+}

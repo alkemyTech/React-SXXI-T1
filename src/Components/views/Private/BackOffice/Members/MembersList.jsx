@@ -1,56 +1,57 @@
-import { addIcon } from "assets/images";
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { privateRoutes } from "models/routes";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
-const DUMMY_MEMBERS = [
-  {
-    id: 1,
-    name: "Member 1",
-    photo: "https://www.w3schools.com/w3css/img_lights.jpg",
-  },
-  {
-    id: 2,
-    name: "Member 2",
-    photo: "https://www.w3schools.com/w3css/img_lights.jpg",
-  },
-  {
-    id: 3,
-    name: "Member 3",
-    photo: "https://www.w3schools.com/w3css/img_lights.jpg",
-  },
-];
+import { addIcon } from "assets/images"
+import { BackTo } from "Components/GlobalComponents/BackTo/BackTo"
+import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
+import { privateRoutes } from "models/routes"
+import SearchMembers from "./components/SearchMembers"
+import { useMembers } from "./hooks/useMembers"
 
 const MembersList = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const { loadingMembers, membersData, fetchMembers } = useMembers()
 
   const editHandler = (id) => {
-    console.log("Edit clicked", id);
-    navigate(
-      `/${privateRoutes.BACKOFFICE}${privateRoutes.MEMBERSEDITFORM}${id}`
-    );
-  };
+    console.log("Edit clicked", id)
+    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.MEMBERSEDITFORM}${id}`)
+  }
 
   const deleteHandler = (id) => {
-    console.log("Delete clicked", id);
-  };
+    console.log("Delete clicked", id)
+  }
+
+  const searchMembersHandler = async (searchText) => {
+    const fetchParams = {}
+
+    if (searchText.length >= 2) {
+      fetchParams["search"] = searchText
+    }
+
+    await fetchMembers(fetchParams)
+  }
+
+  let membersContent
+  if (loadingMembers) {
+    membersContent = <SpinnerLoad />
+  } else {
+    membersContent = (
+      <CustomTable
+        tHead={["#", "Nombre", "Foto", "Acciones"]}
+        tBody={membersData}
+        myTableData={{ name: "name", image: "image" }}
+        handleEdit={editHandler}
+        handleDelete={deleteHandler}
+      />
+    )
+  }
 
   return (
     <div>
-      <CustomTitle
-        title="Miembros"
-        justify="center"
-        wrapTextClass="text-center"
-        wrapTitleClass="h-auto"
-      />
+      <CustomTitle title="Miembros" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
       <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
-        <BackTo
-          wrapLink="col col-10 col-sm-5 my-2 me-1"
-          text="Ir dashboard"
-          to={"/" + privateRoutes.BACKOFFICE + "dashboard"}
-        />
+        <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE + "dashboard"} />
         <BackTo
           wrapLink="col col-10 col-sm-5 col-md-4 my-2"
           text="Crear Miembro"
@@ -60,17 +61,12 @@ const MembersList = () => {
           icon={addIcon}
         />
       </div>
-      <div>
-        <CustomTable
-          tHead={["#", "Nombre", "Foto", "Acciones"]}
-          tBody={DUMMY_MEMBERS}
-          myTableData={{ name: "name", photo: "photo" }}
-          handleEdit={editHandler}
-          handleDelete={deleteHandler}
-        />
+      <div className="my-3">
+        <SearchMembers onSearchMembers={searchMembersHandler} />
       </div>
+      <div>{membersContent}</div>
     </div>
-  );
-};
+  )
+}
 
-export default MembersList;
+export default MembersList
