@@ -15,7 +15,7 @@ export const useMembers = () => {
       if (fetchingMembersList && !fetchingMembersList.success)
         throw new Error(fetchingMembersList.message);
 
-      const { data } = fetchingMembersList.data;
+      const  data  = fetchingMembersList.data;
       const membersList = data.map( member=> {
         return {
           id: member.id,

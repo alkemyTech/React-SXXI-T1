@@ -13,6 +13,7 @@ import { CustomButton } from 'Components/GlobalComponents/CustomButton/CustomBut
 import { CustomTitle } from 'Components/GlobalComponents/CustomTitle/CustomTitle';
 import { BackTo } from 'Components/GlobalComponents/BackTo/BackTo';
 import { InputImage } from 'Components/GlobalComponents/FormInputsField/InputImage';
+import { privateRoutes } from 'models/routes';
 
 const schemas = { name: 'image' }
 
@@ -92,11 +93,23 @@ const CategoriesForm = () => {
     },[id, setFieldValue]);
 
     return (
-        <div style={{padding: '0'}}>
-        <CustomTitle title={id ? 'Editar Categoría' : 'Crear Categoría'} height='none' wrapTextClass='text-center'/>
-        <BackTo to='/backoffice/categories'/>
-        <Formulary className='form-container col col-12 col-sm-10 col-xxl-8 my-3 p-0 p-sm-1' onSubmit={ handleSubmit }>
-            <Form.Group>
+        <div className="container my-5">
+            <div className="my-5">
+            <CustomTitle 
+                title={id ? 'Editar Categoría' : 'Crear Categoría'} 
+                justify="center"   
+                wrapTextClass="text-center" 
+                wrapTitleClass="d-block h-auto"/>
+            </div>
+            <div className="my-5">
+                <BackTo 
+                    wrapLink="my-4"
+                    to={"/" + privateRoutes.BACKOFFICE + privateRoutes.CATEGORIES}
+                />
+            </div>
+        <Formulary className='my-5 col-sm-10 col-lg-6 mx-auto' onSubmit={ handleSubmit }>
+            <Form.Group
+                className="mb-3">
                 <ContainerInputError>
                     <Form.Label>Nombre de la categoría:</Form.Label>
                     <Input type="text" name="name" placeholder='Nombre' onBlur={ handleBlur }
@@ -128,7 +141,7 @@ const CategoriesForm = () => {
                     imageIsEdit={category}
                 />
             </Form.Group>
-            <div className='d-flex justify-content-center'>
+            <div className='my-5 d-flex justify-content-center'>
             <CustomButton
                 buttonClass='col-7 col-lg-8 py-2 px-3 mx-auto'
                 text='Confirmar'
