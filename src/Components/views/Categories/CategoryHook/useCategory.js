@@ -45,6 +45,7 @@ export const useCategory = () => {
                         })
                         .catch(() => Alert('center', 'error', 'Ha ocurrido un error').then(()=>setLoading(false)));
                 }
+                setLoading(false);
             });
     }
 
@@ -68,6 +69,7 @@ export const useCategory = () => {
                         })
                         .catch(() => Alert('center', 'error', 'Ha ocurrido un error').then(()=>setLoading(false)));
                 }
+                setLoading(false);
             });
     }
 

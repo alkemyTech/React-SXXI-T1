@@ -2,7 +2,7 @@ export const URLs = {
   activity: "activities",
   authMe: "auth/me",
   category: "categories",
-  coment: "coments",
+  comment: "comments",
   contact: "contacts",
   login: "login",
   member: "members",

@@ -1,35 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-
-const DUMMY_NEWS = {
-  content: "dummy content of the news",
-  imgUrl:
-    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
-};
+import Comment from "../Comment/Comment";
+import { useDetailNews } from "./hook/useDetailNews";
+import publicService from "Services/publicApiService";
+import { URLs } from "Services/ServicesURLS";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
+import { useEffect } from "react";
+import { MainContent, NewsCard, NewsTitle, NewsImage, Container,
+  Paragraph, } from "./NewsDetailsStyle/NewsDetailsStyle";
 
 const NewsDetail = ({ title }) => {
-  const { id: newsId } = useParams();
-  const [news, setNews] = useState(null);
+  const {news, setNews, id} = useDetailNews();
 
-  useEffect(() => {
-    const fetchNews = (id) => {
-      setNews(DUMMY_NEWS);
-    };
-
-    fetchNews(newsId);
-  }, [newsId]);
-
-  if (!news) return null;
+  useEffect(()=>{
+    publicService.get(`${URLs.news}/${id}`)
+        .then(res => {
+            const { data } = res;
+            if(res.success){
+                setNews({
+                    name: data.name,
+                    content: data.content,
+                    image: data.image
+                })
+            }else feedbackUser('center', 'error', 'Ha ocurrido un error');
+        })
+        .catch(()=> feedbackUser('center', 'error', 'Ha ocurrido un error'));
+}, [setNews, id]);
 
   return (
-    <div className="h-100">
-      <CustomTitle wrapTitleClass="d-block" title={title} image={news.imgUrl} />
-      <div className="py-2">
-        <p>{news.content}</p>
+    <MainContent className="h-100">
+      <NewsCard>
+        <NewsImage src={news?.image} alt={news?.name}/>
+        <Container>
+          <NewsTitle>{news?.name}</NewsTitle>
+          <Paragraph dangerouslySetInnerHTML={{__html: news?.content}}/>
+        </Container>
+      </NewsCard>
+      <div className="mt-2 mb-4">
+        <Comment id={id}/>
       </div>
-    </div>
+    </MainContent>
   );
 };
 
