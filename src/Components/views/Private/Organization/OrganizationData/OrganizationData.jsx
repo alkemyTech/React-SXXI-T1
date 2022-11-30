@@ -8,8 +8,9 @@ import {
 } from "./OrganizationDataStiled/OrganizationData.Styled";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { api } from "Services/axiosService";
-import Swal from "sweetalert2";
+import publicService from "Services/publicApiService";
+import { URLs } from "Services/ServicesURLS";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 
@@ -20,33 +21,26 @@ export default function OrganizationData() {
     image: "",
     shortDescription: "",
   });
-  const urlNavigate = "/backoffice/organization/edit";
 
   useEffect(() => {
-    api
-      .get("/organization")
-      .then((res) => {
-        const { data } = res.data;
+    const req = async () => {
+      const info = await publicService.get(URLs.organization);
+      if(info.success){
+        const {data} = info;
         setOrganizationData({
           name: data.name,
           image: data.logo,
-          shortDescription: data.short_description,
+          shortDescription: data.short_description
         });
-      })
-      .catch(() => {
-        Swal.fire({
-          title: "Hubo un error",
-          icon: "error",
-          confirmButtonColor: "#0038FF",
-          confirmButtonText: "Aceptar",
-        }).then(() => {
-          navigate("/backoffice");
-        });
-      });
-  }, [navigate]);
+      }else{
+        feedbackUser('center', 'error', 'Ha ocurrido un error');
+      }
+    }
+    req();
+  }, []);
 
-  function handleClick() {
-    navigate(urlNavigate);
+  function toEdit() {
+    navigate('edit');
   }
 
   return (
@@ -58,7 +52,7 @@ export default function OrganizationData() {
           text='Editar Información'
           background="success"
           color="success"
-          onClick={handleClick}/>
+          onClick={toEdit}/>
       </ContainerEditInf>
       <Container1>
       <CustomTitle wrapTextClass="text-center" title={organizationData.name} height='none'/>
