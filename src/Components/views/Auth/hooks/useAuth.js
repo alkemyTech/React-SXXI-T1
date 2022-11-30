@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
 import LoginForm from "../components/LoginForm"
 import RegisterForm from "../components/RegisterForm"
@@ -7,16 +8,12 @@ import { authSchemas } from "../utilities/schemas"
 export const useAuth = () => {
   const [params] = useSearchParams()
   const whatForm = params.get("auth")
-  const [loadingAuth, setLoadingAuth] = useState(false)
+  const { loadingUser, user } = useSelector((store) => store.user)
 
-  const handleLoadingAuth = (value) => setLoadingAuth(value)
+  console.log("checquear si existe uruaio mandarlo a home", { user })
 
   const whatFormRender =
-    whatForm === "login" ? (
-      <LoginForm text={authSchemas[whatForm]["buttonText"]} loadingAuth={loadingAuth} handleLoadingAuth={handleLoadingAuth} />
-    ) : (
-      <RegisterForm text={authSchemas[whatForm]["buttonText"]} loadingAuth={loadingAuth} handleLoadingAuth={handleLoadingAuth} />
-    )
+    whatForm === "login" ? <LoginForm text={authSchemas[whatForm]["buttonText"]} /> : <RegisterForm text={authSchemas[whatForm]["buttonText"]} />
 
-  return { whatFormRender, whatForm, loadingAuth }
+  return { whatFormRender, whatForm, loadingUser }
 }

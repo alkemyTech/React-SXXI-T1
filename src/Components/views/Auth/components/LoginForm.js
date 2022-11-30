@@ -7,8 +7,16 @@ import { FormAuth } from "../styled.components/Auth.styled"
 import publicService from "Services/publicApiService"
 import { URLs } from "Services/ServicesURLS"
 import { feedbackUser } from "utilities/alerts/feedbackUser.util"
+import { useDispatch, useSelector } from "react-redux"
+import { userFailure, userRequest, userSuccess } from "redux/states/user"
 
 const LoginForm = ({ text, handleLoadingAuth }) => {
+  const { loadingUser, user } = useSelector((store) => store.user)
+
+  const dispatch = useDispatch()
+
+  console.log({ loadingUser, user })
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -17,7 +25,7 @@ const LoginForm = ({ text, handleLoadingAuth }) => {
     validationSchema: LoginSchema,
     onSubmit: async (values) => {
       try {
-        handleLoadingAuth(true)
+        dispatch(userRequest())
 
         const fetchData = await publicService.post(URLs.login, values)
 
@@ -28,15 +36,14 @@ const LoginForm = ({ text, handleLoadingAuth }) => {
 
         const aditionalMsg = ` - Bienvenido ${fetchData.data.user.email}`
         feedbackUser("top-end", "success", fetchData.message + aditionalMsg)
-
+        console.log({ fetchData })
         // formik.resetForm()
-
+        dispatch(userSuccess())
         // Guardar en store - Navegar al dashboard
       } catch (error) {
         console.error("error LoginForm", error.message)
+        dispatch(userFailure())
         feedbackUser("top-end", "error", error.message)
-      } finally {
-        handleLoadingAuth(false)
       }
     },
   })

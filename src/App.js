@@ -29,10 +29,12 @@ import { WrapMainRoutes } from "styled-components/App.styled"
 import About from "Components/views/About/About"
 import { ROLE } from "./MOCKAUTH"
 import { Auth } from "Components/views/Auth/Auth"
+import { Provider } from "react-redux"
+import store from "redux/store"
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyle />
       <Animate className="col-with-animate">
         <Header windowSize={windowSize()} />
@@ -63,7 +65,7 @@ function App() {
         </WrapMainRoutes>
         {ROLE !== "admin" && <Footer />}
       </Animate>
-    </>
+    </Provider>
   )
 }
 
