@@ -55,7 +55,7 @@ const NewsList = () => {
     <div>
       <CustomTitle title="Novedades" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
       <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
-        <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE + "dashboard"} />
+        <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE } />
         <BackTo
           wrapLink="col col-10 col-sm-5 col-md-4 my-2"
           text="Crear Novedad"
