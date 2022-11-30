@@ -4,6 +4,7 @@ const themeColors = {
   red: "#FF0000",
   blue: "#0038FF",
   lightBlue: "#7E9AFD",
+  betweenBlueGreed: "hsla(187, 97%, 29%, 1)",
   yellow: "#F9FE00",
   lightYellow: "#FDFFA4",
   gray: "#C0C0C0",

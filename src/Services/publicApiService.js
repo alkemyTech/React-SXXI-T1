@@ -1,7 +1,7 @@
 import axios from "axios"
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util"
 
-export const publicApi = axios.create({
+const publicApi = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 5000,
 })
@@ -17,7 +17,7 @@ const get = async (restURL) => {
 
     return { success: data.success, data: dataAdapter }
   } catch (error) {
-    console.error("error interceptor: ", error.message)
+    console.error("error public get: ", error.message)
     if (axios.isCancel(error)) {
       return { message: "solicitud axios cancelada" }
     }
@@ -25,5 +25,29 @@ const get = async (restURL) => {
   }
 }
 
-const publicService = { get }
+const post = async (url, body) => {
+  try {
+    const { data } = await publicApi(url, {
+      method: "post",
+      data: body,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+    if (!data || !data.success) throw new Error(data ? data.message || data.error : requestMessagesSchema.problemExistTryLater)
+
+    const dataAdapter = data.data
+
+    return { success: data.success, data: dataAdapter, message: requestMessagesSchema.successfullyOperation }
+  } catch (error) {
+    console.error("error public post: ", error.message)
+    if (axios.isCancel(error)) {
+      return { message: "solicitud axios cancelada" }
+    }
+    return { success: false, message: error.message }
+  }
+}
+
+const publicService = { get, post }
 export default publicService

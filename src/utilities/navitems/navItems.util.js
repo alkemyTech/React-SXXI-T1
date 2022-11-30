@@ -9,7 +9,11 @@ const footerNavItems = [
   { text: "Contribuye", to: routes.DONATION },
 ]
 
-const publicHeaderNavItems = [...footerNavItems, { text: "Login", to: routes.AUTHLOGINFORM }, { text: "Registrar", to: routes.AUTHREGISTERFORM }]
+const publicHeaderNavItems = [
+  ...footerNavItems,
+  { text: "Login", to: routes.AUTHLOGINFORM + "?auth=login" },
+  { text: "Registrar", to: routes.AUTHREGISTERFORM + "?auth=register" },
+]
 
 export { footerNavItems, publicHeaderNavItems }
 
