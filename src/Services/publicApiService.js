@@ -17,7 +17,7 @@ const get = async (restURL) => {
 
     return { success: data.success, data: dataAdapter }
   } catch (error) {
-    console.error("error interceptor: ", error.message)
+    console.error("error public get: ", error.message)
     if (axios.isCancel(error)) {
       return { message: "solicitud axios cancelada" }
     }
@@ -25,28 +25,29 @@ const get = async (restURL) => {
   }
 }
 
-const post = async (restURL, body) => {
+const post = async (url, body) => {
   try {
-    const { data } = await publicApi(restURL, {
-        method: 'post',
-        data: body,
-    });
-    if (!data || !data.success)
-      throw new Error(
-        data ? data.message : requestMessagesSchema.problemExistTryLater
-      );
+    const { data } = await publicApi(url, {
+      method: "post",
+      data: body,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
 
-    const dataAdapter = data.data;
+    if (!data || !data.success) throw new Error(data ? data.message || data.error : requestMessagesSchema.problemExistTryLater)
 
-    return { success: data.success, data: dataAdapter };
+    const dataAdapter = data.data
+
+    return { success: data.success, data: dataAdapter, message: requestMessagesSchema.successfullyOperation }
   } catch (error) {
-      console.error("error interceptor: ", error.message);
-      if (axios.isCancel(error)) {
-        return { message: "solicitud axios cancelada" };
-      }
-      return { success: false, message: error.message };
+    console.error("error public post: ", error.message)
+    if (axios.isCancel(error)) {
+      return { message: "solicitud axios cancelada" }
+    }
+    return { success: false, message: error.message }
   }
-};
+}
 
-const publicService = { get, post };
-export default publicService;
+const publicService = { get, post }
+export default publicService
