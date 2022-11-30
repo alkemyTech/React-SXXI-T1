@@ -4,7 +4,7 @@ import { Nav } from "react-bootstrap"
 import { Hr } from "styled-components/App.styled"
 
 export const HeaderNav = ({ isPhone, handleCloseOffCanvas, itemsNav }) => {
-  const clickCloseOffcanvas = isPhone || ROLE ? handleCloseOffCanvas : undefined
+  const clickCloseOffcanvas = isPhone || ROLE === "admin" ? handleCloseOffCanvas : undefined
 
   const navLinkRender = (item) => (
     <NavLinkReactRouter text={item.text} to={item.to} navLinkClass="m-sm-1 m-lg-2" handleCloseToggle={clickCloseOffcanvas} icon={item.icon} />

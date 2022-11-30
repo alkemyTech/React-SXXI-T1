@@ -9,13 +9,11 @@ import { useAuth } from "./hooks/useAuth"
 export const Auth = () => {
   const { whatFormRender, whatForm, loadingAuth } = useAuth()
 
-  console.log({ whatForm, authSchemas })
-
   return (
     <WrapAuth className="mb-2 col col-12 d-flex flex-column flex-sm-row justify-content-center align-items-center">
       <WrapFirstCol className="col col-10 col-sm-6 d-flex flex-column align-items-center justify-content-between">
-        {/* {whatFormRender} */}
-        {/* <LinkReactRouter
+        {whatFormRender}
+        <LinkReactRouter
           text={authSchemas[whatForm]["linkText"]}
           to={authSchemas[whatForm]["toLink"]}
           color="light"
@@ -24,7 +22,7 @@ export const Auth = () => {
           borderRadius="none"
           wrapLink="border-bottom border-dark"
           linkClass="rounded-top"
-        /> */}
+        />
         {loadingAuth && <SpinnerLoad />}
       </WrapFirstCol>
       <WrapImageSecondCol className="col col-10 col-sm-6 h-100">

@@ -9,7 +9,11 @@ const footerNavItems = [
   { text: "Contribuye", to: routes.DONATION },
 ]
 
-const publicNotAuthNavItems = [...footerNavItems, { text: "Login", to: routes.AUTHLOGINFORM }, { text: "Registrar", to: routes.AUTHREGISTERFORM }]
+const publicNotAuthNavItems = [
+  ...footerNavItems,
+  { text: "Login", to: routes.AUTHLOGINFORM + "?auth=login" },
+  { text: "Registrar", to: routes.AUTHREGISTERFORM + "?auth=register" },
+]
 
 const publicAuthNavItems = [
   ...footerNavItems,

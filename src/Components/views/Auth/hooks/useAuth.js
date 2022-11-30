@@ -11,16 +11,12 @@ export const useAuth = () => {
 
   const handleLoadingAuth = (value) => setLoadingAuth(value)
 
-  // const whatFormRender =
-  //   whatForm === "login" ? (
-  //     <LoginForm text={authSchemas[whatForm]["buttonText"]} loadingAuth={loadingAuth} handleLoadingAuth={handleLoadingAuth} />
-  //   ) : (
-  //     <RegisterForm text={authSchemas[whatForm]["buttonText"]} loadingAuth={loadingAuth} handleLoadingAuth={handleLoadingAuth} />
-  //   )
+  const whatFormRender =
+    whatForm === "login" ? (
+      <LoginForm text={authSchemas[whatForm]["buttonText"]} loadingAuth={loadingAuth} handleLoadingAuth={handleLoadingAuth} />
+    ) : (
+      <RegisterForm text={authSchemas[whatForm]["buttonText"]} loadingAuth={loadingAuth} handleLoadingAuth={handleLoadingAuth} />
+    )
 
-  return {
-    // whatFormRender,
-    whatForm,
-    loadingAuth,
-  }
+  return { whatFormRender, whatForm, loadingAuth }
 }
