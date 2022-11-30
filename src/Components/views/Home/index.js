@@ -6,31 +6,28 @@ import { MainContainer, Container1, ContainerImageAndP, Paragraph,
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 import { routes } from "models/routes";
 import { useEffect } from "react";
-import { api } from "Services/axiosService";
-import Swal from "sweetalert2";
+import prublicService from "Services/publicApiService";
+import { URLs } from "Services/ServicesURLS";
 import { useIndexHook } from "./useIndexHook/useIndexHook";
 import { Collapse } from "react-bootstrap";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 
 const Home = () => {
   const {info, setInfo, minSize, show, handleClick, handleResize, handleShow} = useIndexHook();
   useEffect(() => {
-    api("/organization")
-      .then((res) => {
-        const { data } = res.data;
-        setInfo({
-          welcomeText: data.welcome_text,
-          organizationImage: data.logo,
-          shortDescription: data.short_description,
-        });
+    prublicService.get(URLs.organization)
+      .then(res => {
+        const { data } = res;
+        if(res.success) {
+          setInfo({
+            welcomeText: data.welcome_text,
+            organizationImage: data.logo,
+            shortDescription: data.short_description,
+          });
+        } else feedbackUser('center', 'error', 'Ha ocurrido un error');
       })
-      .catch(() => {
-        Swal.fire({
-          title: "Hubo un error",
-          icon: "error",
-          confirmButtonColor: "#0038FF",
-          confirmButtonText: "Aceptar",
-        });
-      });
+      .catch(() => feedbackUser('center', 'error', 'Ha ocurrido un error'));
+
   }, [setInfo]);
 
   useEffect(() => {
