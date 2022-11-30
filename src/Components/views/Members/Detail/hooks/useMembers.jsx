@@ -5,7 +5,7 @@ import { URLs } from "Services/ServicesURLS";
 
 export const useMembers = () => {
   const [ membersData, setMembersData] = useState([]);
-  const [ loadingMembers, setLoadingMembers ] = useState(true);
+  const [ loadingMembers, setLoadingMembers ] = useState(false);
 
   const fetchMembers = async () => {
     try {
@@ -27,6 +27,7 @@ export const useMembers = () => {
         }
       })
       setMembersData(membersList);
+      setLoadingMembers(false);
     } catch (error) {
       AlertError(
         'center', 
