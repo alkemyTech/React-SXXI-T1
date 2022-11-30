@@ -9,11 +9,20 @@ const footerNavItems = [
   { text: "Contribuye", to: routes.DONATION },
 ]
 
-const publicHeaderNavItems = [...footerNavItems, { text: "Login", to: routes.AUTHLOGINFORM }, { text: "Registrar", to: routes.AUTHREGISTERFORM }]
+const publicNotAuthNavItems = [...footerNavItems, { text: "Login", to: routes.AUTHLOGINFORM }, { text: "Registrar", to: routes.AUTHREGISTERFORM }]
 
-export { footerNavItems, publicHeaderNavItems }
+const publicAuthNavItems = [
+  ...footerNavItems,
+  {
+    text: "hr",
+  },
+]
 
 export const privateLinks = [
+  ...footerNavItems,
+  {
+    text: "hr",
+  },
   { text: "Dashboard", icon: homeIcon, to: privateRoutes.BACKOFFICE },
   {
     text: "Actividades",
@@ -55,4 +64,15 @@ export const privateLinks = [
     icon: userIcon,
     to: `${privateRoutes.BACKOFFICE}${privateRoutes.USERS}`,
   },
+  {
+    text: "hr",
+  },
 ]
+
+const typeNavItems = {
+  admin: privateLinks,
+  regular: publicAuthNavItems,
+  notAuth: publicNotAuthNavItems,
+}
+
+export { typeNavItems, footerNavItems }
