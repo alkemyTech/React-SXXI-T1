@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Route } from "react-router-dom"
 import { privateRoutes, routes } from "./models/routes"
 import { Animate } from "styled-components/animation.styled"
@@ -30,8 +30,18 @@ import CategoriesForm from "Components/views/Categories/CategoriesForm"
 import { WrapMainRoutes } from "styled-components/App.styled"
 import About from "Components/views/About/About"
 import { ROLE } from "./MOCKAUTH"
+import publicService from "Services/publicApiService"
+import { URLs } from "Services/ServicesURLS"
+import { feedbackUser } from "utilities/alerts/feedbackUser.util"
 
 function App() {
+  const [ ORGInfo, setORGInfo ] = useState();
+  useEffect(() => {
+    publicService.get(URLs.organization)
+      .then(res => {
+        setORGInfo(res.data)})
+      .catch(()=>feedbackUser('center', 'error', 'Ha ocurrido un error'))
+  }, []);
   return (
     <>
       <GlobalStyle />
@@ -54,7 +64,7 @@ function App() {
             <Route path={routes.PROJECTFORM} element={<ProjectsForm />} />
             <Route path={routes.SCHOOLCAMPAIGN} element={<SchoolCampaign />} />
             <Route path={routes.TOYSCAMPAIGN} element={<ToysCampaign />} />
-            <Route path={routes.CONTACT} element={<Contact />} />
+            <Route path={routes.CONTACT} element={<Contact info={ORGInfo}/>} />
             <Route path={routes.DONATION} element={<Donations text={textForDonation.text} />} />
             <Route path={routes.THANKSDONATION} element={<Thanks />} />
             <Route element={<AuthGuard />}>

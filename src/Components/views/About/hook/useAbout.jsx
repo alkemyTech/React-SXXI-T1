@@ -2,7 +2,6 @@ import { feedbackUser as AlertError } from "utilities/alerts/feedbackUser.util";
 import { useEffect, useState } from "react";
 import { URLs } from "Services/ServicesURLS";
 import publicService from "Services/publicApiService";
-import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 
 
 export const useAbout = () => {

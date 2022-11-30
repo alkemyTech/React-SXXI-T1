@@ -10,7 +10,7 @@ import { SpinnerLoad } from 'Components/GlobalComponents/Loading/SpinnerLoad/Spi
 
 const Members = () => {
 
-    const { membersData, loadingMembers } = useMembers();
+    const { membersData } = useMembers();
 
     return (
       <div className="container my-5">

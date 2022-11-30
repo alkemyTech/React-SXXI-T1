@@ -160,6 +160,16 @@ Se lo puede ver en: ```src > Components > GlobalComponents > Loading > ButtonLoa
 
 ---
 
+## Variables de entorno
+
+Al momento tenemos una sola variable de entorno, para la conexión con la API:
+
+```REACT_APP_BASE_URL="https://ongapi.alkemy.org/api"```
+
+
+
+---
+
 ## <img src="https://img.icons8.com/office/30/null/console.png"/> Scripts disponibles
 
 En este proyecto, podés correr:
