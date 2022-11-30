@@ -1,4 +1,4 @@
-import { CustomLink } from "./styled-components/LinkReactRouter.styles";
+import { CustomLink } from "./styled-components/LinkReactRouter.styles"
 
 export const LinkReactRouter = ({
   linkClass = "",
@@ -11,6 +11,7 @@ export const LinkReactRouter = ({
   wrapLink = "",
   padding = "",
   onClick = undefined,
+  borderRadius = "",
 }) => {
   return (
     <div className={wrapLink}>
@@ -21,10 +22,11 @@ export const LinkReactRouter = ({
         padding={padding}
         to={to}
         border={border}
+        borderradius={borderRadius}
         onClick={onClick}
       >
         {icon} {text}
       </CustomLink>
     </div>
-  );
-};
+  )
+}
