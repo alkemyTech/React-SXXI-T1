@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-import Swal from 'sweetalert2';
 
 const nameRegExp = /[a-z, A-Z]/;
 const FORMAT = ['image/png', 'image/jpg', 'image/jpeg'];
@@ -26,17 +25,4 @@ export const convertToBase64 = (image, setImage) => {
     reader.onloadend = function () {
         setImage(reader.result);
     };
-}
-
-export const Alert = ({icon, title, cancelText})=>{
-return Swal.fire({
-        title: title,
-        icon: icon,
-        iconColor: '#0038FF',
-        showCancelButton: cancelText ? true : false,
-        confirmButtonColor: '#0038FF',
-        cancelButtonColor: cancelText ? '#FF0000' : false,
-        confirmButtonText: 'Aceptar',
-        cancelButtonText: cancelText ? 'Cancelar' : false
-    })
 }
