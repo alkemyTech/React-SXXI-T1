@@ -2,6 +2,7 @@ import { feedbackUser as AlertError } from "utilities/alerts/feedbackUser.util";
 import { useEffect, useState } from "react";
 import publicService from "Services/publicApiService";
 import { URLs } from "Services/ServicesURLS";
+import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 
 export const useMembers = () => {
   const [ membersData, setMembersData] = useState([]);
@@ -32,7 +33,7 @@ export const useMembers = () => {
       AlertError(
         'center', 
         'error', 
-        'No hay miembros'
+        requestMessagesSchema.problemExistTryLater
       );
     } finally {
       setLoadingMembers(false);

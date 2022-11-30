@@ -5,11 +5,12 @@ import { Icon } from "./Members.Styled.js";
 import LinkedinIcon from "assets/linkedin2.svg";
 import FacebookIcon from "assets/facebookIcon2.svg"
 import "./Members.css";
-import { SkeletonLoader } from 'Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader';
+import { useSkeleton } from "hooks/useSkeleton";
 
 const Members = () => {
 
   const { membersData, loadingMembers } = useMembers();
+  const { textSkeleton } = useSkeleton();
 
     return (
       <div className="container my-5">
@@ -17,12 +18,10 @@ const Members = () => {
           <>
             { loadingMembers ?
               <>
-                <SkeletonLoader />
-                <SkeletonLoader />
-                <SkeletonLoader />
-                <SkeletonLoader />
-                <SkeletonLoader />
-                <SkeletonLoader />
+                { textSkeleton} 
+                { textSkeleton} 
+                { textSkeleton} 
+                { textSkeleton} 
               </>
               :
               <>
