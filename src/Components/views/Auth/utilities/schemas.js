@@ -1,4 +1,4 @@
-import { routes } from "models/routes"
+import { privateRoutes, routes } from "models/routes"
 import * as Yup from "yup"
 
 const REGEX_PASSWORD = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/
@@ -33,4 +33,9 @@ export const authSchemas = {
     linkText: "Ya tienes cuenta? Inicia sesión",
     toLink: routes.AUTHLOGINFORM + "?auth=login",
   },
+}
+
+export const roleUser = {
+  1: { type: "regular", to: routes.HOME },
+  2: { type: "admin", to: privateRoutes.BACKOFFICE },
 }

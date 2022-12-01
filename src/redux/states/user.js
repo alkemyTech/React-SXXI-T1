@@ -4,23 +4,23 @@ import { getLocalStorage, persistLocalStorage, clearLocalStorage } from "utiliti
 const initialUserState = {
   loadingUser: false,
   user: { role: undefined },
-  userToken: undefined,
+  ut: undefined,
+  error: false,
 }
+
+const userPersist = getLocalStorage("USERPERSIST")
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: getLocalStorage("USERPERSIST")
-    ? { ...initialUserState, user: JSON.parse(getLocalStorage("USERPERSIST")), userToken: JSON.parse(getLocalStorage("USERPERSIST")).token }
-    : initialUserState,
+  initialState: userPersist ? { ...initialUserState, user: userPersist.user, ut: userPersist.ut } : initialUserState,
 
   reducers: {
     userRequest: (state, action) => ({ ...state, loadingUser: true }),
+
     userSuccess: (state, action) => {
       const dataToPersist = {
-        email: action.payload.user.email,
-        role: action.payload.user.role_id,
-        name: action.payload.user.userName,
-        userToken: action.payload.token,
+        user: { id: action.payload.id, email: action.payload.email, role: action.payload.role, name: action.payload.name },
+        ut: action.payload.userToken,
       }
 
       persistLocalStorage("USERPERSIST", dataToPersist)
@@ -28,14 +28,19 @@ export const userSlice = createSlice({
       return {
         ...initialUserState,
         user: {
-          email: action.payload.user.email,
-          role: action.payload.user.role_id,
-          name: action.payload.user.userName,
+          id: action.payload.id,
+          email: action.payload.email,
+          role: action.payload.role,
+          name: action.payload.name,
         },
-        userToken: action.payload.token,
+        ut: action.payload.token,
       }
     },
-    userFailure: (state, action) => ({ ...state, loadingUser: false }),
+
+    userFailure: (state, action) => ({ ...state, loadingUser: false, error: true }),
+
+    userResetNotification: (state, action) => ({ ...state, loadingUser: false, error: false }),
+
     userReset: () => {
       clearLocalStorage("USERPERSIST")
       return initialUserState
@@ -43,6 +48,6 @@ export const userSlice = createSlice({
   },
 })
 
-export const { userRequest, userSuccess, userFailure, userReset } = userSlice.actions
+export const { userRequest, userSuccess, userFailure, userReset, userResetNotification } = userSlice.actions
 
 export default userSlice.reducer

@@ -1,21 +1,21 @@
 import React from "react"
 import { useFormik } from "formik"
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton"
-import { LoginSchema } from "../utilities/schemas"
+import { LoginSchema, roleUser } from "../utilities/schemas"
 import InputAuth from "./InputAuth"
 import { FormAuth } from "../styled.components/Auth.styled"
 import publicService from "Services/publicApiService"
 import { URLs } from "Services/ServicesURLS"
 import { feedbackUser } from "utilities/alerts/feedbackUser.util"
-import { useDispatch, useSelector } from "react-redux"
-import { userFailure, userRequest, userSuccess } from "redux/states/user"
+import { useDispatch } from "react-redux"
+import { userFailure, userRequest, userResetNotification, userSuccess } from "redux/states/user"
+import { userAdapter } from "../adapter/user.adapter"
+import { useNavigate } from "react-router-dom"
 
-const LoginForm = ({ text, handleLoadingAuth }) => {
-  const { loadingUser, user } = useSelector((store) => store.user)
+const LoginForm = ({ text }) => {
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
-
-  console.log({ loadingUser, user })
 
   const formik = useFormik({
     initialValues: {
@@ -31,19 +31,20 @@ const LoginForm = ({ text, handleLoadingAuth }) => {
 
         if (fetchData && !fetchData.success) throw new Error(fetchData.message)
 
-        // UT - user token
-        localStorage.setItem("UT", fetchData.data.token)
-
         const aditionalMsg = ` - Bienvenido ${fetchData.data.user.email}`
         feedbackUser("top-end", "success", fetchData.message + aditionalMsg)
-        console.log({ fetchData })
-        // formik.resetForm()
-        dispatch(userSuccess())
-        // Guardar en store - Navegar al dashboard
+
+        dispatch(userSuccess(userAdapter(fetchData.data)))
+
+        formik.resetForm()
+
+        navigate(roleUser[fetchData.data.user.role_id]["to"], { replace: true })
       } catch (error) {
         console.error("error LoginForm", error.message)
         dispatch(userFailure())
         feedbackUser("top-end", "error", error.message)
+      } finally {
+        dispatch(userResetNotification())
       }
     },
   })
