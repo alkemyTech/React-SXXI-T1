@@ -1,14 +1,17 @@
 import React from "react"
 import { useFormik } from "formik"
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton"
-import { LoginSchema } from "../utilities/schemas"
+import { LoginSchema, roleUser } from "../utilities/schemas"
 import InputAuth from "./InputAuth"
 import { FormAuth } from "../styled.components/Auth.styled"
 import publicService from "Services/publicApiService"
 import { URLs } from "Services/ServicesURLS"
 import { feedbackUser } from "utilities/alerts/feedbackUser.util"
+import { useNavigate } from "react-router-dom"
 
 const LoginForm = ({ text, handleLoadingAuth }) => {
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -29,9 +32,11 @@ const LoginForm = ({ text, handleLoadingAuth }) => {
         const aditionalMsg = ` - Bienvenido ${fetchData.data.user.email}`
         feedbackUser("top-end", "success", fetchData.message + aditionalMsg)
 
-        // formik.resetForm()
+        formik.resetForm()
 
-        // Guardar en store - Navegar al dashboard
+        // Guardar en store para que se cambien el nav, etc
+
+        navigate(roleUser[fetchData.data.user.role_id]["to"], { replace: true })
       } catch (error) {
         console.error("error LoginForm", error.message)
         feedbackUser("top-end", "error", error.message)
