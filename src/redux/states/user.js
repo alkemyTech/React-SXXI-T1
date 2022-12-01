@@ -3,7 +3,7 @@ import { getLocalStorage, persistLocalStorage, clearLocalStorage } from "utiliti
 
 const initialUserState = {
   loadingUser: false,
-  user: { role: undefined },
+  user: { role: { type: undefined } },
   ut: undefined,
   error: false,
 }

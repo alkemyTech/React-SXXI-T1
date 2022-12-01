@@ -13,7 +13,7 @@ export const useAuth = () => {
   const { loadingUser, user } = useSelector((store) => store.user)
 
   useEffect(() => {
-    if (user.email) navigate(routes.HOME, { replace: true })
+    if (user.email || user.role.type) navigate(routes.HOME, { replace: true })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

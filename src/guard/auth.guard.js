@@ -6,7 +6,6 @@ const checkAuthorization = (role) => (role === "admin" ? <Outlet /> : <Navigate 
 
 const AuthGuard = () => {
   const { user } = useSelector((store) => store.user)
-
   return user.role.type ? checkAuthorization(user.role.type) : <Navigate replace to={routes.AUTHLOGINFORM + "?auth=login"} />
 }
 

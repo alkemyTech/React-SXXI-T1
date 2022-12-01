@@ -21,7 +21,6 @@ const RegisterForm = ({ text, handleLoadingAuth }) => {
     },
     validationSchema: RegisterSchema,
     onSubmit: async (values) => {
-      console.log(values)
       try {
         handleLoadingAuth(true)
 
