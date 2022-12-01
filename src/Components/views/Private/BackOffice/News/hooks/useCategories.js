@@ -1,39 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
-import { feedbackUser } from "utilities/alerts/feedbackUser.util";
-import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
-import { URLs } from "Services/ServicesURLS";
-import privateService from "Services/privateApiService";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util"
+import { URLs } from "Services/ServicesURLS"
+import privateService from "Services/privateApiService"
+import { errorMessages } from "../utilities/errorMessages"
 
 export const useCategories = () => {
-  const [categoriesData, setCategoriesData] = useState([]);
-  const [loadingCategories, setLoadingCategories] = useState(true);
+  const [categoriesData, setCategoriesData] = useState([])
+  const [loadingCategories, setLoadingCategories] = useState(true)
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        setLoadingCategories(true);
-        const queryUrl = URLs.category;
-        const fetchingCategories = await privateService.get(queryUrl);
+        setLoadingCategories(true)
+        const queryUrl = URLs.category
+        const fetchingCategories = await privateService.get(queryUrl)
 
-        if (fetchingCategories && !fetchingCategories.success)
-          throw new Error(fetchingCategories.message);
+        if (fetchingCategories && !fetchingCategories.success) throw new Error(fetchingCategories.message)
 
-        setCategoriesData(fetchingCategories.data);
+        setCategoriesData(fetchingCategories.data)
       } catch (error) {
-        console.error("error Categories", error.message);
-        feedbackUser(
-          "top-end",
-          "error",
-          `${requestMessagesSchema.problemExistTryLater} ${requestMessagesSchema.contactAdmin}`
-        );
+        feedbackUser("center", "error", `${errorMessages.getCategories}`)
       } finally {
-        setLoadingCategories(false);
+        setLoadingCategories(false)
       }
-    };
+    }
 
-    fetchCategories();
-  }, []);
+    fetchCategories()
+  }, [])
 
-  return { loadingCategories, categoriesData };
-};
+  return { loadingCategories, categoriesData }
+}

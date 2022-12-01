@@ -1,14 +1,22 @@
-import { feedbackUser as AlertWarning } from "utilities/alerts/feedbackUser.util";
+import { feedbackUser as AlertError } from "utilities/alerts/feedbackUser.util";
 import { useEffect, useState } from "react";
-import { api } from "Services/axiosService";
+import publicService from "Services/publicApiService";
+import { URLs } from "Services/ServicesURLS";
+import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 
 export const useMembers = () => {
-  const [info, setInfo] = useState([]);
+  const [ membersData, setMembersData] = useState([]);
+  const [ loadingMembers, setLoadingMembers ] = useState(false);
 
-  useEffect(() => {
-    api('/members')
-    .then(res => { 
-      const { data } = res.data;
+  const fetchMembers = async () => {
+    try {
+      setLoadingMembers(true);
+      const fetchingMembersList = await publicService.get(URLs.member);
+
+      if (fetchingMembersList && !fetchingMembersList.success)
+        throw new Error(fetchingMembersList.message);
+
+      const  data  = fetchingMembersList.data;
       const membersList = data.map( member=> {
         return {
           id: member.id,
@@ -19,12 +27,23 @@ export const useMembers = () => {
           linkedinUrl: member.linkedinUrl,
         }
       })
-      setInfo(membersList);
-    })
-    .catch(() => {
-      AlertWarning("center", "error", "Ha ocurrido un error al buscar los miembros.");
-    });
+      setMembersData(membersList);
+      setLoadingMembers(false);
+    } catch (error) {
+      AlertError(
+        'center', 
+        'error', 
+        requestMessagesSchema.problemExistTryLater
+      );
+    } finally {
+      setLoadingMembers(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMembers();
   }, []);
 
-  return info
+
+  return { membersData, loadingMembers, fetchMembers }
 }
