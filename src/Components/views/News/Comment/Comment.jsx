@@ -44,13 +44,14 @@ export default function Comment({id}){
     return(
         <MainContainer>
         {
-            comments.map(el => {
+            comments? comments.map(el => {
                 const text = textDivider(el.text);
                 return <Card
                     key={el.id}
                     image={el.image}
                     text={text}
                 />})
+                    : <p>No Hay comentarios...</p>
         }
         { loading &&  <div style={{backgroundColor: '#028192', display: 'flex', flexDirection: 'column', padding: '0.5rem', gap: '0.5rem', borderRadius: '5px'}}>
                                         <SkeletonLoader xs={12}/>
