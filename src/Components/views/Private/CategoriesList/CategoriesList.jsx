@@ -23,7 +23,7 @@ export default function CategoriesList() {
   }
 
   return (
-    <div className="mb-5">
+    <div className="my-5">
       <div className="m-1 d-flex col col-12">
           <CustomTitle title="Categorías" height="none" />
       </div>
@@ -34,7 +34,7 @@ export default function CategoriesList() {
           to={"/" + privateRoutes.BACKOFFICE }
         />
         <BackTo
-          wrapLink="col col-10 col-sm-5 my-2"
+          wrapLink="col col-10 col-sm-5 col-md-4 my-2"
           text="Crear Categoría"
           to={'create'}
           color="success"
