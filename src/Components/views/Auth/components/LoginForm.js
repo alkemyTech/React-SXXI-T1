@@ -1,7 +1,7 @@
 import React from "react"
 import { useFormik } from "formik"
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton"
-import { LoginSchema, roleUser } from "../utilities/schemas"
+import { LoginSchema } from "../utilities/schemas"
 import InputAuth from "./InputAuth"
 import { FormAuth } from "../styled.components/Auth.styled"
 import publicService from "Services/publicApiService"
@@ -32,13 +32,17 @@ const LoginForm = ({ text }) => {
         if (fetchData && !fetchData.success) throw new Error(fetchData.message)
 
         const aditionalMsg = ` - Bienvenido ${fetchData.data.user.email}`
+
         feedbackUser("top-end", "success", fetchData.message + aditionalMsg)
 
-        dispatch(userSuccess(userAdapter(fetchData.data)))
+        const userAdapting = await userAdapter(fetchData.data)
+        dispatch(userSuccess(userAdapting))
 
         formik.resetForm()
 
-        navigate(roleUser[fetchData.data.user.role_id]["to"], { replace: true })
+        const redirect = userAdapting.role.to
+
+        navigate("/" + redirect, { replace: true })
       } catch (error) {
         console.error("error LoginForm", error.message)
         dispatch(userFailure())

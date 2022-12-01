@@ -1,4 +1,7 @@
 import { privateRoutes, routes } from "models/routes"
+import publicService from "Services/publicApiService"
+import { URLs } from "Services/ServicesURLS"
+import { requestMessagesSchema } from "utilities/requestMessagesSchema.util"
 import * as Yup from "yup"
 
 const REGEX_PASSWORD = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/
@@ -35,7 +38,22 @@ export const authSchemas = {
   },
 }
 
-export const roleUser = {
-  1: { type: "regular", to: routes.HOME },
-  2: { type: "admin", to: privateRoutes.BACKOFFICE },
+export const roleUser = async (id) => {
+  try {
+    let role = {}
+
+    const fetchRoles = await publicService.get(URLs.role + "/" + id)
+
+    if (!fetchRoles) throw new Error(requestMessagesSchema.problemExistTryLater)
+
+    if (!fetchRoles.success) return (role = { type: undefined })
+
+    const redirect = fetchRoles.data.description.toLowerCase() === "admin" ? privateRoutes.BACKOFFICE : routes.HOME
+
+    role = { id: fetchRoles.data.id, type: fetchRoles.data.description.toLowerCase(), to: redirect }
+
+    return role
+  } catch (error) {
+    console.error("error auth schemas", error.message)
+  }
 }

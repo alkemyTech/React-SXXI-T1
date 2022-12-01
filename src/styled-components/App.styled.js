@@ -20,7 +20,7 @@ const someOtherProperties = {
 
 const Hr = styled.hr`
   height: 2px !important;
-  color: ${themeColors.gray};
+  color: ${themeColors.grayBorder};
 `
 
 const fontFamily = "'Rubik', sans-serif"

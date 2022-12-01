@@ -1,7 +1,7 @@
 import { roleUser } from "../utilities/schemas"
 
-export const userAdapter = (data) => {
-  const role = roleUser[data.user.role_id]["type"] || undefined
+export const userAdapter = async (data) => {
+  const role = await roleUser(data.user.role_id)
 
   return {
     id: data.user.id,
