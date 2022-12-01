@@ -12,7 +12,8 @@ export const NewsCard = styled.div`
     flex-direction: column;
     background-color: #028192;
     border-radius: 5px;
-    @media screen and (min-width: 450px) {
+    box-shadow: 2px 2px 8px black;
+    @media screen and (min-width: 620px) {
         flex-direction: row;
         gap: 1rem;
     }
@@ -21,29 +22,15 @@ export const NewsCard = styled.div`
     }
 `;
 
-export const NewsTitle = styled.h3`
-    font-size: 1rem;
-    color: #f5f5f5;
-    @media screen and (min-width: 375px) {
-        font-size: 1.2rem;
-    }
-    @media screen and (min-width: 750px) {
-        font-size: 1.6rem;
-    }
-`;
 
 export const NewsImage = styled.img`
-    height: 150px;
     width: 100%;
-    @media screen and (min-width: 300px) {
-        height: 200px;
-    }
-    @media screen and (min-width: 400px) {
+    border-radius: 5px;
+    @media screen and (min-width: 375px) {
         height: 250px;
     }
-    @media screen and (min-width: 450px) {
-        height: 230px;
-        width: 300px;
+    @media screen and (min-width: 500px) {
+        height: 270px;
     }
     @media screen and (min-width: 910px) {
         height: 300px;
@@ -54,8 +41,8 @@ export const NewsImage = styled.img`
         width: 400px;
     }
     @media screen and (min-width: 1300px) {
-        height: 450px;
-        width: 480px;
+        height: 410px;
+        width: 570px;
     }
 `;
 
@@ -64,20 +51,36 @@ export const Container = styled.div`
     align-items: start;
     justify-content: start;
     flex-direction: column;
-    padding: 0.6rem;
-    gap: 0.8rem;
+    padding: 1rem;
+    gap: 1rem;
     width: 100%;
     @media screen and (min-width: 450px) {
         height: 100%;
     }
 `;
+export const NewsTitle = styled.h3`
+    font-size: 1.1rem;
+    color: #f5f5f5;
+    @media screen and (min-width: 375px) {
+        font-size: 1.2rem;
+    }
+    @media screen and (min-width: 800px) {
+        font-size: 1.4rem;
+    }
+`;
 
 export const Paragraph = styled.p`
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     @media screen and (min-width: 375px) {
         font-size: 1rem;
     }
-    @media screen and (min-width: 750px) {
-        font-size: 1.2rem;
+    @media screen and (min-width: 800px) {
+        font-size: 1.1rem;
     }
+`;
+
+export const ContainerP = styled.div`
+    width: 100%;
+    height: 100%;
+    overflow: auto;
 `;

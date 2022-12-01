@@ -10,17 +10,17 @@ export default function Card({image, text}) {
             <CommentImg src={image !=='string' ? image : avatarUser} alt={'imagen'}/>
             </div>
             {
-                text.text1 ?
+                text?.text1 ?
                 <>
                 {
-                    show ? <CommentText>
+                    show ?  <CommentText>
                                 {text.text1}{text.text2}
-                                <Button onClick={()=>setShow(!show)}>ver menos</Button>
-                              </CommentText>
-                            : <CommentText>
+                                <Button onClick={()=>setShow(!show)}>menos</Button>
+                            </CommentText>
+                         :  <CommentText>
                                 {text.text1}{text.points}
-                                <Button onClick={()=>setShow(!show)}>ver más</Button>
-                              </CommentText>
+                                <Button onClick={()=>setShow(!show)}>más</Button>
+                            </CommentText>
                 }
                 </>
                            :

@@ -5,37 +5,45 @@ import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { useComment } from "./hook/useComment";
 import { MainContainer } from "./CommentStyle/CommentStyle";
 import Card from "./Card/Card";
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
+import { TextLoader } from "Components/GlobalComponents/Loading/TextLoader/TextLoader";
 
 export default function Comment({id}){
-    const {comments, setComments, textDivider, handleResize} = useComment(id);
+    const {comments, pages, setComments, textDivider, handleResize, loading, setLoading, handleScroll} = useComment(id);
     
     useEffect(()=>{
-        publicService.get(URLs.comment)
+        setLoading(true);
+        publicService.get(`${URLs.comment}?limit=${pages}`)
             .then(res => {
-                const info = res.data.map(el=>{
-                    return{
-                        id: el.id,
-                        newId: el.new_id,
-                        image: el.image,
-                        text: el.text,
-                        visible: el.visible,
-                    }
-                });
-                setComments(info);
+                if(res.success){
+                    const info = res.data.map(el=>{
+                        return{
+                            id: el.id,
+                            newId: el.new_id,
+                            image: el.image,
+                            text: el.text,
+                            visible: el.visible,
+                        }
+                    });
+                    setComments(info);
+                    setLoading(false);
+                }else feedbackUser('center', 'error', 'Ha ocurrido un error');
             })
             .catch(()=>feedbackUser('center', 'error', 'Ha ocurrido un error'));
-    }, [setComments]);
+    }, [setComments, pages, setLoading]);
 
     useEffect(()=>{
         handleResize();
         window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [handleResize]);
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            window.removeEventListener("scroll", handleScroll);
+        }
+    }, [handleResize, handleScroll]);
 
     return(
         <MainContainer>
-        { comments.length>0 ?
+        {
             comments.map(el => {
                 const text = textDivider(el.text);
                 return <Card
@@ -43,8 +51,11 @@ export default function Comment({id}){
                     image={el.image}
                     text={text}
                 />})
-                :
-            <SpinnerLoad/> }
+        }
+        { loading &&  <div style={{backgroundColor: '#028192', display: 'flex', flexDirection: 'column', padding: '0.5rem', gap: '0.5rem', borderRadius: '5px'}}>
+                                        <TextLoader />
+                                        <TextLoader />
+                                    </div>}
         </MainContainer>
     )
 }
