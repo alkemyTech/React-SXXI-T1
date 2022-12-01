@@ -5,7 +5,7 @@ import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { useComment } from "./hook/useComment";
 import { MainContainer } from "./CommentStyle/CommentStyle";
 import Card from "./Card/Card";
-import { TextLoader } from "Components/GlobalComponents/Loading/TextLoader/TextLoader";
+import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader";
 
 export default function Comment({id}){
     const {comments, pages, setComments, textDivider, handleResize, loading, setLoading, handleScroll} = useComment(id);
@@ -53,8 +53,8 @@ export default function Comment({id}){
                 />})
         }
         { loading &&  <div style={{backgroundColor: '#028192', display: 'flex', flexDirection: 'column', padding: '0.5rem', gap: '0.5rem', borderRadius: '5px'}}>
-                                        <TextLoader />
-                                        <TextLoader />
+                                        <SkeletonLoader xs={12}/>
+                                        <SkeletonLoader xs={12}/>
                                     </div>}
         </MainContainer>
     )

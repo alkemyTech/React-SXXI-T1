@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { MainContent, NewsCard, NewsTitle, NewsImage, Container } from "./NewsDetailsStyle/NewsDetailsStyle";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 import ContainerResponsive from "./components/ContainerResponsive";
-import { TextLoader } from "Components/GlobalComponents/Loading/TextLoader/TextLoader";
+import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader";
 
 const NewsDetail = ({ title }) => {
   const { news, setNews, id, handleResize, textDivider, loading, setLoading } = useDetailNews();
@@ -20,7 +20,7 @@ const NewsDetail = ({ title }) => {
             if(res.success){
                 const NW = [{id: data.id,
                              name: data.name,
-                             content: 'hola como estas todo bien  y yo que me alegro lola loala asldasl jdaow daiuh sdiawh djkhas udyaw udyasjghgda ukywg dhuasgduyawg dyuags kjhdgawukyd kashgd cristi n awijdasodja añbbornos',
+                             content: data.content,
                              image: data.image}];
                 setNews(NW);
                 setLoading(false);
@@ -38,11 +38,11 @@ const NewsDetail = ({ title }) => {
   return (
     <MainContent>
       { loading ? <div style={{display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem', backgroundColor: '#028192', borderRadius: '5px'}}>
-                    <TextLoader />
-                    <TextLoader />
-                    <TextLoader />
-                    <TextLoader />
-                    <TextLoader />
+                    <SkeletonLoader xs={12}/>
+                    <SkeletonLoader xs={12}/>
+                    <SkeletonLoader xs={12}/>
+                    <SkeletonLoader xs={12}/>
+                    <SkeletonLoader xs={12}/>
                   </div>
                 : news?.map(el => {
                   const text = textDivider(el.content);
