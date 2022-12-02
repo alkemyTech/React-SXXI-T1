@@ -11,10 +11,7 @@ export const getContactData = async () => {
       method: "get",
     });
 
-    if (!data || !data.success)
-      throw new Error(
-        data ? data.message : requestMessagesSchema.problemExistTryLater
-      );
+    if (!data || !data.success) throw new Error(data ? data.message : requestMessagesSchema.problemExistTryLater);
 
     const dataAdapter = contactDataAdapter(data.data);
 

@@ -1,29 +1,29 @@
-import privateService from "Services/privateApiService"
-import { URLs } from "Services/ServicesURLS"
-import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util"
-import { feedbackUser as Alert } from "utilities/alerts/feedbackUser.util"
-import { validationSchema } from "../utilities/utilities"
-import { useFormik } from "formik"
-import { useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util"
+import privateService from "Services/privateApiService";
+import { URLs } from "Services/ServicesURLS";
+import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
+import { feedbackUser as Alert } from "utilities/alerts/feedbackUser.util";
+import { validationSchema } from "../utilities/utilities";
+import { useFormik } from "formik";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 
 export const useCategory = () => {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
-  const schema = { name: "image" }
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const schema = { name: "image" };
   const [category, setCategory] = useState({
     name: "",
     image: "",
     description: "",
-  })
-  const [imageB64, setImageB64] = useState("")
+  });
+  const [imageB64, setImageB64] = useState("");
   const initialValues = {
     name: "",
     image: "",
     description: "",
-  }
+  };
 
   const createCategory = (body) => {
     AlertWarning("¿Estas Segura/o?").then((confirm) => {
@@ -33,19 +33,19 @@ export const useCategory = () => {
           .then((res) => {
             if (res.success) {
               Alert("center", "success", "Operación éxitosa").then(() => {
-                setFieldValue("name", "")
-                setFieldValue("image", "")
-                setFieldValue("description", "")
-                setImageB64("")
-                navigate("/backoffice/categories")
-              })
-            } else Alert("center", "error", "Ha ocurrido un error")
+                setFieldValue("name", "");
+                setFieldValue("image", "");
+                setFieldValue("description", "");
+                setImageB64("");
+                navigate("/backoffice/categories");
+              });
+            } else Alert("center", "error", "Ha ocurrido un error");
           })
           .catch(() => Alert("center", "error", "Ha ocurrido un error"))
-          .finally(() => setLoading(false))
-      } else setLoading(false)
-    })
-  }
+          .finally(() => setLoading(false));
+      } else setLoading(false);
+    });
+  };
 
   const editCategory = (id, body) => {
     AlertWarning("¿Estas Segura/o?").then((confirm) => {
@@ -55,32 +55,32 @@ export const useCategory = () => {
           .then((res) => {
             if (res.success) {
               Alert("center", "success", "Operación éxitosa").then(() => {
-                setFieldValue("name", "")
-                setFieldValue("image", "")
-                setFieldValue("description", "")
-                setImageB64("")
-                navigate("/backoffice/categories")
-              })
-            } else Alert("center", "error", "Ha ocurrido un error")
+                setFieldValue("name", "");
+                setFieldValue("image", "");
+                setFieldValue("description", "");
+                setImageB64("");
+                navigate("/backoffice/categories");
+              });
+            } else Alert("center", "error", "Ha ocurrido un error");
           })
           .catch(() => Alert("center", "error", "Ha ocurrido un error"))
-          .finally(() => setLoading(false))
-      } else setLoading(false)
-    })
-  }
+          .finally(() => setLoading(false));
+      } else setLoading(false);
+    });
+  };
 
   const onSubmit = async () => {
-    const { name, description } = values
-    const body = { name, description, image: imageB64 ? imageB64 : await convertUrlToBase64(category.image) }
-    setLoading(true)
+    const { name, description } = values;
+    const body = { name, description, image: imageB64 ? imageB64 : await convertUrlToBase64(category.image) };
+    setLoading(true);
     if (id) {
-      editCategory(id, body)
+      editCategory(id, body);
     } else {
-      createCategory(body)
+      createCategory(body);
     }
-  }
-  const formik = useFormik({ initialValues, onSubmit, validationSchema })
-  const { handleChange, handleSubmit, values, errors, handleBlur, touched, setFieldValue } = formik
+  };
+  const formik = useFormik({ initialValues, onSubmit, validationSchema });
+  const { handleChange, handleSubmit, values, errors, handleBlur, touched, setFieldValue } = formik;
 
   return {
     handleChange,
@@ -98,5 +98,5 @@ export const useCategory = () => {
     schema,
     loading,
     formik,
-  }
-}
+  };
+};

@@ -1,17 +1,16 @@
-import React from "react"
-import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton"
-import { FormAuth } from "../styled.components/Auth.styled"
-import { useLogin } from "../hooks/useLogin"
-import InputAuth from "./InputAuth"
+import React from "react";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
+import { FormAuth } from "../styled.components/Auth.styled";
+import { useLogin } from "../hooks/useLogin";
+import InputAuth from "./InputAuth";
 
 const LoginForm = ({ text }) => {
-  const { formik } = useLogin()
+  const { formik } = useLogin();
 
   return (
     <FormAuth
       className="form-container col col-10 my-3 p-0 p-sm-1 d-flex flex-column justify-content-center align-items-center"
-      onSubmit={formik.handleSubmit}
-    >
+      onSubmit={formik.handleSubmit}>
       <InputAuth
         value={formik.values.email}
         type="email"
@@ -32,7 +31,7 @@ const LoginForm = ({ text }) => {
       />
       <CustomButton buttonClass="col col-8" type="submit" background="success" color="success" text={text} />
     </FormAuth>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;
