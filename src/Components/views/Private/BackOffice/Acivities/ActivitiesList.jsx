@@ -13,8 +13,7 @@ const ActivitiesList = () => {
   const navigate = useNavigate()
 
   const editHandler = (id) => {
-    console.log("Edit clicked", id)
-    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.ACTIVITIESEDIT}/:${id}`)
+    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.ACTIVITIESEDIT}/${id}`)
   }
 
   const deleteHandler = (id) => {
@@ -50,7 +49,7 @@ const ActivitiesList = () => {
     <div className="my-5">
       <CustomTitle title="Listado de Actividades" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
       <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-md-between">
-        <BackTo wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE } />
+        <BackTo wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE} />
         <BackTo
           wrapLink="col-sm-8 col-md-5 col-lg-4 mb-3"
           text="Crear Actividad"
