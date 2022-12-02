@@ -1,34 +1,42 @@
-import React from "react"
+import React from "react";
 
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
-import { CustomCard } from "Components/GlobalComponents/CustomCard/CustomCard"
-import { routes } from "models/routes"
-import { useActivities } from "./hooks/useActivities"
-import SearchActivities from "./components/SearchActivities"
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
+import { CustomCard } from "Components/GlobalComponents/CustomCard/CustomCard";
+import { routes } from "models/routes";
+import { useActivities } from "./hooks/useActivities";
+import SearchActivities from "./components/SearchActivities";
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
+import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 
 const ActivitiesList = () => {
-  const { loadingActivities, activitiesData, fetchActivities } = useActivities()
+  const { loadingActivities, activitiesData, fetchActivities } = useActivities();
 
   const searchActivitiesHandler = async (searchText) => {
-    const fetchParams = {}
+    const fetchParams = {};
 
     if (searchText.length >= 3) {
-      fetchParams["search"] = searchText
+      fetchParams["search"] = searchText;
     }
 
-    await fetchActivities(fetchParams)
-  }
+    await fetchActivities(fetchParams);
+  };
 
-  let activitiesContent
+  let activitiesContent;
   if (loadingActivities) {
-    activitiesContent = <SpinnerLoad />
+    activitiesContent = <SpinnerLoad />;
   } else {
-    activitiesContent = activitiesData.map((activity) => (
-      <div key={activity.id} className="col col-12 col-sm-6 col-lg-4 mb-3">
-        <CustomCard cardInfo={activity} to={`${routes.ACTIVITIES}/${activity.id}`} grid="oneColumn" />
-      </div>
-    ))
+    activitiesContent =
+      activitiesData.length > 0 ? (
+        activitiesData.map((activity) => (
+          <div key={activity.id} className="col col-12 col-sm-6 col-lg-4 mb-3">
+            <CustomCard cardInfo={activity} to={`${routes.ACTIVITIES}/${activity.id}`} grid="oneColumn" />
+          </div>
+        ))
+      ) : (
+        <div className="col col-12 d-flex justify-content-center">
+          <CustomAlertMessage alertClass="col col-10" text="Aún no hay actividades" />
+        </div>
+      );
   }
 
   return (
@@ -41,7 +49,7 @@ const ActivitiesList = () => {
       </div>
       <div className="d-flex flex-row flex-wrap justify-content-center">{activitiesContent}</div>
     </div>
-  )
-}
+  );
+};
 
-export default ActivitiesList
+export default ActivitiesList;

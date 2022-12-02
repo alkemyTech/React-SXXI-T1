@@ -1,6 +1,4 @@
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { LinkReactRouter } from "Components/GlobalComponents/LinkReactRouter/LinkReactRouter";
-import { routes } from "models/routes";
 import { SubtitleText } from "styled-components/App.styled";
 import { defaultDetailText } from "../utilities/detailSchema.util";
 
