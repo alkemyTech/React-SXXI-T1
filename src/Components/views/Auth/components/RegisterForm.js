@@ -1,45 +1,12 @@
 import React from "react"
-import { useFormik } from "formik"
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton"
 import InputAuth from "./InputAuth"
-import { RegisterSchema } from "../utilities/schemas"
 import { FormAuth } from "../styled.components/Auth.styled"
-import { URLs } from "Services/ServicesURLS"
-import publicService from "Services/publicApiService"
-import { feedbackUser } from "utilities/alerts/feedbackUser.util"
-import { useNavigate } from "react-router-dom"
-import { routes } from "models/routes"
+import { useRegister } from "../hooks/useRegister"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
 
-const RegisterForm = ({ text, handleLoadingAuth }) => {
-  const navigate = useNavigate()
-
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-    validationSchema: RegisterSchema,
-    onSubmit: async (values) => {
-      try {
-        handleLoadingAuth(true)
-
-        const fetchData = await publicService.post(URLs.register, values)
-
-        if (fetchData && !fetchData.success) throw new Error(fetchData.message)
-
-        formik.resetForm()
-        feedbackUser("top-end", "success", fetchData.message)
-        navigate(routes.AUTHLOGINFORM + "?auth=login", { replace: true })
-      } catch (error) {
-        console.error("error RegisterForm", error.message)
-        feedbackUser("top-end", "error", error.message)
-      } finally {
-        handleLoadingAuth(false)
-      }
-    },
-  })
-
+const RegisterForm = ({ text }) => {
+  const { formik, loadingRegister } = useRegister()
   return (
     <FormAuth
       className="form-container col col-10 my-3 p-0 p-sm-1 d-flex flex-column justify-content-center align-items-center"
@@ -83,6 +50,7 @@ const RegisterForm = ({ text, handleLoadingAuth }) => {
         onChange={formik.handleChange}
       />
       <CustomButton buttonClass="col col-8" type="submit" background="success" color="success" text={text} />
+      {loadingRegister && <SpinnerLoad />}
     </FormAuth>
   )
 }
