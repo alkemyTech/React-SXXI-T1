@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist";
-import { usersValidationSchema } from "../utilities/utilities";
-import { api } from "Services/axiosService";
+import { usersValidationSchema } from "../../utilities/utilities";
 import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
 import { feedbackUser as AlertSuccessError } from "utilities/alerts/feedbackUser.util";
+import privateService from "Services/privateApiService";
+import { URLs } from "Services/ServicesURLS";
 
 export const useUsersForm = () => {
   const { id } = useParams();
@@ -31,10 +32,10 @@ export const useUsersForm = () => {
 
   useEffect(() => {
     if (id) {
-      api
-        .get(`/users/${id}`)
+      privateService
+        .get(`${URLs.users}/${id}`)
         .then((res) => {
-          const { data } = res.data;
+          const { data } = res;
           setUser({
             name: data.name,
             email: data.email,
@@ -50,8 +51,8 @@ export const useUsersForm = () => {
   }, [id]);
 
   useEffect(() => {
-    api.get(`/roles`).then((res) => {
-      const { data } = res.data;
+    privateService.get(URLs.role).then((res) => {
+      const { data } = res;
       const roles = data.map((element) => {
         return {
           id: element.id,
@@ -78,7 +79,7 @@ export const useUsersForm = () => {
 
       if (alertWarning.isConfirmed) {
         setLoading(true);
-        const apiResponse = await api.put(`/users/${id}`, bodyEdit);
+        const apiResponse = await privateService.put(URLs.users, id, bodyEdit);
         if (apiResponse.data.success) {
           setLoading(false);
           await AlertSuccessError("center", "success", "Operación éxitosa");
@@ -92,7 +93,7 @@ export const useUsersForm = () => {
 
       if (alertWarning.isConfirmed) {
         setLoading(true);
-        const apiResponse = await api.post(`/users`, body);
+        const apiResponse = await privateService.post(URLs.users, body);
         if (apiResponse.data.success) {
           setLoading(false);
           await AlertSuccessError("center", "success", "Operación éxitosa");
