@@ -13,7 +13,6 @@ const ActivitiesList = () => {
   const navigate = useNavigate()
 
   const editHandler = (id) => {
-    console.log("Edit clicked", id)
     navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.ACTIVITIESEDIT}/${id}`)
   }
 
