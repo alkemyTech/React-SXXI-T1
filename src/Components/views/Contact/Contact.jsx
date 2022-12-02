@@ -9,6 +9,7 @@ import publicService from "Services/publicApiService"
 import { URLs } from "Services/ServicesURLS"
 import { feedbackUser } from "utilities/alerts/feedbackUser.util"
 import { useEffect, useState } from "react"
+import { requestMessagesSchema } from "utilities/requestMessagesSchema.util"
 
 export default function Contact() {
   const [ORGInfo, setORGInfo] = useState()
@@ -18,7 +19,7 @@ export default function Contact() {
       .then((res) => {
         setORGInfo(res.data)
       })
-      .catch(() => feedbackUser("center", "error", "Ha ocurrido un error"))
+      .catch(() => feedbackUser("center", "error", `${requestMessagesSchema.problemExistTryLater}`))
   }, [])
 
   return (

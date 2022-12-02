@@ -6,5 +6,5 @@ export const feedbackUser = (position, icon, title) =>
     icon: icon,
     title: title,
     showConfirmButton: false,
-    timer: 4000,
+    timer: 3000,
   })

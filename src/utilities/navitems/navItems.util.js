@@ -75,7 +75,7 @@ export const privateLinks = [
 
 const typeNavItems = {
   admin: privateLinks,
-  regular: publicAuthNavItems,
+  "Standard User": publicAuthNavItems,
   notAuth: publicNotAuthNavItems,
 }
 

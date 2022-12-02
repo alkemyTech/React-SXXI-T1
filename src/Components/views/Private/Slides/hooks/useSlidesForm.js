@@ -44,7 +44,6 @@ export const useSlidesForm = (idSlide) => {
   const handleImageToSend = (value) => setImageToSend(value)
 
   const onSubmit = async () => {
-    console.log(formik.values, { imageToSend })
     try {
       setLoadSubmitSlides(true)
 
