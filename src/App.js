@@ -27,10 +27,16 @@ import News from "Components/views/News/News"
 import CategoriesForm from "Components/views/Categories/CategoriesForm"
 import { WrapMainRoutes } from "styled-components/App.styled"
 import About from "Components/views/About/About"
-import { ROLE } from "./MOCKAUTH"
 import { Auth } from "Components/views/Auth/Auth"
+import { useSelector } from "react-redux"
 
 function App() {
+  const {
+    user: {
+      role: { type },
+    },
+  } = useSelector((store) => store.user)
+
   return (
     <>
       <GlobalStyle />
@@ -61,7 +67,7 @@ function App() {
             </Route>
           </RoutesNoMatch>
         </WrapMainRoutes>
-        {ROLE !== "admin" && <Footer />}
+        {type !== "admin" && <Footer />}
       </Animate>
     </>
   )

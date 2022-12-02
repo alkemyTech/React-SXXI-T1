@@ -1,6 +1,5 @@
 # <img src="https://img.icons8.com/color/30/null/project-management.png"/> Proyecto : Somos más
 
-
 ### Situación inicial
 
 Somos un equipo de desarrollo y nuestro líder técnico nos comparte el pedido de un cliente nuevo que está buscando nuestra ayuda. El pedido lo hizo Marita, la Directora de la ONG Somos Más, que está buscando desarrollar un sitio web para su organización.
@@ -33,7 +32,6 @@ Por último, sería de gran utilidad, que el sitio web les permita ampliar su co
 
 - María Eugenia Costa [<img src="https://img.icons8.com/material-rounded/24/null/github.png"/>](https://github.com/eugenia1984) [<img src="https://img.icons8.com/fluency/24/null/linkedin.png"/>](https://www.linkedin.com/in/mar%C3%ADaeugeniacosta/)
 
-
 ---
 
 ## <img src="https://img.icons8.com/emoji/26/null/hammer-and-pick.png"/> Tecnologías
@@ -56,7 +54,6 @@ Este proyecto fue creado con [**Create React App**](https://github.com/facebook/
 
 - [**Formik**](https://formik.org/), [**Yup**](https://www.npmjs.com/package/yup) y [**ckeditor**](https://ckeditor.com/) en los formularios.
 
-
 ---
 
 ## <img src="https://img.icons8.com/external-flaticons-flat-flat-icons/26/null/external-scrum-agile-flaticons-flat-flat-icons-3.png"/> Metodología
@@ -69,7 +66,6 @@ Realizamos cada mañana a las 9.00 la **daily** (reunión corta donde cada integ
 
 <img src="https://user-images.githubusercontent.com/72580574/203558540-1dd6783e-fa52-4109-a8cc-58a67a5a7c39.png" widht=200 alt="imagen de un sprint" />
 
-
 ---
 
 ## <img src="https://img.icons8.com/color/30/null/figma--v1.png"/> Template guia
@@ -79,7 +75,6 @@ Realizamos cada mañana a las 9.00 la **daily** (reunión corta donde cada integ
 Ellos enviaron un diseño UI representativo, imágenes y otros contenidos que sugieren que utilicemos para inspirarnos y crear la carta de presentación online de Somos Más (disponible en sección “Diseño UI”). Por supuesto recibirán más que felices otras ideas y funcionalidades que sumen a su causa y los ayude a posicionarse en el concurso.
 
 La UX (User Experience) que el equipo de diseño construyó la encontrarán haciendo [click acá](https://www.figma.com/file/6RRQfy0CZLlMrToMu9fyO7/Caso-ONG-Desktop-y-mobile-Onboardings?node-id=28%3A107&t=1yFVQHcN2CeigA1J-0).
-
 
 ---
 
@@ -105,7 +100,6 @@ La UX (User Experience) que el equipo de diseño construyó la encontrarán haci
    App.js
    App.test.js
    index.js
-   MOCKAUTH.js
    serviceWorker.js
    setupTest.js
 .enc
@@ -116,47 +110,44 @@ package.json
 README.md
 ```
 
-
 ### Algunos de los componentes globales
 
+1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones. Nos ayuda a mostrar un feedback al usuario mientras se esté cargando un recurso. Se lo puede ver en: `src > Components > GlobalComponents > Loading > SpinnerLoad`.
 
-1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones. Nos ayuda a mostrar un feedback al usuario mientras se esté cargando un recurso. Se lo puede ver en: ```src > Components > GlobalComponents > Loading > SpinnerLoad```.
+2. **Spinner (SpinnerGrow)**: utilizamos el componente `<Spinner>` de [React-Bootstrap](https://react-bootstrap.netlify.app/components/spinners/) para darle un feed back al administrador mientras se está cargando un recurso. Recibe por _props_ :
 
-2. **Spinner (SpinnerGrow)**: utilizamos el componente ```<Spinner>``` de [React-Bootstrap](https://react-bootstrap.netlify.app/components/spinners/) para darle un feed back al administrador mientras se está cargando un recurso. Recibe por *props* : 
+| Nombre        | Valor                                                                                  | Descripción                            |
+| ------------- | -------------------------------------------------------------------------------------- | -------------------------------------- |
+| **animation** | 'border' , 'grow'                                                                      | para cambiar el estilo de la animación |
+| **variant**   | 'primary' , 'secondary' , 'success' , 'danger' , 'warning' , 'info' , 'light' , 'dark' | el color que tendrá el spinner         |
 
-| Nombre | Valor | Descripción |
-| ------ | ----- | ----------- |
-| **animation** |  'border' , 'grow' | para cambiar el estilo de la animación |
-| **variant** | 'primary' , 'secondary' , 'success' , 'danger' , 'warning' , 'info' , 'light' , 'dark' | el color que tendrá el spinner |
+Se lo puede ver en: `src > Components > GlobalComponents > Loading > SpinnerGrow`.
 
-Se lo puede ver en: ```src > Components > GlobalComponents > Loading > SpinnerGrow```.
+3. **Loader para textos, botones, span (skeletonLoader)**: como **skeleton** utilizamos el componente `Placeholder` de [React-Bootrstrap](https://react-bootstrap.netlify.app/components/placeholder/#example) para hacer un efecto de carga en el texto. Ya tiene las clases **d-flex flex-wrap justify-content-center mb-2** para que este centrado. Recibe por _props_ :
 
-3. **Loader para textos, botones, span (skeletonLoader)**: como **skeleton** utilizamos el componente ```Placeholder``` de [React-Bootrstrap](https://react-bootstrap.netlify.app/components/placeholder/#example) para hacer un efecto de carga en el texto. Ya tiene las clases **d-flex flex-wrap justify-content-center mb-2** para que este centrado. Recibe por *props* : 
+| Nombre        | Valor            | Descripción                                    |
+| ------------- | ---------------- | ---------------------------------------------- |
+| **animation** | 'glow' , 'wave'  | para cambiar el estilo de la animación         |
+| **size**      | 'xs', 'sm', 'lg' | para modificar el tamaño                       |
+| **as**        | 'p'              | para que el span se muestre como otra etiqueta |
+| **xs**        | 1, 2,..., 12     | la cantidad de columnas que tendra             |
 
-| Nombre | Valor | Descripción |
-| ------ | ----- | ----------- |
-| **animation** | 'glow' , 'wave' | para cambiar el estilo de la animación | 
-| **size** | 'xs', 'sm', 'lg' | para modificar el tamaño |
-| **as**  | 'p' | para que el span se muestre como otra etiqueta |
-| **xs** | 1, 2,..., 12 | la cantidad de columnas que tendra |
+Por default se setea: `size ="lg", as = "p", animation="glow",xs=10`
 
-Por default se setea: ```size ="lg", as = "p", animation="glow",xs=10```
+Se lo puede ver en: `src > Components > GlobalComponents > Loading > TextLoader`.
 
-Se lo puede ver en: ```src > Components > GlobalComponents > Loading > TextLoader```.
+4. **Loader para botones (ButtonLoader)**: como **skeleton** utilizamos el componente `Placeholder` de [React-Bootrstrap](https://react-bootstrap.netlify.app/components/placeholder/#example). Recibe por _props_ :
 
-4. **Loader para botones (ButtonLoader)**: como **skeleton** utilizamos el componente ```Placeholder``` de [React-Bootrstrap](https://react-bootstrap.netlify.app/components/placeholder/#example). Recibe por *props* : 
+| Nombre        | Valor                                                                                 | Descripción                            |
+| ------------- | ------------------------------------------------------------------------------------- | -------------------------------------- |
+| **animation** | 'glow' , 'wave'                                                                       | para cambiar el estilo de la animación |
+| **variant**   | primary' , 'secondary' , 'success' , 'danger' , 'warning' , 'info' , 'light' , 'dark' | el color que tendrá el texto           |
+| **xs**        | 1, 2,..., 12                                                                          | la cantidad de columnas que tendra     |
+| **size**      | 'xs' , 'sm' , 'lg'                                                                    | para el tamaño                         |
 
-| Nombre | Valor | Descripción |
-| ------ | ----- | ----------- |
-| **animation** | 'glow' , 'wave' | para cambiar el estilo de la animación | 
-| **variant**  | primary' , 'secondary' , 'success' , 'danger' , 'warning' , 'info' , 'light' , 'dark'  | el color que tendrá el texto |
-| **xs** | 1, 2,..., 12 | la cantidad de columnas que tendra |
-| **size**  | 'xs' , 'sm' , 'lg' |  para el tamaño |
+Se lo puede ver en: `src > Components > GlobalComponents > Loading > ButtonLoader`.
 
-Se lo puede ver en: ```src > Components > GlobalComponents > Loading > ButtonLoader```.
-
-5. **Alerta** : para mostrar alertas de *confirmación*, *error* e *información*, utilizando la librería:  [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en: ```src > utilities > alerts``` a **feedbackUser** y **userConfirm**.
-
+5. **Alerta** : para mostrar alertas de _confirmación_, _error_ e _información_, utilizando la librería: [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en: `src > utilities > alerts` a **feedbackUser** y **userConfirm**.
 
 ---
 
@@ -164,9 +155,7 @@ Se lo puede ver en: ```src > Components > GlobalComponents > Loading > ButtonLoa
 
 Al momento tenemos una sola variable de entorno, para la conexión con la API:
 
-```REACT_APP_BASE_URL="https://ongapi.alkemy.org/api"```
-
-
+`REACT_APP_BASE_URL="https://ongapi.alkemy.org/api"`
 
 ---
 
@@ -185,4 +174,3 @@ Para correr la app en el modo development.
 Para poder verlo en el navegador, abrir: [http://localhost:3000](http://localhost:3000).
 
 ---
-

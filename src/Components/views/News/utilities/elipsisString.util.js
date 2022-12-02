@@ -1,6 +1,6 @@
-const elipsisString = (str) => {
-  if (str.length > 48) return { string: str.slice(0, 45).concat("...") };
-  return { string: str };
-};
+const elipsisString = ({ str, len = 48 }) => {
+  if (str.length > len) return { string: str.slice(0, len - 3).concat("...") }
+  return { string: str }
+}
 
-export { elipsisString };
+export { elipsisString }
