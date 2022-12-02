@@ -19,6 +19,7 @@ import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms"
 import UsersForm from "./BackOffice/Users/UsersForm"
 import UsersList from "./BackOffice/Users/UsersList"
 import CategoriesList from "./CategoriesList/CategoriesList"
+import TestimonialsList from "./TestimonialsList/TestimonialsList"
 
 const BackOfficeRoutes = () => {
   return (
@@ -47,6 +48,7 @@ const BackOfficeRoutes = () => {
       <Route path={privateRoutes.SLIDES} element={<PrivateSlides />} />
       <Route path={privateRoutes.SLIDESCREATE} element={<ActionsSlider />} />
       <Route path={privateRoutes.SLIDESEDITWITHID} element={<ActionsSlider />} />
+      <Route path={privateRoutes.TESTIMONIALS} element={<TestimonialsList />} />
       <Route path={privateRoutes.TESTIMONIALSFORM} element={<TestimonialsForm />} />
       <Route path={privateRoutes.TESTIMONIALSEDITFORM} element={<TestimonialsForm />} />
       <Route path={privateRoutes.USERS} element={<UsersList />} />

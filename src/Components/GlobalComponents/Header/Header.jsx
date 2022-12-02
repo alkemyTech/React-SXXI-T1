@@ -1,15 +1,15 @@
-import { Navbar, Offcanvas } from "react-bootstrap"
-import { CustomImage, SubtitleText } from "styled-components/App.styled"
-import logoSomosMasONG from "assets/logoSomosMasONG.svg"
-import { OffcanvasHeader } from "../NavLinkReactRouter/styled-components/OffCanvasHeader.styled"
-import { useHeader } from "./hooks/useHeader"
-import { ContainerNav, HeaderNavbar } from "./styled-components/Header.styled"
-import { HeaderNav } from "./components/HeaderNav/HeaderNav"
-import { ROLE } from "MOCKAUTH"
-import { DropDownComponent } from "./components/DropDownComponent/DropDownComponent"
+import { Navbar, Offcanvas } from "react-bootstrap";
+import { CustomImage, SubtitleText } from "styled-components/App.styled";
+import logoSomosMasONG from "assets/logoSomosMasONG.svg";
+import { OffcanvasHeader } from "../NavLinkReactRouter/styled-components/OffCanvasHeader.styled";
+import { useHeader } from "./hooks/useHeader";
+import { ContainerNav, HeaderNavbar } from "./styled-components/Header.styled";
+import { HeaderNav } from "./components/HeaderNav/HeaderNav";
+import { ROLE } from "MOCKAUTH";
+import { DropDownComponent } from "./components/DropDownComponent/DropDownComponent";
 
 const Header = ({ windowSize }) => {
-  const { closeOffCanvas, isPhone, handleCloseOffCanvas, whatNavRender, isExpand, placementOffCanvas, dropDownDirection } = useHeader()
+  const { closeOffCanvas, isPhone, handleCloseOffCanvas, whatNavRender, isExpand, placementOffCanvas, dropDownDirection } = useHeader();
 
   return (
     <HeaderNavbar className="header-nav mb-2" bg="light" expand={isExpand}>
@@ -27,7 +27,7 @@ const Header = ({ windowSize }) => {
         </Navbar.Offcanvas>
       </ContainerNav>
     </HeaderNavbar>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
