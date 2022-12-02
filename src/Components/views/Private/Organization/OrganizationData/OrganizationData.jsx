@@ -2,13 +2,17 @@ import {
   Container,
   Image,
   ContainerEditInf,
-  EditButton,
+  Paragraph,
   ContainerImage,
+  Container1
 } from "./OrganizationDataStiled/OrganizationData.Styled";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { api } from "Services/axiosService";
-import Swal from "sweetalert2";
+import publicService from "Services/publicApiService";
+import { URLs } from "Services/ServicesURLS";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 
 export default function OrganizationData() {
   const navigate = useNavigate();
@@ -17,56 +21,49 @@ export default function OrganizationData() {
     image: "",
     shortDescription: "",
   });
-  const urlNavigate = "/backoffice/organization/edit";
 
   useEffect(() => {
-    api
-      .get("/organization")
-      .then((res) => {
-        const { data } = res.data;
+    const req = async () => {
+      const info = await publicService.get(URLs.organization);
+      if(info.success){
+        const {data} = info;
         setOrganizationData({
           name: data.name,
           image: data.logo,
-          shortDescription: data.short_description,
+          shortDescription: data.short_description
         });
-      })
-      .catch(() => {
-        Swal.fire({
-          title: "Hubo un error",
-          icon: "error",
-          confirmButtonColor: "#0038FF",
-          confirmButtonText: "Aceptar",
-        }).then(() => {
-          navigate("/backoffice");
-        });
-      });
-  }, [navigate]);
+      }else{
+        feedbackUser('center', 'error', 'Ha ocurrido un error');
+      }
+    }
+    req();
+  }, []);
 
-  function handleClick() {
-    navigate(urlNavigate);
+  function toEdit() {
+    navigate('edit');
   }
 
   return (
     <Container>
       <ContainerEditInf>
         <h3>Datos de la Organización:</h3>
-        <EditButton
+        <CustomButton
+          buttonClass="col-12 col-sm-4 col-lg-3"
+          text='Editar Información'
           background="success"
           color="success"
-          type="button"
-          onClick={handleClick}
-        >
-          Editar Información
-        </EditButton>
+          onClick={toEdit}/>
       </ContainerEditInf>
-
-      <h1 style={{ textAlign: "center" }}>{organizationData.name}</h1>
+      <Container1>
+      <CustomTitle wrapTextClass="text-center" title={organizationData.name} height='none'/>
+      
       <ContainerImage>
-        <Image src={organizationData.image} alt={organizationData.name} />
+        <Image src={organizationData.image} alt={organizationData.name ? organizationData.name : 'Somos Más logo'} />
       </ContainerImage>
-      <div
+      <Paragraph
         dangerouslySetInnerHTML={{ __html: organizationData.shortDescription }}
       />
+      </Container1>
     </Container>
   );
 }

@@ -2,39 +2,28 @@ import { useAbout } from "./hook/useAbout";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { MainContainer, CustomText } from "./about.styled";
 import Members from "../Members/Detail/Members";
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
-
+import { useSkeleton } from "hooks/useSkeleton";
 
 const About = () => {
-  const info = useAbout();
+  const { loadingAbout, aboutData } = useAbout();
+  const { titleSkeleton, textSkeleton } = useSkeleton();
 
   return (
     <MainContainer>
       <div>
-        <CustomTitle
-          title="Nosotros"
-          wrapTitleClass="d-block h-auto"
-          justify="center"   
-        />
+        <CustomTitle title="Nosotros" wrapTitleClass="d-block h-auto" justify="center" />
       </div>
-      <CustomText className="mb-5">
-        {info.longDescription !== "" ?
-          <p>{info.longDescription}</p>
-          :
-          <SpinnerLoad />
-        }
-      </CustomText>
+      <CustomText className="mb-5">{loadingAbout ? <>{textSkeleton}</> : <p>{aboutData.longDescription}</p>}</CustomText>
       <div>
-        <CustomTitle
-          title="Lista de miembros"
-          justify="center"   
-          wrapTextClass="text-center" 
-          wrapTitleClass="h-auto" 
-        />
+        {aboutData.title !== "" ? (
+          <CustomTitle title="Lista de miembros" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
+        ) : (
+          <>{titleSkeleton}</>
+        )}
       </div>
-      <Members/>
+      <Members />
     </MainContainer>
-  )
-}
+  );
+};
 
 export default About;

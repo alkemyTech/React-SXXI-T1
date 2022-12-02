@@ -1,123 +1,114 @@
-import { useEffect, useState } from "react"
-import { useFormik } from "formik"
-import { useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom/dist'
-import {  usersValidationSchema } from "../utilities/utilities"
-import { api } from 'Services/axiosService'
-import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util"
-import { feedbackUser as AlertSuccessError } from "utilities/alerts/feedbackUser.util"
-import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util"
+import { useEffect, useState } from "react";
+import { useFormik } from "formik";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom/dist";
+import { usersValidationSchema } from "../utilities/utilities";
+import { api } from "Services/axiosService";
+import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
+import { feedbackUser as AlertSuccessError } from "utilities/alerts/feedbackUser.util";
 
 export const useUsersForm = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [ imageBase64, setImageBase64 ] = useState("");
-  const [ roles, setRoles ] = useState([]);
-  const [ loading, setLoading ] = useState(false);
-  const [ user, setUser ] = useState({
-    name: '',
-    email: '',
-    role_id: '',
-    profile_image: '',
-    password: ''
+  const [imageBase64, setImageBase64] = useState("");
+  const [roles, setRoles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    role_id: "",
+    profile_image: "",
+    password: "",
   });
 
   const initialValues = {
-    name: '',
-    email: '',
-    role_id: '',
-    profile_image: '',
-    password: ''
+    name: "",
+    email: "",
+    role_id: "",
+    profile_image: "",
+    password: "",
   };
 
-  useEffect(()=>{
-      if(id) {
-        api.get(`/users/${id}`)
-        .then(res => {
+  useEffect(() => {
+    if (id) {
+      api
+        .get(`/users/${id}`)
+        .then((res) => {
           const { data } = res.data;
           setUser({
             name: data.name,
             email: data.email,
             role_id: data.role_id,
             profile_image: data.profile_image,
-            password: data.password
+            password: data.password,
           });
         })
         .catch(() => {
-          AlertSuccessError('center', 'error', 'Ha ocurrido un error');
-        });    
-      }
-  },[id]);
+          AlertSuccessError("center", "error", "Ha ocurrido un error");
+        });
+    }
+  }, [id]);
 
   useEffect(() => {
-    api.get(`/roles`)
-    .then(res => {
+    api.get(`/roles`).then((res) => {
       const { data } = res.data;
-      const roles = data.map(element => {
+      const roles = data.map((element) => {
         return {
           id: element.id,
-          name: element.name
-        }
-      })
-      setRoles( roles);
-    })
+          name: element.name,
+        };
+      });
+      setRoles(roles);
+    });
   }, []);
 
-  const backURL =  '/backoffice';
+  const backURL = "/backoffice";
 
-  const onSubmit = async  () => {
+  const onSubmit = async () => {
     const { name, email, role_id, password } = values;
     const body = { name, email, role_id, password, image: imageBase64 };
 
-    if(id) {
-      const bodyEdit = { 
-        ...user, 
-        ...body, 
-        image: imageBase64 || await convertUrlToBase64(user.image)
-      }
-      const alertWarning = await AlertWarning('¿Estas segura/o de enviarlo?');
+    if (id) {
+      const bodyEdit = {
+        ...user,
+        ...body,
+        image: imageBase64 || (await user.image),
+      };
+      const alertWarning = await AlertWarning("¿Estas segura/o de enviarlo?");
 
-      if(alertWarning.isConfirmed) {
+      if (alertWarning.isConfirmed) {
         setLoading(true);
-        const apiResponse = await api.put(`/users/${id}`, bodyEdit)
-        if(apiResponse.data.success) {
-            setLoading(false);
-            await AlertSuccessError('center', 'success', 'Operación éxitosa');
-            navigate(backURL);
+        const apiResponse = await api.put(`/users/${id}`, bodyEdit);
+        if (apiResponse.data.success) {
+          setLoading(false);
+          await AlertSuccessError("center", "success", "Operación éxitosa");
+          navigate(backURL);
         } else {
-            await AlertSuccessError('center', 'success', 'Operación éxitosa');
+          await AlertSuccessError("center", "success", "Operación éxitosa");
         }
       }
     } else {
-      const alertWarning = await  AlertWarning('¿Estas segura/o de enviarlo?');
+      const alertWarning = await AlertWarning("¿Estas segura/o de enviarlo?");
 
-      if(alertWarning.isConfirmed) {
+      if (alertWarning.isConfirmed) {
         setLoading(true);
-        const apiResponse = await api.post(`/users`, body)
-        if(apiResponse.data.success) {
+        const apiResponse = await api.post(`/users`, body);
+        if (apiResponse.data.success) {
           setLoading(false);
-          await AlertSuccessError('center', 'success', 'Operación éxitosa');
-          navigate(backURL)
+          await AlertSuccessError("center", "success", "Operación éxitosa");
+          navigate(backURL);
         } else {
-          await AlertSuccessError('center', 'success', 'Operación éxitosa'); 
+          await AlertSuccessError("center", "success", "Operación éxitosa");
         }
       }
     }
-  }
+  };
 
   const validationSchema = usersValidationSchema(id);
-  
-  const formik = useFormik({initialValues, onSubmit, validationSchema});
 
-  const {
-    values, 
-    errors, 
-    handleBlur, 
-    handleSubmit, 
-    handleChange, 
-    touched,
-    setFieldValue
-  } = formik;
+  const formik = useFormik({ initialValues, onSubmit, validationSchema });
+
+  const { values, errors, handleBlur, handleSubmit, handleChange, touched, setFieldValue } = formik;
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
@@ -131,22 +122,21 @@ export const useUsersForm = () => {
 
   const cancel = () => {
     navigate(backURL);
-  }
+  };
 
   return {
-    values, 
-    errors, 
-    handleBlur, 
-    handleSubmit, 
-    handleChange, 
-    touched, 
-    user, 
-    loading, 
-    formik, 
+    values,
+    errors,
+    handleBlur,
+    handleSubmit,
+    handleChange,
+    touched,
+    user,
+    loading,
+    formik,
     cancel,
     setImageBase64,
     setFieldValue,
-    roles
-  } 
-
-}
+    roles,
+  };
+};

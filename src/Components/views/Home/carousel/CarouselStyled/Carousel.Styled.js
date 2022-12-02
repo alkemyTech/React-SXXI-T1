@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SlideImage = styled.img`
-    height: 180px;
+    height: ${ ({hdef}) => hdef ? hdef : '150px'};
     object-fit: cover;
     @media screen and (min-width: 375px){
         height: ${({hxs})=> hxs ? hxs : '180px'};
@@ -22,11 +22,15 @@ export const SlideImage = styled.img`
 `;
 
 export const SlideTitle = styled.h4`
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     background-color: #bdbdbd7c;
+    padding: 0.2rem;
     color: black;
     border-radius: 5px;
     @media screen and (min-width: 375px) {
+        font-size: 0.9rem;
+    }
+    @media screen and (min-width: 576px) {
         font-size: 1rem;
     }
     @media screen and (min-width: 920px) {
@@ -38,11 +42,15 @@ export const SlideTitle = styled.h4`
 `;
 
 export const SlideDescription = styled.p`
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     background-color: #bdbdbd7c;
+    padding: 0.2rem;
     color: black;
     border-radius: 5px;
     @media screen and (min-width: 375px) {
+        font-size: 0.8rem;
+    }
+    @media screen and (min-width: 576px) {
         font-size: 0.9rem;
     }
     @media screen and (min-width: 920px) {

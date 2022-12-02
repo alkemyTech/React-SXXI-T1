@@ -4,14 +4,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { useState } from "react";
 import { SpanFormError } from "../SpanFormError/SpanFormError";
 
-export const FormCKEditorField = ({
-  setFieldValue,
-  errors,
-  touched,
-  name,
-  placeholder,
-  data = "",
-}) => {
+export const FormCKEditorField = ({ setFieldValue, errors, touched, name, placeholder, data = "" }) => {
   const [stateCKEditor, setStateCKEditor] = useState({
     content: "",
   });

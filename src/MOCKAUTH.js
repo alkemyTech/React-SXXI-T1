@@ -1,2 +1,3 @@
 export const ROLE = "admin";
-//export const ROLE = undefined;
+// export const ROLE = "regular"
+// export const ROLE = undefined

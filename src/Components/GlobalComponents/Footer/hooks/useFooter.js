@@ -20,11 +20,7 @@ export const useFooter = () => {
         setContactData(fetchData);
       } catch (error) {
         console.error("error Footer - fetchContactData", error.message);
-        feedbackUser(
-          "top-end",
-          "error",
-          requestMessagesSchema.problemExistTryLater
-        );
+        feedbackUser("top-end", "error", requestMessagesSchema.problemExistTryLater);
       } finally {
         setLoadingData(false);
       }

@@ -4,6 +4,8 @@ import { routes } from "models/routes"
 import { useState, useEffect } from "react"
 import { Navigate, Outlet } from "react-router-dom"
 
+const checkAuthorization = (role) => (role === "admin" ? <Outlet /> : <Navigate replace to={routes.HOME} />)
+
 const AuthGuard = () => {
   console.log("auth guard")
   const [authLoading, setAuthLoading] = useState(true)
@@ -21,7 +23,7 @@ const AuthGuard = () => {
       </div>
     )
 
-  return ROLE === "admin" ? <Outlet /> : <Navigate replace to={routes.HOME} />
+  return ROLE ? checkAuthorization(ROLE) : <Navigate replace to={routes.AUTHLOGINFORM} />
 }
 
 export default AuthGuard

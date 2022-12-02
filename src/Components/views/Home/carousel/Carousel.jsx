@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
 import { SlideTitle, SlideDescription, SlideImage } from './CarouselStyled/Carousel.Styled';
-import { api } from "Services/axiosService";
-import Swal from "sweetalert2";
+import { feedbackUser as AlertError } from "utilities/alerts/feedbackUser.util";
+import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
+import publicService from "Services/publicApiService";
+import { useSkeleton } from "hooks/useSkeleton";
 
-export default function CarouselComponent({endPoint, content, hxl, hlg, hmd, hsm, hxs}){
+export default function CarouselComponent({endPoint, content, hdef, hxl, hlg, hmd, hsm, hxs}){
     const [slides, setSlides] = useState([]);
+    const [ loading, setLoading ] = useState(false)
+    const { textSkeleton } = useSkeleton()
     
     useEffect(() => {
-        api(`/${endPoint}`).then(res => {
-            const { data } = res.data;
+        setLoading(true)
+        publicService.get(endPoint).then(res => {
+            const { data } = res;
             const slidesData = data.map(el => {
                 return { id: el.id,
                          title: el.name,
@@ -17,19 +22,20 @@ export default function CarouselComponent({endPoint, content, hxl, hlg, hmd, hsm
                          description: content === 'description' ? el.description : el.content};
             });
             setSlides(slidesData);
+            setLoading(false);
         })
         .catch(()=>{
-            Swal.fire({
-                title: 'Hubo un error',
-                icon: 'error',
-                confirmButtonColor: '#0038FF',
-                confirmButtonText: 'Aceptar',
-            })
+            AlertError('center', 'error', requestMessagesSchema.problemExistTryLater);
         });
     }, [endPoint, content]);
 
     return(
-        <Carousel variant="dark" className="shadow rounded">
+        <>
+        { 
+            loading ? 
+            <>{ textSkeleton} </>
+            :
+            <Carousel variant="dark" className="shadow rounded">
             {
                 slides?.slice(0, 5).map( slide => {
                     let sliceDes = slide.description;
@@ -37,7 +43,7 @@ export default function CarouselComponent({endPoint, content, hxl, hlg, hmd, hsm
                         sliceDes = sliceDes.slice(0,48).concat('...');
                     }
                     return <Carousel.Item key={slide.id}>
-                                <SlideImage
+                                <SlideImage hdef={hdef}
                                     hxl={hxl} hlg={hlg} hmd={hmd} hsm={hsm} hxs={hxs}
                                     className="d-block w-100 rounded"
                                     src={slide.image}
@@ -50,5 +56,8 @@ export default function CarouselComponent({endPoint, content, hxl, hlg, hmd, hsm
                 })
             }
         </Carousel>
+        }
+        </>
+        
     )
 }

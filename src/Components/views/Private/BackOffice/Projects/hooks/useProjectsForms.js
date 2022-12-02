@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom/dist';
 import { useEffect, useState } from 'react';
 import {  projectsValidationSchema } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
-import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 import Alert from "../../components/Alert";
 
 export const useProjectsForms = () => {
@@ -54,7 +53,7 @@ export const useProjectsForms = () => {
             const bodyEdit = { 
                 ...project, 
                 ...body, 
-                image: imageBase64 || await convertUrlToBase64(project.image)
+                image: imageBase64 || await (project.image)
             }
             const alertWarning = await Alert({ icon:'warning', 
                     title:'¿Estas segura/o?', 

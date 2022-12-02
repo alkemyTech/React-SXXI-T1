@@ -1,25 +1,35 @@
-import Alert from "Components/views/Private/BackOffice/components/Alert";
+import { feedbackUser as AlertError } from "utilities/alerts/feedbackUser.util";
 import { useEffect, useState } from "react";
-import { api } from "Services/axiosService";
-
+import { URLs } from "Services/ServicesURLS";
+import publicService from "Services/publicApiService";
+import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 
 export const useAbout = () => {
-  const [info, setInfo] = useState({
-    longDescription: ''
+  const [aboutData, setAboutData] = useState({
+    longDescription: "",
   });
 
-  useEffect(() => {
-    api('/organization')
-    .then(res => {
-      const {data} = res.data;
-      setInfo({
-        longDescription: data.long_description,
+  const [loadingAbout, setLoadingAbout] = useState(true);
+
+  const fetchAbout = async () => {
+    try {
+      setLoadingAbout(true);
+      const fetchingAbout = await publicService.get(URLs.organization);
+
+      if (fetchingAbout && !fetchingAbout.success) throw new Error(fetchingAbout.message);
+      setAboutData({
+        longDescription: fetchingAbout.data.long_description,
       });
-    })
-    .catch(() => {
-      Alert({ icon: 'error', title: 'Ha ocurrido un error'});
-    });
+    } catch (error) {
+      AlertError("center", "error", requestMessagesSchema.problemExistTryLater);
+    } finally {
+      setLoadingAbout(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAbout();
   }, []);
 
-  return info
-}
+  return { loadingAbout, aboutData, fetchAbout };
+};
