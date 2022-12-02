@@ -1,14 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { getLocalStorage, persistLocalStorage, clearLocalStorage } from "utilities/localStorage.util"
+import { createSlice } from "@reduxjs/toolkit";
+import { getLocalStorage, persistLocalStorage, clearLocalStorage } from "utilities/localStorage.util";
 
 const initialUserState = {
   loadingUser: false,
   user: { role: { type: undefined } },
   ut: undefined,
   error: false,
-}
+};
 
-const userPersist = getLocalStorage("USERPERSIST")
+const userPersist = getLocalStorage("USERPERSIST");
 
 export const userSlice = createSlice({
   name: "user",
@@ -19,11 +19,17 @@ export const userSlice = createSlice({
 
     userSuccess: (state, action) => {
       const dataToPersist = {
-        user: { id: action.payload.id, email: action.payload.email, role: action.payload.role, name: action.payload.name },
+        user: {
+          id: action.payload.id,
+          email: action.payload.email,
+          role: action.payload.role,
+          name: action.payload.name,
+          image: action.payload.image,
+        },
         ut: action.payload.userToken,
-      }
+      };
 
-      persistLocalStorage("USERPERSIST", dataToPersist)
+      persistLocalStorage("USERPERSIST", dataToPersist);
 
       return {
         ...initialUserState,
@@ -32,9 +38,10 @@ export const userSlice = createSlice({
           email: action.payload.email,
           role: action.payload.role,
           name: action.payload.name,
+          image: action.payload.image,
         },
         ut: action.payload.token,
-      }
+      };
     },
 
     userFailure: (state, action) => ({ ...state, loadingUser: false, error: true }),
@@ -42,12 +49,12 @@ export const userSlice = createSlice({
     userResetNotification: (state, action) => ({ ...state, loadingUser: false, error: false }),
 
     userReset: () => {
-      clearLocalStorage("USERPERSIST")
-      return initialUserState
+      clearLocalStorage("USERPERSIST");
+      return initialUserState;
     },
   },
-})
+});
 
-export const { userRequest, userSuccess, userFailure, userReset, userResetNotification } = userSlice.actions
+export const { userRequest, userSuccess, userFailure, userReset, userResetNotification } = userSlice.actions;
 
-export default userSlice.reducer
+export default userSlice.reducer;
