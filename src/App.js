@@ -8,12 +8,10 @@ import { textForDonation } from "Components/views/Donations/utilities/donationSc
 import { RoutesNoMatch } from "./utilities/routesNoMatch.util"
 import Home from "./Components/views/Home/index"
 import ActivitiesForm from "./Components/views/Activities/ActivitiesForm"
-import LoginForm from "./Components/views/Auth/LoginForm"
 import UserForm from "./Components/views/Users/UsersForm"
 import MembersForm from "./Components/views/Members/MembersForm"
 import NewsDetail from "./Components/views/News/Detail/NewsDetail"
 import ProjectsForm from "./Components/views/Projects/ProjectsForm"
-import RegisterForm from "./Components/views/Auth/RegisterForm"
 import SchoolCampaign from "./Components/Campaigns/School/SchoolCampaign"
 import ToysCampaign from "./Components/Campaigns/Toys/ToysCampaign"
 import Footer from "./Components/GlobalComponents/Footer/Footer"
@@ -29,9 +27,16 @@ import News from "Components/views/News/News"
 import CategoriesForm from "Components/views/Categories/CategoriesForm"
 import { WrapMainRoutes } from "styled-components/App.styled"
 import About from "Components/views/About/About"
-import { ROLE } from "./MOCKAUTH"
+import { Auth } from "Components/views/Auth/Auth"
+import { useSelector } from "react-redux"
 
 function App() {
+  const {
+    user: {
+      role: { type },
+    },
+  } = useSelector((store) => store.user)
+
   return (
     <>
       <GlobalStyle />
@@ -43,8 +48,8 @@ function App() {
             <Route path={routes.ABOUT} exact element={<About />} />
             <Route path={routes.ACTIVITIES} exact element={<ActivitiesList />} />
             <Route path={routes.ACTIVITIESFORM} element={<ActivitiesForm />} />
-            <Route path={routes.AUTHLOGINFORM} element={<LoginForm />} />
-            <Route path={routes.AUTHREGISTERFORM} element={<RegisterForm />} />
+            <Route path={routes.AUTHLOGINFORM} element={<Auth />} />
+            <Route path={routes.AUTHREGISTERFORM} element={<Auth />} />
             <Route path={routes.ACTIVITIESDETAIL} element={<Detail />} />
             <Route path={routes.CATEGORIESFORM} element={<CategoriesForm />} />
             <Route path={routes.NEWS} element={<News />} />
@@ -62,7 +67,7 @@ function App() {
             </Route>
           </RoutesNoMatch>
         </WrapMainRoutes>
-        {ROLE !== "admin" && <Footer />}
+        {type !== "admin" && <Footer />}
       </Animate>
     </>
   )

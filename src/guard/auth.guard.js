@@ -1,27 +1,12 @@
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
-import { ROLE } from "MOCKAUTH"
-import { routes } from "models/routes"
-import { useState, useEffect } from "react"
-import { Navigate, Outlet } from "react-router-dom"
+import { routes } from "models/routes";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
+
+const checkAuthorization = (role) => (role === "admin" ? <Outlet /> : <Navigate replace to={routes.HOME} />);
 
 const AuthGuard = () => {
-  console.log("auth guard")
-  const [authLoading, setAuthLoading] = useState(true)
+  const { user } = useSelector((store) => store.user);
+  return user.role.type ? checkAuthorization(user.role.type) : <Navigate replace to={routes.AUTHLOGINFORM + "?auth=login"} />;
+};
 
-  useEffect(() => {
-    setTimeout(() => {
-      setAuthLoading(false)
-    }, 500)
-  }, [])
-
-  if (authLoading)
-    return (
-      <div>
-        <SpinnerLoad />
-      </div>
-    )
-
-  return ROLE === "admin" ? <Outlet /> : <Navigate replace to={routes.HOME} />
-}
-
-export default AuthGuard
+export default AuthGuard;

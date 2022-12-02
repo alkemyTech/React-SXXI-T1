@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom/dist';
 import {  usersValidationSchema } from "../utilities/utilities";
 import { api } from 'Services/axiosService';
 import Alert from "../../components/Alert";
-import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 
 export const useUsersForm = () => {
   const {id} = useParams();
@@ -72,7 +71,7 @@ export const useUsersForm = () => {
       const bodyEdit = { 
         ...user, 
         ...body, 
-        image: imageBase64 || await convertUrlToBase64(user.image)
+        image: imageBase64 || await (user.image)
       }
       const alertWarning = await Alert({ icon:'warning', 
             title:'¿Estas segura/o de enviarlo?', 

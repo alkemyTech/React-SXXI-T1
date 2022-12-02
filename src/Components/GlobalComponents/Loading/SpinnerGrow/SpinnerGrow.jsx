@@ -1,6 +1,6 @@
 import { Spinner } from "react-bootstrap";
 
-export const SpinnerGrow = ({ animation , variant }) => {
+export const SpinnerGrow = ({ animation="grow" , variant="secondary" }) => {
   return (
     <>
       <Spinner animation={animation} variant={variant} role="status"/>
