@@ -4,8 +4,7 @@ import { requestMessagesSchema } from "utilities/requestMessagesSchema.util"
 // a futuro agregar Bearer.  headers: {'Authorization': 'Bearer '+ token}
 const privateApi = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
-  timeout: 5000,
-})
+});
 
 const get = async (restURL) => {
   try {

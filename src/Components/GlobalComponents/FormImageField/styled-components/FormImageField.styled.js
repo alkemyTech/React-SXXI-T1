@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { SubtitleText } from "styled-components/App.styled"
-import { themeColors } from "styled-components/Theme.styled"
+import styled from "styled-components";
+import { SubtitleText } from "styled-components/App.styled";
+import { themeColors } from "styled-components/Theme.styled";
 
 const BoxInputFile = styled.div`
   border: 2px dashed ${themeColors.grayBorder};
@@ -9,7 +9,7 @@ const BoxInputFile = styled.div`
   width: 250px;
   height: 250px;
   cursor: pointer;
-`
+`;
 
 const HiddenInputFile = styled.input`
   position: absolute;
@@ -18,7 +18,7 @@ const HiddenInputFile = styled.input`
   margin: 0;
   padding: 0;
   bottom: 6px;
-`
+`;
 const WrapInputFile = styled.div`
   width: 250px;
   height: 250px;
@@ -46,7 +46,7 @@ const WrapInputFile = styled.div`
       top: 35%;
     }
   }
-`
+`;
 
 const WrapAddImageHover = styled.div`
   display: flex;
@@ -58,7 +58,7 @@ const WrapAddImageHover = styled.div`
   position: absolute;
   top: 100%;
   transition: top 0.3s linear;
-`
+`;
 
 const CameraIcon = styled.div`
   display: flex;
@@ -67,13 +67,13 @@ const CameraIcon = styled.div`
   height: 70px;
   min-height: 79px;
   width: 73px;
-`
+`;
 
 const AddImageText = styled(SubtitleText)`
   padding: 0 22px 0 10px;
   border-radius: 8px;
   backdrop-filter: blur(10px);
   color: ${themeColors.white}!important;
-`
+`;
 
-export { BoxInputFile, HiddenInputFile, WrapInputFile, WrapAddImageHover, CameraIcon, AddImageText }
+export { BoxInputFile, HiddenInputFile, WrapInputFile, WrapAddImageHover, CameraIcon, AddImageText };

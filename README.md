@@ -131,13 +131,16 @@ README.md
 
 Se lo puede ver en: ```src > Components > GlobalComponents > Loading > SpinnerGrow```.
 
-3. **Loader para textos (TextLoader)**: como **skeleton** utilizamos el componente ```Placeholder``` de [React-Bootrstrap](https://react-bootstrap.netlify.app/components/placeholder/#example) para hacer un efecto de carga en el texto. Ya tiene las clases **d-flex flex-wrap justify-content-center** para que este centrado. Recibe por *props* : 
+3. **Loader para textos, botones, span (skeletonLoader)**: como **skeleton** utilizamos el componente ```Placeholder``` de [React-Bootrstrap](https://react-bootstrap.netlify.app/components/placeholder/#example) para hacer un efecto de carga en el texto. Ya tiene las clases **d-flex flex-wrap justify-content-center mb-2** para que este centrado. Recibe por *props* : 
 
 | Nombre | Valor | Descripción |
 | ------ | ----- | ----------- |
 | **animation** | 'glow' , 'wave' | para cambiar el estilo de la animación | 
-| **variant**  | primary' , 'secondary' , 'success' , 'danger' , 'warning' , 'info' , 'light' , 'dark'  | el color que tendrá el texto |
+| **size** | 'xs', 'sm', 'lg' | para modificar el tamaño |
+| **as**  | 'p' | para que el span se muestre como otra etiqueta |
 | **xs** | 1, 2,..., 12 | la cantidad de columnas que tendra |
+
+Por default se setea: ```size ="lg", as = "p", animation="glow",xs=10```
 
 Se lo puede ver en: ```src > Components > GlobalComponents > Loading > TextLoader```.
 
@@ -153,6 +156,16 @@ Se lo puede ver en: ```src > Components > GlobalComponents > Loading > TextLoade
 Se lo puede ver en: ```src > Components > GlobalComponents > Loading > ButtonLoader```.
 
 5. **Alerta** : para mostrar alertas de *confirmación*, *error* e *información*, utilizando la librería:  [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en: ```src > utilities > alerts``` a **feedbackUser** y **userConfirm**.
+
+
+---
+
+## Variables de entorno
+
+Al momento tenemos una sola variable de entorno, para la conexión con la API:
+
+```REACT_APP_BASE_URL="https://ongapi.alkemy.org/api"```
+
 
 
 ---

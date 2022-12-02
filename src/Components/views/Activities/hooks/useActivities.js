@@ -17,17 +17,13 @@ export const useActivities = () => {
       const queryUrl = `${URLs.activity}?${queryParams}`;
       const fetchingActivities = await publicService.get(queryUrl);
 
-      if (fetchingActivities && !fetchingActivities.success)
+      if (fetchingActivities && !fetchingActivities.success) {
         throw new Error(fetchingActivities.message);
+      }
 
       setActivitiesData(fetchingActivities.data);
     } catch (error) {
-      console.error("error Activities", error.message);
-      feedbackUser(
-        "top-end",
-        "error",
-        `${requestMessagesSchema.problemExistTryLater} ${requestMessagesSchema.contactAdmin}`
-      );
+      feedbackUser("center", "error", `${requestMessagesSchema.problemExistTryLater}`);
     } finally {
       setLoadingActivities(false);
     }

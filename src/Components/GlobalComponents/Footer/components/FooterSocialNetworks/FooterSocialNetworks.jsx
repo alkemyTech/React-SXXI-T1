@@ -1,9 +1,4 @@
-import {
-  facebookIcon,
-  instagramIcon,
-  linkedinIcon,
-  twitterIcon,
-} from "assets/images";
+import { facebookIcon, instagramIcon, linkedinIcon, twitterIcon } from "assets/images";
 import { RedirectToSocialNetwork } from "../RedirectToSocialNetwork";
 
 export const FooterSocialNetworks = ({ contactData }) => {

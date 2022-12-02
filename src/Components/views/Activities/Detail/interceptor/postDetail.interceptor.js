@@ -12,11 +12,7 @@ const MOCKDATA = {
       porta augue. Lectus morbi tellus odio eu.
     </p>
   `,
-  responsibles: [
-    { name: "Responsable 1" },
-    { name: "Responsable 2" },
-    { name: "Responsable 3" },
-  ],
+  responsibles: [{ name: "Responsable 1" }, { name: "Responsable 2" }, { name: "Responsable 3" }],
 };
 
 const MOCKCALLAPI = (delay, value) => {
