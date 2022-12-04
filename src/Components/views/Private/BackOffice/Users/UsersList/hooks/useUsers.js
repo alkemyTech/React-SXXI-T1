@@ -3,19 +3,24 @@ import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 import { URLs } from "Services/ServicesURLS";
 import privateService from "Services/privateApiService";
-import { encodeQueryParams } from "utilities/queryParams";
 
 export const useUsers = () => {
   const [usersData, setUsersData] = useState([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [roles, setRoles] = useState([]);
-  const [rol, setRol] = useState();
+  const [rol, setRol] = useState("");
+  const [searchUser, setSearchUser] = useState("");
 
-  const fetchUsers = async (params = {}) => {
+  const fetchUsers = async (search = "", role = "") => {
     try {
       setLoadingUsers(true);
-      const queryParams = encodeQueryParams(params);
-      const queryUrl = `${URLs.users}?${rol ? `role=${rol}` : queryParams}`;
+      const queryParamsSearch = search !== "" ? "search=" + search : "";
+      const queryParamsRol = role !== "" ? "role=" + role : "";
+      let queryParams = "";
+      if (queryParamsSearch !== "" && queryParamsRol !== "") queryParams = queryParamsSearch + "&" + queryParamsRol;
+      if (queryParamsSearch !== "" && queryParamsRol === "") queryParams = queryParamsSearch;
+      if (queryParamsSearch === "" && queryParamsRol !== "") queryParams = queryParamsRol;
+      const queryUrl = `${URLs.users}?${queryParams}`;
       const fetchingUsers = await privateService.get(queryUrl);
 
       if (fetchingUsers && !fetchingUsers.success) throw new Error(fetchingUsers.message);
@@ -38,9 +43,9 @@ export const useUsers = () => {
   };
 
   useEffect(() => {
-    fetchUsers();
+    fetchUsers(searchUser, rol);
     fetchRoles();
-  }, []);
-  
-  return { loadingUsers, usersData, fetchUsers, roles, setRol };
+  }, [searchUser, rol]);
+
+  return { loadingUsers, usersData, fetchUsers, roles, rol, setRol, searchUser, setSearchUser, fetchRoles };
 };

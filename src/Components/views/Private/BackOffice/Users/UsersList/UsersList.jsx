@@ -16,7 +16,7 @@ import { useState } from "react";
 
 const UsersList = () => {
   const navigate = useNavigate();
-  const { loadingUsers, usersData, fetchUsers } = useUsers();
+  const { loadingUsers, usersData, fetchUsers, setSearchUser, setRol } = useUsers();
   const [loading, setLoading] = useState(false);
   const tHead = ["#", "Nombre", "Email", "Acciones"];
   const myTableData = { name: "name", email: "email" };
@@ -43,14 +43,15 @@ const UsersList = () => {
     }
   };
 
-  const searchUsersHandler = async (searchText) => {
-    const fetchParams = {};
+  const searchUsersHandler = async (text) => {
+    if (text.length >= 2) setSearchUser(text);
+    else setSearchUser("");
+  };
 
-    if (searchText.length >= 2) {
-      fetchParams["search"] = searchText;
-    }
-
-    await fetchUsers(fetchParams);
+  const selectRolHandler = async (rol) => {
+    if (rol === "1") setRol(rol);
+    if (rol === "2") setRol(rol);
+    if (rol === "") setRol(rol);
   };
 
   let usersContent;
@@ -84,7 +85,7 @@ const UsersList = () => {
         />
       </div>
       <div className="my-3">
-        <SearchUsers onSearchUsers={searchUsersHandler} />
+        <SearchUsers onSearchUsers={searchUsersHandler} selectRol={selectRolHandler} />
       </div>
       <div className="my-3">{usersContent}</div>
     </div>

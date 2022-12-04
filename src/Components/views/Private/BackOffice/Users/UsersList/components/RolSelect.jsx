@@ -4,9 +4,10 @@ const RolSelect = ({ roles = [], onChangeRoles }) => {
   const rolesChangeHandler = (e) => {
     onChangeRoles(e.target.value);
   };
+
   return (
     <Form.Select onChange={rolesChangeHandler}>
-      <option value="">Todas</option>
+      <option value="">Todos</option>
       {roles.map((rol) => (
         <option value={rol.id} key={rol.id}>
           {rol.name}
