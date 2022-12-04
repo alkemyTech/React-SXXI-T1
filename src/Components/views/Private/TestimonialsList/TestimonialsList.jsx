@@ -7,35 +7,28 @@ import { useTestimonials } from "./hooks/useTestimonials";
 import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 
 export default function TestimonialsList() {
-  const { loadingTestimonials, testimonialsData,
-    handleDelete, toEdit, tHead, myTableData, loading } = useTestimonials();
+  const { loadingTestimonials, testimonialsData, handleDelete, toEdit, tHead, myTableData, loading } = useTestimonials();
 
-  let testimonialsContent
+  let testimonialsContent;
   if (loadingTestimonials || loading) {
-    testimonialsContent = <SpinnerLoad />
+    testimonialsContent = <SpinnerLoad />;
   } else {
-    testimonialsContent = <CustomTable tHead={tHead} 
-                                     myTableData={myTableData}
-                                     tBody={testimonialsData}
-                                     handleDelete={handleDelete}
-                                     handleEdit={toEdit} />
+    testimonialsContent = (
+      <CustomTable tHead={tHead} myTableData={myTableData} tBody={testimonialsData} handleDelete={handleDelete} handleEdit={toEdit} />
+    );
   }
 
   return (
     <div className="my-5">
       <div className="m-1 d-flex col col-12">
-          <CustomTitle title="Testimonios" height="none" />
+        <CustomTitle title="Testimonios" height="none" />
       </div>
       <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
-        <BackTo
-          wrapLink="col col-10 col-sm-5 my-2 me-1"
-          text="Ir dashboard"
-          to={"/" + privateRoutes.BACKOFFICE }
-        />
+        <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE} />
         <BackTo
           wrapLink="col col-10 col-sm-5 col-md-4 my-2"
           text="Crear Categoría"
-          to={'create'}
+          to={"create"}
           color="success"
           background="success"
           icon={addIcon}
@@ -43,5 +36,5 @@ export default function TestimonialsList() {
       </div>
       <div>{testimonialsContent}</div>
     </div>
-  )
+  );
 }

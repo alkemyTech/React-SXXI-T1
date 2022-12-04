@@ -11,9 +11,13 @@ export const useTestimonials = () => {
   const [testimonialsData, setTestimonialsData] = useState([]);
   const [loadingTestimonials, setLoadingTestimonials] = useState(true);
   const [loading, setLoading] = useState(false);
-  const tHead = ['#', 'Nombre', 'Descripción', 'Acciones'];
-  const myTableData = {name: 'name', description: 'description'};
+  const tHead = ["#", "Nombre", "Descripción", "Acciones"];
+  const myTableData = { name: "name", description: "description" };
   const navigate = useNavigate();
+
+  function removeTagsOfString(str) {
+    return str.replace(/(<([^>]+)>)/gi, "");
+  }
 
   const fetchTestimonials = async (params = {}) => {
     try {
@@ -22,63 +26,46 @@ export const useTestimonials = () => {
       const queryUrl = `${URLs.testimonial}?${queryParams}`;
       const fetchingTestimonials = await privateService.get(queryUrl);
 
-      if (fetchingTestimonials && !fetchingTestimonials.success)
-        throw new Error(fetchingTestimonials.message);
-        const info = fetchingTestimonials.data.map(el => {
-          return{
-            id: el.id,
-            name: el.name,
-            description: el.description
-          }
-        });
+      if (fetchingTestimonials && !fetchingTestimonials.success) throw new Error(fetchingTestimonials.message);
+      const info = fetchingTestimonials.data.map((el) => {
+        return {
+          id: el.id,
+          name: el.name,
+          description: removeTagsOfString(el.description),
+        };
+      });
       setTestimonialsData(info);
     } catch (error) {
-      console.error("error Categories", error.message);
-      feedbackUser(
-        "top-end",
-        "error",
-        `${requestMessagesSchema.problemExistTryLater} ${requestMessagesSchema.contactAdmin}`
-      );
+      console.error("error testimonios", error.message);
+      feedbackUser("top-end", "error", `${requestMessagesSchema.problemExistTryLater} ${requestMessagesSchema.contactAdmin}`);
     } finally {
       setLoadingTestimonials(false);
     }
   };
 
-  const searchTestimonialsHandler = async (searchText) => {
-    const fetchParams = {}
-
-    if (searchText.length >= 3) {
-      fetchParams["search"] = searchText
-    }
-
-    await fetchTestimonials(fetchParams)
-  }
-
   const handleDelete = async (id) => {
-      const find = testimonialsData.find(el => id === el.id);
-      if(find) {
-          const confirm = await AlertWarning(`¿Estas segura/o que deseas eliminar "${find.name}"?`);
-          if(confirm){
-            setLoading(true);
-            const res = await privateService.deleted(URLs.testimonial, id);
-            if(res.success) {
-              feedbackUser('center', 'success', 'Operación éxitosa');
-              fetchTestimonials();
-            }
-            else feedbackUser('center', 'error', 'Ha ocurrido un error');
-          }
-          setLoading(false);
+    const find = testimonialsData.find((el) => id === el.id);
+    if (find) {
+      const confirm = await AlertWarning(`¿Estas segura/o que deseas eliminar "${find.name}"?`);
+      if (confirm) {
+        setLoading(true);
+        const res = await privateService.deleted(URLs.testimonial, id);
+        if (res.success) {
+          feedbackUser("center", "success", "Operación éxitosa");
+          fetchTestimonials();
+        } else feedbackUser("center", "error", "Ha ocurrido un error");
       }
-  }
-    
+      setLoading(false);
+    }
+  };
+
   const toEdit = (id) => {
-      navigate(`edit/${id}`);
-  }
+    navigate(`edit/${id}`);
+  };
 
   useEffect(() => {
     fetchTestimonials();
   }, []);
 
-  return { loadingTestimonials, testimonialsData, fetchTestimonials, searchTestimonialsHandler,
-    tHead, myTableData, toEdit, handleDelete, loading };
+  return { loadingTestimonials, testimonialsData, fetchTestimonials, tHead, myTableData, toEdit, handleDelete, loading };
 };
