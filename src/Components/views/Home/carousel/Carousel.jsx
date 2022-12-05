@@ -10,7 +10,7 @@ export default function CarouselComponent({ endPoint, content, hdef, hxl, hlg, h
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(false);
   const { textSkeleton } = useSkeleton();
-  console.log(endPoint, slides);
+
   useEffect(() => {
     setLoading(true);
     publicService
