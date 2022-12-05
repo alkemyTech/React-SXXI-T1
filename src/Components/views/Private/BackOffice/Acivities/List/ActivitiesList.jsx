@@ -19,9 +19,11 @@ import { successMessages } from "../utilities/successMessages";
 const ActivitiesList = () => {
   const tHead = ["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"];
   const myTableData = { name: "name", image: "image", created_at: "created_at" };
-  const { loadingActivities, activitiesData, fetchActivities } = useActivities();
+  const { activities, loadingActivities, activitiesData, fetchActivities } = useActivities();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  console.log("loadingActivities", loadingActivities, "activitiesData", activitiesData, "activities", activities);
 
   const editHandler = (id) => {
     navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.ACTIVITIESEDIT}/${id}`);
@@ -103,7 +105,7 @@ const ActivitiesList = () => {
         />
       </div>
       <div className="my-3">
-        <SearchActivities onSearchActivities={searchActivitiesHandler} />
+        <SearchActivities onSearchActivities={searchActivitiesHandler} disabled={!activities.length} />
       </div>
       <div className="mt-3">{activitiesContent}</div>
     </div>

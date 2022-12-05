@@ -5,7 +5,6 @@ import { OffcanvasHeader } from "../NavLinkReactRouter/styled-components/OffCanv
 import { useHeader } from "./hooks/useHeader";
 import { ContainerNav, HeaderNavbar } from "./styled-components/Header.styled";
 import { HeaderNav } from "./components/HeaderNav/HeaderNav";
-import { ROLE } from "MOCKAUTH";
 import { DropDownComponent } from "./components/DropDownComponent/DropDownComponent";
 import { headerSchemas } from "./utilities/headearSchemas.util";
 

@@ -7,8 +7,10 @@ import { encodeQueryParams } from "utilities/queryParams";
 import { errorMessages } from "../../utilities/errorMessages";
 
 export const useActivities = () => {
-  const [activitiesData, setActivitiesData] = useState([]);
-  const [loadingActivities, setLoadingActivities] = useState(true);
+
+  const [ activitiesData, setActivitiesData ] = useState([]);
+  const [ activities, setActivities ] = useState([]);
+  const [ loadingActivities, setLoadingActivities ] = useState(true);
 
   const fetchActivities = async (params = {}) => {
     try {
@@ -20,8 +22,8 @@ export const useActivities = () => {
       if (fetchingActivities && !fetchingActivities.success) {
         throw new Error(fetchingActivities.message);
       }
-
       setActivitiesData(fetchingActivities.data);
+      setActivities(fetchingActivities.data);
     } catch (error) {
       feedbackUser("center", "error", `${errorMessages.getActivities}`);
     } finally {
@@ -33,5 +35,5 @@ export const useActivities = () => {
     fetchActivities();
   }, []);
 
-  return { loadingActivities, activitiesData, fetchActivities };
+  return {  activities, loadingActivities, activitiesData, fetchActivities };
 };
