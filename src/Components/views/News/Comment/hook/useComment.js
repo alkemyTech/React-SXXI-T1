@@ -15,8 +15,8 @@ export const useComment = () => {
     let text2;
     const points = "...";
     if (text.length > 55 && commentSize === "min") {
-      text1 = text.slice(0, 42);
-      text2 = text.slice(37);
+      text1 = text.slice(0, 50);
+      text2 = text.slice(50);
       return { text1, text2, points };
     }
 
