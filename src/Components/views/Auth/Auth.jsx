@@ -7,7 +7,7 @@ import { authSchemas } from "./utilities/schemas";
 import { useAuth } from "./hooks/useAuth";
 
 export const Auth = () => {
-  const { whatFormRender, whatForm, loadingAuth } = useAuth();
+  const { whatFormRender, whatForm, loadingUser } = useAuth();
 
   return (
     <WrapAuth className="mb-2 col col-12 d-flex flex-column flex-sm-row justify-content-center align-items-center">
@@ -23,7 +23,7 @@ export const Auth = () => {
           wrapLink="border-bottom border-dark"
           linkClass="rounded-top"
         />
-        {loadingAuth && <SpinnerLoad />}
+        {loadingUser && <SpinnerLoad />}
       </WrapFirstCol>
       <WrapImageSecondCol className="col col-10 col-sm-6 h-100">
         <ImageAuth className="p-0 p-sm-2" image={handsPorra} height="100%" />

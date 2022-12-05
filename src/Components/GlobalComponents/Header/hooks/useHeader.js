@@ -1,9 +1,14 @@
 import { useRef } from "react";
 import { useResize } from "hooks/useResize";
 import { typeNavItems } from "utilities/navitems/navItems.util";
-import { ROLE } from "MOCKAUTH";
+import { useSelector } from "react-redux";
 
 export const useHeader = () => {
+  const {
+    user: {
+      role: { type: typeRole },
+    },
+  } = useSelector((store) => store.user);
   const closeOffCanvas = useRef(null);
   const { isPhone } = useResize();
 
@@ -11,13 +16,13 @@ export const useHeader = () => {
     closeOffCanvas.current.click();
   };
 
-  const whatNavRender = typeNavItems[ROLE] || typeNavItems.notAuth;
+  const whatNavRender = typeNavItems[typeRole] || typeNavItems.notAuth;
 
-  const isExpand = ROLE === "admin" ? false : "md";
+  const isExpand = typeRole === "admin" ? false : "md";
 
-  const placementOffCanvas = ROLE === "admin" ? "start" : "end";
+  const placementOffCanvas = typeRole === "admin" ? "start" : "end";
 
-  const dropDownDirection = ROLE === "admin" ? "up" : "down";
+  const dropDownDirection = typeRole === "admin" ? "up" : "down";
 
-  return { closeOffCanvas, isPhone, handleCloseOffCanvas, whatNavRender, isExpand, placementOffCanvas, dropDownDirection };
+  return { closeOffCanvas, isPhone, handleCloseOffCanvas, whatNavRender, isExpand, placementOffCanvas, dropDownDirection, typeRole };
 };
