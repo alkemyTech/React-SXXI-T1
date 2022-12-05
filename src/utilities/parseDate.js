@@ -8,7 +8,14 @@ const toLocaleString = (date, type) => {
     },
   };
 
-  return datesTypes[type]();
+  return datesTypes[type]() || datesTypes["full"]();
 };
 
-export const parseDate = { toLocaleString };
+export const whatIs = (itIs, data, type, nameAttr) => {
+  const dataType = {
+    isArray: (data, type) => data.map((item) => ({ ...item, [nameAttr]: toLocaleString(item.created_at, type) })),
+    isString: (data, type) => toLocaleString(data, type),
+  };
+
+  return dataType[itIs](data, type);
+};
