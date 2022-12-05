@@ -5,12 +5,12 @@ import { URLs } from "Services/ServicesURLS";
 import privateService from "Services/privateApiService";
 import { encodeQueryParams } from "utilities/queryParams";
 import { errorMessages } from "../../utilities/errorMessages";
+import { whatIs } from "utilities/parseDate";
 
 export const useActivities = () => {
-
-  const [ activitiesData, setActivitiesData ] = useState([]);
-  const [ activities, setActivities ] = useState([]);
-  const [ loadingActivities, setLoadingActivities ] = useState(true);
+  const [activitiesData, setActivitiesData] = useState([]);
+  const [activities, setActivities] = useState([]);
+  const [loadingActivities, setLoadingActivities] = useState(true);
 
   const fetchActivities = async (params = {}) => {
     try {
@@ -22,7 +22,8 @@ export const useActivities = () => {
       if (fetchingActivities && !fetchingActivities.success) {
         throw new Error(fetchingActivities.message);
       }
-      setActivitiesData(fetchingActivities.data);
+      const dateParsing = whatIs("isArray", fetchingActivities.data, "splice", "created_at");
+      setActivitiesData(dateParsing);
       setActivities(fetchingActivities.data);
     } catch (error) {
       feedbackUser("center", "error", `${errorMessages.getActivities}`);
@@ -35,5 +36,5 @@ export const useActivities = () => {
     fetchActivities();
   }, []);
 
-  return {  activities, loadingActivities, activitiesData, fetchActivities };
+  return { activities, loadingActivities, activitiesData, fetchActivities };
 };
