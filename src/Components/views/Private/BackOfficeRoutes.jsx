@@ -1,8 +1,8 @@
 import { privateRoutes } from "models/routes";
 import { Route } from "react-router-dom";
 import { RoutesNoMatch } from "utilities/routesNoMatch.util";
-import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
-import ActivitiesList from "./BackOffice/Acivities/ActivitiesList";
+import ActivitiesForm from "./BackOffice/Acivities/Form/ActivitiesForm";
+import ActivitiesList from "./BackOffice/Acivities/List/ActivitiesList";
 import CategoriesForm from "../Categories/CategoriesForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
 import MembersForm from "./BackOffice/Members/MembersForm";
