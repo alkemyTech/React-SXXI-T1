@@ -1,9 +1,9 @@
-import { cameraIcon, pictureAdd } from "assets/images"
-import { CustomImage } from "styled-components/App.styled"
-import { SpanFormError } from "../SpanFormError/SpanFormError"
-import { useFormImageField } from "./hooks/useFormImageField"
-import { AddImageText, BoxInputFile, CameraIcon, HiddenInputFile, WrapAddImageHover, WrapInputFile } from "./styled-components/FormImageField.styled"
-import { imageSchema } from "./utilities/ImageFieldSchemas.util"
+import { cameraIcon, pictureAdd } from "assets/images";
+import { CustomImage } from "styled-components/App.styled";
+import { SpanFormError } from "../SpanFormError/SpanFormError";
+import { useFormImageField } from "./hooks/useFormImageField";
+import { AddImageText, BoxInputFile, CameraIcon, HiddenInputFile, WrapAddImageHover, WrapInputFile } from "./styled-components/FormImageField.styled";
+import { imageSchema } from "./utilities/ImageFieldSchemas.util";
 
 export const FormImageField = ({
   wrapAllFormImageField = "py-3 d-flex flex-column align-items-center justify-content-center ",
@@ -17,7 +17,7 @@ export const FormImageField = ({
   backgroundSize = "cover",
   imageIsEdit,
 }) => {
-  const { image, handleChangeFile, refInputFile, handleInputFile } = useFormImageField(setFieldValue, setImageToSend, name)
+  const { image, handleChangeFile, refInputFile, handleInputFile } = useFormImageField(setFieldValue, setImageToSend, name);
 
   const isImageExist = () => (
     <CustomImage
@@ -26,9 +26,9 @@ export const FormImageField = ({
       backgroundSize={image || imageIsEdit ? backgroundSize : "0"}
       borderRadius="8px"
     />
-  )
+  );
 
-  const imageToRender = image || imageIsEdit ? isImageExist() : pictureAdd
+  const imageToRender = image || imageIsEdit ? isImageExist() : pictureAdd;
 
   return (
     <div className={wrapAllFormImageField}>
@@ -43,5 +43,5 @@ export const FormImageField = ({
       <SpanFormError errors={errors} touched={touched} name={name} />
       <HiddenInputFile ref={refInputFile} type="file" name={name} onChange={(e) => handleChangeFile(e)} />
     </div>
-  )
-}
+  );
+};

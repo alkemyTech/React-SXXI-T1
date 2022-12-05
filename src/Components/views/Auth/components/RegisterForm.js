@@ -1,17 +1,16 @@
-import React from "react"
-import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton"
-import InputAuth from "./InputAuth"
-import { FormAuth } from "../styled.components/Auth.styled"
-import { useRegister } from "../hooks/useRegister"
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
+import React from "react";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
+import InputAuth from "./InputAuth";
+import { FormAuth } from "../styled.components/Auth.styled";
+import { useRegister } from "../hooks/useRegister";
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 
 const RegisterForm = ({ text }) => {
-  const { formik, loadingRegister } = useRegister()
+  const { formik, loadingRegister } = useRegister();
   return (
     <FormAuth
       className="form-container col col-10 my-3 p-0 p-sm-1 d-flex flex-column justify-content-center align-items-center"
-      onSubmit={formik.handleSubmit}
-    >
+      onSubmit={formik.handleSubmit}>
       <InputAuth
         value={formik.values.name}
         type="text"
@@ -52,7 +51,7 @@ const RegisterForm = ({ text }) => {
       <CustomButton buttonClass="col col-8" type="submit" background="success" color="success" text={text} />
       {loadingRegister && <SpinnerLoad />}
     </FormAuth>
-  )
-}
+  );
+};
 
-export default RegisterForm
+export default RegisterForm;

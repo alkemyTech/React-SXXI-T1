@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components"
-import { InputTexts } from "styled-components/App.styled"
-import { whatStyle } from "./SectionsCard.styled"
+import styled, { css } from "styled-components";
+import { InputTexts } from "styled-components/App.styled";
+import { whatStyle } from "./SectionsCard.styled";
 
 const attr = css`
   border: none;
@@ -9,7 +9,7 @@ const attr = css`
   white-space: nowrap;
   ${whatStyle};
   transition: 0.5s;
-`
+`;
 
 const EllipsisContentBody = styled(InputTexts)`
   p {
@@ -32,6 +32,6 @@ const EllipsisContentBody = styled(InputTexts)`
   h6 {
     ${attr}
   }
-`
+`;
 
-export { EllipsisContentBody }
+export { EllipsisContentBody };

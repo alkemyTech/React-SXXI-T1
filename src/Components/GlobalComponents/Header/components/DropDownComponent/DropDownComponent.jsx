@@ -1,5 +1,13 @@
 import { logoutIcon, profileIcon } from "assets/images";
 import userProfile from "assets/userProfile.svg";
+<<<<<<< HEAD
+import { ROLE } from "MOCKAUTH";
+import { Dropdown } from "react-bootstrap";
+import { Hr } from "styled-components/App.styled";
+import { DropdownItem, DropdownMenu, DropdownToggle, Image } from "../../styled-components/DropDownComponent.styled";
+
+export const DropDownComponent = ({ direction }) => {
+=======
 import { elipsisString } from "Components/views/News/utilities/elipsisString.util";
 import { Dropdown } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -12,6 +20,7 @@ export const DropDownComponent = ({ direction, typeRole }) => {
     user: { email, image },
   } = useSelector((store) => store.user);
 
+>>>>>>> 67a465cad601961721d09ed34c7798fd5f07d8c9
   const handleLogout = () => console.log("click");
 
   return (

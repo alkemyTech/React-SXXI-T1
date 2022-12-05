@@ -1,9 +1,8 @@
-import { useAbout } from "./hook/useAbout"
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
-import { MainContainer, CustomText } from "./about.styled"
-import Members from "../Members/Detail/Members"
-import { useSkeleton } from "hooks/useSkeleton"
-
+import { useAbout } from "./hook/useAbout";
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
+import { MainContainer, CustomText } from "./about.styled";
+import Members from "../Members/Detail/Members";
+import { useSkeleton } from "hooks/useSkeleton";
 
 const About = () => {
   const { loadingAbout, aboutData } = useAbout();
@@ -12,36 +11,19 @@ const About = () => {
   return (
     <MainContainer>
       <div>
-        <CustomTitle
-          title="Nosotros"
-          wrapTitleClass="d-block h-auto"
-          justify="center"   
-        />
+        <CustomTitle title="Nosotros" wrapTitleClass="d-block h-auto" justify="center" />
       </div>
-      <CustomText className="mb-5">
-        { loadingAbout ? 
-            <>{  textSkeleton }</>
-          :
-          <p>{aboutData.longDescription}</p>
-        }
-      </CustomText>
+      <CustomText className="mb-5">{loadingAbout ? <>{textSkeleton}</> : <p>{aboutData.longDescription}</p>}</CustomText>
       <div>
-        {aboutData.title !== "" ?
-          <CustomTitle
-            title="Lista de miembros"
-            justify="center"   
-            wrapTextClass="text-center" 
-            wrapTitleClass="h-auto" 
-          />
-          :
-          <>
-            {  titleSkeleton }
-          </>
-        }
+        {aboutData.title !== "" ? (
+          <CustomTitle title="Lista de miembros" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
+        ) : (
+          <>{titleSkeleton}</>
+        )}
       </div>
       <Members />
     </MainContainer>
-  )
-}
+  );
+};
 
 export default About;
