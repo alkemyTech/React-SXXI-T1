@@ -1,8 +1,8 @@
-import { ImageBodyDontation } from "../../styled-components/BodyDonation.styled"
-import { WrapBodyDonation } from "../../styled-components/WrapSectionDonation.styled"
-import { textForDonation } from "../../utilities/donationSchema.util"
-import heartHandsImage from "assets/heartHandsImage.svg"
-import { ThanksText } from "../../styled-components/ThanksText.styled"
+import { ImageBodyDontation } from "../../styled-components/BodyDonation.styled";
+import { WrapBodyDonation } from "../../styled-components/WrapSectionDonation.styled";
+import { textForDonation } from "../../utilities/donationSchema.util";
+import heartHandsImage from "assets/heartHandsImage.svg";
+import { ThanksText } from "../../styled-components/ThanksText.styled";
 
 export const BodyThanks = () => {
   return (
@@ -13,5 +13,5 @@ export const BodyThanks = () => {
         </ThanksText>
       </ImageBodyDontation>
     </WrapBodyDonation>
-  )
-}
+  );
+};

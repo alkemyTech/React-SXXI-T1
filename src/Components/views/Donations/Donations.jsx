@@ -1,7 +1,7 @@
-import { BodyDonation } from "./components/BodyInformation/BodyDonation"
-import { HeadTitle } from "./components/HeadTitle/HeadTitle"
-import { WrapBodyDonation, WrapSectionDonation } from "./styled-components/WrapSectionDonation.styled"
-import { textForDonation } from "./utilities/donationSchema.util"
+import { BodyDonation } from "./components/BodyInformation/BodyDonation";
+import { HeadTitle } from "./components/HeadTitle/HeadTitle";
+import { WrapBodyDonation, WrapSectionDonation } from "./styled-components/WrapSectionDonation.styled";
+import { textForDonation } from "./utilities/donationSchema.util";
 
 export const Donations = ({ text }) => {
   return (
@@ -11,5 +11,5 @@ export const Donations = ({ text }) => {
         <BodyDonation text={text} />
       </WrapBodyDonation>
     </WrapSectionDonation>
-  )
-}
+  );
+};

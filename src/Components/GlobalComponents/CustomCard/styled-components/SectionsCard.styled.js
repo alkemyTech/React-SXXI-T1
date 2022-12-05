@@ -1,8 +1,8 @@
-import { Card } from "react-bootstrap"
-import styled, { css } from "styled-components"
-import { fadeIn } from "styled-components/animation.styled"
-import { themeColors } from "styled-components/Theme.styled"
-import { SubtitleText, InputTexts } from "styled-components/App.styled.js"
+import { Card } from "react-bootstrap";
+import styled, { css } from "styled-components";
+import { fadeIn } from "styled-components/animation.styled";
+import { themeColors } from "styled-components/Theme.styled";
+import { SubtitleText, InputTexts } from "styled-components/App.styled.js";
 
 export const cardStyles = {
   veryDarkBlue: "hsl(232, 19%, 15%)",
@@ -14,13 +14,13 @@ export const cardStyles = {
   golden: "#CDA156",
   gray: "hsl(230, 22%, 74%)",
   lightGray: "hsl(216, 0%, 71%)",
-}
+};
 
 const styles = {
   default: {
     background: themeColors.white,
     color: cardStyles.darkDesaturatedBlue,
-    border: cardStyles.veryDarkBlue,
+    border: cardStyles.betweenBlueGreed,
   },
   blue: {
     background: cardStyles.blue,
@@ -37,12 +37,12 @@ const styles = {
     color: themeColors.white,
     border: cardStyles.LimeGreen,
   },
-}
+};
 
 const whatStyle = css`
   background: ${(props) => styles[props.type]["background"]};
   color: ${(props) => styles[props.type]["color"]} !important;
-`
+`;
 
 const CustomCard = styled(Card)`
   ${whatStyle};
@@ -70,26 +70,26 @@ const CustomCard = styled(Card)`
       background: hsla(194, 74%, 41%, 1);
     }
   }
-`
+`;
 
 const CardBody = styled.div`
   transition: 0.5s;
   ${fadeIn}
-`
+`;
 
 const CardFooter = styled.div`
   transition: 0.5s;
   ${fadeIn}
-`
+`;
 
 const CardSubTitleText = styled(SubtitleText)`
   color: ${(props) => styles[props.type]["color"]};
   transition: 0.5s;
-`
+`;
 
 const CardText = styled(InputTexts)`
   color: ${(props) => styles[props.type]["color"]};
   transition: 0.5s;
-`
+`;
 
-export { CardBody, CardFooter, CustomCard, CardSubTitleText, CardText, whatStyle }
+export { CardBody, CardFooter, CustomCard, CardSubTitleText, CardText, whatStyle };

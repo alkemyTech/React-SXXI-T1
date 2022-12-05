@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { SearchInput } from "Components/GlobalComponents/SearchInput/SearchInput";
 
-const SearchSlides = ({ onSearchSlides }) => {
+const SearchSlides = ({ onSearchSlides, disabled }) => {
   const [searchText, setSearchText] = useState("");
 
   const changeSearchTextHandler = (searchText) => {
@@ -19,6 +19,7 @@ const SearchSlides = ({ onSearchSlides }) => {
       placeholder="Buscar slides..."
       onChangeText={changeSearchTextHandler}
       onSearch={searchSlidesHandler}
+      disabled={disabled}
     />
   );
 };

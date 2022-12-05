@@ -18,11 +18,7 @@ const Detail = () => {
 
   return (
     <div className="my-5">
-      <ShowDetailData
-        title={dataDetail.title}
-        description={dataDetail.description}
-        responsibles={dataDetail.responsibles}
-      />
+      <ShowDetailData title={dataDetail.title} description={dataDetail.description} responsibles={dataDetail.responsibles} />
     </div>
   );
 };
