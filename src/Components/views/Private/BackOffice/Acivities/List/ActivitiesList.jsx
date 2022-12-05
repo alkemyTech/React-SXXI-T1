@@ -23,8 +23,6 @@ const ActivitiesList = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  console.log("loadingActivities", loadingActivities, "activitiesData", activitiesData, "activities", activities);
-
   const editHandler = (id) => {
     navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.ACTIVITIESEDIT}/${id}`);
   };
