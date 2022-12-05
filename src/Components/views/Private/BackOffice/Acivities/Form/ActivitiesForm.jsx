@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { InputForm } from "styled-components/GlobalFormFields/InputForm.styled";
 import { ButtonConfirm, ContainerInputError, Errors } from "./ActivitiesForm.Styled";
-import { useActivitiesForm } from "../hooks/useActivitiesForm";
+import { useActivitiesForm } from "./hooks/useActivitiesForm";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { FormImageField } from "Components/GlobalComponents/FormImageField/FormImageField";
 import { FormCKEditorField } from "Components/GlobalComponents/FormCKEditorField/FormCKEditorField";
