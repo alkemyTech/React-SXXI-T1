@@ -1,35 +1,67 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-
-const DUMMY_NEWS = {
-  content: "dummy content of the news",
-  imgUrl:
-    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
-};
+import Comment from "../Comment/Comment";
+import { useDetailNews } from "./hook/useDetailNews";
+import publicService from "Services/publicApiService";
+import { URLs } from "Services/ServicesURLS";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
+import { useEffect } from "react";
+import { MainContent, NewsCard, NewsTitle, NewsImage, Container } from "./NewsDetailsStyle/NewsDetailsStyle";
+import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
+import ContainerResponsive from "./components/ContainerResponsive";
+import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader";
 
 const NewsDetail = ({ title }) => {
-  const { id: newsId } = useParams();
-  const [news, setNews] = useState(null);
+  const { news, setNews, id, handleResize, textDivider, loading, setLoading } = useDetailNews();
+  
+  useEffect(()=>{
+    setLoading(true);
+    publicService.get(`${URLs.news}/${id}`)
+        .then(res => {
+            const { data } = res;
+            if(res.success){
+                const NW = [{id: data.id,
+                             name: data.name,
+                             content: data.content,
+                             image: data.image}];
+                setNews(NW);
+                setLoading(false);
+            }else feedbackUser('center', 'error', requestMessagesSchema.problemExistTryLater);
+        })
+        .catch(()=> feedbackUser('center', 'error', requestMessagesSchema.problemExistTryLater));
+  }, [setNews, id, setLoading]);
 
-  useEffect(() => {
-    const fetchNews = (id) => {
-      setNews(DUMMY_NEWS);
-    };
-
-    fetchNews(newsId);
-  }, [newsId]);
-
-  if (!news) return null;
-
+  useEffect(()=>{
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [handleResize]);
+  
   return (
-    <div className="h-100">
-      <CustomTitle wrapTitleClass="d-block" title={title} image={news.imgUrl} />
-      <div className="py-2">
-        <p>{news.content}</p>
+    <MainContent>
+      { loading ? <div style={{display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem', backgroundColor: '#028192', borderRadius: '5px'}}>
+                    <SkeletonLoader xs={12}/>
+                    <SkeletonLoader xs={12}/>
+                    <SkeletonLoader xs={12}/>
+                    <SkeletonLoader xs={12}/>
+                    <SkeletonLoader xs={12}/>
+                  </div>
+                : news?.map(el => {
+                  const text = textDivider(el.content);
+                  return (
+                    <NewsCard key={el.id}>
+                      <NewsImage src={el.image} alt={el.name}/>
+                      <Container>
+                        <NewsTitle>{el.name}</NewsTitle>
+                        <ContainerResponsive text={text} />
+                      </Container>
+                    </NewsCard>
+                  )
+                  })
+      }
+      <div className="mt-2 mb-4">
+        <h3>Comentarios: </h3>
+        <Comment id={id}/>
       </div>
-    </div>
+    </MainContent>
   );
 };
 

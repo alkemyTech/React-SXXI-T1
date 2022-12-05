@@ -40,20 +40,20 @@ export const authSchemas = {
 
 export const roleUser = async (id) => {
   try {
-    let role = {}
+    let role = {};
 
-    const fetchRoles = await publicService.get(URLs.role + "/" + id)
+    const fetchRoles = await publicService.get(URLs.role + "/" + id);
 
-    if (!fetchRoles) throw new Error(requestMessagesSchema.problemExistTryLater)
+    if (!fetchRoles) throw new Error(requestMessagesSchema.problemExistTryLater);
 
-    if (!fetchRoles.success) return (role = { type: undefined })
+    if (!fetchRoles.success) return (role = { type: undefined });
 
-    const redirect = fetchRoles.data.description.toLowerCase() === "admin" ? privateRoutes.BACKOFFICE : routes.HOME
+    const redirect = fetchRoles.data.description.toLowerCase() === "admin" ? privateRoutes.BACKOFFICE : routes.HOME;
 
-    role = { id: fetchRoles.data.id, type: fetchRoles.data.description.toLowerCase(), to: redirect }
+    role = { id: fetchRoles.data.id, type: fetchRoles.data.description.toLowerCase(), to: redirect };
 
-    return role
+    return role;
   } catch (error) {
-    console.error("error auth schemas", error.message)
+    console.error("error auth schemas", error.message);
   }
-}
+};
