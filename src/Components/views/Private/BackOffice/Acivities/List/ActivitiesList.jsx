@@ -1,19 +1,24 @@
+import { useState } from "react";
+
 import { addIcon } from "assets/images";
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
+import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { privateRoutes } from "models/routes";
-import { useNavigate } from "react-router-dom";
-import SearchActivities from "./components/SearchActivities";
-import { useActivities } from "./hooks/useActivities";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
-import { feedbackUser as AlertSuccess } from "utilities/alerts/feedbackUser.util";
-import { useState } from "react";
+import { privateRoutes } from "models/routes";
 import privateService from "Services/privateApiService";
+import SearchActivities from "./components/SearchActivities";
 import { URLs } from "Services/ServicesURLS";
-import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
+import { useActivities } from "./hooks/useActivities";
+import { useNavigate } from "react-router-dom";
+import { errorMessages } from "../utilities/errorMessages";
+import { successMessages } from "../utilities/successMessages";
 
 const ActivitiesList = () => {
+  const tHead = ["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"];
+  const myTableData = { name: "name", image: "image", created_at: "created_at" };
   const { loadingActivities, activitiesData, fetchActivities } = useActivities();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -33,10 +38,10 @@ const ActivitiesList = () => {
         const activityDeleted = await privateService.deleted(URLs.activity, id);
 
         if (activityDeleted) {
-          await AlertSuccess("center", "success", "Actividad eliminada");
+          await feedbackUser("center", "success", `${successMessages.deleteActivity}`);
           fetchActivities();
         } else {
-          await AlertWarning("center", "error", "No se eliminó la actividad");
+          await feedbackUser("center", "error", `${errorMessages.deleteActivity}`);
         }
       }
       setLoading(false);
@@ -55,39 +60,41 @@ const ActivitiesList = () => {
 
   let activitiesContent;
   if (loadingActivities || loading) {
-    activitiesContent = <CustomTable
-    tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
-    tBody={activitiesData}
-    myTableData={{ name: "name", image: "image", created_at: "created_at" }}
-    handleEdit={editHandler}
-    handleDelete={deleteHandler}
-    loading={loadingActivities}
-  />;
-  } else {
-    activitiesContent = 
-      activitiesData.length > 0 ? (
+    activitiesContent = (
       <CustomTable
-        tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
+        tHead={tHead}
         tBody={activitiesData}
-        myTableData={{ name: "name", image: "image", created_at: "created_at" }}
+        myTableData={myTableData}
         handleEdit={editHandler}
         handleDelete={deleteHandler}
-        loading={loading}
+        loading={loadingActivities}
       />
-    ): (
-      <div className="col col-12 d-flex justify-content-center mt-5">
-        <CustomAlertMessage alertClass="col col-10" text="Sin actividades para mostrar" />
-      </div>
+    );
+  } else {
+    activitiesContent =
+      activitiesData.length > 0 ? (
+        <CustomTable
+          tHead={tHead}
+          tBody={activitiesData}
+          myTableData={myTableData}
+          handleEdit={editHandler}
+          handleDelete={deleteHandler}
+          loading={loading}
+        />
+      ) : (
+        <div className="col col-12 d-flex justify-content-center mt-5">
+          <CustomAlertMessage alertClass="col col-10" text="Sin actividades para mostrar" />
+        </div>
       );
   }
 
   return (
     <div className="my-5">
       <CustomTitle title="Actividades" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
-      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-md-between">
+      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-md-between mb-3">
         <BackTo wrapLink="col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE} />
         <BackTo
-          wrapLink="col col-10 col-sm-5 col-md-4  mb-3"
+          wrapLink="col col-10 col-sm-5 col-md-4"
           text="Crear Actividad"
           to={"/" + privateRoutes.BACKOFFICE + privateRoutes.ACTIVITIESCREATE}
           color="success"

@@ -2,15 +2,18 @@ import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist";
 import { useEffect, useState } from "react";
+
 import { convertToBase64, activityValidationSchema } from "../../utilities/utilities";
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
-import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { errorMessages } from "../../utilities/errorMessages";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
+import { handleUserConfirm as Alert } from "utilities/alerts/userConfirm.util";
 import { privateRoutes } from "models/routes";
 import privateService from "Services/privateApiService";
-import { handleUserConfirm } from "utilities/alerts/userConfirm.util";
+import { successMessages } from "../../utilities/successMessages";
 
 export const useActivitiesForm = () => {
+  const backURL = "/" + privateRoutes.BACKOFFICE + privateRoutes.ACTIVITIES;
   const { id } = useParams();
   const navigate = useNavigate();
   const [imageBase64, setImageBase64] = useState("");
@@ -44,8 +47,6 @@ export const useActivitiesForm = () => {
     }
   }, [id]);
 
-  const backURL = "/" + privateRoutes.BACKOFFICE + privateRoutes.ACTIVITIES;
-
   const onSubmit = async () => {
     const { name, description } = values;
     const body = { name, description, image: imageBase64 };
@@ -55,28 +56,28 @@ export const useActivitiesForm = () => {
         ...body,
         image: imageBase64 || (await convertUrlToBase64(activity.image)),
       };
-      const alertWarning = await handleUserConfirm( "¿Estas seguro/a?");
+      const alertWarning = await Alert("¿Estas seguro/a?");
 
       if (alertWarning) {
         setLoading(true);
         const apiResponse = await privateService.put(`/activities`, id, bodyEdit);
         if (apiResponse.success) {
           setLoading(false);
-          await feedbackUser("center", "success", "Operación éxitosa");
+          await feedbackUser("center", "success", `${successMessages.success}`);
           navigate(backURL);
         } else {
           await feedbackUser("center", "error", `${errorMessages.editActivity}`);
         }
       }
     } else {
-      const alertWarning = await handleUserConfirm("center", "warning", "¿Segura/o?");
-    
-      if (alertWarning.isConfirmed) {
+      const alertWarning = await Alert("¿Estas seguro/a?");
+
+      if (alertWarning) {
         setLoading(true);
         const apiResponse = await privateService.post(`/activities`, body);
         if (apiResponse.success) {
           setLoading(false);
-          await feedbackUser("center", "success", "Operación éxitosa");
+          await feedbackUser("center", "success", `${successMessages.success}`);
           navigate(backURL);
         } else {
           await feedbackUser("center", "error", `${errorMessages.createActivity}`);
