@@ -1,4 +1,3 @@
-import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader";
 import { Row } from "react-bootstrap";
 import styled, { css } from "styled-components";
 import { fadeIn } from "./animation.styled";
@@ -224,7 +223,34 @@ const WrapImageSecondCol = styled.div`
   }
 `;
 
+const scrollbarCssStyles = css`
+  &::-webkit-scrollbar {
+    width: 12px;
+    background: #e4e4e4;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: hsla(187, 97%, 29%, 0.3);
+    border-radius: 5px;
+    border: 1px solid hsla(187, 97%, 29%, 0.55);
+    border-right: 1px solid #e4e4e4;
+
+    &:hover {
+      background: hsla(187, 97%, 29%, 0.6);
+      border: 1px solid hsla(187, 97%, 29%, 0.85);
+      border-right: 1px solid #e4e4e4;
+    }
+
+    &:active {
+      background: hsla(187, 97%, 29%, 0.8);
+      border: 1px solid hsla(187, 97%, 29%, 1);
+      border-right: 1px solid #e4e4e4;
+    }
+  }
+`;
+
 export {
+  scrollbarCssStyles,
   filterSaturate,
   someOtherProperties,
   responsiveDesign,

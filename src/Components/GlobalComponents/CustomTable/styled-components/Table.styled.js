@@ -9,7 +9,7 @@ const THead = styled.thead`
 `;
 
 const CustomTable = styled(Table)`
-  ${inputTextCssStyle}
+  ${inputTextCssStyle};
 `;
 
 export { THead, CustomTable };
