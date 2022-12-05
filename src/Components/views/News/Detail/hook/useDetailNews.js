@@ -12,26 +12,33 @@ export const useDetailNews = () => {
     let text1;
     let text2;
     const points = "...";
+
     if (text.length > 130 && descriptionSize === "sm") {
       text1 = text.slice(0, 127);
       text2 = text.slice(127);
       return { text1, text2, points };
     }
+
     if (text.length > 184 && descriptionSize === "md") {
       text1 = text.slice(0, 181);
       text2 = text.slice(181);
       return { text1, text2, points };
     }
+
     if (text.length > 500 && descriptionSize === "lg") {
       text1 = text.slice(0, 497);
       text2 = text.slice(497);
       return { text1, text2, points };
     }
+
     if (text.length > 1055 && descriptionSize === "xl") {
       text1 = text.slice(0, 1047);
       text2 = text.slice(1047);
       return { text1, text2, points };
     }
+
+    if (text === undefined || text === null) return "";
+
     return text;
   };
 

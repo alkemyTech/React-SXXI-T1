@@ -19,16 +19,21 @@ export const useComment = () => {
       text2 = text.slice(37);
       return { text1, text2, points };
     }
+
     if (text.length > 150 && commentSize === "med") {
       text1 = text.slice(0, 145);
       text2 = text.slice(145);
       return { text1, text2, points };
     }
+
     if (text.length > 250 && commentSize === "max") {
       text1 = text.slice(0, 245);
       text2 = text.slice(245);
       return { text1, text2, points };
     }
+
+    if (text === undefined || text === null) return "";
+
     return text;
   };
 
