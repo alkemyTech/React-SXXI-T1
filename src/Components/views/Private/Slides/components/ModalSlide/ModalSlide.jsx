@@ -1,10 +1,10 @@
-import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton"
-import { Modal } from "react-bootstrap"
-import { CustomImage, InputTexts, SubtitleText } from "styled-components/App.styled"
-import { useModalSlide } from "../../hooks/useModalSlide"
-import { RadioSlide } from "../../styled-components/ModalSlide.styled"
-import { modalSchema } from "../../utilities/slidesSchema.util"
-import { WrapSlide } from "./styled-components/ModalSlide.styled"
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
+import { Modal } from "react-bootstrap";
+import { CustomImage, InputTexts, SubtitleText } from "styled-components/App.styled";
+import { useModalSlide } from "../../hooks/useModalSlide";
+import { RadioSlide } from "../../styled-components/ModalSlide.styled";
+import { modalSchema } from "../../utilities/slidesSchema.util";
+import { WrapSlide } from "./styled-components/ModalSlide.styled";
 
 export const ModalSlide = ({ show, onHide, idSlide, orderSlide, setSlideToChangeSelected, slideToChangeSelected }) => {
   const { indexSlide, handleChangeRadio, handleClickChangeSlides, handleCancelChangesSlides } = useModalSlide(
@@ -13,7 +13,7 @@ export const ModalSlide = ({ show, onHide, idSlide, orderSlide, setSlideToChange
     setSlideToChangeSelected,
     slideToChangeSelected,
     onHide
-  )
+  );
 
   return (
     <Modal show={show} onHide={handleCancelChangesSlides} size="xl" aria-labelledby="contained-modal-title-vcenter" centered>
@@ -63,5 +63,5 @@ export const ModalSlide = ({ show, onHide, idSlide, orderSlide, setSlideToChange
         </div>
       </Modal.Footer>
     </Modal>
-  )
-}
+  );
+};

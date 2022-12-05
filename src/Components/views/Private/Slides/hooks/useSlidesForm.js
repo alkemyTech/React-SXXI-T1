@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postSlides } from "../interceptor/postSlides.interceptor ";
 import { useFormik } from "formik";
 import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { privateRoutes } from "models/routes";
 import { handleUserConfirm } from "utilities/alerts/userConfirm.util";
-import { getSlides } from "../interceptor/getSlides.interceptor";
 import { ascendOrderArray, getMaxOrder, personalSlides, PERSONAL_ORDER } from "utilities/slides/slides.util";
 import { useSlidesEditAction } from "./useSlidesEditAction";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
-import { putSlides } from "../interceptor/putSlides.interceptor";
 import { getIndexSlide } from "../utilities/getIndexSlide.util";
 import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 import { slidesValidationSchema } from "../utilities/slidesValidationSchema.util";
+import privateService from "Services/privateApiService";
+import { URLs } from "Services/ServicesURLS";
+import { slidesAdapter } from "../adapter/slides.adapter";
 
 export const useSlidesForm = (idSlide) => {
   const initialValues = {
@@ -22,11 +22,14 @@ export const useSlidesForm = (idSlide) => {
     image: "",
   };
 
+  let restURL = URLs.slides;
+
   const [loadSubmitSlides, setLoadSubmitSlides] = useState(false);
   const [loadOrderSlides, setLoadOrderSlides] = useState(true);
 
   const { orderSlide, setOrderSlide, initialEditValues, dataSliceToEdit } = useSlidesEditAction({
     idSlide,
+    restURL,
   });
 
   const [slideToChangeSelected, setSlideToChangeSelected] = useState(0);
@@ -47,6 +50,60 @@ export const useSlidesForm = (idSlide) => {
 
   const handleImageToSend = (value) => setImageToSend(value);
 
+  const isEdit = async () => {
+    let dataEdit;
+    if (slideToChangeSelected > 0) {
+      const firstOrderSlice = orderSlide[getIndexSlide(orderSlide, idSlide)]["order"];
+      const secondOrderSlice = orderSlide[getIndexSlide(orderSlide, slideToChangeSelected)]["order"];
+
+      const arraySlidesToChange = [orderSlide[getIndexSlide(orderSlide, idSlide)], orderSlide[getIndexSlide(orderSlide, slideToChangeSelected)]];
+
+      const definefirstImage = imageToSend || (await convertUrlToBase64(formik.values.image));
+
+      const defineSecondImage = await convertUrlToBase64(arraySlidesToChange[1]["image"]);
+
+      if (definefirstImage && defineSecondImage && (!definefirstImage || !defineSecondImage))
+        throw new Error(requestMessagesSchema.problemExistTryLater);
+
+      const firstDataSubmit = {
+        ...dataSliceToEdit,
+        ...formik.values,
+        image: definefirstImage,
+        order: secondOrderSlice,
+      };
+
+      const secondDataSubmit = {
+        ...arraySlidesToChange[1],
+        image: defineSecondImage,
+        order: firstOrderSlice,
+      };
+
+      let sendSlides = await Promise.all([
+        privateService.put(restURL, idSlide, firstDataSubmit),
+        privateService.put(restURL, secondDataSubmit.id, secondDataSubmit),
+      ]);
+      const response = sendSlides.findIndex((result) => !result.success);
+
+      if (response !== -1) {
+        throw new Error(sendSlides[response]["message"]);
+      } else {
+        dataEdit = sendSlides[0];
+      }
+    } else {
+      const dataSubmit = {
+        ...dataSliceToEdit,
+        ...formik.values,
+        image: imageToSend || (await convertUrlToBase64(formik.values.image)),
+      };
+
+      dataEdit = await privateService.put(restURL, idSlide, dataSubmit);
+
+      if (!dataEdit || !dataEdit.success) throw new Error(dataEdit.message);
+    }
+
+    return dataEdit;
+  };
+
   async function onSubmit() {
     try {
       setLoadSubmitSlides(true);
@@ -56,68 +113,27 @@ export const useSlidesForm = (idSlide) => {
       if (!isConfirm) return;
 
       let sendData;
+
       if (idSlide) {
-        if (slideToChangeSelected > 0) {
-          const firstOrderSlice = orderSlide[getIndexSlide(orderSlide, idSlide)]["order"];
-          const secondOrderSlice = orderSlide[getIndexSlide(orderSlide, slideToChangeSelected)]["order"];
-
-          const arraySlidesToChange = [orderSlide[getIndexSlide(orderSlide, idSlide)], orderSlide[getIndexSlide(orderSlide, slideToChangeSelected)]];
-
-          const definefirstImage = imageToSend || (await convertUrlToBase64(formik.values.image));
-
-          const defineSecondImage = await convertUrlToBase64(formik.values.image);
-          if (definefirstImage && defineSecondImage && (!definefirstImage || !defineSecondImage))
-            throw new Error(requestMessagesSchema.problemExistTryLater);
-
-          const firstDataSubmit = {
-            ...dataSliceToEdit,
-            ...formik.values,
-            image: definefirstImage,
-            order: secondOrderSlice,
-          };
-
-          const secondDataSubmit = {
-            ...arraySlidesToChange[1],
-            image: defineSecondImage,
-            order: firstOrderSlice,
-          };
-
-          let sendSlides = await Promise.all([putSlides(firstDataSubmit, idSlide), putSlides(secondDataSubmit, secondDataSubmit.id)]);
-
-          const response = sendSlides.findIndex((result) => !result.success);
-
-          if (response !== -1) {
-            throw new Error(sendSlides[response]["message"]);
-          } else {
-            sendData = sendSlides[0];
-          }
-        } else {
-          const dataSubmit = {
-            ...dataSliceToEdit,
-            ...formik.values,
-            image: imageToSend || (await convertUrlToBase64(formik.values.image)),
-          };
-
-          sendData = await putSlides(dataSubmit, idSlide);
-
-          if (!sendData || !sendData.success) throw new Error(sendData.message);
-        }
+        sendData = await isEdit();
       } else {
         const dataSubmit = {
           ...formik.values,
           image: imageToSend,
         };
 
-        sendData = await postSlides(dataSubmit);
+        sendData = await privateService.post(restURL, dataSubmit);
 
         if (!sendData || !sendData.success) throw new Error(sendData.message);
       }
 
-      feedbackUser("top-end", "success", sendData.message);
+      feedbackUser("top-end", "success", requestMessagesSchema.successfullyOperation);
       handleImageToSend("");
 
       navigate("/" + privateRoutes.BACKOFFICE + privateRoutes.SLIDES, { replace: "true" });
     } catch (error) {
+      if (!error.message) feedbackUser("top-end", "error", error.message);
+
       console.error("error useSlidesForm onSubmit", error.message);
       feedbackUser("top-end", "error", error.message);
     } finally {
@@ -138,11 +154,14 @@ export const useSlidesForm = (idSlide) => {
     const fetchAllSlides = async () => {
       try {
         setLoadOrderSlides(true);
-        const getData = await getSlides({});
+
+        const getData = await privateService.get(restURL);
 
         if (getData && !getData.success) throw new Error(getData.message);
 
-        const filterSlides = personalSlides(getData.data);
+        const dataAdapter = getData.data.map((slice) => slidesAdapter(slice));
+
+        const filterSlides = personalSlides(dataAdapter);
         if (idSlide) {
           setOrderSlide(ascendOrderArray(filterSlides));
         } else {
@@ -161,6 +180,7 @@ export const useSlidesForm = (idSlide) => {
     };
 
     fetchAllSlides();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idSlide, setFieldValue, setMaxSlideOrder, setOrderSlide]);
 
   return {

@@ -1,12 +1,11 @@
-import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage"
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
-import { Animate } from "styled-components/animation.styled"
-import { useNews } from "./hooks/useNews"
-import { newsSchema } from "./utilities/newsSchema.util"
-import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection"
-import SearchNews from "./components/SearchNews"
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
-import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle"
+import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
+import { Animate } from "styled-components/animation.styled";
+import { useNews } from "./hooks/useNews";
+import { newsSchema } from "./utilities/newsSchema.util";
+import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection";
+import SearchNews from "./components/SearchNews";
+import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle";
 
 const News = () => {
   const { loadingNews, newsData, fetchNews } = useNews();
