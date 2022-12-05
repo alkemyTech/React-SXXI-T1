@@ -43,7 +43,7 @@ const privateSlidesSchema = {
     confirm: "Crear Slide",
     edit: "Editar Slide",
   },
-  noSlides: "Aun no tienes slides",
+  noSlides: "Sin slides para mostrar",
   confirmDeleteSlides: "Estás por eliminar: ",
   deleteSuccessfully: "Eliminación exitosa",
 };

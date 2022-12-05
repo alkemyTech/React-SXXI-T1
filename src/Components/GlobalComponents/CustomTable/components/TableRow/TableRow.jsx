@@ -8,11 +8,7 @@ const buttonsActions = [editIcon, deleteIcon];
 export const TableRow = ({ handleEdit, handleDelete, children, loading = false }) => {
   return (
     <tr>
-<<<<<<< HEAD
-      <td>{children?.idx + 1 || <SpinnerGrow animation="grow" variant="primary" />}</td>
-=======
       <td>{children?.idx + 1 || <SkeletonLoader />}</td>
->>>>>>> a0c340378ec6ffa4e3aa8bc120e652c3c8ff809c
       <PersonalTableData children={children} loading={loading} />
       <td>
         {loading ? (

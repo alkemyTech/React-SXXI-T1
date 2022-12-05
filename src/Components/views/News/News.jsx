@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage"
 import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
 import { Animate } from "styled-components/animation.styled"
@@ -7,16 +6,7 @@ import { newsSchema } from "./utilities/newsSchema.util"
 import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection"
 import SearchNews from "./components/SearchNews"
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
-=======
-import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
-import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle";
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
-import { Animate } from "styled-components/animation.styled";
-import { useNews } from "./hooks/useNews";
-import { newsSchema } from "./utilities/newsSchema.util";
-import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection";
-import SearchNews from "./components/SearchNews";
->>>>>>> 7e36fb05ea6a6f65e1f43e09206a86699371581c
+import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle"
 
 const News = () => {
   const { loadingNews, newsData, fetchNews } = useNews();
@@ -39,29 +29,17 @@ const News = () => {
   } else {
     newsContent = (
       <div className="col col-12 d-flex justify-content-center">
-        <CustomAlertMessage alertClass="col col-10" text={newsSchema.noNews} />
+        <CustomAlertMessage alertClass="col col-10" text={newsSchema.noMatch} />
       </div>
     );
   }
 
   return (
     <Animate>
-<<<<<<< HEAD
-      <div className="my-5">
-        <CustomTitle
-          title={newsSchema.title}
-          wrapTitleClass="d-block h-auto"
-          justify="center"   
-        />
-      </div>
-      <div className="col col-12 d-flex justify-content-center mb-5">
-        <div className="col col-12">
-=======
       <HeadTitle title={newsSchema.title} />
 
       <div className="col col-12 d-flex justify-content-center mb-3">
         <div className="col col-12 mb-3">
->>>>>>> 7e36fb05ea6a6f65e1f43e09206a86699371581c
           <SearchNews onSearchNews={searchNewsHandler} />
         </div>
       </div>

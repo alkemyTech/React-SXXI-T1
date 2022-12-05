@@ -34,7 +34,7 @@ const ActivitiesList = () => {
         ))
       ) : (
         <div className="col col-12 d-flex justify-content-center">
-          <CustomAlertMessage alertClass="col col-10" text="Aún no hay actividades" />
+          <CustomAlertMessage alertClass="col col-10" text="Sin actividades para mostrar" />
         </div>
       );
   }
