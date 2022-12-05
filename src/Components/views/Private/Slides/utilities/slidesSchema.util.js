@@ -5,11 +5,7 @@ const modalSchema = {
   subTitle: (indexSlide) => `Slide ${indexSlide} seleccionado.`,
   selectSlideText: " Selecciona el slide con el que quieras cambiar el orden.",
   slidesText: "Slides",
-  paragraphDetails: (
-    indexSlide,
-    orderSlide,
-    slideToChangeSelected
-  ) => ` El slide "${indexSlide}" pasará a estar en la posición: "
+  paragraphDetails: (indexSlide, orderSlide, slideToChangeSelected) => ` El slide "${indexSlide}" pasará a estar en la posición: "
     ${getIndexSlide(orderSlide, slideToChangeSelected) + 1}"`,
 };
 
@@ -32,30 +28,27 @@ const formFieldsSchema = {
   },
 };
 
-const buttonSchema = {
-  confirm: {
-    text: "Confirmar",
-    paint: "success",
+const privateSlidesSchema = {
+  buttons: {
+    confirm: {
+      text: "Confirmar",
+      paint: "success",
+    },
+    edit: {
+      text: "Editar",
+      paint: "yellow",
+    },
   },
-  edit: {
-    text: "Editar",
-    paint: "yellow",
+  title: {
+    confirm: "Crear Slide",
+    edit: "Editar Slide",
   },
-};
-
-const titleSchema = {
-  confirm: "Crear Slide",
-  edit: "Editar Slide",
+  noSlides: "Aun no tienes slides",
+  confirmDeleteSlides: "Estás por eliminar: ",
+  deleteSuccessfully: "Eliminación exitosa",
 };
 
 const tableHead = ["#", "Título", "Imagen", "Orden", "Acciones"];
 const myTableData = { name: "name", image: "image", order: "order" };
 
-export {
-  modalSchema,
-  formFieldsSchema,
-  buttonSchema,
-  titleSchema,
-  tableHead,
-  myTableData,
-};
+export { modalSchema, formFieldsSchema, privateSlidesSchema, tableHead, myTableData };

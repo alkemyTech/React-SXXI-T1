@@ -1,4 +1,4 @@
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 export const feedbackUser = (position, icon, title) =>
   Swal.fire({
@@ -6,5 +6,5 @@ export const feedbackUser = (position, icon, title) =>
     icon: icon,
     title: title,
     showConfirmButton: false,
-    timer: 3000,
-  })
+    timer: 2500,
+  });
