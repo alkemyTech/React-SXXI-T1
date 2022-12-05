@@ -1,13 +1,12 @@
-import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
-import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
-import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle";
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
-import { Animate } from "styled-components/animation.styled";
-import { useNews } from "./hooks/useNews";
-import { newsSchema } from "./utilities/newsSchema.util";
-import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection";
-import SearchNews from "./components/SearchNews";
-import { routes } from "models/routes";
+import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage"
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
+import { Animate } from "styled-components/animation.styled"
+import { useNews } from "./hooks/useNews"
+import { newsSchema } from "./utilities/newsSchema.util"
+import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection"
+import SearchNews from "./components/SearchNews"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
+import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle"
 
 const News = () => {
   const { loadingNews, newsData, fetchNews } = useNews();
@@ -30,7 +29,7 @@ const News = () => {
   } else {
     newsContent = (
       <div className="col col-12 d-flex justify-content-center">
-        <CustomAlertMessage alertClass="col col-10" text={newsSchema.noNews} />
+        <CustomAlertMessage alertClass="col col-10" text={newsSchema.noMatch} />
       </div>
     );
   }
@@ -38,10 +37,9 @@ const News = () => {
   return (
     <Animate>
       <HeadTitle title={newsSchema.title} />
-      <BackTo wrapLink="my-4" to={routes.HOME} text="Ir a inicio" />
 
       <div className="col col-12 d-flex justify-content-center mb-3">
-        <div className="col col-12">
+        <div className="col col-12 mb-3">
           <SearchNews onSearchNews={searchNewsHandler} />
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { FormImageField } from "Components/GlobalComponents/FormImageField/FormImageField";
-import { Spinner } from "react-bootstrap";
+import { SkeletonLoader } from "../Loading/SkeletonLoader/SkeletonLoader";
 
 export const InputImage = (props) => {
   const {
@@ -15,7 +15,11 @@ export const InputImage = (props) => {
   return (
     <>
       {loading ? (
-        <Spinner animation="grow" variant="primary" />
+        <SkeletonLoader
+          placeClass="placeClass col col-12 d-flex justify-content-center w-100 h-100"
+          spanClass="spanClass h-100 w-50"
+          height="250px"
+        />
       ) : (
         <FormImageField
           errors={errors}

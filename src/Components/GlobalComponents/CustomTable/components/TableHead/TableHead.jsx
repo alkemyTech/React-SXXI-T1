@@ -1,5 +1,5 @@
-import { SpinnerGrow } from "Components/GlobalComponents/Loading/SpinnerGrow/SpinnerGrow";
+import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader";
 
 export const TableHead = ({ load, element }) => {
-  return <th>{load ? <SpinnerGrow animation="grow" variant="ligth" /> : element}</th>;
+  return <th>{load ? <SkeletonLoader /> : element}</th>;
 };
