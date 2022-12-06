@@ -31,7 +31,7 @@ export const dashboardLinks = [
   },
   {
     text: "Organización",
-    icon: usersImage,
+    icon: organizationImage,
     to: `/${privateRoutes.BACKOFFICE}${privateRoutes.ORGANIZATIONDATA}`,
   },
   {
@@ -46,7 +46,7 @@ export const dashboardLinks = [
   },
   {
     text: "Usuarios",
-    icon: organizationImage,
+    icon: usersImage,
     to: `/${privateRoutes.BACKOFFICE}${privateRoutes.USERS}`,
   },
 ]
