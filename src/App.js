@@ -28,14 +28,10 @@ import CategoriesForm from "Components/views/Categories/CategoriesForm";
 import { WrapMainRoutes } from "styled-components/App.styled";
 import About from "Components/views/About/About";
 import { Auth } from "Components/views/Auth/Auth";
-import { useSelector } from "react-redux";
+import { useApp } from "hooks/useApp";
 
 function App() {
-  const {
-    user: {
-      role: { type },
-    },
-  } = useSelector((store) => store.user);
+  const { type } = useApp();
 
   return (
     <>

@@ -1,4 +1,5 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
+import { scrollbarCssStyles } from "./App.styled";
 
 export const GlobalStyle = createGlobalStyle`
     html {
@@ -37,30 +38,12 @@ export const GlobalStyle = createGlobalStyle`
             width: 100%;
             margin: 0 auto;
             transition: 0.5s;
+
+            ${scrollbarCssStyles}
         }
 
-        body::-webkit-scrollbar{
-            width: 12px;
-            background: #e4e4e4;
-        }
-
-        body::-webkit-scrollbar-thumb{
-            background: hsla(187, 97%, 29%, .3);
-            border-radius: 5px;
-            border: 1px solid hsla(187, 97%, 29%, .55);
-            border-right: 1px solid #e4e4e4;
-
-            &:hover{
-                background: hsla(187, 97%, 29%, .6);
-                border: 1px solid hsla(187, 97%, 29%, .85);
-                 border-right: 1px solid #e4e4e4;
-            }
-
-            &:active{
-                background: hsla(187, 97%, 29%, .8);
-                border: 1px solid hsla(187, 97%, 29%, 1);
-                 border-right: 1px solid #e4e4e4;
-            }
+        .table-responsive-md {
+            ${scrollbarCssStyles}
         }
 
         #root {
@@ -68,4 +51,4 @@ export const GlobalStyle = createGlobalStyle`
             overflow-x: hidden;
         }
     }
-`
+`;

@@ -1,8 +1,12 @@
-import { Dropdown, Image as BootstrapImage } from "react-bootstrap";
+import { Dropdown as BootstrapDropDown, Image as BootstrapImage } from "react-bootstrap";
 import styled from "styled-components";
 import { fadeIn } from "styled-components/animation.styled";
 import { dropShadow, filterSaturate, inputTextCssStyle, responsiveDesign } from "styled-components/App.styled";
 import { themeColors } from "styled-components/Theme.styled";
+
+const DropDown = styled(BootstrapDropDown)`
+  display: ${({ role }) => (role ? "flex" : "none")};
+`;
 
 const Image = styled(BootstrapImage)`
   width: 40px;
@@ -16,7 +20,7 @@ const Image = styled(BootstrapImage)`
   }
 `;
 
-const DropdownToggle = styled(Dropdown.Toggle)`
+const DropdownToggle = styled(BootstrapDropDown.Toggle)`
   background: rgba(0, 0, 0, 0) !important;
   border: none !important;
   padding: 0;
@@ -27,25 +31,17 @@ const DropdownToggle = styled(Dropdown.Toggle)`
   }
 `;
 
-const DropdownMenu = styled(Dropdown.Menu)`
+const DropdownMenu = styled(BootstrapDropDown.Menu)`
   ${inputTextCssStyle}
-  left: 0 !important;
+  left: -102px !important;
   z-index: 3;
   padding: 0px 0px 10px 0px;
 
   transition: 0.5s;
   ${fadeIn({ time: "0.5s" })}
-
-  ${responsiveDesign.tablet} {
-    left: ${(props) => (props.role === "admin" ? "0" : "5px")} !important;
-  }
-
-  ${responsiveDesign.desktop} {
-    left: ${(props) => (props.role === "admin" ? "0" : "-102px")} !important;
-  }
 `;
 
-const DropdownItem = styled(Dropdown.Item)`
+const DropdownItem = styled(BootstrapDropDown.Item)`
   padding: 15px;
 
   transition: 0.5s;
@@ -66,4 +62,4 @@ const DropdownItem = styled(Dropdown.Item)`
   }
 `;
 
-export { Image, DropdownMenu, DropdownItem, DropdownToggle };
+export { Image, DropdownMenu, DropdownItem, DropdownToggle, DropDown };
