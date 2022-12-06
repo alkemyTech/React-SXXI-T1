@@ -1,10 +1,9 @@
 import axios from "axios";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 
-// a futuro agregar Bearer.  headers: {'Authorization': 'Bearer '+ token}
 const privateApi = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
-})
+});
 
 const get = async (restURL) => {
   try {
@@ -12,7 +11,7 @@ const get = async (restURL) => {
       method: "get",
     });
 
-    if (!data || !data.success) throw new Error(data ? data.message : requestMessagesSchema.problemExistTryLater);
+    if (!data || !data.success) throw new Error(data.message || requestMessagesSchema.problemExistTryLater);
 
     const dataAdapter = data.data;
 
@@ -32,7 +31,7 @@ const post = async (restURL, body) => {
       method: "post",
       data: body,
     });
-    if (!data || !data.success) throw new Error(data ? data.message : requestMessagesSchema.problemExistTryLater);
+    if (!data || !data.success) throw new Error(data.message || requestMessagesSchema.problemExistTryLater);
 
     const dataAdapter = data.data;
 
@@ -52,7 +51,8 @@ const put = async (restURL, id, body) => {
       method: "put",
       data: body,
     });
-    if (!data || !data.success) throw new Error(data ? data.message : requestMessagesSchema.problemExistTryLater);
+
+    if (!data || !data.success || data.error) throw new Error(data.message || requestMessagesSchema.problemExistTryLater);
 
     const dataAdapter = data.data;
 
@@ -60,7 +60,7 @@ const put = async (restURL, id, body) => {
   } catch (error) {
     console.error("error interceptor: ", error.message);
     if (axios.isCancel(error)) {
-      return { message: "solicitud axios cancelada" };
+      return { success: false, message: "solicitud axios cancelada" };
     }
     return { success: false, message: error.message };
   }
@@ -71,7 +71,7 @@ const deleted = async (restURL, id) => {
     const { data } = await privateApi(`${restURL}/${id}`, {
       method: "delete",
     });
-    if (!data || !data.success) throw new Error(data ? data.message : requestMessagesSchema.problemExistTryLater);
+    if (!data || !data.success) throw new Error(data.message || requestMessagesSchema.problemExistTryLater);
 
     const dataAdapter = data.data;
 
