@@ -10,6 +10,7 @@ import { encodeQueryParams } from "utilities/queryParams";
 import { errorMessages } from "../../utilities/errorMessages";
 import { privateRoutes } from "models/routes";
 import { successMessages } from "../../utilities/successMessages";
+import { whatIs } from "utilities/parseDate";
 
 export const useNews = () => {
   const [newsData, setNewsData] = useState([]);
@@ -31,9 +32,9 @@ export const useNews = () => {
 
       if (response) {
         setLoading(true);
-        const activityDeleted = await privateService.deleted(URLs.news, id);
+        const newsDeleted = await privateService.deleted(URLs.news, id);
 
-        if (activityDeleted) {
+        if (newsDeleted) {
           await feedbackUser("center", "success", `${successMessages.deleteNews}`);
           fetchNews();
         } else {
@@ -68,10 +69,11 @@ export const useNews = () => {
       if (fetchingNews && !fetchingNews.success) {
         throw new Error(fetchingNews.message);
       }
-
-      const filterSlides = filterNews(fetchingNews.data);
-
-      setNewsData(filterSlides);
+      const dateParsing = whatIs("isArray", fetchingNews.data, "splice", "created_at");
+      setNewsData(dateParsing);
+      setNews(fetchingNews.data);
+      //const filterSlides = filterNews(fetchingNews.data);
+      //setNewsData(filterSlides);
     } catch (error) {
       feedbackUser("center", "error", `${errorMessages.getNews}`);
     } finally {
@@ -83,5 +85,5 @@ export const useNews = () => {
     fetchNews();
   }, []);
 
-  return { loadingNews, editHandler, deleteHandler, searchNewsHandler, newsData, fetchNews };
+  return { news, loadingNews, newsData, loading, editHandler, deleteHandler, searchNewsHandler,  fetchNews };
 };

@@ -6,17 +6,41 @@ import { privateRoutes } from "models/routes";
 import SearchNews from "./components/SearchNews";
 import { useNews } from "./hooks/useNews";
 import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
+import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 
 const NewsList = () => {
   const tHead = ["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"];
   const myTableData = { name: "name", image: "image", created_at: "created_at" };
-  const { loadingNews, editHandler, deleteHandler, searchNewsHandler,newsData } = useNews();
-   
+  const { news, loadingNews, newsData, loading, editHandler, deleteHandler, searchNewsHandler, fetchNews } = useNews();
+
   let newsContent;
-  if (loadingNews) {
-    newsContent = <SpinnerLoad />;
+  if (loadingNews || loading) {
+    newsContent = (
+      <CustomTable 
+        tHead={tHead} 
+        tBody={newsData} 
+        myTableData={myTableData} 
+        handleEdit={editHandler} 
+        handleDelete={deleteHandler} 
+        loading={loadingNews}
+        />
+    );
   } else {
-    newsContent = <CustomTable tHead={tHead} tBody={newsData} myTableData={myTableData} handleEdit={editHandler} handleDelete={deleteHandler} />;
+    newsContent = 
+      newsData.lenght > 0 ? (
+      <CustomTable 
+        tHead={tHead} 
+        tBody={newsData} 
+        myTableData={myTableData} 
+        handleEdit={editHandler} 
+        handleDelete={deleteHandler} 
+        loading={loading}
+        />
+    ) : (
+      <div className="col col-12 d-flex justify-content-center mt-5">
+        <CustomAlertMessage alertClass="col col-10" text="Sin novedades para mostrar" />
+      </div>
+    );
   }
 
   return (
@@ -33,7 +57,7 @@ const NewsList = () => {
           icon={addIcon}
         />
       </div>
-      <SearchNews onSearchNews={searchNewsHandler} />
+      <SearchNews onSearchNews={searchNewsHandler} disabled={!news.length} />
       <div>{newsContent}</div>
     </div>
   );
