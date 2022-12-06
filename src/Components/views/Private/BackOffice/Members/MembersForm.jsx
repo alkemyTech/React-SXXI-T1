@@ -39,8 +39,8 @@ const EditForm = () => {
           onChange={handleChange}
         />
         <FormImageField
-          errors={errors.image}
-          touched={touched.image}
+          errors={errors}
+          touched={touched}
           name="image"
           setFieldValue={formik.setFieldValue}
           setImageToSend={setImageBase64}
