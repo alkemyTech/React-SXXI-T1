@@ -4,6 +4,7 @@ import { RoutesNoMatch } from "utilities/routesNoMatch.util";
 import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
 import ActivitiesList from "./BackOffice/Acivities/ActivitiesList";
 import CategoriesForm from "../Categories/CategoriesForm";
+import CategoriesList from "./CategoriesList/CategoriesList";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
 import MembersForm from "./BackOffice/Members/MembersForm";
 import MembersList from "./BackOffice/Members/MembersList";
@@ -16,9 +17,9 @@ import Dashboard from "./AdminDashboard/Dashboard";
 import OrganizationData from "./Organization/OrganizationData/OrganizationData";
 import ActionsSlider from "./Slides/components/ActionsSlider/ActionsSlider";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
+import TestimonialsList from "./TestimonialsList/TestimonialsList";
 import UsersForm from "./BackOffice/Users/UsersForm/UsersForm";
 import UsersList from "./BackOffice/Users/UsersList/UsersList";
-import CategoriesList from "./CategoriesList/CategoriesList";
 
 const BackOfficeRoutes = () => {
   return (
