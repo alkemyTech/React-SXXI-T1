@@ -12,8 +12,8 @@ export const CustomTitle = ({
   blur = "",
 }) => {
   return (
-    <WrapCustomTitle className={wrapTitleClass} backgroundSize={backgroundSize} image={image} width={width} height={height}>
-      <WrapTextTitle className={wrapTextClass} justify={justify} blur={blur}>
+    <WrapCustomTitle className={"WrapCustomTitle my-4 " + wrapTitleClass} backgroundSize={backgroundSize} image={image} width={width} height={height}>
+      <WrapTextTitle className={"WrapTextTitle my-2 " + wrapTextClass} justify={justify} blur={blur}>
         {title}
       </WrapTextTitle>
     </WrapCustomTitle>
