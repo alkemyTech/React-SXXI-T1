@@ -13,7 +13,7 @@ import { ButtonConfirm } from "./MembersForm.Styled";
 
 const EditForm = () => {
   const { id } = useParams();
-  const { errors, handleSubmit, handleChange, touched, member, loading, formik, values, setImageBase64 } = useMembersForm();
+  const { errors, handleBlur, handleSubmit, handleChange, touched, member, loading, formik, values, setImageBase64 } = useMembersForm();
 
   const descriptionChangeHandler = (data) => {
     formik.setFieldValue("description", data);
@@ -37,6 +37,7 @@ const EditForm = () => {
           isTouched={touched.name}
           error={errors.name}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
         <FormImageField
           errors={errors}
@@ -62,6 +63,7 @@ const EditForm = () => {
           isTouched={touched.facebookUrl}
           error={errors.facebookUrl}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           value={values.linkedinUrl}
@@ -72,6 +74,7 @@ const EditForm = () => {
           isTouched={touched.linkedinUrl}
           error={errors.linkedinUrl}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
         <div className="my-5 d-flex justify-content-center">
           <ButtonConfirm className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} background="success" color="success" type="submit">
