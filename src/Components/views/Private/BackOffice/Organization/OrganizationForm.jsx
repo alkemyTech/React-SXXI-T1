@@ -2,7 +2,7 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 
 import Input from "../components/Input";
-import { ButtonConfirm } from "./OrganizationForm.Styled";
+import { ButtonEdit } from "./OrganizationForm.Styled";
 import DescriptionEditor from "../components/DescriptionEditor";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
@@ -20,7 +20,7 @@ const OrganizationForm = () => {
   return (
     <section className="container my-5">
       <div className="my-5">
-        <CustomTitle title={"Edita Organización"} justify="center" wrapTextClass="text-center" wrapTitleClass="d-block h-auto" />
+        <CustomTitle title={"Editar Organización"} justify="center" wrapTextClass="text-center" wrapTitleClass="d-block h-auto" />
       </div>
       <div className="my-5">
         <BackTo wrapLink="my-4" to={"/" + privateRoutes.BACKOFFICE + privateRoutes.ORGANIZATIONDATA} />
@@ -108,9 +108,9 @@ const OrganizationForm = () => {
           onBlur={handleBlur}
         />
         <div className="my-5 d-flex justify-content-center">
-          <ButtonConfirm className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} background="success" color="success" type="submit">
-            Confirmar
-          </ButtonConfirm>
+          <ButtonEdit className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} type="submit">
+            Editar
+          </ButtonEdit>
         </div>
       </Form>
     </section>
