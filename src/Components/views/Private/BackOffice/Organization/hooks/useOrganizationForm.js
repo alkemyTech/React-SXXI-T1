@@ -8,7 +8,6 @@ import Alert from "../../components/Alert";
 import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { errorMessages } from "../utilities/errorMessages";
 import { EditOrganizationSchema } from "../../utilities/schemas";
-import { convertToBase64 } from "../utilities/utilities";
 
 export const useOrganizationForm = () => {
   const navigate = useNavigate();
@@ -69,16 +68,6 @@ export const useOrganizationForm = () => {
     }
   };
 
-  function handleImage(e) {
-    const image = e.target.files[0];
-    if (image) {
-      formik.setFieldValue("logo", image);
-      convertToBase64(image, setImageBase64);
-    } else {
-      formik.setFieldValue("logo", "");
-    }
-  }
-
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -123,7 +112,6 @@ export const useOrganizationForm = () => {
     organization,
     loading,
     formik,
-    handleImage,
     cancel,
     setImageBase64,
     setFieldValue,
