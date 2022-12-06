@@ -9,7 +9,7 @@ import { privateRoutes } from "models/routes";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { useMembersForm } from "./hooks/useMembersForm";
 import { FormImageField } from "Components/GlobalComponents/FormImageField/FormImageField";
-import { ButtonConfirm } from "./MembersForm.Styled";
+import { ButtonConfirm, ButtonEdit } from "./MembersForm.Styled";
 
 const EditForm = () => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ const EditForm = () => {
   return (
     <section className="container my-5">
       <div className="my-5">
-        <CustomTitle title={id ? "Edita miembro" : "Crea miembro"} justify="center" wrapTextClass="text-center" wrapTitleClass="d-block h-auto" />
+        <CustomTitle title={id ? "Editar miembro" : "Crear miembro"} justify="center" wrapTextClass="text-center" wrapTitleClass="d-block h-auto" />
       </div>
       <div className="my-5">
         <BackTo wrapLink="my-4" to={"/" + privateRoutes.BACKOFFICE + privateRoutes.MEMBERSLIST} />
@@ -77,9 +77,15 @@ const EditForm = () => {
           onBlur={handleBlur}
         />
         <div className="my-5 d-flex justify-content-center">
-          <ButtonConfirm className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} background="success" color="success" type="submit">
-            Confirmar
-          </ButtonConfirm>
+          {id ? (
+            <ButtonEdit className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} type="submit">
+              Editar
+            </ButtonEdit>
+          ) : (
+            <ButtonConfirm className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} background="success" color="success" type="submit">
+              Confirmar
+            </ButtonConfirm>
+          )}
         </div>
       </Form>
     </section>
