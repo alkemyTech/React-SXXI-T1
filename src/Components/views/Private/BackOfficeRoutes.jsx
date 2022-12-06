@@ -1,10 +1,11 @@
 import { privateRoutes } from "models/routes";
 import { Route } from "react-router-dom";
 import { RoutesNoMatch } from "utilities/routesNoMatch.util";
-import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
-import ActivitiesList from "./BackOffice/Acivities/ActivitiesList";
+import ActivitiesForm from "./BackOffice/Acivities/Form/ActivitiesForm";
+import ActivitiesList from "./BackOffice/Acivities/List/ActivitiesList";
 import CategoriesForm from "../Categories/CategoriesForm";
-import EditOrganizationForm from "./BackOffice/Organization/OrganizationForm";
+import CategoriesList from "./CategoriesList/CategoriesList";
+import EditOrganizationForm from "./BackOffice/Organization/EditForm";
 import MembersForm from "./BackOffice/Members/MembersForm";
 import MembersList from "./BackOffice/Members/MembersList";
 import NewsList from "./BackOffice/News/NewsList";
@@ -16,9 +17,9 @@ import Dashboard from "./AdminDashboard/Dashboard";
 import OrganizationData from "./Organization/OrganizationData/OrganizationData";
 import ActionsSlider from "./Slides/components/ActionsSlider/ActionsSlider";
 import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
-import UsersForm from "./BackOffice/Users/UsersForm";
-import UsersList from "./BackOffice/Users/UsersList";
-import CategoriesList from "./CategoriesList/CategoriesList";
+import TestimonialsList from "./TestimonialsList/TestimonialsList";
+import UsersForm from "./BackOffice/Users/UsersForm/UsersForm";
+import UsersList from "./BackOffice/Users/UsersList/UsersList";
 
 const BackOfficeRoutes = () => {
   return (
@@ -47,6 +48,7 @@ const BackOfficeRoutes = () => {
       <Route path={privateRoutes.SLIDES} element={<PrivateSlides />} />
       <Route path={privateRoutes.SLIDESCREATE} element={<ActionsSlider />} />
       <Route path={privateRoutes.SLIDESEDITWITHID} element={<ActionsSlider />} />
+      <Route path={privateRoutes.TESTIMONIALS} element={<TestimonialsList />} />
       <Route path={privateRoutes.TESTIMONIALSFORM} element={<TestimonialsForm />} />
       <Route path={privateRoutes.TESTIMONIALSEDITFORM} element={<TestimonialsForm />} />
       <Route path={privateRoutes.USERS} element={<UsersList />} />

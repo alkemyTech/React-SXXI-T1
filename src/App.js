@@ -1,41 +1,41 @@
-import React from "react"
-import { Route } from "react-router-dom"
-import { privateRoutes, routes } from "./models/routes"
-import { Animate } from "styled-components/animation.styled"
-import { GlobalStyle } from "styled-components/GlobalStyle.styled"
-import { windowSize } from "utilities/windowSize.util"
-import { textForDonation } from "Components/views/Donations/utilities/donationSchema.util"
-import { RoutesNoMatch } from "./utilities/routesNoMatch.util"
-import Home from "./Components/views/Home/index"
-import ActivitiesForm from "./Components/views/Activities/ActivitiesForm"
-import UserForm from "./Components/views/Users/UsersForm"
-import MembersForm from "./Components/views/Members/MembersForm"
-import NewsDetail from "./Components/views/News/Detail/NewsDetail"
-import ProjectsForm from "./Components/views/Projects/ProjectsForm"
-import SchoolCampaign from "./Components/Campaigns/School/SchoolCampaign"
-import ToysCampaign from "./Components/Campaigns/Toys/ToysCampaign"
-import Footer from "./Components/GlobalComponents/Footer/Footer"
-import Header from "./Components/GlobalComponents/Header/Header"
-import Contact from "Components/views/Contact/Contact"
-import Detail from "Components/views/Activities/Detail/Detail"
-import AuthGuard from "guard/auth.guard"
-import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes"
-import ActivitiesList from "Components/views/Activities/ActivitiesList"
-import { Donations } from "Components/views/Donations/Donations"
-import { Thanks } from "Components/views/Donations/Thanks"
-import News from "Components/views/News/News"
-import CategoriesForm from "Components/views/Categories/CategoriesForm"
-import { WrapMainRoutes } from "styled-components/App.styled"
-import About from "Components/views/About/About"
-import { Auth } from "Components/views/Auth/Auth"
-import { useSelector } from "react-redux"
+import React from "react";
+import { Route } from "react-router-dom";
+import { privateRoutes, routes } from "./models/routes";
+import { Animate } from "styled-components/animation.styled";
+import { GlobalStyle } from "styled-components/GlobalStyle.styled";
+import { windowSize } from "utilities/windowSize.util";
+import { textForDonation } from "Components/views/Donations/utilities/donationSchema.util";
+import { RoutesNoMatch } from "./utilities/routesNoMatch.util";
+import Home from "./Components/views/Home/index";
+import ActivitiesForm from "./Components/views/Activities/ActivitiesForm";
+import UserForm from "./Components/views/Users/UsersForm";
+import MembersForm from "./Components/views/Members/MembersForm";
+import NewsDetail from "./Components/views/News/Detail/NewsDetail";
+import ProjectsForm from "./Components/views/Projects/ProjectsForm";
+import SchoolCampaign from "./Components/Campaigns/School/SchoolCampaign";
+import ToysCampaign from "./Components/Campaigns/Toys/ToysCampaign";
+import Footer from "./Components/GlobalComponents/Footer/Footer";
+import Header from "./Components/GlobalComponents/Header/Header";
+import Contact from "Components/views/Contact/Contact";
+import Detail from "Components/views/Activities/Detail/Detail";
+import AuthGuard from "guard/auth.guard";
+import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes";
+import ActivitiesList from "Components/views/Activities/ActivitiesList";
+import { Donations } from "Components/views/Donations/Donations";
+import { Thanks } from "Components/views/Donations/Thanks";
+import News from "Components/views/News/News";
+import CategoriesForm from "Components/views/Categories/CategoriesForm";
+import { WrapMainRoutes } from "styled-components/App.styled";
+import About from "Components/views/About/About";
+import { Auth } from "Components/views/Auth/Auth";
+import { useSelector } from "react-redux";
 
 function App() {
   const {
     user: {
       role: { type },
     },
-  } = useSelector((store) => store.user)
+  } = useSelector((store) => store.user);
 
   return (
     <>
@@ -70,7 +70,7 @@ function App() {
         {type !== "admin" && <Footer />}
       </Animate>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

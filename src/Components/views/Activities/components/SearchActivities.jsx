@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { SearchInput } from "Components/GlobalComponents/SearchInput/SearchInput";
 
 const SearchActivities = ({ onSearchActivities }) => {

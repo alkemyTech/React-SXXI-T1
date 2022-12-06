@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import {
-  inputTextCssStyle,
-  responsiveDesign,
-  someOtherProperties,
-} from "styled-components/App.styled";
+import { inputTextCssStyle, responsiveDesign, someOtherProperties } from "styled-components/App.styled";
 import { themeColors } from "styled-components/Theme.styled";
 
 const CustomNavLink = styled(NavLink)`
