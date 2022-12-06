@@ -14,11 +14,13 @@ import privateService from "Services/privateApiService";
 import { URLs } from "Services/ServicesURLS";
 import { successMessages } from "../utilities/successMessages";
 import { errorMessages } from "../utilities/errorMessages";
+import { useState } from "react";
 
 const NewsList = () => {
   const tHead = ["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"];
   const myTableData = { name: "name", image: "image", created_at: "created_at" };
   const { loadingNews, newsData, fetchNews } = useNews();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const editHandler = (id) => {
@@ -37,7 +39,7 @@ const NewsList = () => {
 
         if (activityDeleted) {
           await feedbackUser("center", "success", `${successMessages.deleteNews}`);
-          fetchActivities();
+          fetchNews();
         } else {
           await feedbackUser("center", "error", `${errorMessages.deleteNews}`);
         }
