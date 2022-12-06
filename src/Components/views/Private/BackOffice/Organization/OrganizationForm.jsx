@@ -11,7 +11,7 @@ import { FormImageField } from "Components/GlobalComponents/FormImageField/FormI
 import { useOrganizationForm } from "./hooks/useOrganizationForm";
 
 const OrganizationForm = () => {
-  const { errors, handleSubmit, handleChange, touched, organization, loading, formik, values, setImageBase64, setFieldValue } = useOrganizationForm();
+  const { errors, handleSubmit, handleChange, touched, organization, loading, formik, values, setImageBase64 } = useOrganizationForm();
 
   const shortDescriptionChangeHandler = (data) => {
     formik.setFieldValue("shortDescription", data);
