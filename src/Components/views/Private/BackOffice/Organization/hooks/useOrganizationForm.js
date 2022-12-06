@@ -30,7 +30,6 @@ export const useOrganizationForm = () => {
       .get(URLs.organization)
       .then((res) => {
         const { data } = res;
-        console.log(data);
         setOrganization({
           name: data.name,
           logo: data.logo,
