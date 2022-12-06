@@ -13,8 +13,10 @@ import { successMessages } from "../../utilities/successMessages";
 
 export const useNews = () => {
   const [newsData, setNewsData] = useState([]);
+  const [news, setNews] = useState([]);
   const [loadingNews, setLoadingNews] = useState(true);
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const editHandler = (id) => {
