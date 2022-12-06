@@ -12,6 +12,7 @@ import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomBut
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { InputImage } from "Components/GlobalComponents/FormInputsField/InputImage";
 import { privateRoutes } from "models/routes";
+import { useSkeleton } from "hooks/useSkeleton";
 
 const CategoriesForm = () => {
   const {
@@ -29,8 +30,9 @@ const CategoriesForm = () => {
     touched,
     setCategory,
     loading,
+    buttonText,
   } = useCategory();
-
+  const { titleSkeleton } = useSkeleton();
   useEffect(() => {
     if (id) {
       privateService
@@ -96,9 +98,9 @@ const CategoriesForm = () => {
         <div className="my-5 d-flex justify-content-center">
           <CustomButton
             buttonClass="col-7 col-lg-8 py-2 px-3 mx-auto"
-            text={loading ? "Loading..." : "Confirmar"}
-            color="success"
-            background="success"
+            text={loading ? "Loading.." : buttonText}
+            color={id ? "yellow" : "success"}
+            background={id ? "yellow" : "success"}
             type="submit"
             disabled={loading}
           />

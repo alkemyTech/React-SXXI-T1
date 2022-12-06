@@ -13,6 +13,7 @@ export const useCategory = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const schema = { name: "image" };
+  const buttonText = id ? "Editar" : "Confirmar";
   const [category, setCategory] = useState({
     name: "",
     image: "",
@@ -99,5 +100,6 @@ export const useCategory = () => {
     schema,
     loading,
     formik,
+    buttonText,
   };
 };
