@@ -7,7 +7,7 @@ import { DropDown, DropdownItem, DropdownMenu, DropdownToggle, Image } from "../
 import { headerSchemas } from "../../utilities/headearSchemas.util";
 
 export const DropDownComponent = ({ typeRole }) => {
-  const { email, image, handleLogout } = useDropDown();
+  const { email, image, handleLogout, handleupdateProfile } = useDropDown();
 
   return (
     <DropDown className="d-flex justify-content-start  align-items-center ps-2 ps-md-3 ps-lg-0" drop="down" role={typeRole}>
@@ -18,8 +18,8 @@ export const DropDownComponent = ({ typeRole }) => {
         <DropdownItem className="mb-1 py-2" disabled>
           {email ? elipsisString({ str: email, len: 18 }).string : "Usuario"}
         </DropdownItem>
-        <DropdownItem>
-          {profileIcon} {headerSchemas.updateText}
+        <DropdownItem onClick={handleupdateProfile}>
+          {profileIcon} {headerSchemas.updateProfileText}
         </DropdownItem>
         <Hr className="d-none d-md-flex " />
         <DropdownItem onClick={handleLogout}>
