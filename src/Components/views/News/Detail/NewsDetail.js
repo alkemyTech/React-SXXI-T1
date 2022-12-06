@@ -33,6 +33,12 @@ const NewsDetail = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [handleResize]);
 
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [handleResize]);
+
   return (
     <MainContent>
       {loading ? (

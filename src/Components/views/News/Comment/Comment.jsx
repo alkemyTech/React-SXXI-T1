@@ -1,33 +1,33 @@
-import { useEffect } from "react"
-import { useComment } from "./hook/useComment"
-import { MainContainer, SkeletonContainer } from "./CommentStyle/CommentStyle"
-import Card from "./Card/Card"
-import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader"
-import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage"
+import { useEffect } from "react";
+import { useComment } from "./hook/useComment";
+import { MainContainer, SkeletonContainer } from "./CommentStyle/CommentStyle";
+import Card from "./Card/Card";
+import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader";
+import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 
 export default function Comment({ id }) {
-  const { getComments, comments, textDivider, handleResize, loading, handleScroll } = useComment(id)
+  const { getComments, comments, textDivider, handleResize, loading, handleScroll } = useComment(id);
 
   useEffect(() => {
-    getComments()
-  }, [getComments])
+    getComments();
+  }, [getComments]);
 
   useEffect(() => {
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    window.addEventListener("scroll", handleScroll)
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("resize", handleResize)
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [handleResize, handleScroll])
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleResize, handleScroll]);
 
   return (
     <MainContainer>
       {comments ? (
         comments.map((el) => {
-          const text = textDivider(el.text)
-          return <Card key={el.id} image={el.image} text={text} />
+          const text = textDivider(el.text);
+          return <Card key={el.id} image={el.image} text={text} />;
         })
       ) : (
         <div className="col col-12 d-flex justify-content-center">
@@ -41,5 +41,5 @@ export default function Comment({ id }) {
         </SkeletonContainer>
       )}
     </MainContainer>
-  )
+  );
 }
