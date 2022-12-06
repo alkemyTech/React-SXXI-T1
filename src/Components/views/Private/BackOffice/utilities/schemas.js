@@ -4,6 +4,8 @@ const SUPPORTED_IMAGE_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 const SUPPORTED_EXTENSIONS = [".jpg", ".png", ".jpeg"];
 
 function validateFileFormats(file, supportedFormatsArray) {
+  if (!file) return false;
+
   let isValid = supportedFormatsArray.includes(file.type);
 
   if (!isValid && typeof file === "string") {
@@ -23,7 +25,7 @@ export const EditOrganizationSchema = Yup.object().shape({
     .test({
       message: "El logo es obligatorio",
       test: (file, context) => {
-        const isValid = !isEmptyObject(file);
+        const isValid = file != null && !isEmptyObject(file);
         return isValid;
       },
     })
@@ -45,7 +47,7 @@ export const EditMembersSchema = Yup.object().shape({
     .test({
       message: "La imagen es obligatoria",
       test: (file, context) => {
-        const isValid = !isEmptyObject(file);
+        const isValid = file != null && !isEmptyObject(file);
         return isValid;
       },
     })
@@ -57,7 +59,8 @@ export const EditMembersSchema = Yup.object().shape({
       },
     }),
   description: Yup.string().required("La descripción es obligatoria"),
-  socialMediaLinks: Yup.array().of(Yup.string().url()).min(1, "El link de red social es obligatorio"),
+  facebookUrl: Yup.string().required("La Url de Facebook es obligatoria").url("Ingrese una url válida"),
+  linkedinUrl: Yup.string().required("La Url de LinkedIn es obligatoria").url("Ingrese una url válida"),
 });
 
 export const SocialMediaLinkSchema = Yup.object().shape({
