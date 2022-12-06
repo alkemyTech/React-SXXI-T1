@@ -1,10 +1,10 @@
-import styled from "styled-components"
-import { fadeIn } from "styled-components/animation.styled"
-import { responsiveDesign } from "styled-components/App.styled"
+import styled from "styled-components";
+import { fadeIn } from "styled-components/animation.styled";
+import { responsiveDesign } from "styled-components/App.styled";
 
 export const WrapSectionDonation = styled.div`
   ${fadeIn}
-`
+`;
 
 export const WrapBodyDonation = styled.div`
   height: 50%;
@@ -22,4 +22,4 @@ export const WrapBodyDonation = styled.div`
   }
 
   ${fadeIn}
-`
+`;

@@ -1,25 +1,26 @@
-import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle"
-import ContactForm from "./ContactForm/ContactForm"
-import { Icon, Container, ContainerIcon, Paragraph1, Paragraph2 } from "./ContactStyled/Contact.Styled"
-import facebookIcon from "assets/facebookIcon2.svg"
-import InstagramIcon from "assets/instagramIcon3.svg"
-import TwitterIcon from "assets/icon-twitter.svg"
-import LinkedinIcon from "assets/linkedin2.svg"
-import publicService from "Services/publicApiService"
-import { URLs } from "Services/ServicesURLS"
-import { feedbackUser } from "utilities/alerts/feedbackUser.util"
-import { useEffect, useState } from "react"
+import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
+import ContactForm from "./ContactForm/ContactForm";
+import { Icon, Container, ContainerIcon, Paragraph1, Paragraph2 } from "./ContactStyled/Contact.Styled";
+import facebookIcon from "assets/facebookIcon2.svg";
+import InstagramIcon from "assets/instagramIcon3.svg";
+import TwitterIcon from "assets/icon-twitter.svg";
+import LinkedinIcon from "assets/linkedin2.svg";
+import publicService from "Services/publicApiService";
+import { URLs } from "Services/ServicesURLS";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
+import { useEffect, useState } from "react";
+import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 
 export default function Contact() {
-  const [ORGInfo, setORGInfo] = useState()
+  const [ORGInfo, setORGInfo] = useState();
   useEffect(() => {
     publicService
       .get(URLs.organization)
       .then((res) => {
-        setORGInfo(res.data)
+        setORGInfo(res.data);
       })
-      .catch(() => feedbackUser("center", "error", "Ha ocurrido un error"))
-  }, [])
+      .catch(() => feedbackUser("center", "error", `${requestMessagesSchema.problemExistTryLater}`));
+  }, []);
 
   return (
     <div className="mt-3 mb-5">
@@ -70,5 +71,5 @@ export default function Contact() {
       <Paragraph1>O llenando el siguiente formulario:</Paragraph1>
       <ContactForm />
     </div>
-  )
+  );
 }

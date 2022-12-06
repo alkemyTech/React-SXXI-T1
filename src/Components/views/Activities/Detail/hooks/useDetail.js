@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { postDetail } from "../interceptor/postDetail.interceptor";
+import { feedbackUser as AlertWarning } from "utilities/alerts/feedbackUser.util";
 
 export const useDetail = () => {
   const { id: idDetail } = useParams();
@@ -15,7 +16,7 @@ export const useDetail = () => {
 
         setDataDetail(detailsData);
       } catch (error) {
-        console.error("error Detail - fetchDetail", error.message);
+        AlertWarning("center", "error", "Ha ocurrido un error al buscar las actividades.");
       } finally {
         setLoadingDetail(false);
       }

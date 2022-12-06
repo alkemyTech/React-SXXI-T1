@@ -1,8 +1,8 @@
-import { Dropdown, Image as BootstrapImage } from "react-bootstrap"
-import styled from "styled-components"
-import { fadeIn } from "styled-components/animation.styled"
-import { dropShadow, filterSaturate, inputTextCssStyle, responsiveDesign } from "styled-components/App.styled"
-import { themeColors } from "styled-components/Theme.styled"
+import { Dropdown, Image as BootstrapImage } from "react-bootstrap";
+import styled from "styled-components";
+import { fadeIn } from "styled-components/animation.styled";
+import { dropShadow, filterSaturate, inputTextCssStyle, responsiveDesign } from "styled-components/App.styled";
+import { themeColors } from "styled-components/Theme.styled";
 
 const Image = styled(BootstrapImage)`
   width: 40px;
@@ -14,7 +14,7 @@ const Image = styled(BootstrapImage)`
   &:hover {
     ${filterSaturate}
   }
-`
+`;
 
 const DropdownToggle = styled(Dropdown.Toggle)`
   background: rgba(0, 0, 0, 0) !important;
@@ -25,7 +25,7 @@ const DropdownToggle = styled(Dropdown.Toggle)`
   &:after {
     display: none;
   }
-`
+`;
 
 const DropdownMenu = styled(Dropdown.Menu)`
   ${inputTextCssStyle}
@@ -43,7 +43,7 @@ const DropdownMenu = styled(Dropdown.Menu)`
   ${responsiveDesign.desktop} {
     left: ${(props) => (props.role === "admin" ? "0" : "-102px")} !important;
   }
-`
+`;
 
 const DropdownItem = styled(Dropdown.Item)`
   padding: 15px;
@@ -64,6 +64,6 @@ const DropdownItem = styled(Dropdown.Item)`
     color: ${themeColors.white};
     background: ${themeColors.betweenBlueGreed};
   }
-`
+`;
 
-export { Image, DropdownMenu, DropdownItem, DropdownToggle }
+export { Image, DropdownMenu, DropdownItem, DropdownToggle };

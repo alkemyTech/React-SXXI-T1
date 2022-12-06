@@ -4,6 +4,7 @@ import { activityIcon, categoryIcon, memberIcon, newsIcon, organizationIcon, sli
 const footerNavItems = [
   { text: "Inicio", to: routes.HOME },
   { text: "Nosotros", to: routes.ABOUT },
+  { text: "Actividades", to: routes.ACTIVITIES},
   { text: "Novedades", to: routes.NEWS },
   { text: "Contacto", to: routes.CONTACT },
   { text: "Contribuye", to: routes.DONATION },
@@ -75,7 +76,7 @@ export const privateLinks = [
 
 const typeNavItems = {
   admin: privateLinks,
-  regular: publicAuthNavItems,
+  "Standard User": publicAuthNavItems,
   notAuth: publicNotAuthNavItems,
 }
 

@@ -1,12 +1,13 @@
-import { InputImage } from "Components/GlobalComponents/FormInputsField/InputImage"
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad"
-import { Form } from "react-bootstrap"
-import { useSlidesForm } from "../../hooks/useSlidesForm"
-import { formFieldsSchema } from "../../utilities/slidesSchema.util"
-import { ButtonSlideForm } from "../ButtonSlideForm/ButtonSlideForm"
-import { ModalSlide } from "../ModalSlide/ModalSlide"
-import { FirstColForm } from "../SlidesFormFields/FirstColForm"
-import { InputDescription } from "../SlidesFormFields/InputDescription"
+import { InputImage } from "Components/GlobalComponents/FormInputsField/InputImage";
+import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader";
+import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
+import { Form } from "react-bootstrap";
+import { useSlidesForm } from "../../hooks/useSlidesForm";
+import { formFieldsSchema } from "../../utilities/slidesSchema.util";
+import { ButtonSlideForm } from "../ButtonSlideForm/ButtonSlideForm";
+import { ModalSlide } from "../ModalSlide/ModalSlide";
+import { FirstColForm } from "../SlidesFormFields/FirstColForm";
+import { InputDescription } from "../SlidesFormFields/InputDescription";
 
 export const SlidesForm = ({ idSlide }) => {
   const {
@@ -22,7 +23,7 @@ export const SlidesForm = ({ idSlide }) => {
     handleSlideModal,
     setSlideToChangeSelected,
     slideToChangeSelected,
-  } = useSlidesForm(idSlide)
+  } = useSlidesForm(idSlide);
 
   return (
     <>
@@ -41,7 +42,7 @@ export const SlidesForm = ({ idSlide }) => {
         </Form.Group>
 
         <Form.Group className="col col-12">
-          <InputDescription formik={formik} schemas={formFieldsSchema.ckEditor} />
+          <InputDescription formik={formik} schemas={formFieldsSchema.ckEditor} load={loadOrderSlides} />
         </Form.Group>
 
         {loadSubmitSlides && (
@@ -59,8 +60,15 @@ export const SlidesForm = ({ idSlide }) => {
             loading={loadOrderSlides}
           />
         </Form.Group>
-
-        <ButtonSlideForm idSlide={idSlide} />
+        {loadOrderSlides ? (
+          <SkeletonLoader
+            placeClass="placeClass col col-12 d-flex justify-content-center w-100 h-100"
+            spanClass="spanClass h-100 w-50"
+            height="28px"
+          />
+        ) : (
+          <ButtonSlideForm idSlide={idSlide} />
+        )}
       </Form>
       <ModalSlide
         show={showSlideModal}
@@ -71,5 +79,5 @@ export const SlidesForm = ({ idSlide }) => {
         slideToChangeSelected={slideToChangeSelected}
       />
     </>
-  )
-}
+  );
+};
