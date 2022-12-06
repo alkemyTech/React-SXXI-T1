@@ -38,7 +38,10 @@ export const EditOrganizationSchema = Yup.object().shape({
     }),
   shortDescription: Yup.string().required("La descripción corta es obligatoria"),
   longDescription: Yup.string().required("La descripción larga es obligatoria"),
-  socialMediaLinks: Yup.array().of(Yup.string().url()),
+  facebookUrl: Yup.string().required("La Url de Facebook es obligatoria").url("Ingrese una url válida"),
+  linkedinUrl: Yup.string().required("La Url de LinkedIn es obligatoria").url("Ingrese una url válida"),
+  instagramUrl: Yup.string().required("La Url de Instagram es obligatoria").url("Ingrese una url válida"),
+  twitterUrl: Yup.string().required("La Url de Twitter es obligatoria").url("Ingrese una url válida"),
 });
 
 export const EditMembersSchema = Yup.object().shape({
