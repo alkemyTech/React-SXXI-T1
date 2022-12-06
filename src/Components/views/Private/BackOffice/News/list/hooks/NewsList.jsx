@@ -10,6 +10,8 @@ import { useNews } from "../../hooks/useNews";
 import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 
 const NewsList = () => {
+  const tHead = ["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"];
+  const myTableData = { name: "name", image: "image", created_at: "created_at" };
   const { loadingNews, newsData, fetchNews } = useNews();
   const navigate = useNavigate();
 
@@ -42,9 +44,9 @@ const NewsList = () => {
   } else {
     newsContent = (
       <CustomTable
-        tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
+        tHead={tHead}
         tBody={newsData}
-        myTableData={{ name: "name", image: "image", created_at: "created_at" }}
+        myTableData={myTableData}
         handleEdit={editHandler}
         handleDelete={deleteHandler}
       />
