@@ -5,7 +5,7 @@ import ActivitiesForm from "./BackOffice/Acivities/Form/ActivitiesForm";
 import ActivitiesList from "./BackOffice/Acivities/List/ActivitiesList";
 import CategoriesForm from "../Categories/CategoriesForm";
 import CategoriesList from "./CategoriesList/CategoriesList";
-import EditOrganizationForm from "./BackOffice/Organization/EditForm";
+import EditOrganizationForm from "./BackOffice/Organization/OrganizationForm";
 import MembersForm from "./BackOffice/Members/MembersForm";
 import MembersList from "./BackOffice/Members/MembersList";
 import NewsList from "./BackOffice/News/List/NewsList";

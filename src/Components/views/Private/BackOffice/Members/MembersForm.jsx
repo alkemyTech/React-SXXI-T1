@@ -1,118 +1,94 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useFormik } from "formik";
 import Form from "react-bootstrap/Form";
 
-import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 import DescriptionEditor from "../components/DescriptionEditor";
-import FileInput from "../components/FileInput";
 import Input from "../components/Input";
-import SocialMediaInput from "../components/SocialMediaInput";
-import { EditMembersSchema } from "../utilities/schemas";
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { privateRoutes } from "models/routes";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
+import { useMembersForm } from "./hooks/useMembersForm";
+import { FormImageField } from "Components/GlobalComponents/FormImageField/FormImageField";
+import { ButtonConfirm, ButtonEdit } from "./MembersForm.Styled";
 
 const EditForm = () => {
   const { id } = useParams();
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      image: {},
-      description: "",
-      socialMediaLinks: [],
-    },
-    validationSchema: EditMembersSchema,
-    onSubmit: (values) => {
-      formik.resetForm();
-      localStorage.setItem("token", "tokenValueExample");
-    },
-  });
-
-  const addLinkHandler = (newLink) => {
-    const currentLinks = [...formik.values.socialMediaLinks];
-    currentLinks.push(newLink);
-    formik.setFieldValue("socialMediaLinks", currentLinks);
-  };
-
-  const removeLinkHandler = (link) => {
-    const updatedLinks = formik.values.socialMediaLinks.filter(
-      (l) => l !== link
-    );
-    formik.setFieldValue("socialMediaLinks", updatedLinks);
-  };
-
-  const imageChangeHandler = (event) => {
-    const file = event.target.files[0];
-    formik.setFieldValue("image", file);
-  };
+  const { errors, handleBlur, handleSubmit, handleChange, touched, member, loading, formik, values, setImageBase64 } = useMembersForm();
 
   const descriptionChangeHandler = (data) => {
     formik.setFieldValue("description", data);
   };
 
   return (
-    <div className="container my-5">
-      <div>
-        <CustomTitle
-          title={id ? "Edita el miembro" : "Crea un miembro"}
-          justify="center"
-          wrapTextClass="text-center"
-          wrapTitleClass="h-auto"
-        />
+    <section className="container my-5">
+      <div className="my-5">
+        <CustomTitle title={id ? "Editar miembro" : "Crear miembro"} justify="center" wrapTextClass="text-center" wrapTitleClass="d-block h-auto" />
       </div>
-      <div>
-        <BackTo
-          wrapLink="my-4"
-          to={"/" + privateRoutes.BACKOFFICE + "members"}
-        />
+      <div className="my-5">
+        <BackTo wrapLink="my-4" to={"/" + privateRoutes.BACKOFFICE + privateRoutes.MEMBERSLIST} />
       </div>
-      <Form
-        className="d-grid gap-3 col col-12 col-sm-10 col-md-8 col-lg-6 my-3"
-        onSubmit={formik.handleSubmit}
-      >
+      <Form className="my-5 col-sm-10 col-lg-6 mx-auto d-flex flex-column gap-4" onSubmit={handleSubmit}>
         <Input
-          value={formik.values.name}
-          label="Name:"
+          value={values.name}
+          label="Nombre del miembro:"
           type="text"
           name="name"
-          placeholder="Enter name"
-          isTouched={formik.touched.name}
-          error={formik.errors.name}
-          onChange={formik.handleChange}
+          placeholder="Nombre"
+          isTouched={touched.name}
+          error={errors.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
-        <FileInput
-          label="Image:"
-          filename={formik.values.image.name}
+        <FormImageField
+          errors={errors}
+          touched={touched}
           name="image"
-          btnText="Upload the image"
-          isTouched={formik.touched.image}
-          error={formik.errors.image}
-          onChange={imageChangeHandler}
+          setFieldValue={formik.setFieldValue}
+          setImageToSend={setImageBase64}
+          imageIsEdit={member.image}
         />
         <DescriptionEditor
-          label="Description:"
-          initialData={formik.initialValues.description}
-          isTouched={formik.touched.description}
-          error={formik.errors.description}
+          label="Descripción del miembro:"
+          initialData={values.description}
+          isTouched={touched.description}
+          error={errors.description}
           onChange={descriptionChangeHandler}
         />
-        <SocialMediaInput
-          onAddLink={addLinkHandler}
-          onRemoveLink={removeLinkHandler}
-          links={formik.values.socialMediaLinks}
-          isTouched={formik.touched.socialMediaLinks}
-          error={formik.errors.socialMediaLinks}
+        <Input
+          value={values.facebookUrl}
+          label="Facebook del miembro:"
+          type="text"
+          name="facebookUrl"
+          placeholder="Url Facebook"
+          isTouched={touched.facebookUrl}
+          error={errors.facebookUrl}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
-        <CustomButton
-          buttonClass="mt-2 col-sm-5 col-md-3 mx-2"
-          type="submit"
-          background="success"
-          color="success"
-          text="Editar"
+        <Input
+          value={values.linkedinUrl}
+          label="LinkedIn del miembro:"
+          type="text"
+          name="linkedinUrl"
+          placeholder="Url LinkedIn"
+          isTouched={touched.linkedinUrl}
+          error={errors.linkedinUrl}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        <div className="my-5 d-flex justify-content-center">
+          {id ? (
+            <ButtonEdit className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} type="submit">
+              Editar
+            </ButtonEdit>
+          ) : (
+            <ButtonConfirm className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} background="success" color="success" type="submit">
+              Confirmar
+            </ButtonConfirm>
+          )}
+        </div>
       </Form>
-    </div>
+    </section>
   );
 };
 
