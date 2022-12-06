@@ -5,13 +5,12 @@ import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle
 import { privateRoutes } from "models/routes";
 import SearchNews from "./components/SearchNews";
 import { useNews } from "./hooks/useNews";
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 
 const NewsList = () => {
   const tHead = ["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"];
   const myTableData = { name: "name", image: "image", created_at: "created_at" };
-  const { news, loadingNews, newsData, loading, editHandler, deleteHandler, searchNewsHandler, fetchNews } = useNews();
+  const { news, loadingNews, newsData, loading, editHandler, deleteHandler, searchNewsHandler } = useNews();
 
   let newsContent;
   if (loadingNews || loading) {

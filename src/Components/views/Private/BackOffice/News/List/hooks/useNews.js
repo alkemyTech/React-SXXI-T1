@@ -72,6 +72,7 @@ export const useNews = () => {
       const dateParsing = whatIs("isArray", fetchingNews.data, "splice", "created_at");
       setNewsData(dateParsing);
       setNews(fetchingNews.data);
+      
       //const filterSlides = filterNews(fetchingNews.data);
       //setNewsData(filterSlides);
     } catch (error) {
