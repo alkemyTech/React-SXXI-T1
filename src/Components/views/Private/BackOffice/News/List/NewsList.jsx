@@ -4,10 +4,16 @@ import { addIcon } from "assets/images";
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
+import { feedbackUser } from "utilities/alerts/feedbackUser.util";
+import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
 import { privateRoutes } from "models/routes";
-import SearchNews from "../../components/SearchNews";
-import { useNews } from "../../hooks/useNews";
+import SearchNews from "./components/SearchNews";
+import { useNews } from "./hooks/useNews";
 import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
+import privateService from "Services/privateApiService";
+import { URLs } from "Services/ServicesURLS";
+import { successMessages } from "../utilities/successMessages";
+import { errorMessages } from "../utilities/errorMessages";
 
 const NewsList = () => {
   const tHead = ["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"];
@@ -16,12 +22,28 @@ const NewsList = () => {
   const navigate = useNavigate();
 
   const editHandler = (id) => {
-    console.log("Edit clicked", id);
     navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSEDITFORM}${id}`);
   };
 
-  const deleteHandler = (id) => {
-    console.log("Delete clicked", id);
+  const deleteHandler = async (id) => {
+    const find = newsData.find((element) => id === element.id);
+
+    if (find) {
+      const response = await AlertWarning("¿Estas segura/o que deseas eliminar la novedad?");
+
+      if (response) {
+        setLoading(true);
+        const activityDeleted = await privateService.deleted(URLs.news, id);
+
+        if (activityDeleted) {
+          await feedbackUser("center", "success", `${successMessages.deleteNews}`);
+          fetchActivities();
+        } else {
+          await feedbackUser("center", "error", `${errorMessages.deleteNews}`);
+        }
+      }
+      setLoading(false);
+    }
   };
 
   const searchNewsHandler = async (searchText, selectedCategory) => {
@@ -42,15 +64,7 @@ const NewsList = () => {
   if (loadingNews) {
     newsContent = <SpinnerLoad />;
   } else {
-    newsContent = (
-      <CustomTable
-        tHead={tHead}
-        tBody={newsData}
-        myTableData={myTableData}
-        handleEdit={editHandler}
-        handleDelete={deleteHandler}
-      />
-    );
+    newsContent = <CustomTable tHead={tHead} tBody={newsData} myTableData={myTableData} handleEdit={editHandler} handleDelete={deleteHandler} />;
   }
 
   return (

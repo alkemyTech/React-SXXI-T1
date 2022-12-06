@@ -7,7 +7,7 @@ import CategoriesForm from "../Categories/CategoriesForm";
 import EditOrganizationForm from "./BackOffice/Organization/EditForm";
 import MembersForm from "./BackOffice/Members/MembersForm";
 import MembersList from "./BackOffice/Members/MembersList";
-import NewsList from "./BackOffice/News/List/hooks/NewsList";
+import NewsList from "./BackOffice/News/List/NewsList";
 import NewsForm from "./BackOffice/News/Form/NewsForm";
 import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
 import PrivateHome from "./Home/PrivateHome";

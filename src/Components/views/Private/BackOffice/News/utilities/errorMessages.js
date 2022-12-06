@@ -3,4 +3,5 @@ export const errorMessages = {
   getCategories: "Se produjo un error al obtener las categorias",
   createNews: "Se produjo un error al crear la novedad",
   editNews: "Se produjo un error al editar la novedad",
+  deleteNews: "No se eliminó la novedad"
 }
