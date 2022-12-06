@@ -1,24 +1,24 @@
-import { privateRoutes } from "models/routes"
-import { Route } from "react-router-dom"
-import { RoutesNoMatch } from "utilities/routesNoMatch.util"
-import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm"
-import ActivitiesList from "./BackOffice/Acivities/ActivitiesList"
-import CategoriesForm from "../Categories/CategoriesForm"
-import EditOrganizationForm from "./BackOffice/Organization/EditForm"
-import MembersForm from "./BackOffice/Members/MembersForm"
-import MembersList from "./BackOffice/Members/MembersList"
-import NewsList from "./BackOffice/News/NewsList"
-import NewsForm from "./BackOffice/News/NewsForm"
-import ProjectsForm from "./BackOffice/Projects/ProjectsForm"
-import PrivateHome from "./Home/PrivateHome"
-import PrivateSlides from "./Slides/PrivateSlides"
-import Dashboard from "./AdminDashboard/Dashboard"
-import OrganizationData from "./Organization/OrganizationData/OrganizationData"
-import ActionsSlider from "./Slides/components/ActionsSlider/ActionsSlider"
-import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms"
-import UsersForm from "./BackOffice/Users/UsersForm"
-import UsersList from "./BackOffice/Users/UsersList"
-import CategoriesList from "./CategoriesList/CategoriesList"
+import { privateRoutes } from "models/routes";
+import { Route } from "react-router-dom";
+import { RoutesNoMatch } from "utilities/routesNoMatch.util";
+import ActivitiesForm from "./BackOffice/Acivities/ActivitiesForm";
+import ActivitiesList from "./BackOffice/Acivities/ActivitiesList";
+import CategoriesForm from "../Categories/CategoriesForm";
+import EditOrganizationForm from "./BackOffice/Organization/OrganizationForm";
+import MembersForm from "./BackOffice/Members/MembersForm";
+import MembersList from "./BackOffice/Members/MembersList";
+import NewsList from "./BackOffice/News/NewsList";
+import NewsForm from "./BackOffice/News/NewsForm";
+import ProjectsForm from "./BackOffice/Projects/ProjectsForm";
+import PrivateHome from "./Home/PrivateHome";
+import PrivateSlides from "./Slides/PrivateSlides";
+import Dashboard from "./AdminDashboard/Dashboard";
+import OrganizationData from "./Organization/OrganizationData/OrganizationData";
+import ActionsSlider from "./Slides/components/ActionsSlider/ActionsSlider";
+import TestimonialsForm from "./BackOffice/Testimonials/TestimonialsForms";
+import UsersForm from "./BackOffice/Users/UsersForm";
+import UsersList from "./BackOffice/Users/UsersList";
+import CategoriesList from "./CategoriesList/CategoriesList";
 
 const BackOfficeRoutes = () => {
   return (
@@ -53,7 +53,7 @@ const BackOfficeRoutes = () => {
       <Route path={privateRoutes.USERSCREATE} element={<UsersForm />} />
       <Route path={privateRoutes.USERSEDITWITHID} element={<UsersForm />} />
     </RoutesNoMatch>
-  )
-}
+  );
+};
 
-export default BackOfficeRoutes
+export default BackOfficeRoutes;
