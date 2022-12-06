@@ -11,7 +11,7 @@ import { FormImageField } from "Components/GlobalComponents/FormImageField/FormI
 import { useOrganizationForm } from "./hooks/useOrganizationForm";
 
 const OrganizationForm = () => {
-  const { errors, handleSubmit, handleChange, touched, organization, loading, formik, values, setImageBase64 } = useOrganizationForm();
+  const { errors, handleBlur, handleSubmit, handleChange, touched, organization, loading, formik, values, setImageBase64 } = useOrganizationForm();
 
   const shortDescriptionChangeHandler = (data) => {
     formik.setFieldValue("shortDescription", data);
@@ -35,6 +35,7 @@ const OrganizationForm = () => {
           isTouched={touched.name}
           error={errors.name}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
         <FormImageField
           errors={errors.logo}
@@ -60,6 +61,7 @@ const OrganizationForm = () => {
           isTouched={touched.longDescription}
           error={errors.longDescription}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           value={values.facebookUrl}
@@ -70,6 +72,7 @@ const OrganizationForm = () => {
           isTouched={touched.facebookUrl}
           error={errors.facebookUrl}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           value={values.linkedinUrl}
@@ -80,6 +83,7 @@ const OrganizationForm = () => {
           isTouched={touched.linkedinUrl}
           error={errors.linkedinUrl}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           value={values.instagramUrl}
@@ -90,6 +94,7 @@ const OrganizationForm = () => {
           isTouched={touched.instagramUrl}
           error={errors.instagramUrl}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
         <Input
           value={values.twitterUrl}
@@ -100,6 +105,7 @@ const OrganizationForm = () => {
           isTouched={touched.twitterUrl}
           error={errors.twitterUrl}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
         <div className="my-5 d-flex justify-content-center">
           <ButtonConfirm className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} background="success" color="success" type="submit">
