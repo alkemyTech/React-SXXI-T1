@@ -1,14 +1,14 @@
-import { AnchorTagWithRef } from "Components/GlobalComponents/AnchorTag/AnchorTagWithRef"
-import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton"
-import { InputTexts, WrapFirstCol, WrapImageSecondCol } from "styled-components/App.styled"
-import { useBodyDonation } from "../../hooks/useBodyDonation"
-import { WrapBodyDonation } from "../../styled-components/WrapSectionDonation.styled"
-import { textForDonation } from "../../utilities/donationSchema.util"
-import meliImage from "assets/meliImage.png"
-import { ImageBodyDontation } from "../../styled-components/BodyDonation.styled"
+import { AnchorTagWithRef } from "Components/GlobalComponents/AnchorTag/AnchorTagWithRef";
+import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
+import { InputTexts, WrapFirstCol, WrapImageSecondCol } from "styled-components/App.styled";
+import { useBodyDonation } from "../../hooks/useBodyDonation";
+import { WrapBodyDonation } from "../../styled-components/WrapSectionDonation.styled";
+import { textForDonation } from "../../utilities/donationSchema.util";
+import meliImage from "assets/meliImage.png";
+import { ImageBodyDontation } from "../../styled-components/BodyDonation.styled";
 
 export const BodyDonation = ({ text }) => {
-  const { anchorRef, URLDONATION, handleClickDonate } = useBodyDonation()
+  const { anchorRef, URLDONATION, handleClickDonate } = useBodyDonation();
 
   return (
     <WrapBodyDonation className="WrapBodyDonation m-0 my-md-3 col col-12 d-flex flex-column flex-sm-row justify-content-center align-items-center">
@@ -35,5 +35,5 @@ export const BodyDonation = ({ text }) => {
 
       <AnchorTagWithRef anchorClass="d-none" href={URLDONATION} ref={anchorRef} />
     </WrapBodyDonation>
-  )
-}
+  );
+};

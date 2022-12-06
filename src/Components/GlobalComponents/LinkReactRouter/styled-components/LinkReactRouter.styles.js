@@ -1,8 +1,8 @@
-import styled from "styled-components"
-import { Link } from "react-router-dom"
-import { dropShadow, inputTextCssStyle, responsiveDesign } from "styled-components/App.styled"
-import { backGroundColors, borderColors, colors } from "Components/GlobalComponents/CustomButton/styled-components/Button.styled"
-import { fadeIn } from "styled-components/animation.styled"
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { dropShadow, inputTextCssStyle, responsiveDesign } from "styled-components/App.styled";
+import { backGroundColors, borderColors, colors } from "Components/GlobalComponents/CustomButton/styled-components/Button.styled";
+import { fadeIn } from "styled-components/animation.styled";
 
 const CustomLink = styled(Link)`
   ${inputTextCssStyle}
@@ -27,6 +27,6 @@ const CustomLink = styled(Link)`
   }
 
   ${fadeIn}
-`
+`;
 
-export { CustomLink }
+export { CustomLink };

@@ -2,14 +2,7 @@ import { THead, CustomTable as Table } from "./styled-components/Table.styled";
 import { TableRow } from "./components/TableRow/TableRow";
 import { TableHead } from "./components/TableHead/TableHead";
 
-export const CustomTable = ({
-  tHead,
-  tBody,
-  loading,
-  myTableData,
-  handleEdit,
-  handleDelete,
-}) => {
+export const CustomTable = ({ tHead, tBody, loading, myTableData, handleEdit, handleDelete }) => {
   return (
     <div className="mt-2">
       <Table className="text-center" responsive="md" striped bordered hover>
@@ -29,11 +22,7 @@ export const CustomTable = ({
             </TableRow>
           ) : (
             tBody.map((element, idx) => (
-              <TableRow
-                key={idx}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              >
+              <TableRow key={idx} handleEdit={handleEdit} handleDelete={handleDelete}>
                 {{
                   key: element.id,
                   element: element,

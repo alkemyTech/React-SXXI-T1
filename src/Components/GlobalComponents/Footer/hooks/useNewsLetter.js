@@ -9,10 +9,7 @@ export const useNewsLetter = (handleNewsLetter) => {
 
   const validationSchema = () => {
     const validateFormFields = yup.object().shape({
-      email: yup
-        .string()
-        .email(validationMessages.email.format)
-        .required(validationMessages.email.required),
+      email: yup.string().email(validationMessages.email.format).required(validationMessages.email.required),
     });
 
     return validateFormFields;

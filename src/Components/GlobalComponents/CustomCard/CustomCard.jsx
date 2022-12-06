@@ -1,9 +1,9 @@
-import { CustomImage } from "styled-components/App.styled"
-import { LinkReactRouter } from "../LinkReactRouter/LinkReactRouter"
-import { EllipsisContentBody } from "./styled-components/EllipsisContentBody.styled"
-import { CardBody, CardFooter, CardSubTitleText, CardText, CustomCard as Card } from "./styled-components/SectionsCard.styled"
-import defaultImage from "assets/defaultImage.svg"
-import { useCustomCard } from "./hooks/useCustomCard"
+import { CustomImage } from "styled-components/App.styled";
+import { LinkReactRouter } from "../LinkReactRouter/LinkReactRouter";
+import { EllipsisContentBody } from "./styled-components/EllipsisContentBody.styled";
+import { CardBody, CardFooter, CardSubTitleText, CardText, CustomCard as Card } from "./styled-components/SectionsCard.styled";
+import defaultImage from "assets/defaultImage.svg";
+import { useCustomCard } from "./hooks/useCustomCard";
 
 export const CustomCard = (props) => {
   const {
@@ -24,7 +24,7 @@ export const CustomCard = (props) => {
     textBtn,
     icon,
     to,
-  } = useCustomCard(props)
+  } = useCustomCard(props);
 
   return (
     <Card className={classNameCustomCard} type={typeStyle}>
@@ -60,5 +60,5 @@ export const CustomCard = (props) => {
         />
       </CardFooter>
     </Card>
-  )
-}
+  );
+};
