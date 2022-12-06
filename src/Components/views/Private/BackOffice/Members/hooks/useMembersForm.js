@@ -3,11 +3,9 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist";
 import { useEffect, useState } from "react";
 
-import { convertToBase64 } from "../utilities/utilities";
 import apiServices from "Services/privateApiService";
 import { URLs } from "Services/ServicesURLS";
 import Alert from "../../components/Alert";
-import { convertUrlToBase64 } from "utilities/convertURLtoBase64.util";
 import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { errorMessages } from "../utilities/errorMessages";
 import { EditMembersSchema } from "../../utilities/schemas";
@@ -35,8 +33,8 @@ export const useMembersForm = () => {
             name: data.name,
             image: data.image,
             description: data.description,
-            facebookUrl: data.facebook_url,
-            linkedinUrl: data.linkedin_url,
+            facebookUrl: data.facebookUrl,
+            linkedinUrl: data.linkedinUrl,
           });
         })
         .catch(() => {
@@ -55,19 +53,20 @@ export const useMembersForm = () => {
       const bodyEdit = {
         ...member,
         ...body,
-        image: imageBase64 || (await convertUrlToBase64(member.image)),
+        image: imageBase64,
       };
       const alertWarning = await Alert({ icon: "warning", title: "¿Seguro/a?", cancelText: "Cancelar" });
 
       if (alertWarning.isConfirmed) {
         setLoading(true);
-        const apiResponse = await apiServices.put(`${URLs.member}/${id}`, bodyEdit);
+        const apiResponse = await apiServices.put(URLs.member, id, bodyEdit);
         if (apiResponse.success) {
           setLoading(false);
           await Alert({ icon: "success", title: "Operación éxitosa" });
           navigate(backURL);
         } else {
           await feedbackUser("center", "error", `${errorMessages.editMember}`);
+          setLoading(false);
         }
       }
     } else {
@@ -76,25 +75,16 @@ export const useMembersForm = () => {
         setLoading(true);
         const apiResponse = await apiServices.post(URLs.member, body);
         if (apiResponse.success) {
-          setLoading(false);
           await Alert({ icon: "success", title: "Operación éxitosa" });
+          setLoading(false);
           navigate(backURL);
         } else {
           await feedbackUser("center", "error", `${errorMessages.createMember}`);
+          setLoading(false);
         }
       }
     }
   };
-
-  function handleImage(e) {
-    const image = e.target.files[0];
-    if (image) {
-      formik.setFieldValue("image", image);
-      convertToBase64(image, setImageBase64);
-    } else {
-      formik.setFieldValue("image", "");
-    }
-  }
 
   const formik = useFormik({
     initialValues: {
@@ -134,7 +124,6 @@ export const useMembersForm = () => {
     member,
     loading,
     formik,
-    handleImage,
     cancel,
     setImageBase64,
     setFieldValue,
