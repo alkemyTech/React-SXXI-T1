@@ -15,7 +15,6 @@ const UsersList = () => {
   const { loadingUsers, usersData, fetchUsers } = useUsers();
 
   const tHead = ["#", "Nombre", "Email", "Acciones"];
-
   const myTableData = { name: "name", email: "email" };
 
   const editHandler = (id) => {
@@ -45,10 +44,8 @@ const UsersList = () => {
   }
 
   return (
-    <>
-      <div className="mt-2 d-flex col col-12">
-        <CustomTitle title="Usuarios" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
-      </div>
+    <div>
+      <CustomTitle title="Usuarios" justify="center" wrapTextClass="text-center" wrapTitleClass="h-auto" />
       <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-md-between">
         <BackTo wrapLink="col col-10 col-sm-5 col-md-4 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE} />
         <BackTo
@@ -63,8 +60,8 @@ const UsersList = () => {
       <div className="my-3">
         <SearchUsers onSearchUsers={searchUsersHandler} />
       </div>
-      <div className="my-3">{usersContent}</div>
-    </>
+      <div className="overflow-auto">{usersContent}</div>
+    </div>
   );
 };
 

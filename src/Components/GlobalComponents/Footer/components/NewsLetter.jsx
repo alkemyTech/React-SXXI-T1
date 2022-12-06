@@ -1,16 +1,9 @@
 import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomButton";
 import { SpanFormError } from "Components/GlobalComponents/SpanFormError/SpanFormError";
 import { useNewsLetter } from "../hooks/useNewsLetter";
-import {
-  FormGroup,
-  FormNewsLetter,
-  TextSubscribeNewsLetter,
-} from "../styled-components/FormFooter.styled";
+import { FormGroup, FormNewsLetter, TextSubscribeNewsLetter } from "../styled-components/FormFooter.styled";
 import { InputNewsLetter } from "../styled-components/InputNewsLetter.styled";
-import {
-  formSchema,
-  textSubscribtion,
-} from "../utilities/newsLetterSchemas.util";
+import { formSchema, textSubscribtion } from "../utilities/newsLetterSchemas.util";
 
 export const NewsLetter = ({ handleNewsLetter }) => {
   const {
@@ -19,9 +12,7 @@ export const NewsLetter = ({ handleNewsLetter }) => {
 
   return (
     <FormNewsLetter className="col col-12" onSubmit={handleSubmit}>
-      <TextSubscribeNewsLetter>
-        {textSubscribtion.subNewsLetterText}
-      </TextSubscribeNewsLetter>
+      <TextSubscribeNewsLetter>{textSubscribtion.subNewsLetterText}</TextSubscribeNewsLetter>
 
       <FormGroup className="col col-12">
         <InputNewsLetter

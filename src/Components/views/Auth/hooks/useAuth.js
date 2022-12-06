@@ -1,24 +1,22 @@
-import { routes } from "models/routes"
-import { useEffect } from "react"
-import { useSelector } from "react-redux"
-import { useNavigate, useSearchParams } from "react-router-dom"
-import { authSchemas } from "../utilities/schemas"
-import LoginForm from "../components/LoginForm"
-import RegisterForm from "../components/RegisterForm"
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
+import { authSchemas } from "../utilities/schemas";
 
 export const useAuth = () => {
-  const navigate = useNavigate()
-  const [params] = useSearchParams()
-  const whatForm = params.get("auth")
-  const { loadingUser, user } = useSelector((store) => store.user)
+  const [params] = useSearchParams();
+  const whatForm = params.get("auth");
+  const [loadingAuth, setLoadingAuth] = useState(false);
 
-  useEffect(() => {
-    if (user.email || user.role.type) navigate(routes.HOME, { replace: true })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const handleLoadingAuth = (value) => setLoadingAuth(value);
 
   const whatFormRender =
-    whatForm === "login" ? <LoginForm text={authSchemas[whatForm]["buttonText"]} /> : <RegisterForm text={authSchemas[whatForm]["buttonText"]} />
+    whatForm === "login" ? (
+      <LoginForm text={authSchemas[whatForm]["buttonText"]} loadingAuth={loadingAuth} handleLoadingAuth={handleLoadingAuth} />
+    ) : (
+      <RegisterForm text={authSchemas[whatForm]["buttonText"]} loadingAuth={loadingAuth} handleLoadingAuth={handleLoadingAuth} />
+    );
 
-  return { whatFormRender, whatForm, loadingUser }
-}
+  return { whatFormRender, whatForm, loadingAuth };
+};

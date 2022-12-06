@@ -99,7 +99,7 @@ const Home = () => {
                 <CustomButton text={`Ver más`} color="success" background="success" />
               </Link>
             </Container2>
-            <CarouselComponent endPoint="news" content="content" hdef={"200px"} hxs={"250px"} />
+            <CarouselComponent endPoint="news" content="content" hdef={"200px"} hxs={"250px"} start={13} end={17}/>
           </Container1>
         </div>
       </div>

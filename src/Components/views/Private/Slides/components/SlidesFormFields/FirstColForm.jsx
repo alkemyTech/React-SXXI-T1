@@ -1,5 +1,6 @@
 import { InputField } from "Components/GlobalComponents/FormInputsField/InputField";
-import { Spinner } from "react-bootstrap";
+import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader";
+
 import { InputOrder } from "./InputOrder";
 
 export const FirstColForm = (props) => {
@@ -13,14 +14,15 @@ export const FirstColForm = (props) => {
     load,
     onClick,
   } = props;
+
+  const renderSkeleton = <SkeletonLoader placeClass="col col-12  w-100 h-100" spanClass="h-100 w-100" height="41px" />;
+
   return (
     <>
-      <div className="col col-12 col-sm-5">
-        <InputField formik={formik} schemas={name} />
-      </div>
+      <div className="col col-12 col-sm-5">{load ? renderSkeleton : <InputField formik={formik} schemas={name} />}</div>
       <div className="col col-12 col-sm-5 mt-3 mt-sm-0">
         {load ? (
-          <Spinner animation="grow" variant="primary" />
+          renderSkeleton
         ) : (
           <InputOrder
             formik={formik}
