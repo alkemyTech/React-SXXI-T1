@@ -1,18 +1,20 @@
 import * as Yup from "yup";
 
 const SUPPORTED_IMAGE_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
+const SUPPORTED_EXTENSIONS = [".jpg", ".png", ".jpeg"];
 
 function validateFileFormats(file, supportedFormatsArray) {
   let isValid = supportedFormatsArray.includes(file.type);
+
+  if (!isValid && typeof file === "string") {
+    isValid = SUPPORTED_EXTENSIONS.some((ext) => file.includes(ext));
+  }
+
   return isValid;
 }
 
 function isEmptyObject(obj) {
-  return (
-    obj &&
-    Object.keys(obj).length === 0 &&
-    Object.getPrototypeOf(obj) === Object.prototype
-  );
+  return obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype;
 }
 
 export const EditOrganizationSchema = Yup.object().shape({
@@ -32,9 +34,7 @@ export const EditOrganizationSchema = Yup.object().shape({
         return isValid;
       },
     }),
-  shortDescription: Yup.string().required(
-    "La descripción corta es obligatoria"
-  ),
+  shortDescription: Yup.string().required("La descripción corta es obligatoria"),
   longDescription: Yup.string().required("La descripción larga es obligatoria"),
   socialMediaLinks: Yup.array().of(Yup.string().url()),
 });
@@ -56,10 +56,8 @@ export const EditMembersSchema = Yup.object().shape({
         return isValid;
       },
     }),
-  description: Yup.string().required(
-    "La descripción es obligatoria"
-  ),
-  socialMediaLinks: Yup.array().of(Yup.string().url()).min(1, "El link de red social es obligatorio")
+  description: Yup.string().required("La descripción es obligatoria"),
+  socialMediaLinks: Yup.array().of(Yup.string().url()).min(1, "El link de red social es obligatorio"),
 });
 
 export const SocialMediaLinkSchema = Yup.object().shape({
