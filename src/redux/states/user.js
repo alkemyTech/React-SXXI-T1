@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getLocalStorage, persistLocalStorage, clearLocalStorage } from "utilities/localStorage.util";
+import { getLocalStorage, persistLocalStorage } from "utilities/localStorage.util";
+
+const { REACT_APP_USER_TOKEN: USERTOKEN } = process.env;
 
 const initialUserState = {
   loadingUser: false,
@@ -8,7 +10,7 @@ const initialUserState = {
   error: false,
 };
 
-const userPersist = getLocalStorage("USERPERSIST");
+const userPersist = getLocalStorage(USERTOKEN);
 
 export const userSlice = createSlice({
   name: "user",
@@ -29,7 +31,7 @@ export const userSlice = createSlice({
         ut: action.payload.userToken,
       };
 
-      persistLocalStorage("USERPERSIST", dataToPersist);
+      persistLocalStorage(USERTOKEN, dataToPersist);
 
       return {
         ...initialUserState,
@@ -49,7 +51,6 @@ export const userSlice = createSlice({
     userResetNotification: (state, action) => ({ ...state, loadingUser: false, error: false }),
 
     userReset: () => {
-      clearLocalStorage("USERPERSIST");
       return initialUserState;
     },
   },

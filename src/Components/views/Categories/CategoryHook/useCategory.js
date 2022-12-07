@@ -34,17 +34,17 @@ export const useCategory = () => {
           .then((res) => {
             if (res.success) {
               Alert("center", "success", "Operación éxitosa").then(() => {
-                setLoading(false);
                 setFieldValue("name", "");
                 setFieldValue("image", "");
                 setFieldValue("description", "");
                 setImageB64("");
                 navigate("/backoffice/categories");
               });
-            } else Alert("center", "error", "Ha ocurrido un error").then(() => setLoading(false));
+            } else Alert("center", "error", "Ha ocurrido un error");
           })
-          .catch(() => Alert("center", "error", "Ha ocurrido un error").then(() => setLoading(false)));
-      }
+          .catch(() => Alert("center", "error", "Ha ocurrido un error"))
+          .finally(() => setLoading(false));
+      } else setLoading(false);
     });
   };
 
@@ -56,25 +56,24 @@ export const useCategory = () => {
           .then((res) => {
             if (res.success) {
               Alert("center", "success", "Operación éxitosa").then(() => {
-                setLoading(false);
                 setFieldValue("name", "");
                 setFieldValue("image", "");
                 setFieldValue("description", "");
                 setImageB64("");
                 navigate("/backoffice/categories");
               });
-            } else Alert("center", "error", "Ha ocurrido un error").then(() => setLoading(false));
+            } else Alert("center", "error", "Ha ocurrido un error");
           })
-          .catch(() => Alert("center", "error", "Ha ocurrido un error").then(() => setLoading(false)));
-      }
+          .catch(() => Alert("center", "error", "Ha ocurrido un error"))
+          .finally(() => setLoading(false));
+      } else setLoading(false);
     });
   };
 
   const onSubmit = async () => {
-    setLoading(true);
     const { name, description } = values;
     const body = { name, description, image: imageB64 ? imageB64 : await convertUrlToBase64(category.image) };
-
+    setLoading(true);
     if (id) {
       editCategory(id, body);
     } else {

@@ -81,19 +81,32 @@ La UX (User Experience) que el equipo de diseño construyó la encontrarán haci
 ## <img src="https://img.icons8.com/external-filled-outline-icons-pause-08/24/null/external-archive-business-filled-outline-icons-pause-08.png"/> Estructura del proyecto
 
 ```
+> .vscode
 > node_modules
 > public
-- src
-   - app
-   - assets
-   - Components
-     - Campaigns
-     - GlobalComponents
-     - views
+> src
+    - assets
+    > Components
+        - Campaigns
+        - GlobalComponents
+        > views
+            - About
+            - Activities
+            - Auth
+            - Categories
+            - Contact
+            - Donations
+            - Home
+            - Members
+            - News
+            - Private
+            - Projects
+            - Users
    - features
    - guard
    - hooks
    - models
+   - redux
    - Services
    - styled-cmponents
    - utilities
@@ -102,7 +115,7 @@ La UX (User Experience) que el equipo de diseño construyó la encontrarán haci
    index.js
    serviceWorker.js
    setupTest.js
-.enc
+.env
 .gitignore
 jsconfig.json
 package-lock.json
@@ -110,7 +123,7 @@ package.json
 README.md
 ```
 
-### Algunos de los componentes globales
+## Algunos de los componentes globales
 
 1. **Spinner (SpinnerLoad)**: decidimos no utilizar una librería para el mismo, sino crearlo con CSS mediante transformaciones. Nos ayuda a mostrar un feedback al usuario mientras se esté cargando un recurso. Se lo puede ver en: `src > Components > GlobalComponents > Loading > SpinnerLoad`.
 
@@ -147,7 +160,21 @@ Se lo puede ver en: `src > Components > GlobalComponents > Loading > TextLoader`
 
 Se lo puede ver en: `src > Components > GlobalComponents > Loading > ButtonLoader`.
 
-5. **Alerta** : para mostrar alertas de _confirmación_, _error_ e _información_, utilizando la librería: [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en: `src > utilities > alerts` a **feedbackUser** y **userConfirm**.
+5. **Alerta** : para mostrar alertas de **confirmación**, **error** e **información**, utilizando la librería: [**sweetAlert2**](https://www.npmjs.com/package/sweetalert2-react). Se lo puede ver en:
+
+`src > utilities > alerts > feedBackUser.util.js`
+
+`src > utilities > alerts > userConfirm.util.js`.
+
+**feedbackUser** -> recibe 3 parametros:
+
+| Parámetro    | Valores                                                                                                                                             |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **position** | la posición en que se verá el cartel: _top_, _top-start_, _top-end_, _center_, _center-start_, _center-end_, _bottom_, _bottom-start_, _bottom-end_ |
+| **icon**     | el ícono: _warning_, _error_, _success_, _info_, _question_                                                                                         |
+| **title**    | el mensaje que mostrará, es un _String_                                                                                                             |
+
+**userConfirm** -> recibe solo un parámetro (\*String) que es el mensaje que se muestra.
 
 ---
 
@@ -156,6 +183,19 @@ Se lo puede ver en: `src > Components > GlobalComponents > Loading > ButtonLoade
 Al momento tenemos una sola variable de entorno, para la conexión con la API:
 
 `REACT_APP_BASE_URL="https://ongapi.alkemy.org/api"`
+
+---
+
+## <img src="https://img.icons8.com/bubbles/30/null/gender-neutral-user.png"/> Login
+
+Para loguearse como administrador creamos el siguiente usuario de prueba:
+
+nombre: **pedro**
+
+email: **pedro3@gmail.com**
+
+password: **123qwe!**
+
 
 ---
 

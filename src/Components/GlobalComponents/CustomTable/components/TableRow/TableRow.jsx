@@ -10,14 +10,14 @@ export const TableRow = ({ handleEdit, handleDelete, children, loading = false }
     <tr>
       <td>{children?.idx + 1 || <SkeletonLoader />}</td>
       <PersonalTableData children={children} loading={loading} />
-      <td>
+      <td className="m-auto py-1 px-0 pt-sm-2 ">
         {loading ? (
           <SkeletonLoader />
         ) : (
           buttonsActions.map((btn, idx) => (
             <CustomButton
               key={idx}
-              buttonClass="me-1 "
+              buttonClass="mt-1 mt-sm-0 me-1 "
               text={btn}
               color={!idx ? "yellow" : undefined}
               background={!idx ? "yellow" : undefined}

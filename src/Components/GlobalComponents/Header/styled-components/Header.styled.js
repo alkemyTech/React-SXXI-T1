@@ -1,17 +1,28 @@
 import { Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { dropShadow } from "styled-components/App.styled";
+import { fadeIn } from "styled-components/animation.styled";
+import { dropShadow, responsiveDesign } from "styled-components/App.styled";
 
 const ContainerNav = styled.div`
   display: flex;
-  flex-direction: ${({ role }) => (role === "admin" ? "row-reverse" : "row")};
-  justify-content: space-between;
-  width: 100%;
-  padding: ${({ size: { width } }) => (width < 400 ? "0 5px" : "0 1.5rem")};
+  flex-direction: row;
+  justify-content: ${({ role }) => (role === "admin" ? "space-between" : "end")};
+  padding: ${({ size: { width } }) => (width < 400 ? "0 5px" : "0 1rem")};
 `;
 
 const HeaderNavbar = styled(Navbar)`
   ${dropShadow}
+  ${fadeIn({ time: "0.5s" })}
 `;
 
-export { ContainerNav, HeaderNavbar };
+const WrapButtonOffCanvas = styled.div`
+  display: flex;
+  justify-content: ${({ role }) => (role === "admin" ? "start" : "end")};
+
+  ${responsiveDesign.desktop} {
+    padding: 10px 15px;
+    display: ${({ role }) => (role === "admin" ? "flex" : "none")};
+  }
+`;
+
+export { ContainerNav, HeaderNavbar, WrapButtonOffCanvas };
