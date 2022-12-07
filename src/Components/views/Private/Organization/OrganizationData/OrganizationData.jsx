@@ -52,26 +52,26 @@ export default function OrganizationData() {
 
   return (
     <Container>
-      {loading ? (
-        <>
-          <SkeletonLoader xs={12} />
-          <SkeletonLoader xs={12} />
-          <SkeletonLoader xs={12} />
-          <SkeletonLoader xs={12} />
-          <SkeletonLoader xs={12} />
-          <SkeletonLoader xs={12} />
-          <SkeletonLoader xs={12} />
-        </>
-      ) : (
-        <>
-          <ContainerEditInf>
-            <BackTo text="Ir a Dashboard" wrapLink="col-12 col-sm-4 col-md-5 col-lg-3" to={"/" + privateRoutes.BACKOFFICE} />
-            <ButtonEdit className="col-12 col-sm-4 col-lg-3" onClick={toEdit}>
-              Editar Información
-            </ButtonEdit>
-          </ContainerEditInf>
-          <h3>Datos de la Organización:</h3>
-          <Container1>
+      <ContainerEditInf>
+        <BackTo text="Ir a Dashboard" wrapLink="col-12 col-sm-4 col-md-5 col-lg-3" to={"/" + privateRoutes.BACKOFFICE} />
+        <ButtonEdit className="col-12 col-sm-4 col-lg-3" onClick={toEdit}>
+          Editar Información
+        </ButtonEdit>
+      </ContainerEditInf>
+      <h3>Datos de la Organización:</h3>
+      <Container1>
+        {loading ? (
+          <>
+            <SkeletonLoader xs={12} />
+            <SkeletonLoader xs={12} />
+            <SkeletonLoader xs={12} />
+            <SkeletonLoader xs={12} />
+            <SkeletonLoader xs={12} />
+            <SkeletonLoader xs={12} />
+            <SkeletonLoader xs={12} />
+          </>
+        ) : (
+          <>
             <CustomTitle wrapTextClass="text-center" title={organizationData.name ? organizationData.name : "Sin titulo"} height="none" />
 
             <ContainerImage>
@@ -80,9 +80,9 @@ export default function OrganizationData() {
             <Paragraph
               dangerouslySetInnerHTML={{ __html: organizationData.shortDescription ? organizationData.shortDescription : "Sin descripción" }}
             />
-          </Container1>
-        </>
-      )}
+          </>
+        )}
+      </Container1>
     </Container>
   );
 }

@@ -12,7 +12,6 @@ import { CustomButton } from "Components/GlobalComponents/CustomButton/CustomBut
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { InputImage } from "Components/GlobalComponents/FormInputsField/InputImage";
 import { privateRoutes } from "models/routes";
-import { useSkeleton } from "hooks/useSkeleton";
 
 const CategoriesForm = () => {
   const {
@@ -32,7 +31,7 @@ const CategoriesForm = () => {
     loading,
     buttonText,
   } = useCategory();
-  const { titleSkeleton } = useSkeleton();
+
   useEffect(() => {
     if (id) {
       privateService
@@ -58,7 +57,7 @@ const CategoriesForm = () => {
 
   return (
     <div className="container my-5">
-      <div className="my-5">
+      <div>
         <CustomTitle
           title={id ? "Editar Categoría" : "Crear Categoría"}
           justify="center"
@@ -95,7 +94,7 @@ const CategoriesForm = () => {
         <Form.Group>
           <InputImage formik={formik} schemas={schema} setImageToSend={setImageB64} setFieldValue={setFieldValue} imageIsEdit={category} />
         </Form.Group>
-        <div className="my-5 d-flex justify-content-center">
+        <div className="my-2 d-flex justify-content-center">
           <CustomButton
             buttonClass="col-7 col-lg-8 py-2 px-3 mx-auto"
             text={loading ? "Loading.." : buttonText}
