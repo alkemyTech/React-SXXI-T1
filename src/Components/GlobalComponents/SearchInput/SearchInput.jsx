@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 
 import { useDebounce } from "hooks/useDebounce";
+import { FormControlSearch } from "./styled-components/SearchInput.styled";
 
 export const SearchInput = ({ searchText, placeholder = "", debounceDelay = 500, onSearch, onChangeText, disabled }) => {
   const [previousSearch, setPreviousSearch] = useState("");
@@ -20,7 +21,7 @@ export const SearchInput = ({ searchText, placeholder = "", debounceDelay = 500,
 
   return (
     <Form.Group>
-      <Form.Control type="text" placeholder={placeholder} value={searchText} onChange={inputChangeHandler} disabled={disabled} />
+      <FormControlSearch type="text" placeholder={placeholder} value={searchText} onChange={inputChangeHandler} disabled={disabled} />
     </Form.Group>
   );
 };

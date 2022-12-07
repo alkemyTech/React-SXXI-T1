@@ -1,4 +1,4 @@
-import Form from "react-bootstrap/Form";
+import { FormSelect, SelectOptions } from "../styled-components/RolSelect.styled";
 
 const RolSelect = ({ roles = [], onChangeRoles }) => {
   const rolesChangeHandler = (e) => {
@@ -6,14 +6,14 @@ const RolSelect = ({ roles = [], onChangeRoles }) => {
   };
 
   return (
-    <Form.Select onChange={rolesChangeHandler}>
-      <option value="">Todos</option>
+    <FormSelect onChange={rolesChangeHandler}>
+      <SelectOptions value="">Todos</SelectOptions>
       {roles.map((rol) => (
-        <option value={rol.id} key={rol.id}>
+        <SelectOptions value={rol.id} key={rol.id}>
           {rol.name}
-        </option>
+        </SelectOptions>
       ))}
-    </Form.Select>
+    </FormSelect>
   );
 };
 

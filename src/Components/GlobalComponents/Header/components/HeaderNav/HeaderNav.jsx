@@ -10,7 +10,7 @@ export const HeaderNav = ({ isPhone, handleCloseOffCanvas, itemsNav, typeRole })
   );
 
   return (
-    <Nav className="justify-content-end flex-grow-1 pe-3">
+    <Nav className="justify-content-end flex-grow-1 pe-3 pb-3 p-sm-0">
       {itemsNav.map((item, index) => (
         <span key={index}> {item.text !== "hr" ? navLinkRender(item) : <Hr />}</span>
       ))}

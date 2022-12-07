@@ -6,6 +6,7 @@ import privateService from "Services/privateApiService";
 
 export const useUsers = () => {
   const [usersData, setUsersData] = useState([]);
+  const [usersDataToRender, setUsersDataToRender] = useState([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [roles, setRoles] = useState([]);
   const [rol, setRol] = useState("");
@@ -24,7 +25,9 @@ export const useUsers = () => {
       const fetchingUsers = await privateService.get(queryUrl);
 
       if (fetchingUsers && !fetchingUsers.success) throw new Error(fetchingUsers.message);
-      setUsersData(fetchingUsers.data);
+
+      setUsersDataToRender(fetchingUsers.data);
+      !usersData && setUsersData(fetchingUsers.data);
     } catch (error) {
       console.error("error Users", error.message);
       feedbackUser("center", "error", `${requestMessagesSchema.problemExistTryLater} ${requestMessagesSchema.contactAdmin}`);
@@ -45,7 +48,9 @@ export const useUsers = () => {
   useEffect(() => {
     fetchUsers(searchUser, rol);
     fetchRoles();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchUser, rol]);
 
-  return { loadingUsers, usersData, fetchUsers, roles, rol, setRol, searchUser, setSearchUser, fetchRoles };
+  return { loadingUsers, usersData, usersDataToRender, fetchUsers, roles, rol, setRol, searchUser, setSearchUser, fetchRoles, setLoadingUsers };
 };
