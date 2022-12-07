@@ -27,13 +27,13 @@ export const useCategory = () => {
   };
 
   const createCategory = (body) => {
-    AlertWarning("¿Estas Segura/o?").then((confirm) => {
+    AlertWarning("¿Estas Segura/o que deseas crear la categoría?").then((confirm) => {
       if (confirm) {
         privateService
           .post(URLs.category, body)
           .then((res) => {
             if (res.success) {
-              Alert("center", "success", "Operación éxitosa").then(() => {
+              Alert("center", "success", "Categoría Creada").then(() => {
                 setFieldValue("name", "");
                 setFieldValue("image", "");
                 setFieldValue("description", "");
@@ -49,13 +49,13 @@ export const useCategory = () => {
   };
 
   const editCategory = (id, body) => {
-    AlertWarning("¿Estas Segura/o?").then((confirm) => {
+    AlertWarning("¿Estas Segura/o que deseas editar la categoría?").then((confirm) => {
       if (confirm) {
         privateService
           .put(URLs.category, id, body)
           .then((res) => {
             if (res.success) {
-              Alert("center", "success", "Operación éxitosa").then(() => {
+              Alert("center", "success", "Categoría Actualizada").then(() => {
                 setFieldValue("name", "");
                 setFieldValue("image", "");
                 setFieldValue("description", "");

@@ -6,6 +6,7 @@ import privateService from "Services/privateApiService";
 import { encodeQueryParams } from "utilities/queryParams";
 import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
 import { useNavigate } from "react-router-dom";
+import { whatIs } from "utilities/parseDate";
 
 export const useCategories = () => {
   const [categoriesData, setCategoriesData] = useState([]);
@@ -24,7 +25,7 @@ export const useCategories = () => {
 
       if (fetchingCategories && !fetchingCategories.success) throw new Error(fetchingCategories.message);
       const info = fetchingCategories.data.map((el) => {
-        const date = el.created_at.slice(0, 10);
+        const date = whatIs("isString", el.created_at, "splice", "created_at");
         return {
           id: el.id,
           name: el.name,

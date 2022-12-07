@@ -34,7 +34,7 @@ export default function CategoriesList() {
   }
 
   return (
-    <div className="my-5">
+    <div className="mb-5">
       <div className="d-flex col col-12">
         <CustomTitle title="Categorías" height="none" />
       </div>
