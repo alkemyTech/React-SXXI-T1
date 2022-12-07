@@ -49,7 +49,7 @@ export default function CategoriesList() {
           icon={addIcon}
         />
       </div>
-      <div className="my-3">
+      <div className="my-4">
         <SearchCategories onSearchCategories={searchCategoriesHandler} />
       </div>
       <div>{categoriesContent}</div>
