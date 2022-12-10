@@ -65,6 +65,7 @@ export const useTestimonials = () => {
 
   useEffect(() => {
     fetchTestimonials();
+    // eslint-disable-next-line
   }, []);
 
   return { loadingTestimonials, testimonialsData, fetchTestimonials, tHead, myTableData, toEdit, handleDelete, loading };

@@ -27,11 +27,11 @@ export default function TestimonialsList() {
   }
 
   return (
-    <div className="my-5">
+    <div>
       <div className="m-1 d-flex col col-12">
         <CustomTitle title="Testimonios" height="none" />
       </div>
-      <div className="mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
+      <div className="mb-4 mt-5 d-flex flex-wrap justify-content-center justify-content-sm-between">
         <BackTo wrapLink="col col-10 col-sm-5 my-2 me-1" text="Ir dashboard" to={"/" + privateRoutes.BACKOFFICE} />
         <BackTo
           wrapLink="col col-10 col-sm-5 col-md-4 col-lg-3 my-2"
