@@ -30,6 +30,7 @@ export const BodyDonation = ({ text }) => {
           heightTablet="89px"
           heightDesktop="103px"
           backgroundSize="contain"
+          width="100%"
         />
       </WrapImageSecondCol>
 

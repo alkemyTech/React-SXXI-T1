@@ -12,13 +12,9 @@ export const DashboardCard = ({ item }) => {
       </Card.Header>
       <ListGroup variant="flush">
         <ListGroup.Item>
-          <CustomImage
-            image={item.icon}
-            height="104px"
-            backgroundSize="contain"
-          />
+          <CustomImage image={item.icon} height="104px" backgroundSize="contain" />
         </ListGroup.Item>
-        <ListGroup.Item className="d-flex justify-content-center">
+        <ListGroup.Item className="d-flex justify-content-center py-3">
           <LinkReactRouter
             wrapLink="col col-8 col-sm-10"
             linkClass="btn w-100"

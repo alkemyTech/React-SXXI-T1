@@ -19,8 +19,8 @@ export const FirstColForm = (props) => {
 
   return (
     <>
-      <div className="col col-12 col-sm-5">{load ? renderSkeleton : <InputField formik={formik} schemas={name} />}</div>
-      <div className="col col-12 col-sm-5 mt-3 mt-sm-0">
+      <div className="col col-12 col-sm-5 ">{load ? renderSkeleton : <InputField formik={formik} schemas={name} />}</div>
+      <div className="col col-12 col-sm-5 mt-4 mt-sm-0   ">
         {load ? (
           renderSkeleton
         ) : (

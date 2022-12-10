@@ -29,7 +29,7 @@ const PrivateSlides = () => {
         />
       </div>
 
-      <div className="my-3">
+      <div className=" my-4">
         <SearchSlides onSearchSlides={searchSlidesHandler} disabled={!slides.length} />
       </div>
 

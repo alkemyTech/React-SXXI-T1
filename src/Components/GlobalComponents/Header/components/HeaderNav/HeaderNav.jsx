@@ -6,7 +6,14 @@ export const HeaderNav = ({ isPhone, handleCloseOffCanvas, itemsNav, typeRole })
   const clickCloseOffcanvas = isPhone || typeRole === "admin" ? handleCloseOffCanvas : undefined;
 
   const navLinkRender = (item) => (
-    <NavLinkReactRouter text={item.text} to={item.to} navLinkClass="m-sm-1 m-lg-2" handleCloseToggle={clickCloseOffcanvas} icon={item.icon} />
+    <NavLinkReactRouter
+      text={item.text}
+      to={item.to}
+      navLinkClass="m-sm-1 m-lg-2"
+      handleCloseToggle={clickCloseOffcanvas}
+      icon={item.icon}
+      isAdmin={typeRole}
+    />
   );
 
   return (
