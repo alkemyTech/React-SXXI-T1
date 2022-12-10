@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  margin-top: 1rem;
+  gap: 1rem;
+  margin-top: 2rem;
 `;
 
 export const SkeletonContainer = styled.div`
@@ -13,5 +13,5 @@ export const SkeletonContainer = styled.div`
   padding: 0.5rem;
   gap: 0.5rem;
   border-radius: 5px;
-  background-color: #028192;
+  background-color: #f8f9fa;
 `;
