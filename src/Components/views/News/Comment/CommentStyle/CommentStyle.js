@@ -10,8 +10,9 @@ export const MainContainer = styled.div`
 export const SkeletonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
-  gap: 0.5rem;
-  border-radius: 5px;
   background-color: #f8f9fa;
+  border-radius: 5px;
+  gap: 0.8rem;
+  padding: 1rem;
+  box-shadow: 2px 2px 8px black;
 `;

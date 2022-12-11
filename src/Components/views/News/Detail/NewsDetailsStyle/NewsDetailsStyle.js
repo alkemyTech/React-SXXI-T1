@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MainContent = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 3rem 0;
+  margin: 4rem 0;
 `;
 
 export const NewsCard = styled.div`

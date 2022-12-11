@@ -6,11 +6,12 @@ import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoad
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 
 export default function Comment({ id }) {
-  const { getComments, comments, textDivider, handleResize, loading, handleScroll } = useComment(id);
+  const { getComments, comments, textDivider, handleResize, loading, handleScroll, cant } = useComment(id);
 
   useEffect(() => {
     getComments();
-  }, [getComments]);
+    // eslint-disable-next-line
+  }, [cant]);
 
   useEffect(() => {
     handleResize();
@@ -24,12 +25,11 @@ export default function Comment({ id }) {
 
   return (
     <MainContainer>
-      {comments ? (
-        comments.map((el) => {
-          const text = textDivider(el.text);
-          return <Card key={el.id} image={el.image} text={text} />;
-        })
-      ) : (
+      {comments?.map((el) => {
+        const text = textDivider(el.text);
+        return <Card key={el.id} image={el.image} text={text} />;
+      })}
+      {!loading && comments.length < 1 && (
         <div className="col col-12 d-flex justify-content-center">
           <CustomAlertMessage alertClass="col col-10" text="No hay comentarios" />
         </div>

@@ -28,7 +28,7 @@ export default function CategoriesList() {
         <CustomTable tHead={tHead} myTableData={myTableData} tBody={categoriesData} handleDelete={handleDelete} handleEdit={toEdit} />
       ) : (
         <div className="col col-12 d-flex justify-content-center mt-5">
-          <CustomAlertMessage alertClass="col col-10" text="No se encontro la categoría" />
+          <CustomAlertMessage alertClass="col col-10" text="Sin categorías para mostrar" />
         </div>
       );
   }

@@ -59,7 +59,7 @@ export const useCategories = () => {
         setLoading(true);
         const res = await privateService.deleted(URLs.category, id);
         if (res.success) {
-          await feedbackUser("center", "success", "Operación éxitosa");
+          await feedbackUser("center", "success", "Categoría Eliminada");
           fetchCategories();
         } else feedbackUser("center", "error", "Ha ocurrido un error");
       }
