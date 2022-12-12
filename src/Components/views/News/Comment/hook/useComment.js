@@ -3,11 +3,11 @@ import publicService from "Services/publicApiService";
 import { URLs } from "Services/ServicesURLS";
 import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 
-export const useComment = () => {
+export const useComment = (id) => {
   const [comments, setComments] = useState([]);
   const [commentSize, setCommentSize] = useState("");
   const [loading, setLoading] = useState(false);
-  const [pages, setPages] = useState(10);
+  const [cant, setCant] = useState(5);
   const [req, setReq] = useState(true);
 
   const textDivider = (text) => {
@@ -45,21 +45,22 @@ export const useComment = () => {
 
   const handleScroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
-      setLoading(true);
-      setPages((prev) => prev + 10);
+      if (req) {
+        setLoading(true);
+        setCant((prev) => prev + 5);
+      }
     }
   };
 
   const getComments = () => {
-    setLoading(true);
     if (req) {
+      setLoading(true);
       publicService
-        .get(`${URLs.comment}?limit=${pages}`)
+        .get(`${URLs.comment}?limit=${cant}&new_id=${id}`)
         .then((res) => {
           if (res.success) {
             if (res.data.length === comments.length) {
               setReq(false);
-              setLoading(false);
             } else {
               const info = res.data.map((el) => {
                 return {
@@ -71,11 +72,11 @@ export const useComment = () => {
                 };
               });
               setComments(info);
-              setLoading(false);
             }
           } else feedbackUser("center", "error", "Ha ocurrido un error");
         })
-        .catch(() => feedbackUser("center", "error", "Ha ocurrido un error"));
+        .catch(() => feedbackUser("center", "error", "Ha ocurrido un error"))
+        .finally(() => setLoading(false));
     } else setLoading(false);
   };
 
@@ -87,7 +88,7 @@ export const useComment = () => {
     loading,
     setLoading,
     handleScroll,
-    pages,
+    cant,
     setReq,
     req,
     getComments,
