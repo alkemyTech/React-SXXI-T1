@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 
 import apiServices from "Services/privateApiService";
 import { URLs } from "Services/ServicesURLS";
-import Alert from "../../components/Alert";
+import Alert from "../../../components/Alert";
 import { feedbackUser } from "utilities/alerts/feedbackUser.util";
-import { errorMessages } from "../utilities/errorMessages";
-import { EditMembersSchema } from "../../utilities/schemas";
+import { errorMessages } from "../../utilities/errorMessages";
+import { EditMembersSchema } from "../../../utilities/schemas";
 
 export const useMembersForm = () => {
   const { id } = useParams();
