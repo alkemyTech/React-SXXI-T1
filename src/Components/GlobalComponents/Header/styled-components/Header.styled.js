@@ -1,7 +1,8 @@
 import { Navbar } from "react-bootstrap";
 import styled from "styled-components";
 import { fadeIn } from "styled-components/animation.styled";
-import { dropShadow, responsiveDesign } from "styled-components/App.styled";
+import { dropShadow } from "styled-components/App.styled";
+import { responsiveTemplate } from "styled-components/responsiveTemplate.styled";
 
 const ContainerNav = styled.div`
   display: flex;
@@ -19,7 +20,12 @@ const WrapButtonOffCanvas = styled.div`
   display: flex;
   justify-content: ${({ role }) => (role === "admin" ? "start" : "end")};
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    padding: 10px 15px;
+    display: ${({ role }) => (role === "admin" ? "flex" : "none")};
+  }
+
+  ${responsiveTemplate.extraLarge} {
     padding: 10px 15px;
     display: ${({ role }) => (role === "admin" ? "flex" : "none")};
   }

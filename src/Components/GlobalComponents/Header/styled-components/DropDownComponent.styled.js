@@ -1,7 +1,8 @@
 import { Dropdown as BootstrapDropDown, Image as BootstrapImage } from "react-bootstrap";
 import styled from "styled-components";
 import { fadeIn } from "styled-components/animation.styled";
-import { dropShadow, filterSaturate, inputTextCssStyle, responsiveDesign } from "styled-components/App.styled";
+import { dropShadow, filterSaturate, inputTextCssStyle } from "styled-components/App.styled";
+import { responsiveTemplate } from "styled-components/responsiveTemplate.styled";
 import { themeColors } from "styled-components/Theme.styled";
 
 const DropDown = styled(BootstrapDropDown)`
@@ -47,7 +48,15 @@ const DropdownItem = styled(BootstrapDropDown.Item)`
   transition: 0.5s;
   ${fadeIn({ time: "0.5s" })}
 
-  ${responsiveDesign.tablet} {
+  ${responsiveTemplate.tablet} {
+    padding: 10px 15px;
+  }
+
+  ${responsiveTemplate.desktop} {
+    padding: 10px 15px;
+  }
+
+  ${responsiveTemplate.extraLarge} {
     padding: 10px 15px;
   }
 

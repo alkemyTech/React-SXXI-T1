@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { dropShadow, inputTextCssStyle, responsiveDesign } from "styled-components/App.styled";
+import { dropShadow, inputTextCssStyle } from "styled-components/App.styled";
 import { backGroundColors, borderColors, colors } from "Components/GlobalComponents/CustomButton/styled-components/Button.styled";
 import { fadeIn } from "styled-components/animation.styled";
+import { responsiveTemplate } from "styled-components/responsiveTemplate.styled";
 
 const CustomLink = styled(Link)`
   ${inputTextCssStyle}
@@ -15,7 +16,12 @@ const CustomLink = styled(Link)`
   border: ${({ border, color }) => border || `1px solid ${borderColors(color)}`};
   ${dropShadow}
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    width: 124px;
+    text-align: center;
+  }
+
+  ${responsiveTemplate.extraLarge} {
     width: 124px;
     text-align: center;
   }
