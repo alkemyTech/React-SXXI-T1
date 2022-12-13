@@ -3,67 +3,43 @@ import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { requestMessagesSchema } from "utilities/requestMessagesSchema.util";
 import { URLs } from "Services/ServicesURLS";
 import privateService from "Services/privateApiService";
-import { encodeQueryParams } from "utilities/queryParams";
 import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
 import { useNavigate } from "react-router-dom";
-import { whatIs } from "utilities/parseDate";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories } from "redux/states/categoriesSlice";
 
 export const useCategories = () => {
-  const [categoriesData, setCategoriesData] = useState([]);
-  const [loadingCategories, setLoadingCategories] = useState(true);
   const [loading, setLoading] = useState(false);
   const tHead = ["#", "Nombre", "Creado", "Acciones"];
   const myTableData = { name: "name", createdAt: "createdAt" };
+  const dispatch = useDispatch();
+  const category = useSelector((state) => state.category);
   const navigate = useNavigate();
 
-  const fetchCategories = async (params = {}) => {
-    try {
-      setLoadingCategories(true);
-      const queryParams = encodeQueryParams(params);
-      const queryUrl = `${URLs.category}?${queryParams}`;
-      const fetchingCategories = await privateService.get(queryUrl);
-
-      if (fetchingCategories && !fetchingCategories.success) throw new Error(fetchingCategories.message);
-      const info = fetchingCategories.data.map((el) => {
-        const date = whatIs("isString", el.created_at, "splice", "created_at");
-        return {
-          id: el.id,
-          name: el.name,
-          createdAt: date,
-        };
-      });
-      setCategoriesData(info);
-    } catch (error) {
-      console.error("error Categories", error.message);
-      feedbackUser("top-end", "error", `${requestMessagesSchema.problemExistTryLater} ${requestMessagesSchema.contactAdmin}`);
-    } finally {
-      setLoadingCategories(false);
-    }
-  };
-
   const searchCategoriesHandler = async (searchText) => {
-    const fetchParams = {};
-
     if (searchText.length >= 3) {
-      fetchParams["search"] = searchText;
-    }
-
-    await fetchCategories(fetchParams);
+      dispatch(getCategories(`?search=${searchText}`));
+    } else dispatch(getCategories());
   };
 
-  const handleDelete = async (id) => {
-    const find = categoriesData.find((el) => id === el.id);
+  const handleDelete = (id) => {
+    const find = category.categories.find((el) => id === el.id);
     if (find) {
-      const confirm = await AlertWarning(`¿Estas segura/o que deseas eliminar "${find.name}"?`);
-      if (confirm) {
-        setLoading(true);
-        const res = await privateService.deleted(URLs.category, id);
-        if (res.success) {
-          await feedbackUser("center", "success", "Categoría Eliminada");
-          fetchCategories();
-        } else feedbackUser("center", "error", "Ha ocurrido un error");
-      }
-      setLoading(false);
+      AlertWarning(`¿Estas segura/o que deseas eliminar "${find.name}"?`).then((confirm) => {
+        if (confirm) {
+          setLoading(true);
+          privateService
+            .deleted(URLs.category, id)
+            .then((res) => {
+              if (res.success) {
+                feedbackUser("center", "success", "Categoría Eliminada");
+                dispatch(getCategories());
+              } else feedbackUser("center", "error", requestMessagesSchema.problemExistTryLater);
+            })
+            .catch(() => feedbackUser("center", "error", requestMessagesSchema.problemExistTryLater))
+            .finally(() => setLoading(false));
+        }
+      });
     }
   };
 
@@ -72,8 +48,17 @@ export const useCategories = () => {
   };
 
   useEffect(() => {
-    fetchCategories();
+    dispatch(getCategories());
+    // eslint-disable-next-line
   }, []);
 
-  return { loadingCategories, categoriesData, fetchCategories, searchCategoriesHandler, tHead, myTableData, toEdit, handleDelete, loading };
+  return {
+    category,
+    searchCategoriesHandler,
+    tHead,
+    myTableData,
+    toEdit,
+    handleDelete,
+    loading,
+  };
 };
