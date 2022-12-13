@@ -25,14 +25,13 @@ export default function CategoriesList() {
   }
 
   if (category.status === "success") {
-    categoriesContent =
-      category.categories.length > 0 ? (
-        <CustomTable tHead={tHead} myTableData={myTableData} tBody={category.categories} handleDelete={handleDelete} handleEdit={toEdit} />
-      ) : (
-        <div className="col col-12 d-flex justify-content-center mt-5">
-          <CustomAlertMessage alertClass="col col-10" text="Sin categorías para mostrar" />
-        </div>
-      );
+    categoriesContent = category.categories.length ? (
+      <CustomTable tHead={tHead} myTableData={myTableData} tBody={category.categories} handleDelete={handleDelete} handleEdit={toEdit} />
+    ) : (
+      <div className="col col-12 d-flex justify-content-center mt-5">
+        <CustomAlertMessage alertClass="col col-10" text="Sin categorías para mostrar" />
+      </div>
+    );
   }
 
   if (category.status === "error") {
