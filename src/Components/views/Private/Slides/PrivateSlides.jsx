@@ -8,9 +8,10 @@ import { myTableData, privateSlidesSchema, tableHead } from "./utilities/slidesS
 import { addIcon } from "assets/images";
 import SearchSlides from "./components/SearchSlides/SearchSlides";
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
+import { SmallTexts } from "styled-components/App.styled";
 
 const PrivateSlides = () => {
-  const { loadSlides, slides, slidesToRender, handleEdit, handleDelete, searchSlidesHandler } = usePrivateSlides();
+  const { loadSlides, slides, slidesToRender, searchCondition, searchLoading, handleEdit, handleDelete, searchSlidesHandler } = usePrivateSlides();
 
   return (
     <div>
@@ -31,6 +32,7 @@ const PrivateSlides = () => {
 
       <div className=" my-4">
         <SearchSlides onSearchSlides={searchSlidesHandler} disabled={!slides?.length} />
+        {searchCondition && <SmallTexts className="text-danger my-2">{searchCondition}</SmallTexts>}
       </div>
 
       <CustomTable
@@ -39,10 +41,10 @@ const PrivateSlides = () => {
         myTableData={myTableData}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
-        loading={loadSlides}
+        loading={searchLoading || loadSlides}
       />
 
-      {!loadSlides && !slidesToRender?.length && (
+      {!loadSlides && !searchLoading && !slidesToRender?.length && (
         <div className="col col-12 d-flex justify-content-center">
           <CustomAlertMessage alertClass="col col-10" text={privateSlidesSchema.noSlides} />
         </div>

@@ -1,5 +1,5 @@
 import { privateRoutes } from "models/routes";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getSlides, slidesRequest, slidesResetNotification } from "redux/states/slides";
@@ -16,6 +16,9 @@ export const usePrivateSlides = () => {
 
   const { loadSlides, slides, slidesToRender, error, successRequest } = useSelector((store) => store.slides);
   const dispatch = useDispatch();
+
+  const [searchCondition, setSearchCondition] = useState("");
+  const [searchLoading, setSearchLoading] = useState(undefined);
 
   const handleEdit = (id) => {
     navigate("/" + privateRoutes.BACKOFFICE + privateRoutes.SLIDESEDIT + id);
@@ -39,8 +42,7 @@ export const usePrivateSlides = () => {
     }
   };
 
-  async function fetchSlides(params = {}) {
-    dispatch(slidesRequest());
+  function fetchSlides(params = {}) {
     const queryParams = encodeQueryParams(params);
     const queryUrl = queryParams ? `${URLs.slides}?${queryParams}` : URLs.slides;
 
@@ -50,11 +52,14 @@ export const usePrivateSlides = () => {
   const searchSlidesHandler = (searchText) => {
     const fetchParams = {};
 
-    if (searchText.length >= 3) {
+    if (searchText.length >= 3 || searchText === "") {
       fetchParams["search"] = searchText;
+      fetchSlides(fetchParams);
+      setSearchCondition("");
+    } else if (searchText.length > 0 && searchText.length < 3) {
+      setSearchCondition("Debes ingresar al menos 3 caracteres");
+      setSearchLoading(true);
     }
-
-    fetchSlides(fetchParams);
   };
 
   useEffect(() => {
@@ -63,10 +68,11 @@ export const usePrivateSlides = () => {
       dispatch(slidesResetNotification());
     } else if (successRequest) dispatch(slidesResetNotification());
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slides, error, successRequest]);
+    setSearchLoading(undefined);
+  }, [error, successRequest, dispatch]);
 
   useEffect(() => {
+    dispatch(slidesRequest());
     fetchSlides();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -75,6 +81,8 @@ export const usePrivateSlides = () => {
     loadSlides,
     slides,
     slidesToRender,
+    searchCondition,
+    searchLoading,
     handleEdit,
     handleDelete,
     searchSlidesHandler,
