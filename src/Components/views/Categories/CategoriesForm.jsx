@@ -29,6 +29,7 @@ const CategoriesForm = () => {
     touched,
     setCategory,
     loading,
+    buttonText,
   } = useCategory();
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const CategoriesForm = () => {
 
   return (
     <div className="container my-5">
-      <div className="my-5">
+      <div>
         <CustomTitle
           title={id ? "Editar Categoría" : "Crear Categoría"}
           justify="center"
@@ -93,12 +94,12 @@ const CategoriesForm = () => {
         <Form.Group>
           <InputImage formik={formik} schemas={schema} setImageToSend={setImageB64} setFieldValue={setFieldValue} imageIsEdit={category} />
         </Form.Group>
-        <div className="my-5 d-flex justify-content-center">
+        <div className="my-2 d-flex justify-content-center">
           <CustomButton
             buttonClass="col-7 col-lg-8 py-2 px-3 mx-auto"
-            text={loading ? "Loading..." : "Confirmar"}
-            color="success"
-            background="success"
+            text={loading ? "Loading.." : buttonText}
+            color={id ? "yellow" : "success"}
+            background={id ? "yellow" : "success"}
             type="submit"
             disabled={loading}
           />

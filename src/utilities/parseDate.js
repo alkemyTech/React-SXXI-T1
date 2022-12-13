@@ -13,7 +13,7 @@ const toLocaleString = (date, type) => {
 
 export const whatIs = (itIs, data, type, nameAttr) => {
   const dataType = {
-    isArray: (data, type) => data.map((item) => ({ ...item, [nameAttr]: toLocaleString(item.created_at, type) })),
+    isArray: (data, type) => data.map((item) => ({ ...item, [nameAttr]: toLocaleString(item[nameAttr], type) })),
     isString: (data, type) => toLocaleString(data, type),
   };
 

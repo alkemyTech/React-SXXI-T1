@@ -18,6 +18,7 @@ const HiddenInputFile = styled.input`
   margin: 0;
   padding: 0;
   bottom: 6px;
+  z-index: -1;
 `;
 const WrapInputFile = styled.div`
   width: 250px;

@@ -27,8 +27,14 @@ export const SlidesForm = ({ idSlide }) => {
 
   return (
     <>
-      <Form className="form-container col col-12 col-sm-10 my-3 p-0 p-sm-1" onSubmit={handleSubmit}>
-        <Form.Group className="col col-12 d-flex flex-wrap justify-content-between">
+      {loadSubmitSlides && (
+        <div>
+          <SpinnerLoad />
+        </div>
+      )}
+
+      <Form className="form-container col col-12 col-sm-10 mt-3 mb-4 p-0 p-sm-1" onSubmit={handleSubmit}>
+        <Form.Group className="col col-12 d-flex flex-wrap justify-content-between mt-2 mb-3">
           <FirstColForm
             formik={formik}
             schemas={formFieldsSchema}
@@ -41,17 +47,11 @@ export const SlidesForm = ({ idSlide }) => {
           />
         </Form.Group>
 
-        <Form.Group className="col col-12">
+        <Form.Group className="col col-12 mb-3">
           <InputDescription formik={formik} schemas={formFieldsSchema.ckEditor} load={loadOrderSlides} />
         </Form.Group>
 
-        {loadSubmitSlides && (
-          <div>
-            <SpinnerLoad />
-          </div>
-        )}
-
-        <Form.Group className="col col-12 d-flex flex-column align-items-center">
+        <Form.Group className="col col-12 d-flex flex-column align-items-center mb-3">
           <InputImage
             formik={formik}
             schemas={formFieldsSchema.image}
@@ -62,7 +62,7 @@ export const SlidesForm = ({ idSlide }) => {
         </Form.Group>
         {loadOrderSlides ? (
           <SkeletonLoader
-            placeClass="placeClass col col-12 d-flex justify-content-center w-100 h-100"
+            placeClass="placeClass col col-12 d-flex justify-content-center w-100 h-100 mb-3"
             spanClass="spanClass h-100 w-50"
             height="28px"
           />
