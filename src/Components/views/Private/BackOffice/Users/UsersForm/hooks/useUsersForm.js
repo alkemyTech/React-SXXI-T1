@@ -3,13 +3,14 @@ import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist";
 import { usersValidationSchema } from "../../utilities/utilities";
-import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
-import { feedbackUser as AlertSuccessError } from "utilities/alerts/feedbackUser.util";
+import { handleUserConfirm } from "utilities/alerts/userConfirm.util";
+import { feedbackUser as AlertSuccessError, feedbackUser } from "utilities/alerts/feedbackUser.util";
 import privateService from "Services/privateApiService";
 import { URLs } from "Services/ServicesURLS";
+import { privateRoutes } from "models/routes";
 
 export const useUsersForm = () => {
-  const { id } = useParams();
+  const { userId } = useParams();
   const navigate = useNavigate();
   const [imageBase64, setImageBase64] = useState("");
   const [roles, setRoles] = useState([]);
@@ -31,9 +32,9 @@ export const useUsersForm = () => {
   };
 
   useEffect(() => {
-    if (id) {
+    if (userId) {
       privateService
-        .get(`${URLs.users}/${id}`)
+        .get(`${URLs.users}/${userId}`)
         .then((res) => {
           const { data } = res;
           setUser({
@@ -48,7 +49,7 @@ export const useUsersForm = () => {
           AlertSuccessError("center", "error", "Ha ocurrido un error");
         });
     }
-  }, [id]);
+  }, [userId]);
 
   useEffect(() => {
     privateService.get(URLs.role).then((res) => {
@@ -63,51 +64,48 @@ export const useUsersForm = () => {
     });
   }, []);
 
-  const backURL = "/backoffice";
-
-  const onSubmit = async () => {
-    const { name, email, role_id, password } = values;
-    const body = { name, email, role_id, password, image: imageBase64 };
-
-    if (id) {
-      const bodyEdit = {
-        ...user,
-        ...body,
-        image: imageBase64 || (await user.image),
-      };
-      const alertWarning = await AlertWarning("¿Estas segura/o de enviarlo?");
-
-      if (alertWarning.isConfirmed) {
-        setLoading(true);
-        const apiResponse = await privateService.put(URLs.users, id, bodyEdit);
-        if (apiResponse.data.success) {
-          setLoading(false);
-          await AlertSuccessError("center", "success", "Operación éxitosa");
-          navigate(backURL);
-        } else {
-          await AlertSuccessError("center", "success", "Operación éxitosa");
-        }
-      }
-    } else {
-      const alertWarning = await AlertWarning("¿Estas segura/o de enviarlo?");
-
-      if (alertWarning.isConfirmed) {
-        setLoading(true);
-        const apiResponse = await privateService.post(URLs.users, body);
-        if (apiResponse.data.success) {
-          setLoading(false);
-          await AlertSuccessError("center", "success", "Operación éxitosa");
-          navigate(backURL);
-        } else {
-          await AlertSuccessError("center", "success", "Operación éxitosa");
-        }
-      }
-    }
-  };
-
-  const validationSchema = usersValidationSchema(id);
+  const validationSchema = usersValidationSchema(userId);
 
   const formik = useFormik({ initialValues, onSubmit, validationSchema });
+
+  async function onSubmit() {
+    try {
+      setLoading(true);
+
+      const questionText = userId ? "Deseas editar este usuario?" : "Deseas crear este usuario?";
+      const isConfirm = await handleUserConfirm(questionText);
+
+      if (!isConfirm) return;
+
+      let apiResponse;
+      const { name, email, role_id, password } = values;
+      const body = { name, email, role_id, password, image: imageBase64 };
+
+      if (userId) {
+        const bodyEdit = {
+          ...user,
+          ...body,
+          image: imageBase64 || (await user.image),
+        };
+
+        apiResponse = await privateService.put(URLs.users, userId, bodyEdit);
+      } else apiResponse = await privateService.post(URLs.users, body);
+
+      if (!apiResponse.success) throw new Error(apiResponse.message);
+
+      setLoading(false);
+
+      const actionMsg = userId ? "Usuario editado correctamente" : "Usuario creado correctamente";
+      feedbackUser("top-end", "success", actionMsg);
+
+      navigate("/" + privateRoutes.BACKOFFICE + privateRoutes.USERS, { replace: "true" });
+    } catch (error) {
+      console.error("error", error.message);
+      feedbackUser("top-end", "error", error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const { values, errors, handleBlur, handleSubmit, handleChange, touched, setFieldValue } = formik;
 
@@ -121,11 +119,8 @@ export const useUsersForm = () => {
     }
   }, [user, setFieldValue]);
 
-  const cancel = () => {
-    navigate(backURL);
-  };
-
   return {
+    userId,
     values,
     errors,
     handleBlur,
@@ -135,7 +130,6 @@ export const useUsersForm = () => {
     user,
     loading,
     formik,
-    cancel,
     setImageBase64,
     setFieldValue,
     roles,

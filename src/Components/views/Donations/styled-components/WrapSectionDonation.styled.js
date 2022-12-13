@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { fadeIn } from "styled-components/animation.styled";
-import { responsiveDesign } from "styled-components/App.styled";
+import { responsiveTemplate } from "styled-components/responsiveTemplate.styled";
 
 export const WrapSectionDonation = styled.div`
   ${fadeIn}
@@ -9,15 +9,15 @@ export const WrapSectionDonation = styled.div`
 export const WrapBodyDonation = styled.div`
   height: 50%;
 
-  ${responsiveDesign.tablet} {
+  ${responsiveTemplate.tablet} {
     height: 65%;
   }
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
     height: 50%;
   }
 
-  ${responsiveDesign.extraLarge} {
+  ${responsiveTemplate.extraLarge} {
     height: 75%;
   }
 

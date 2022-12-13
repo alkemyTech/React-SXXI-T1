@@ -1,17 +1,8 @@
 import { Row } from "react-bootstrap";
 import styled, { css } from "styled-components";
 import { fadeIn } from "./animation.styled";
+import { responsiveTemplate } from "./responsiveTemplate.styled";
 import { themeColors } from "./Theme.styled";
-
-const tabletStartWidth = 600;
-const desktopStartWidth = 768;
-const extraLargeStartWidth = 1300;
-
-const responsiveDesign = {
-  tablet: `@media (min-width: ${tabletStartWidth}px)`,
-  desktop: `@media (min-width: ${desktopStartWidth}px)`,
-  extraLarge: `@media (min-width: ${extraLargeStartWidth}px)`,
-};
 
 const someOtherProperties = {
   globalRadius: "8px",
@@ -59,7 +50,11 @@ const titleCssStyle = css`
   color: ${themeColors.black};
   ${typography.mobileTitle()}
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    ${typography.title()}
+  }
+
+  ${responsiveTemplate.extraLarge} {
     ${typography.title()}
   }
 `;
@@ -69,7 +64,11 @@ const subtitleCssStyle = css`
   ${typography.mobileSsubTitle()}
   line-height: 30px !important;
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    ${typography.subTitle()}
+  }
+
+  ${responsiveTemplate.extraLarge} {
     ${typography.subTitle()}
   }
 `;
@@ -78,7 +77,11 @@ const inputTextCssStyle = css`
   color: ${themeColors.black};
   ${typography.mobileInputText()}
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    ${typography.desktopInputText()}
+  }
+
+  ${responsiveTemplate.extraLarge} {
     ${typography.desktopInputText()}
   }
 `;
@@ -87,7 +90,11 @@ const smallTextCssStyle = css`
   color: ${themeColors.black};
   ${typography.mobileSmallText()};
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    ${typography.desktopSmallText()};
+  }
+
+  ${responsiveTemplate.extraLarge} {
     ${typography.desktopSmallText()};
   }
 `;
@@ -127,7 +134,11 @@ const disabledCssStyle = css`
 
   ${typography.mobileTitle()}
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    ${typography.title()}
+  }
+
+  ${responsiveTemplate.extraLarge} {
     ${typography.title()}
   }
 
@@ -150,14 +161,20 @@ const CustomImage = styled.div`
   background-size: ${({ backgroundSize }) => backgroundSize || "cover"};
   background-position: top center;
   height: ${({ height }) => height || "50px"};
-  width: ${({ width }) => width || "100%"};
+  width: ${({ width }) => width || "100%"} !important;
   border-radius: ${({ borderRadius }) => borderRadius || "none"};
 
-  ${responsiveDesign.tablet} {
+  ${responsiveTemplate.tablet} {
     height: ${({ heightTablet }) => heightTablet};
     width: ${({ widthTablet }) => widthTablet};
   }
-  ${responsiveDesign.desktop} {
+
+  ${responsiveTemplate.desktop} {
+    height: ${({ heightDesktop }) => heightDesktop};
+    width: ${({ widthDesktop }) => widthDesktop};
+  }
+
+  ${responsiveTemplate.extraLarge} {
     height: ${({ heightDesktop }) => heightDesktop};
     width: ${({ widthDesktop }) => widthDesktop};
   }
@@ -178,7 +195,11 @@ const WrapMainRoutes = styled(Row)`
   padding: ${({ size: { width } }) => (width < 400 ? "5px" : "5px 1.5rem")};
   min-height: calc(100vh - 212px);
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    max-width: 85%;
+  }
+
+  ${responsiveTemplate.extraLarge} {
     max-width: 85%;
   }
 
@@ -194,17 +215,35 @@ const WrapFirstCol = styled.div`
   position: absolute;
   z-index: 10;
 
-  ${responsiveDesign.tablet} {
+  h6 {
+    font-weight: bold;
+    ${responsiveTemplate.tablet} {
+      font-weight: normal;
+    }
+    ${responsiveTemplate.desktop} {
+      font-weight: normal;
+    }
+    ${responsiveTemplate.extraLarge} {
+      font-weight: normal;
+    }
+  }
+
+  ${responsiveTemplate.tablet} {
+    position: initial !important;
+    z-index: 1 !important;
+    backdrop-filter: blur(0px) !important;
+  }
+
+  ${responsiveTemplate.desktop} {
     position: initial;
     z-index: 1;
     backdrop-filter: blur(0px);
   }
 
-  h6 {
-    font-weight: bold;
-    ${responsiveDesign.tablet} {
-      font-weight: normal;
-    }
+  ${responsiveTemplate.extraLarge} {
+    position: initial;
+    z-index: 1;
+    backdrop-filter: blur(0px);
   }
 `;
 
@@ -212,7 +251,18 @@ const WrapImageSecondCol = styled.div`
   position: absolute;
   opacity: 0.4;
   z-index: -1;
-  ${responsiveDesign.tablet} {
+  ${responsiveTemplate.tablet} {
+    position: initial !important;
+    opacity: 1 !important;
+    z-index: 1 !important;
+  }
+
+  ${responsiveTemplate.desktop} {
+    position: initial;
+    opacity: 1;
+    z-index: 1;
+  }
+  ${responsiveTemplate.extraLarge} {
     position: initial;
     opacity: 1;
     z-index: 1;
@@ -253,7 +303,6 @@ export {
   scrollbarCssStyles,
   filterSaturate,
   someOtherProperties,
-  responsiveDesign,
   Hr,
   typography,
   CustomImage,

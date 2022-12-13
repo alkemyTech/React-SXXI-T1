@@ -18,7 +18,7 @@ const SearchUsers = ({ onSearchUsers, selectRol }) => {
   };
 
   return (
-    <div className="my-3 d-flex gap-3 flex-column flex-md-row">
+    <div className="my-3 d-flex gap-3 flex-column flex-sm-row">
       <div className="flex-fill">
         <SearchInput searchText={searchUser} placeholder="Buscar usuario..." onChangeText={changeSearchTextHandler} onSearch={searchUsersHandler} />
       </div>

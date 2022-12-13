@@ -63,7 +63,7 @@ const NewsDetail = () => {
           );
         })
       )}
-      <div className="mt-2 mb-4">
+      <div className="my-5">
         <h3>Comentarios: </h3>
         <Comment id={id} />
       </div>
