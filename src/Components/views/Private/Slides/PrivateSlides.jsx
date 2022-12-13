@@ -30,7 +30,7 @@ const PrivateSlides = () => {
       </div>
 
       <div className=" my-4">
-        <SearchSlides onSearchSlides={searchSlidesHandler} disabled={!slides.length} />
+        <SearchSlides onSearchSlides={searchSlidesHandler} disabled={!slides?.length} />
       </div>
 
       <CustomTable
@@ -42,7 +42,7 @@ const PrivateSlides = () => {
         loading={loadSlides}
       />
 
-      {!loadSlides && !slidesToRender.length && (
+      {!loadSlides && !slidesToRender?.length && (
         <div className="col col-12 d-flex justify-content-center">
           <CustomAlertMessage alertClass="col col-10" text={privateSlidesSchema.noSlides} />
         </div>

@@ -8,7 +8,7 @@ export const CustomTable = ({ tHead, tBody, loading, myTableData, handleEdit, ha
       <Table className="text-center" responsive="md" striped bordered hover>
         <THead>
           <tr>
-            {tHead.map((element) => (
+            {tHead?.map((element) => (
               <TableHead key={element} load={loading} element={element} />
             ))}
           </tr>
@@ -21,7 +21,7 @@ export const CustomTable = ({ tHead, tBody, loading, myTableData, handleEdit, ha
               }}
             </TableRow>
           ) : (
-            tBody.map((element, idx) => (
+            tBody?.map((element, idx) => (
               <TableRow key={idx} handleEdit={handleEdit} handleDelete={handleDelete}>
                 {{
                   key: element.id,
