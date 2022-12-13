@@ -8,29 +8,38 @@ import SearchCategories from "./components/SearchCategories";
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 
 export default function CategoriesList() {
-  const { loadingCategories, categoriesData, searchCategoriesHandler, handleDelete, toEdit, tHead, myTableData, loading } = useCategories();
+  const { category, searchCategoriesHandler, handleDelete, toEdit, tHead, myTableData, loading } = useCategories();
 
   let categoriesContent;
-  if (loadingCategories || loading) {
+  if (category.status === "idle" || category.status === "loading" || loading) {
     categoriesContent = (
       <CustomTable
-        loading={loadingCategories ? loadingCategories : loading}
+        loading={true}
         tHead={tHead}
         myTableData={myTableData}
-        tBody={categoriesData}
+        tBody={category.categories}
         handleDelete={handleDelete}
         handleEdit={toEdit}
       />
     );
-  } else {
-    categoriesContent =
-      categoriesData.length > 0 ? (
-        <CustomTable tHead={tHead} myTableData={myTableData} tBody={categoriesData} handleDelete={handleDelete} handleEdit={toEdit} />
-      ) : (
-        <div className="col col-12 d-flex justify-content-center mt-5">
-          <CustomAlertMessage alertClass="col col-10" text="Sin categorías para mostrar" />
-        </div>
-      );
+  }
+
+  if (category.status === "success") {
+    categoriesContent = category.categories.length ? (
+      <CustomTable tHead={tHead} myTableData={myTableData} tBody={category.categories} handleDelete={handleDelete} handleEdit={toEdit} />
+    ) : (
+      <div className="col col-12 d-flex justify-content-center mt-5">
+        <CustomAlertMessage alertClass="col col-10" text="Sin categorías para mostrar" />
+      </div>
+    );
+  }
+
+  if (category.status === "error") {
+    categoriesContent = (
+      <div className="col col-12 d-flex justify-content-center mt-5">
+        <CustomAlertMessage alertClass="col col-10" text="Ha ocurrido un error al mostrar las categorías" />
+      </div>
+    );
   }
 
   return (
