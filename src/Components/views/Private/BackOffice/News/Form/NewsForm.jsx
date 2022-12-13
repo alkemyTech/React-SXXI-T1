@@ -71,9 +71,16 @@ const NewsForm = () => {
           />
         </Form.Group>
         <div className="my-5 d-flex justify-content-center">
-          <ButtonConfirm className="col-7 col-lg-8 py-2 px-3" disabled={loading} background="success" color="success" type="submit">
-            Confirmar
-          </ButtonConfirm>
+
+          {id ? (
+            <ButtonConfirm className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} background="yellow" color="yellow" type="submit">
+              Editar
+            </ButtonConfirm>
+          ) : (
+            <ButtonConfirm className="col-7 col-lg-8 py-2 px-3 mx-auto" disabled={loading} background="success" color="success" type="submit">
+              Confirmar
+            </ButtonConfirm>
+          )}
         </div>
       </Form>
     </div>
