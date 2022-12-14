@@ -1,10 +1,25 @@
 import { MemoryRouter } from "react-router-dom";
 import { act, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import BackOfficeRoutes from "Components/views/Private/BackOfficeRoutes";
+import { FILE_SIZE } from "Components/GlobalComponents/FormImageField/utilities/ImageFieldSchemas.util";
 import { privateRoutes } from "models/routes";
 import { activityValidationSchema } from "../utilities/utilities";
-import { FILE_SIZE } from "Components/GlobalComponents/FormImageField/utilities/ImageFieldSchemas.util";
+import { validationMessages } from "utilities/validationMessage.util";
+import privateService from "Services/privateApiService";
+import { successMessages } from "../utilities/successMessages";
+
+jest.mock("Services/privateApiService");
+
+const dummyActivity = {
+  name: "Dummy activity",
+  image: {
+    type: "image/jpg",
+    size: 1000,
+  },
+  description: "Some description",
+};
 
 it("should render the creation form when the activity id is not passed", async () => {
   const createFormRoute = `/${privateRoutes.ACTIVITIESCREATE}`;
@@ -25,6 +40,7 @@ it("should render the creation form when the activity id is not passed", async (
 it("should render the edition form when the activity id is passed", async () => {
   const activityId = 1;
   const editFormRoute = `/${privateRoutes.ACTIVITIESEDIT}/${activityId}`;
+  privateService.get.mockImplementation(async () => dummyActivity);
 
   await act(async () => {
     render(
@@ -40,14 +56,6 @@ it("should render the edition form when the activity id is passed", async () => 
 });
 
 it("should resolve for a valid activity", async () => {
-  const dummyActivity = {
-    name: "Dummy activity",
-    image: {
-      type: "image/jpg",
-      size: 1000,
-    },
-    description: "Some description",
-  };
   const activitySchema = activityValidationSchema();
 
   await expect(activitySchema.validate(dummyActivity)).resolves.toBeTruthy();
@@ -91,4 +99,23 @@ it("should reject when entering an empty description", async () => {
   const activitySchema = activityValidationSchema();
 
   await expect(activitySchema.validateAt("description", { description })).rejects.toBeTruthy();
+});
+
+it("should display an error message when submitting an invalid activity", async () => {
+  const createFormRoute = `/${privateRoutes.ACTIVITIESCREATE}`;
+  privateService.post.mockImplementation(() => {});
+
+  await act(async () => {
+    render(
+      <MemoryRouter initialEntries={[createFormRoute]}>
+        <BackOfficeRoutes />
+      </MemoryRouter>
+    );
+  });
+
+  userEvent.click(screen.getByText("Confirmar"));
+
+  await waitFor(() => {
+    expect(screen.getByText(validationMessages.name.required)).toBeInTheDocument();
+  });
 });
