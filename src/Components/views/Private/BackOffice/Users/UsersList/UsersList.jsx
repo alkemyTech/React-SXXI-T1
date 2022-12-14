@@ -3,60 +3,36 @@ import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { privateRoutes } from "models/routes";
-import { useNavigate } from "react-router-dom";
-import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
-import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import SearchUsers from "./components/SearchUsers";
 import { useUsers } from "./hooks/useUsers";
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
-import privateService from "Services/privateApiService";
-import { URLs } from "Services/ServicesURLS";
 
 const UsersList = () => {
-  const navigate = useNavigate();
-  const { loadingUsers, usersData, fetchUsers, setSearchUser, setRol, usersDataToRender, setLoadingUsers } = useUsers();
+  const { users, editHandler, selectRolHandler, searchUsersHandler, deleteHandler, tHead, myTableData } = useUsers();
 
-  const tHead = ["#", "Nombre", "Email", "Acciones"];
-  const myTableData = { name: "name", email: "email" };
-
-  const editHandler = (id) => {
-    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.USERSEDIT}/${id}`);
-  };
-
-  const deleteHandler = async (id) => {
-    try {
-      const find = usersData.find((el) => id === el.id);
-      if (find) {
-        const response = await AlertWarning(`¿Estas segura/o que deseas eliminar "${find.name}"?`);
-
-        if (response) {
-          setLoadingUsers(true);
-          const userDeleted = await privateService.deleted(URLs.users, id);
-          if (!userDeleted || !userDeleted.success) throw new Error(userDeleted.message);
-
-          feedbackUser("top-end", "success", "Usuario eliminado");
-
-          fetchUsers();
-        }
-      }
-    } catch (error) {
-      console.error("error", error.message);
-      feedbackUser("top-end", "error", "No se eliminó el usuario");
-    } finally {
-      setLoadingUsers(false);
-    }
-  };
-
-  const searchUsersHandler = async (text) => {
-    if (text.length >= 2) setSearchUser(text);
-    else setSearchUser("");
-  };
-
-  const selectRolHandler = async (rol) => {
-    if (rol === "1") setRol(rol);
-    if (rol === "2") setRol(rol);
-    if (rol === "") setRol(rol);
-  };
+  let content;
+  if (users.status === "error") {
+    content = (
+      <div className="col col-12 d-flex justify-content-center">
+        <CustomAlertMessage alertClass="col col-10" text="Ha ocurrido un error al mostrar los usuarios" />
+      </div>
+    );
+  } else {
+    content = users.users.length ? (
+      <CustomTable
+        tHead={tHead}
+        tBody={users.users}
+        myTableData={myTableData}
+        handleEdit={editHandler}
+        handleDelete={deleteHandler}
+        loading={users.status === "success" ? false : true}
+      />
+    ) : (
+      <div className="col col-12 d-flex justify-content-center">
+        <CustomAlertMessage alertClass="col col-10" text="Sin usuarios para mostrar" />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -75,23 +51,9 @@ const UsersList = () => {
         />
       </div>
       <div className="my-3">
-        <SearchUsers onSearchUsers={searchUsersHandler} selectRol={selectRolHandler} disabled={!usersData.length} />
+        <SearchUsers onSearchUsers={searchUsersHandler} selectRol={selectRolHandler} disabled={users.status === "error"} />
       </div>
-
-      <CustomTable
-        tHead={tHead}
-        tBody={usersDataToRender}
-        myTableData={myTableData}
-        handleEdit={editHandler}
-        handleDelete={deleteHandler}
-        loading={loadingUsers}
-      />
-
-      {!loadingUsers && !usersDataToRender.length && (
-        <div className="col col-12 d-flex justify-content-center">
-          <CustomAlertMessage alertClass="col col-10" text="Sin usuarios para mostrar" />
-        </div>
-      )}
+      <div>{content}</div>
     </div>
   );
 };
