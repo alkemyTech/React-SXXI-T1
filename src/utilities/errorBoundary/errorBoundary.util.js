@@ -3,7 +3,7 @@ import { Component } from "react";
 export class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, resetCondition: props.resetCondition, returnToHome: props.returnToHome };
+    this.state = { hasError: false, returnToHome: props.returnToHome };
   }
 
   static getDerivedStateFromError(error) {
@@ -11,7 +11,7 @@ export class ErrorBoundary extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.resetCondition !== state.resetCondition || props.returnToHome !== state.returnToHome) {
+    if (props.returnToHome !== state.returnToHome) {
       return { hasError: false, resetCondition: props.resetCondition };
     }
 

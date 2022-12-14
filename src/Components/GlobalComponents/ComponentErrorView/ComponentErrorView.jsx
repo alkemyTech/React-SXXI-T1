@@ -8,16 +8,10 @@ const ComponentErrorView = ({ children, text, where = undefined, setReturnToHome
 
   return (
     <WrapComponentErrorView className="my-5">
-      <div className="col col-12 col-sm-7 rounded">
-        {children}
-        {/* <ImageBody image={notFound} height="380px" borderRadius="8px" /> */}
-      </div>
+      <div className="col col-12 col-sm-7 rounded">{children}</div>
       <div className="col col-12 col-sm-8 col-md-4 my-3 my-md-0 d-flex flex-column justify-content-center align-items-center">
         <TitleText>{seconds}</TitleText>
-        <SubtitleText className="text-center">
-          {text}
-          {/* No encontramos lo que buscas. Te enviaremos a la página principal */}
-        </SubtitleText>
+        <SubtitleText className="text-center">{text}</SubtitleText>
         <CustomButton buttonClass="mt-2 col col-7 col-sm-8 col-md-6" text="Ir a home" onClick={handleRedirectToHome} />
       </div>
     </WrapComponentErrorView>

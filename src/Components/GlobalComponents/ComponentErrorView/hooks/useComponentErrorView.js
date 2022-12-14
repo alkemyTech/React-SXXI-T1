@@ -31,7 +31,7 @@ export const useComponentErrorView = (where, setReturnToHome) => {
     return () => {
       clearInterval(interval);
     };
-  }, [seconds, where]);
+  }, [seconds]);
 
   useEffect(() => {
     setReturnToHome(false);
