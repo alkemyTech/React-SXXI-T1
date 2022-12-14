@@ -1,39 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { URLs } from "Services/ServicesURLS";
 import privateService from "Services/privateApiService";
-import { encodeQueryParams } from "utilities/queryParams";
-import { errorMessages } from "../utilities/errorMessages";
+import { errorMessages } from "../../utilities/errorMessages";
 import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
 import { privateRoutes } from "models/routes";
+import { useDispatch, useSelector } from "react-redux";
+import { getMembers } from "redux/states/membersSlice";
 
 export const useMembers = () => {
-  const [membersData, setMembersData] = useState([]);
-  const [loadingMembers, setLoadingMembers] = useState(true);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  const fetchMembers = async (params = {}) => {
-    try {
-      setLoadingMembers(true);
-      const queryParams = encodeQueryParams(params);
-      const queryUrl = `${URLs.member}?${queryParams}`;
-      const fetchingMembers = await privateService.get(queryUrl);
-
-      if (fetchingMembers && !fetchingMembers.success) throw new Error(fetchingMembers.message);
-
-      setMembersData(fetchingMembers.data);
-    } catch (error) {
-      feedbackUser("top-end", "error", errorMessages.getMembers);
-    } finally {
-      setLoadingMembers(false);
-    }
-  };
+  const dispatch = useDispatch();
+  const member = useSelector((state) => state.member);
 
   const handleDelete = async (id) => {
-    const memberFound = membersData.find((el) => id === el.id);
+    const memberFound = member.members.find((el) => id === el.id);
 
     if (memberFound) {
       const confirm = await AlertWarning(`¿Estas segura/o que deseas eliminar "${memberFound.name}"?`);
@@ -43,7 +26,7 @@ export const useMembers = () => {
         const res = await privateService.deleted(URLs.member, id);
         if (res.success) {
           feedbackUser("center", "success", "Operación éxitosa");
-          fetchMembers();
+          dispatch(getMembers());
         } else feedbackUser("center", "error", errorMessages.deleteMember);
       }
 
@@ -56,8 +39,15 @@ export const useMembers = () => {
   };
 
   useEffect(() => {
-    fetchMembers();
+    dispatch(getMembers());
+    // eslint-disable-next-line
   }, []);
 
-  return { loadingMembers, loadingDelete: loading, membersData, fetchMembers, handleDelete, handleEdit };
+  const searchMembersHandler = async (searchText) => {
+    if (searchText.length >= 2) {
+      dispatch(getMembers(`?search=${searchText}`));
+    } else dispatch(getMembers());
+  };
+
+  return { member, loadingDelete: loading, handleDelete, handleEdit, searchMembersHandler };
 };
