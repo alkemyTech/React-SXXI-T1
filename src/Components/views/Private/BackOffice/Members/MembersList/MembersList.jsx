@@ -3,33 +3,32 @@ import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 import { privateRoutes } from "models/routes";
 import SearchMembers from "./components/SearchMembers";
-import { useMembers } from "./hooks/useMembers";
+import { useMembers } from "./hook/useMembers";
 
 const MembersList = () => {
-  const { loadingMembers, loadingDelete, membersData, fetchMembers, handleDelete, handleEdit } = useMembers();
-
-  const searchMembersHandler = async (searchText) => {
-    const fetchParams = {};
-
-    if (searchText.length >= 2) {
-      fetchParams["search"] = searchText;
-    }
-
-    await fetchMembers(fetchParams);
-  };
+  const { member, loadingDelete, handleDelete, handleEdit, searchMembersHandler } = useMembers();
 
   let membersContent;
-  if (loadingMembers || loadingDelete) {
-    membersContent = <SpinnerLoad />;
-  } else {
+  if (member.status === "idle" || member.status === "loading" || loadingDelete) {
+    membersContent = (
+      <CustomTable
+        loading={true}
+        tHead={["#", "Nombre", "Foto", "Acciones"]}
+        tBody={member.members}
+        myTableData={{ name: "name", image: "image" }}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
+    );
+  }
+  if (member.status === "success") {
     membersContent =
-      membersData.length > 0 ? (
+      member.members.length > 0 ? (
         <CustomTable
           tHead={["#", "Nombre", "Foto", "Acciones"]}
-          tBody={membersData}
+          tBody={member.members}
           myTableData={{ name: "name", image: "image" }}
           handleEdit={handleEdit}
           handleDelete={handleDelete}
@@ -39,6 +38,13 @@ const MembersList = () => {
           <CustomAlertMessage alertClass="col col-10" text="Sin miembros para mostrar" />
         </div>
       );
+  }
+  if (member.status === "error") {
+    membersContent = (
+      <div className="col col-12 d-flex justify-content-center mt-5">
+        <CustomAlertMessage alertClass="col col-10" text="Ha ocurrido un error al mostrar los miembros" />
+      </div>
+    );
   }
 
   return (

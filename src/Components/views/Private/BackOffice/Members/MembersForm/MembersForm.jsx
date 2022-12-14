@@ -2,8 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 
-import DescriptionEditor from "../components/DescriptionEditor";
-import Input from "../components/Input";
+import DescriptionEditor from "../../components/DescriptionEditor";
+import Input from "../../components/Input";
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { privateRoutes } from "models/routes";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
