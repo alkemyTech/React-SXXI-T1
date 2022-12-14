@@ -6,7 +6,7 @@ export const WrapBodyDonation = styled.div`
   ${fadeIn}
 `;
 
-export const ImageBodyDontation = styled(CustomImage)`
+export const ImageBody = styled(CustomImage)`
   border-radius: 8px;
   ${fadeIn}
   ${dropShadow};

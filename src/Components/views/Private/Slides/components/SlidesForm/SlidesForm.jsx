@@ -37,7 +37,7 @@ export const SlidesForm = ({ idSlide }) => {
         <Form.Group className="col col-12 d-flex flex-wrap justify-content-between mt-2 mb-3">
           <FirstColForm
             formik={formik}
-            schemas={formFieldsSchema}
+            // schemas={formFieldsSchema}
             load={loadOrderSlides}
             disabled={orderFieldDisabled}
             onClick={handleSlideModal}

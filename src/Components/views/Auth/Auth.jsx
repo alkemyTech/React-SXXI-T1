@@ -6,7 +6,7 @@ import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/Spi
 import { authSchemas } from "./utilities/schemas";
 import { useAuth } from "./hooks/useAuth";
 
-export const Auth = () => {
+const Auth = () => {
   const { whatFormRender, whatForm, loadingUser } = useAuth();
 
   return (
@@ -31,3 +31,5 @@ export const Auth = () => {
     </WrapAuth>
   );
 };
+
+export default Auth;
