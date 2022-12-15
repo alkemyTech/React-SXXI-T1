@@ -4,6 +4,7 @@ import membersSlice from "./states/membersSlice";
 import userSliceReducer from "./states/user";
 import slidesSliceReducer from "./states/slides";
 import categoriesSlice from "./states/categoriesSlice";
+import newsSlice from "./states/newsSlice";
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     slides: slidesSliceReducer,
     member: membersSlice,
     category: categoriesSlice,
+    news: newsSlice
   },
 });

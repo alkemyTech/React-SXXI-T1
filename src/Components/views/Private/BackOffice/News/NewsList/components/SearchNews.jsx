@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { SearchInput } from "Components/GlobalComponents/SearchInput/SearchInput";
 import CategoriesSelect from "./CategoriesSelect";
-import { useCategories } from "../NewsList/hooks/useCategories";
+import { useCategories } from "../hooks/useCategories";
 
 const SearchNews = ({ onSearchNews }) => {
   const [searchText, setSearchText] = useState("");

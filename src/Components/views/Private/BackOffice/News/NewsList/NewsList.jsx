@@ -1,26 +1,14 @@
-import { useNavigate } from "react-router-dom";
-
 import { addIcon } from "assets/images";
 import { BackTo } from "Components/GlobalComponents/BackTo/BackTo";
 import { CustomTable } from "Components/GlobalComponents/CustomTable/CustomTable";
 import { CustomTitle } from "Components/GlobalComponents/CustomTitle/CustomTitle";
 import { privateRoutes } from "models/routes";
-import SearchNews from "../components/SearchNews";
+import SearchNews from "./components/SearchNews";
 import { useNews } from "./hooks/useNews";
 import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 
 const NewsList = () => {
-  const { loadingNews, newsData, fetchNews } = useNews();
-  const navigate = useNavigate();
-
-  const editHandler = (id) => {
-    console.log("Edit clicked", id);
-    navigate(`/${privateRoutes.BACKOFFICE}${privateRoutes.NEWSEDITFORM}${id}`);
-  };
-
-  const deleteHandler = (id) => {
-    console.log("Delete clicked", id);
-  };
+  const { loadingNews, newsData, fetchNews, deleteHandler,  editHandler } = useNews();
 
   const searchNewsHandler = async (searchText, selectedCategory) => {
     const fetchParams = {};
