@@ -4,4 +4,5 @@ export const successMessages = {
   createNews: "Se ha creado la novedad",
   editNews: "Se ha editado la novedad",
   deleteNews: "Se ha eliminado la novedad",
+  sendNews: "Novedad enviada"
 };

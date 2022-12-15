@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom/dist";
 import { useEffect, useState } from "react";
 import { newsValidationSchema } from "../../utilities/utilities";
 import { api } from "Services/axiosService";
-import Alert from "../../../components/Alert";
+import { handleUserConfirm as AlertWarning } from "utilities/alerts/userConfirm.util";
 import { feedbackUser } from "utilities/alerts/feedbackUser.util";
 import { errorMessages } from "../../utilities/errorMessages";
+import { successMessages } from "../../utilities/successMessages";
 
 export const useNewsForm = () => {
   const { id } = useParams();
@@ -41,7 +42,7 @@ export const useNewsForm = () => {
           });
         })
         .catch(() => {
-          feedbackUser("center", "error", `${errorMessages.getNews}`);
+          feedbackUser("center", "error", errorMessages.getNews);
         });
     }
   }, [id]);
@@ -60,7 +61,7 @@ export const useNewsForm = () => {
         setCategories(categories);
       })
       .catch(() => {
-        feedbackUser("center", "error", `${errorMessages.getCategories}`);
+        feedbackUser("center", "error", errorMessages.getCategories);
       });
   }, []);
 
@@ -76,31 +77,31 @@ export const useNewsForm = () => {
         ...body,
         image: imageBase64 || (await news.image),
       };
-      const alertWarning = await Alert({ icon: "warning", title: "¿Estas segura/o de enviarlo?", cancelText: "Cancelar" });
+      const alertWarning = await AlertWarning( "¿Estas segura/o de enviar la novedad?");
 
       if (alertWarning.isConfirmed) {
         setLoading(true);
         const apiResponse = await api.put(`/news/${id}`, bodyEdit);
         if (apiResponse.data.success) {
           setLoading(false);
-          await Alert({ icon: "success", title: "Operación éxitosa" });
+          await feedbackUser("center", "success", successMessages.sendNews);
           navigate(backURL);
         } else {
-          feedbackUser("center", "error", `${errorMessages.editNews}`);
+          feedbackUser("center", "error", errorMessages.editNews);
         }
       }
     } else {
-      const alertWarning = await Alert({ icon: "warning", title: "¿Estas segura/o de enviarlo?", cancelText: "Cancelar" });
+      const alertWarning = await AlertWarning( "¿Estas segura/o de enviar la novedad?");
 
       if (alertWarning.isConfirmed) {
         setLoading(true);
         const apiResponse = await api.post(`/news`, body);
         if (apiResponse.data.success) {
           setLoading(false);
-          await Alert({ icon: "success", title: "Operación éxitosa" });
+          await feedbackUser("center", "success", successMessages.sendNews);
           navigate(backURL);
         } else {
-          feedbackUser("center", "error", `${errorMessages.createNews}`);
+          feedbackUser("center", "error", errorMessages.sendNews);
         }
       }
     }
