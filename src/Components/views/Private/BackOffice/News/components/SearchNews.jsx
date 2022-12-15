@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { SearchInput } from "Components/GlobalComponents/SearchInput/SearchInput";
 import CategoriesSelect from "./CategoriesSelect";
-import { useCategories } from "../hooks/useCategories";
+import { useCategories } from "../NewsList/hooks/useCategories";
 
 const SearchNews = ({ onSearchNews }) => {
   const [searchText, setSearchText] = useState("");
@@ -25,18 +25,10 @@ const SearchNews = ({ onSearchNews }) => {
   return (
     <div className="my-3 d-flex gap-3 flex-column flex-md-row">
       <div className="flex-fill">
-        <SearchInput
-          searchText={searchText}
-          placeholder="Buscar novedad..."
-          onChangeText={changeSearchTextHandler}
-          onSearch={searchNewsHandler}
-        />
+        <SearchInput searchText={searchText} placeholder="Buscar novedad..." onChangeText={changeSearchTextHandler} onSearch={searchNewsHandler} />
       </div>
       <div>
-        <CategoriesSelect
-          onChangeCategory={changeSelectedCategoryHandler}
-          categories={categoriesData}
-        />
+        <CategoriesSelect onChangeCategory={changeSelectedCategoryHandler} categories={categoriesData} />
       </div>
     </div>
   );
