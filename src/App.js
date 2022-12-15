@@ -10,7 +10,6 @@ import { WrapMainRoutes } from "styled-components/App.styled";
 import { useApp } from "hooks/useApp";
 import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 import { ErrorBoundary } from "utilities/errorBoundary/errorBoundary.util";
-import ComponentErrorView from "Components/GlobalComponents/ComponentErrorView/ComponentErrorView";
 import { ImageBody } from "Components/views/Donations/styled-components/BodyDonation.styled";
 import internalError from "assets/error500.png";
 
@@ -33,6 +32,7 @@ const NewsDetail = lazy(() => import("./Components/views/News/Detail/NewsDetail"
 const ProjectsForm = lazy(() => import("./Components/views/Projects/ProjectsForm"));
 const Thanks = lazy(() => import("Components/views/Donations/Thanks"));
 const UserForm = lazy(() => import("./Components/views/Users/UsersForm"));
+const ComponentErrorView = lazy(() => import("Components/GlobalComponents/ComponentErrorView/ComponentErrorView"));
 
 function App() {
   const { type, returnToHome, setReturnToHome } = useApp();

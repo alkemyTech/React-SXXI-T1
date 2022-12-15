@@ -34,9 +34,11 @@ export const useComponentErrorView = (where, setReturnToHome) => {
   }, [seconds]);
 
   useEffect(() => {
-    setReturnToHome(false);
-    return () => setReturnToHome(false);
-  }, [setReturnToHome]);
+    if (where) setReturnToHome(false);
+    return () => {
+      if (where) setReturnToHome(false);
+    };
+  }, [setReturnToHome, where]);
 
   return { seconds, handleRedirectToHome };
 };
