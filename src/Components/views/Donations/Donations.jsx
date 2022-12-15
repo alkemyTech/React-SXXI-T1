@@ -3,7 +3,7 @@ import { HeadTitle } from "./components/HeadTitle/HeadTitle";
 import { WrapBodyDonation, WrapSectionDonation } from "./styled-components/WrapSectionDonation.styled";
 import { textForDonation } from "./utilities/donationSchema.util";
 
-export const Donations = ({ text }) => {
+const Donations = ({ text }) => {
   return (
     <WrapSectionDonation>
       <HeadTitle title={textForDonation.title} />
@@ -13,3 +13,5 @@ export const Donations = ({ text }) => {
     </WrapSectionDonation>
   );
 };
+
+export default Donations;

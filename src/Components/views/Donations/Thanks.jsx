@@ -3,7 +3,7 @@ import { HeadTitle } from "./components/HeadTitle/HeadTitle";
 import { WrapSectionDonation } from "./styled-components/WrapSectionDonation.styled";
 import { textForDonation } from "./utilities/donationSchema.util";
 
-export const Thanks = () => {
+const Thanks = () => {
   return (
     <WrapSectionDonation>
       <HeadTitle title={textForDonation.ongText} />
@@ -13,3 +13,5 @@ export const Thanks = () => {
     </WrapSectionDonation>
   );
 };
+
+export default Thanks;

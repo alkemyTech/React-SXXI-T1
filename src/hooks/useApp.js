@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getLocalStorage } from "utilities/localStorage.util";
 import axios from "axios";
 
 export const useApp = () => {
+  const [returnToHome, setReturnToHome] = useState(false);
+
   const {
     user: {
       role: { type },
@@ -15,5 +17,5 @@ export const useApp = () => {
     else axios.defaults.headers.common["Authorization"] = "";
   }, [type]);
 
-  return { type };
+  return { type, returnToHome, setReturnToHome };
 };

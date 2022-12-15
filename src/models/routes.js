@@ -13,12 +13,10 @@ export const routes = {
   NEWSDETAIL: "/novedades/:id",
   NEWSFORM: "/create-news",
   PROJECTFORM: "/create-project",
-  SCHOOLCAMPAIGN: "/school-campaign",
   TESTIMONIALS: "/testimonials",
   TESTIMONIALSFORM: "/create-testimonials",
   THANKSDONATION: "/gracias",
-  TOYSCAMPAIGN: "/toys-campaign",
-}
+};
 
 export const privateRoutes = {
   ACTIVITIES: "activities",
@@ -61,4 +59,4 @@ export const privateRoutes = {
   USERSEDITWITHID: "users/edit/:id",
   USERSFORM: "users",
   USERSEDITFORM: "users/:id",
-}
+};
