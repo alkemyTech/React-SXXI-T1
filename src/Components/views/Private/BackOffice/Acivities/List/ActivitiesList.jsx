@@ -9,32 +9,25 @@ import { useActivities } from "./hooks/useActivities";
 
 const ActivitiesList = () => {
   const tHead = ["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"];
-  const myTableData = { name: "name", image: "image", created_at: "created_at" };
-  const { activities, loadingActivities, activitiesData, loading, editHandler, deleteHandler, searchActivitiesHandler } = useActivities();
+  const myTableData = { name: "name", image: "image", createdAt: "createdAt" };
+  const { activity, loadingDelete, editHandler, deleteHandler, searchActivitiesHandler } = useActivities();
 
   let activitiesContent;
-  if (loadingActivities || loading) {
+  if (activity.status === "idle" || activity.status === "loading" || loadingDelete) {
     activitiesContent = (
       <CustomTable
         tHead={tHead}
-        tBody={activitiesData}
+        tBody={activity.activities}
         myTableData={myTableData}
         handleEdit={editHandler}
         handleDelete={deleteHandler}
-        loading={loadingActivities}
+        loading={true}
       />
     );
   } else {
     activitiesContent =
-      activitiesData.length > 0 ? (
-        <CustomTable
-          tHead={tHead}
-          tBody={activitiesData}
-          myTableData={myTableData}
-          handleEdit={editHandler}
-          handleDelete={deleteHandler}
-          loading={loading}
-        />
+      activity.activities.length > 0 ? (
+        <CustomTable tHead={tHead} tBody={activity.activities} myTableData={myTableData} handleEdit={editHandler} handleDelete={deleteHandler} />
       ) : (
         <div className="col col-12 d-flex justify-content-center mt-5">
           <CustomAlertMessage alertClass="col col-10" text="Sin actividades para mostrar" />
@@ -57,7 +50,7 @@ const ActivitiesList = () => {
         />
       </div>
       <div className="my-3">
-        <SearchActivities onSearchActivities={searchActivitiesHandler} disabled={!activities.length} />
+        <SearchActivities onSearchActivities={searchActivitiesHandler} disabled={!activity.activities.length} />
       </div>
       <div className="mt-3">{activitiesContent}</div>
     </div>
