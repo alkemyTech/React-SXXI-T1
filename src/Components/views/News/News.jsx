@@ -1,11 +1,11 @@
 import { CustomAlertMessage } from "Components/GlobalComponents/CustomAlertMessage/CustomAlertMessage";
-import { SpinnerLoad } from "Components/GlobalComponents/Loading/SpinnerLoad/SpinnerLoad";
 import { Animate } from "styled-components/animation.styled";
 import { useNews } from "./hooks/useNews";
 import { newsSchema } from "./utilities/newsSchema.util";
 import { ShowNewsCardsSection } from "./components/ShowNewsCardsSection/ShowNewsCardsSection";
 import SearchNews from "./components/SearchNews";
 import { HeadTitle } from "Components/GlobalComponents/HeadTitle/HeadTitle";
+import { SkeletonLoader } from "Components/GlobalComponents/Loading/SkeletonLoader/SkeletonLoader";
 
 const News = () => {
   const { loadingNews, newsData, fetchNews } = useNews();
@@ -20,9 +20,23 @@ const News = () => {
     await fetchNews(fetchParams);
   };
 
+  const slidesSkeletonLoader = () => (
+    <div className="col col-12 col-sm-6  d-flex flex-column flex-sm-row justify-content-center align-items-center mb-5">
+      {[1, 2].map((skeleton) => (
+        <SkeletonLoader
+          key={skeleton}
+          skeletonClass="col col-12 d-flex justify-content-center mb-5"
+          placeClass="placeClass col col-12 w-75 h-100"
+          spanClass="spanClass h-100 w-100"
+          height="350px"
+        />
+      ))}
+    </div>
+  );
+
   let newsContent;
   if (loadingNews) {
-    newsContent = <SpinnerLoad />;
+    newsContent = slidesSkeletonLoader();
   } else if (newsData.length > 0) {
     newsContent = newsData.map((item) => <ShowNewsCardsSection key={item.id} item={item} />);
   } else {
