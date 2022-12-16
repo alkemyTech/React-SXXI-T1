@@ -3,7 +3,7 @@ import { CustomButton } from "../CustomButton/CustomButton";
 import { useComponentErrorView } from "./hooks/useComponentErrorView";
 import { WrapComponentErrorView } from "./styled-components/WrapViewLoadError.styled";
 
-const ComponentErrorView = ({ children, text, where = undefined, setReturnToHome }) => {
+const ComponentErrorView = ({ children, text, where = undefined, setReturnToHome = undefined }) => {
   const { seconds, handleRedirectToHome } = useComponentErrorView(where, setReturnToHome);
 
   return (
