@@ -1,4 +1,4 @@
-import PageNotFound from "Components/views/PageNotFound/PageNotFound";
+import PageNotFound from "views/PageNotFound/PageNotFound";
 import { Route, Routes } from "react-router-dom";
 
 export const RoutesNoMatch = ({ children }) => {
