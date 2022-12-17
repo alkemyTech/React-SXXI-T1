@@ -1,0 +1,9 @@
+{
+  "prettier.printWidth": 150,
+  "prettier.tabWidth": 2,
+  "prettier.semi": true,
+  "prettier.bracketSameLine": true,
+  "prettier.singleQuote": false,
+  "prettier.bracketSpacing": true,
+  "editor.fontSize": 15
+}

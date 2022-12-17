@@ -1,0 +1,9 @@
+.card {
+  border: none !important;
+  --bs-card-bg: none !important;
+  --bs-card-border-color: none !important;
+}
+
+.card-img-bg {
+  object-fit: cover;
+}

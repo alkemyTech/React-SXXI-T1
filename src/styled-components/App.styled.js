@@ -1,15 +1,8 @@
-import { Row as BootstrapRow } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import styled, { css } from "styled-components";
 import { fadeIn } from "./animation.styled";
+import { responsiveTemplate } from "./responsiveTemplate.styled";
 import { themeColors } from "./Theme.styled";
-
-const tabletStartWidth = 600;
-const desktopStartWidth = 768;
-
-const responsiveDesign = {
-  tablet: `@media (min-width: ${tabletStartWidth}px)`,
-  desktop: `@media (min-width: ${desktopStartWidth}px)`,
-};
 
 const someOtherProperties = {
   globalRadius: "8px",
@@ -18,7 +11,7 @@ const someOtherProperties = {
 
 const Hr = styled.hr`
   height: 2px !important;
-  color: ${themeColors.gray};
+  color: ${themeColors.grayBorder};
 `;
 
 const fontFamily = "'Rubik', sans-serif";
@@ -54,38 +47,54 @@ const typography = {
 };
 
 const titleCssStyle = css`
-  color: ${themeColors.black} !important;
+  color: ${themeColors.black};
   ${typography.mobileTitle()}
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    ${typography.title()}
+  }
+
+  ${responsiveTemplate.extraLarge} {
     ${typography.title()}
   }
 `;
 
 const subtitleCssStyle = css`
-  color: ${themeColors.black} !important;
+  color: ${themeColors.black};
   ${typography.mobileSsubTitle()}
   line-height: 30px !important;
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    ${typography.subTitle()}
+  }
+
+  ${responsiveTemplate.extraLarge} {
     ${typography.subTitle()}
   }
 `;
 
 const inputTextCssStyle = css`
-  color: ${themeColors.black} !important;
+  color: ${themeColors.black};
   ${typography.mobileInputText()}
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    ${typography.desktopInputText()}
+  }
+
+  ${responsiveTemplate.extraLarge} {
     ${typography.desktopInputText()}
   }
 `;
 
 const smallTextCssStyle = css`
-  color: ${themeColors.black} !important;
+  color: ${themeColors.black};
   ${typography.mobileSmallText()};
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    ${typography.desktopSmallText()};
+  }
+
+  ${responsiveTemplate.extraLarge} {
     ${typography.desktopSmallText()};
   }
 `;
@@ -118,13 +127,6 @@ const SmallTexts = styled.h6`
     `};
 `;
 
-const Row = styled(BootstrapRow)`
-  margin: 0;
-  min-height: calc(100vh - 87px);
-  padding-top: 6rem;
-  ${fadeIn}
-`;
-
 const disabledCssStyle = css`
   background-color: ${themeColors.gray};
   color: ${themeColors.txtGray};
@@ -132,7 +134,11 @@ const disabledCssStyle = css`
 
   ${typography.mobileTitle()}
 
-  ${responsiveDesign.desktop} {
+  ${responsiveTemplate.desktop} {
+    ${typography.title()}
+  }
+
+  ${responsiveTemplate.extraLarge} {
     ${typography.title()}
   }
 
@@ -155,7 +161,23 @@ const CustomImage = styled.div`
   background-size: ${({ backgroundSize }) => backgroundSize || "cover"};
   background-position: top center;
   height: ${({ height }) => height || "50px"};
-  width: ${({ width }) => width || "100%"};
+  width: ${({ width }) => width || "100%"} !important;
+  border-radius: ${({ borderRadius }) => borderRadius || "none"};
+
+  ${responsiveTemplate.tablet} {
+    height: ${({ heightTablet }) => heightTablet};
+    width: ${({ widthTablet }) => widthTablet};
+  }
+
+  ${responsiveTemplate.desktop} {
+    height: ${({ heightDesktop }) => heightDesktop};
+    width: ${({ widthDesktop }) => widthDesktop};
+  }
+
+  ${responsiveTemplate.extraLarge} {
+    height: ${({ heightDesktop }) => heightDesktop};
+    width: ${({ widthDesktop }) => widthDesktop};
+  }
 
   ${fadeIn}
 `;
@@ -164,12 +186,125 @@ const dropShadow = css`
   filter: drop-shadow(0px 4px 4px ${themeColors.blackShadow});
 `;
 
+const WrapMainRoutes = styled(Row)`
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-width: 95%;
+  padding: ${({ size: { width } }) => (width < 400 ? "5px" : "5px 1.5rem")};
+  min-height: calc(100vh - 212px);
+
+  ${responsiveTemplate.desktop} {
+    max-width: 85%;
+  }
+
+  ${responsiveTemplate.extraLarge} {
+    max-width: 85%;
+  }
+
+  ${fadeIn}
+`;
+
+const filterSaturate = css`
+  filter: saturate(150%);
+`;
+
+const WrapFirstCol = styled.div`
+  backdrop-filter: blur(4px);
+  position: absolute;
+  z-index: 10;
+
+  h6 {
+    font-weight: bold;
+    ${responsiveTemplate.tablet} {
+      font-weight: normal;
+    }
+    ${responsiveTemplate.desktop} {
+      font-weight: normal;
+    }
+    ${responsiveTemplate.extraLarge} {
+      font-weight: normal;
+    }
+  }
+
+  ${responsiveTemplate.tablet} {
+    position: initial !important;
+    z-index: 1 !important;
+    backdrop-filter: blur(0px) !important;
+  }
+
+  ${responsiveTemplate.desktop} {
+    position: initial;
+    z-index: 1;
+    backdrop-filter: blur(0px);
+  }
+
+  ${responsiveTemplate.extraLarge} {
+    position: initial;
+    z-index: 1;
+    backdrop-filter: blur(0px);
+  }
+`;
+
+const WrapImageSecondCol = styled.div`
+  position: absolute;
+  opacity: 0.4;
+  z-index: -1;
+  ${responsiveTemplate.tablet} {
+    position: initial !important;
+    opacity: 1 !important;
+    z-index: 1 !important;
+  }
+
+  ${responsiveTemplate.desktop} {
+    position: initial;
+    opacity: 1;
+    z-index: 1;
+  }
+  ${responsiveTemplate.extraLarge} {
+    position: initial;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  &:hover {
+    ${filterSaturate}
+  }
+`;
+
+const scrollbarCssStyles = css`
+  &::-webkit-scrollbar {
+    width: 12px;
+    background: #e4e4e4;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: hsla(187, 97%, 29%, 0.3);
+    border-radius: 5px;
+    border: 1px solid hsla(187, 97%, 29%, 0.55);
+    border-right: 1px solid #e4e4e4;
+
+    &:hover {
+      background: hsla(187, 97%, 29%, 0.6);
+      border: 1px solid hsla(187, 97%, 29%, 0.85);
+      border-right: 1px solid #e4e4e4;
+    }
+
+    &:active {
+      background: hsla(187, 97%, 29%, 0.8);
+      border: 1px solid hsla(187, 97%, 29%, 1);
+      border-right: 1px solid #e4e4e4;
+    }
+  }
+`;
+
 export {
+  scrollbarCssStyles,
+  filterSaturate,
   someOtherProperties,
-  responsiveDesign,
   Hr,
   typography,
-  Row,
   CustomImage,
   TitleText,
   SubtitleText,
@@ -181,4 +316,7 @@ export {
   inputTextCssStyle,
   disabledCssStyle,
   dropShadow,
+  WrapMainRoutes,
+  WrapFirstCol,
+  WrapImageSecondCol,
 };

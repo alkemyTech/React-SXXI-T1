@@ -1,15 +1,53 @@
-import axios from 'axios';
+import axios from "axios"
+import { requestMessagesSchema } from "utilities/requestMessagesSchema.util"
 
-const config = {
-    headers: {
-        Group: 01                //Aqui va el ID del equipo!!
+const publicApi = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
+  timeout: 5000,
+})
+
+const get = async (restURL) => {
+  try {
+    const { data } = await publicApi(restURL, {
+      method: "get",
+    })
+    if (!data || !data.success) throw new Error(data ? data.message : requestMessagesSchema.problemExistTryLater)
+
+    const dataAdapter = data.data
+
+    return { success: data.success, data: dataAdapter }
+  } catch (error) {
+    console.error("error public get: ", error.message)
+    if (axios.isCancel(error)) {
+      return { message: "solicitud axios cancelada" }
     }
+    return { success: false, message: error.message }
+  }
 }
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+const post = async (url, body) => {
+  try {
+    const { data } = await publicApi(url, {
+      method: "post",
+      data: body,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+    if (!data || !data.success) throw new Error(data ? data.message || data.error : requestMessagesSchema.problemExistTryLater)
+
+    const dataAdapter = data.data
+
+    return { success: data.success, data: dataAdapter, message: requestMessagesSchema.successfullyOperation }
+  } catch (error) {
+    console.error("error public post: ", error.message)
+    if (axios.isCancel(error)) {
+      return { message: "solicitud axios cancelada" }
+    }
+    return { success: false, message: error.message }
+  }
 }
 
-export default Get
+const publicService = { get, post }
+export default publicService
