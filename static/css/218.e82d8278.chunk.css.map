@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/218.e82d8278.chunk.css","mappings":"AAAA,MAEE,2BAA6B,CAC7B,qCAAuC,CAFvC,qBAGF,CAEA,aACE,gBACF","sources":["views/Members/Detail/Members.css"],"sourcesContent":[".card {\n  border: none !important;\n  --bs-card-bg: none !important;\n  --bs-card-border-color: none !important;\n}\n\n.card-img-bg {\n  object-fit: cover;\n}"],"names":[],"sourceRoot":""}
