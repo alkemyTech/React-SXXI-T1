@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 import { addIcon } from "assets/images";
 import { BackTo } from "Components/BackTo/BackTo";
 import { CustomTable } from "Components/CustomTable/CustomTable";
@@ -7,7 +6,7 @@ import { CustomTitle } from "Components/CustomTitle/CustomTitle";
 import { privateRoutes } from "models/routes";
 import SearchNews from "./components/SearchNews";
 import { useNews } from "./hooks/useNews";
-import { SpinnerLoad } from "Components/Loading/SpinnerLoad/SpinnerLoad";
+import { CustomAlertMessage } from "Components/CustomAlertMessage/CustomAlertMessage";
 
 const NewsList = ({ deleteHandler }) => {
   const { loadingNews, newsData, fetchNews } = useNews();
@@ -33,9 +32,18 @@ const NewsList = ({ deleteHandler }) => {
 
   let newsContent;
   if (loadingNews) {
-    newsContent = <SpinnerLoad />;
-  } else {
     newsContent = (
+      <CustomTable
+        loading={loadingNews}
+        tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
+        tBody={newsData}
+        myTableData={{ name: "name", image: "image", created_at: "created_at" }}
+        handleEdit={editHandler}
+        handleDelete={deleteHandler}
+      />
+    );
+  } else {
+    newsContent = newsData.length ? (
       <CustomTable
         tHead={["#", "Nombre", "Imagen", "Fecha de Creación", "Acciones"]}
         tBody={newsData}
@@ -43,6 +51,10 @@ const NewsList = ({ deleteHandler }) => {
         handleEdit={editHandler}
         handleDelete={deleteHandler}
       />
+    ) : (
+      <div className="col col-12 d-flex justify-content-center mt-5">
+        <CustomAlertMessage alertClass="col col-10" text="Sin novedades para mostrar" />
+      </div>
     );
   }
 

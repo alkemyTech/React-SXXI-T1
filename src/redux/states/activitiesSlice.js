@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import privateService from "Services/privateApiService";
 import { URLs } from "Services/ServicesURLS";
+import { whatIs } from "utilities/parseDate";
 
 const initialState = {
   activities: [],
@@ -28,7 +29,7 @@ const activitiesSlice = createSlice({
             id: el.id,
             name: el.name,
             image: el.image,
-            createdAt: el.created_at,
+            createdAt: whatIs("isString", el.created_at, "splice", "created_at"),
           };
         });
       })
