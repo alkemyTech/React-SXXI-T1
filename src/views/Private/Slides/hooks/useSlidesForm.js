@@ -82,6 +82,7 @@ export const useSlidesForm = (idSlide) => {
         privateService.put(restURL, idSlide, firstDataSubmit),
         privateService.put(restURL, secondDataSubmit.id, secondDataSubmit),
       ]);
+
       const response = sendSlides.findIndex((result) => !result.success);
 
       if (response !== -1) {
