@@ -1,12 +1,12 @@
-import activityImage from "assets/actvityIcon.svg"
-import categoryImage from "assets/categoryIcon.svg"
-import membersImage from "assets/membersIcon.svg"
-import testimonialsImage from "assets/testimonialsIcon.svg"
-import usersImage from "assets/usersIcon.svg"
-import slideImage from "assets/slideIcon.svg"
-import newsImage from "assets/newsIcon.svg"
-import organizationImage from "assets/organizationIcon.svg"
-import { privateRoutes } from "models/routes"
+import activityImage from "assets/actvityIcon.svg";
+import categoryImage from "assets/categoryIcon.svg";
+import membersImage from "assets/membersIcon.svg";
+import testimonialsImage from "assets/testimonialsIcon.svg";
+import organizationImage from "assets/usersIcon.svg";
+import slideImage from "assets/slideIcon.svg";
+import newsImage from "assets/newsIcon.svg";
+import usersImage from "assets/organizationIcon.svg";
+import { privateRoutes } from "models/routes";
 
 export const dashboardLinks = [
   {
@@ -49,4 +49,4 @@ export const dashboardLinks = [
     icon: usersImage,
     to: `/${privateRoutes.BACKOFFICE}${privateRoutes.USERS}`,
   },
-]
+];
