@@ -50,7 +50,7 @@ function App() {
                 setReturnToHome={setReturnToHome}
                 text="Oops... Parece que algo salió mal! Comunicate con el administrador por favor. Serás redirigido a la pantalla principal"
                 where="error-boundary">
-                <ImageBody image={internalError} height="380px" borderRadius="8px" />
+                <ImageBody image={internalError} height="632px" borderRadius="8px" />
               </ComponentErrorView>
             }>
             <Suspense fallback={<SpinnerLoad />}>
